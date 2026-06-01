@@ -95,6 +95,24 @@ $$
 
 Die Energie eines Signals kann im Zeit- oder Frequenzbereich gemessen werden. Allgemeiner gilt das innere Produkt: \(\langle x,y\rangle_t = \tfrac{1}{2\pi}\langle X,Y\rangle_\omega\); die Fourier-Transformation ist also (bis auf den Faktor \(2\pi\)) eine Isometrie auf \(L^2\).
 
+## 4.8 Visualisierung
+
+![Faltung zweier Rechteckpulse ergibt einen Dreieckspuls; Multiplikation der Sinc-Spektren ergibt sinc²](bilder/einheit-4.png)
+
+Zwei identische Rechteckpulse werden gefaltet — heraus kommt der klassische Dreieckspuls. Im Frequenzbereich entspricht das einfach der punktweisen Multiplikation der beiden Sinc-Spektren, die das bekannte \(\operatorname{sinc}^2\)-Profil ergibt (nichtnegativ, weil Quadrat).
+
+Kernidee in Python (vollständiges Skript: [`scripts/einheit-4.py`](scripts/einheit-4.py)):
+
+```python
+import numpy as np
+
+t = np.linspace(-3, 3, 4000)
+dt = t[1] - t[0]
+
+rect = np.where(np.abs(t) <= 0.5, 1.0, 0.0)
+triangle = np.convolve(rect, rect, mode="same") * dt   # = (rect * rect)(t)
+```
+
 ## Übungen zu Einheit 4
 
 1. Was passiert im Frequenzbereich, wenn ein Signal zeitlich verschoben wird?

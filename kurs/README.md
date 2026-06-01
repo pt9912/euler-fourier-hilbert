@@ -15,7 +15,7 @@ Dies ist der inhaltliche Teil des Kurses. Ein Überblick über Zielgruppe und Le
 | [7](einheit-7.md) | Analytisches Signal | Amplitude, Phase und Momentanfrequenz |
 | [8](einheit-8.md) | Gemeinsames Bild | Verknüpfung aller drei Themen mit Abschlussaufgaben |
 
-Die Lösungen zu allen Übungen und Abschlussaufgaben stehen separat in [`loesungen/`](loesungen/README.md).
+Die Lösungen zu allen Übungen und Abschlussaufgaben stehen separat in [`loesungen/`](loesungen/README.md). Die Python-Skripte hinter den Abbildungen liegen in [`scripts/`](scripts/README.md); erzeugte PNGs in `bilder/`.
 
 ## Konventionen und Voraussetzungen
 

@@ -118,6 +118,27 @@ Beweisidee: Im Integranden \(e^{-at^2}e^{-i\omega t}\) lässt sich der Exponent 
 
 Die Gaußfunktion ist deshalb in Wahrscheinlichkeitstheorie, Quantenmechanik und Signalverarbeitung besonders wichtig: Sie ist (bis auf Skalierung) ihre eigene Fourier-Transformierte und minimiert die Zeit-Frequenz-Unschärfe.
 
+## 3.8 Visualisierung
+
+![Rechteck/Sinc und Gauß/Gauß als Beispiele der Zeit-Frequenz-Dualität](bilder/einheit-3.png)
+
+Oben: Ein scharf begrenzter Rechteckpuls hat ein langsam abklingendes, oszillierendes Sinc-Spektrum. Unten: Eine Gaußfunktion hat eine Gauß-Transformierte; ihre Form bleibt erhalten, nur die Skalen kehren sich um.
+
+Kernidee in Python (vollständiges Skript: [`scripts/einheit-3.py`](scripts/einheit-3.py)):
+
+```python
+import numpy as np
+
+t = np.linspace(-6, 6, 2000)
+omega = np.linspace(-15, 15, 2000)
+
+rect = np.where(np.abs(t) <= 1.0, 1.0, 0.0)
+rect_ft = 2 * np.sin(omega) / np.where(omega == 0, 1, omega)
+
+gauss = np.exp(-t**2)
+gauss_ft = np.sqrt(np.pi) * np.exp(-omega**2 / 4)
+```
+
 ## Übungen zu Einheit 3
 
 1. Was ist der Unterschied zwischen Fourier-Reihe und Fourier-Transformation?

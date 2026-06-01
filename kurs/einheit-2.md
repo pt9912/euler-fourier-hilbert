@@ -130,6 +130,27 @@ $$
 
 Das bedeutet: Positive und negative Frequenzen sind nicht unabhängig, wenn das Signal reell ist.
 
+## 2.7 Visualisierung
+
+![Rechteckwelle als Fourier-Reihe mit wachsender Anzahl Harmonischer](bilder/einheit-2.png)
+
+Die Partialsummen aus immer mehr ungeraden Harmonischen nähern sich der Rechteckwelle an. An den Sprungstellen bleibt das **Gibbs-Überschwingen** stehen — auch bei \(N\to\infty\) verschwinden die Spitzen nicht ganz, ihre Breite schrumpft aber.
+
+Kernidee in Python (vollständiges Skript: [`scripts/einheit-2.py`](scripts/einheit-2.py)):
+
+```python
+import numpy as np
+
+t = np.linspace(-np.pi, np.pi, 2000)
+
+def partial_sum(num_terms):
+    result = np.zeros_like(t)
+    for k in range(num_terms):
+        n = 2 * k + 1
+        result += np.sin(n * t) / n
+    return (4 / np.pi) * result
+```
+
 ## Übungen zu Einheit 2
 
 1. Bestimme die komplexen Fourier-Koeffizienten von \(f(t)=2\cos(3\omega_0t)\).

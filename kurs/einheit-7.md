@@ -111,6 +111,26 @@ $$
 
 Die Hüllkurve \(|z(t)|\) approximiert dann \(A(t)\). Wenn \(A(t)\) das Vorzeichen wechseln kann, liefert die Hüllkurve eher \(|A(t)|\); bei Spektralüberlappung zwischen Modulation und Träger wird die Näherung schlechter.
 
+## 7.8 Visualisierung
+
+![AM-Signal mit aus dem analytischen Signal extrahierter Hüllkurve](bilder/einheit-7.png)
+
+Das schnelle Trägersignal \(\cos(\omega_c t)\) ist mit einer langsamen Amplitude \(A(t)=1+0{,}5\cos(2\pi f_m t)\) moduliert. Die Hüllkurve \(|z(t)|\) folgt genau \(A(t)\) — sie ist mit `np.abs(hilbert(x))` in zwei Zeilen Code zu haben.
+
+Kernidee in Python (vollständiges Skript: [`scripts/einheit-7.py`](scripts/einheit-7.py)):
+
+```python
+import numpy as np
+from scipy.signal import hilbert
+
+fs = 2000.0
+t = np.arange(0, 1.0, 1 / fs)
+envelope = 1.0 + 0.5 * np.cos(2 * np.pi * 3.0 * t)
+signal = envelope * np.cos(2 * np.pi * 50.0 * t)
+
+recovered = np.abs(hilbert(signal))    # ≈ envelope
+```
+
 ## Übungen zu Einheit 7
 
 1. Bilde das analytische Signal zu \(x(t)=3\cos(10t)\).

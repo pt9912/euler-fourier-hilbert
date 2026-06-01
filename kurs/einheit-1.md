@@ -123,6 +123,23 @@ $$
 
 Diese beiden Gleichungen sind die Brücke zur Fourier-Analyse: Sinus und Kosinus werden durch komplexe Exponentialfunktionen ersetzt.
 
+## 1.7 Visualisierung
+
+![Einheitskreis und Projektion auf Real-/Imaginärachse](bilder/einheit-1.png)
+
+Wenn \(\varphi\) gleichmäßig anwächst, läuft \(e^{i\varphi}\) auf dem Einheitskreis um. Die Projektion auf die Realachse ergibt \(\cos\varphi\), auf die Imaginärachse \(\sin\varphi\) — der Phasenversatz um \(\pi/2\) ist die geometrische Folge.
+
+Kernidee in Python (vollständiges Skript: [`scripts/einheit-1.py`](scripts/einheit-1.py)):
+
+```python
+import numpy as np
+
+phi = np.linspace(0, 2 * np.pi, 400)
+z = np.exp(1j * phi)           # Einheitskreis
+re_part = z.real               # cos phi
+im_part = z.imag               # sin phi
+```
+
 ## Übungen zu Einheit 1
 
 1. Schreibe \(3(\cos(\pi/4)+i\sin(\pi/4))\) in der Form \(re^{i\varphi}\).

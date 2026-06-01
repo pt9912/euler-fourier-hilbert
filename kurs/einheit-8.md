@@ -43,7 +43,29 @@ Zusammen ergeben sie ein sehr starkes Werkzeug:
 
 Wer mit einer Implementation arbeitet, sollte zusätzlich die Konventionsfragen aus der [Kurs-Übersicht](README.md#konventionen-und-voraussetzungen) kennen — gerade die Normierung von FFT und die DC-Behandlung beim analytischen Signal sind klassische Stolperfallen.
 
-## 8.3 Abschlussaufgaben
+## 8.3 Visualisierung: Alles auf einmal
+
+![Linearer Chirp, Hüllkurve und rekonstruierte Momentanfrequenz](bilder/einheit-8.png)
+
+Der Chirp \(x(t)=\cos\phi(t)\) hat eine linear wachsende Momentanfrequenz von 20 Hz auf 200 Hz. Aus dem analytischen Signal lässt sich die Momentanfrequenz als Ableitung der entfalteten Phase zurückgewinnen — sie folgt der theoretischen Rampe sehr genau. An den Rändern sind Hilbert-Randeffekte zu sehen; in der Praxis arbeitet man dort mit Fensterung oder ignoriert die Randbereiche.
+
+Kernidee in Python (vollständiges Skript: [`scripts/einheit-8.py`](scripts/einheit-8.py)):
+
+```python
+import numpy as np
+from scipy.signal import hilbert
+
+fs = 4000.0
+t = np.arange(0, 1.0, 1 / fs)
+phi = 2 * np.pi * (20.0 * t + 0.5 * 180.0 * t**2)   # f geht von 20 auf 200 Hz
+signal = np.cos(phi)
+
+analytic = hilbert(signal)
+inst_phase = np.unwrap(np.angle(analytic))
+inst_freq = np.diff(inst_phase) / (2 * np.pi) * fs   # Momentanfrequenz in Hz
+```
+
+## 8.4 Abschlussaufgaben
 
 ### Aufgabe 1
 

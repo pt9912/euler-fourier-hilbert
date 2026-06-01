@@ -78,6 +78,26 @@ Der exakte Randfall \(f=f_s/2\) ist ein Sonderfall: positive und negative Freque
 
 Frequenzen oberhalb dieser Grenze erscheinen als falsche niedrigere Frequenzen. Das nennt man Aliasing.
 
+## 5.6 Visualisierung
+
+![Aliasing: zwei verschiedene Sinusse mit identischen Samples, daneben das DFT-Spektrum eines Sinus](bilder/einheit-5.png)
+
+Links: Ein 1-Hz-Sinus und ein 11-Hz-Sinus erzeugen bei \(f_s=10\,\text{Hz}\) **exakt dieselben Abtastwerte**. Aus den schwarzen Punkten allein lassen sich die beiden Frequenzen nicht unterscheiden — das ist Aliasing. Rechts: Die DFT eines 30-Hz-Sinus bei \(f_s=100\,\text{Hz}\) zeigt zwei symmetrische Linien bei \(\pm 30\,\text{Hz}\) (konjugierte Symmetrie reeller Signale).
+
+Kernidee in Python (vollständiges Skript: [`scripts/einheit-5.py`](scripts/einheit-5.py)):
+
+```python
+import numpy as np
+
+fs = 100.0
+N = 256
+n = np.arange(N)
+signal = np.cos(2 * np.pi * 30.0 * n / fs)
+
+X = np.fft.fft(signal)
+freqs = np.fft.fftfreq(N, d=1 / fs)        # signierte Frequenzachse
+```
+
 ## Übungen zu Einheit 5
 
 1. Was ist der Unterschied zwischen DFT und FFT?

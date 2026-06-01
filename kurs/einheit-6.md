@@ -99,6 +99,26 @@ $$
 \mathcal{H}\{\mathcal{H}\{x\}\} = -x.
 $$
 
+## 6.6 Visualisierung
+
+![Hilbert-Transformierte eines Kosinus ist ein um 90 Grad verschobener Sinus](bilder/einheit-6.png)
+
+Im Zoom unten ist gut zu sehen: Wo der Kosinus sein Maximum hat, ist die Hilbert-Transformierte gerade Null — und umgekehrt. Das ist die Quadratur-Beziehung in einem einzigen Bild.
+
+Kernidee in Python (vollständiges Skript: [`scripts/einheit-6.py`](scripts/einheit-6.py)):
+
+```python
+import numpy as np
+from scipy.signal import hilbert
+
+fs = 1000.0
+t = np.arange(0, 1.0, 1 / fs)
+cos_signal = np.cos(2 * np.pi * 5.0 * t)
+
+analytic = hilbert(cos_signal)         # liefert x + i*H{x}
+hilbert_cos = np.imag(analytic)        # = sin(2 pi 5 t)
+```
+
 ## Übungen zu Einheit 6
 
 1. Was macht die Hilbert-Transformation mit positiven Frequenzen?
