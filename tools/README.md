@@ -61,6 +61,15 @@ beobachtete Quirks:
   alle Fälle eines `\begin{cases}…\end{cases}` in einer Zeile innerhalb
   der Fence.
 
+- `github-html-roundtrip-lt`: `<` direkt vor einem ASCII-Buchstaben
+  (z.B. `k<N`). GitHubs `math-renderer` macht in
+  `tempDocumentContentForSanitization()` einen HTML-Parse-Roundtrip
+  über `document.implementation.createHTMLDocument`; der HTML-Parser
+  interpretiert `<N` als Start eines `<N>`-Tags und verschluckt allen
+  Math-Inhalt bis zum nächsten `>` (z.B. das `\end{cases}` der gleichen
+  Formel). MathJax bekommt verstümmelten Input und scheitert. Workaround:
+  Leerzeichen einfügen (`k < N`) oder `\lt` benutzen.
+
 - `commonmark-escape`: Backslash vor ASCII-Interpunktion in `$...$`
   oder einzeiligem `$$...$$`. CommonMark frisst den Backslash, bevor
   MathJax den Inhalt sieht. Workaround: in Inline-Math die LaTeX-

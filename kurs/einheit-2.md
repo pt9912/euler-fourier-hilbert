@@ -112,7 +112,7 @@ c_{-1} = -\frac{1}{2i} = \frac{i}{2}.
 Sei $f$ die $2\pi$-periodische Rechteckwelle mit $\omega_0=1$,
 
 ```math
-f(t)= \begin{cases} +1, & 0<t<\pi,\\ -1, & -\pi<t<0. \end{cases}
+f(t)= \begin{cases} +1, & 0 < t < \pi,\\ -1, & -\pi < t < 0. \end{cases}
 ```
 
 Wir rechnen $c_n$ für $n\ne 0$ direkt aus der Definition aus und nutzen, dass das Integral über jede Periode dasselbe ergibt:

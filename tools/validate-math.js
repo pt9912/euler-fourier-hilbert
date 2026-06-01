@@ -157,6 +157,22 @@ function* detectDenied(block) {
 }
 
 function* detectQuirks(block) {
+  // Quirk 1: `<` direkt vor einem ASCII-Buchstaben.
+  // GitHubs math-renderer macht in tempDocumentContentForSanitization()
+  // einen HTML-Parse-Roundtrip; dabei wird z.B. `k<N` als Start eines
+  // `<N>`-Tags interpretiert und alles dahinter (inkl. \end{cases}) vom
+  // HTML-Parser in den Tag-Body geschluckt. MathJax bekommt dann eine
+  // verstuemmelte Eingabe und scheitert mit "Missing \end{cases}" o.ae.
+  // Betrifft alle Math-Arten (Fence, $$, $).
+  for (const m of block.content.matchAll(/<[a-zA-Z]/g)) {
+    const beforeContent = block.content.substring(0, m.index);
+    const relLine = beforeContent.split('\n').length - 1;
+    yield {
+      relLine,
+      kind: 'github-html-roundtrip-lt',
+      message: `\`<\` direkt vor ASCII-Buchstaben (\`${m[0]}\`) — GitHubs HTML-Roundtrip frisst alles dahinter; mit Leerzeichen \`< ${m[0][1]}\` umgehen oder \`\\lt\` benutzen`,
+    };
+  }
   if (block.source === 'fence') {
     const lines = block.content.split('\n');
     for (let i = 0; i < lines.length; i++) {
