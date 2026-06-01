@@ -2,10 +2,43 @@
 
 Aufgabenstellung: [Einheit 4 — Übungen](../einheit-4.md#übungen-zu-einheit-4)
 
-1. Das Spektrum wird mit \(e^{-i\omega t_0}\) multipliziert. Der Betrag bleibt gleich, die Phase ändert sich.
-2. Weil im Frequenzbereich mit \(i\omega\) multipliziert wird. Der Faktor wächst mit \(|\omega|\).
-3. Komplizierte Faltungen im Zeitbereich werden einfache Multiplikationen im Frequenzbereich.
-4. \(Y(\omega)=X(\omega)H(\omega)\).
+1. Für eine Zeitverschiebung gilt:
+
+   $$
+   x(t-t_0)\leftrightarrow e^{-i\omega t_0}X(\omega).
+   $$
+
+   Der Faktor \(e^{-i\omega t_0}\) hat Betrag \(1\). Deshalb bleibt \(|X(\omega)|\) gleich, aber die Phase ändert sich um \(-\omega t_0\).
+
+2. Die Ableitung erfüllt:
+
+   $$
+   \frac{d}{dt}x(t)\leftrightarrow i\omega X(\omega).
+   $$
+
+   Der Betrag des Faktors ist
+
+   $$
+   |i\omega|=|\omega|.
+   $$
+
+   Hohe Frequenzen werden daher stärker gewichtet als niedrige.
+
+3. Der Faltungssatz sagt:
+
+   $$
+   x*h\leftrightarrow X(\omega)H(\omega).
+   $$
+
+   Eine Faltung ist ein Integral über alle Verschiebungen. Im Frequenzbereich wird daraus eine punktweise Multiplikation, was theoretisch und numerisch oft einfacher ist.
+
+4. Wenn \(y=x*h\), dann folgt direkt aus dem Faltungssatz:
+
+   $$
+   Y(\omega)=X(\omega)H(\omega).
+   $$
+
+   \(H(\omega)\) beschreibt also, welche Frequenzen das System verstärkt, abschwächt oder in der Phase verschiebt.
 
 ---
 

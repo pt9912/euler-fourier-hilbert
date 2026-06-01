@@ -96,6 +96,8 @@ $$
 
 wobei \(A(t)\) langsam gegenüber der Trägerschwingung \(\cos(\omega_ct)\) variiert. Praktisch bedeutet das: \(A(t)\) ist bandbegrenzt deutlich unterhalb der Trägerfrequenz und im Idealfall nicht negativ.
 
+Diese Spektraltrennung ist der entscheidende Punkt. Unter passenden Bedingungen, oft als Bedrosian-Bedingung formuliert, bleibt die langsamere Amplitude beim Bilden der Quadratur-Komponente von der schnellen Trägerschwingung getrennt.
+
 Dann ist näherungsweise:
 
 $$

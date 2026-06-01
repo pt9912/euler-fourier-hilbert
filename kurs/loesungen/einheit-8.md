@@ -51,7 +51,13 @@ $$
 f_N=\frac{f_s}{2}=4000\,\text{Hz}.
 $$
 
-Ohne Aliasing darstellbar sind Frequenzen von \(0\) bis zur Nyquist-Grenze \(4000\,\text{Hz}\); praktisch arbeitet man meist knapp darunter und verwendet ein Anti-Aliasing-Filter.
+Ohne Aliasing eindeutig darstellbar sind Frequenzen mit
+
+$$
+|f|<4000\,\text{Hz}.
+$$
+
+Für reelle Signale spricht man im einseitigen Spektrum meist vom Bereich \(0\le f<4000\,\text{Hz}\). Der exakte Rand bei \(4000\,\text{Hz}\) ist der Nyquist-Sonderfall; praktisch arbeitet man knapp darunter und verwendet ein Anti-Aliasing-Filter.
 
 ---
 

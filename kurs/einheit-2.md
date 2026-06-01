@@ -98,8 +98,17 @@ $$
 
 Ein Fourier-Koeffizient \(c_n\) ist komplex.
 
-- \(|c_n|\) beschreibt die Stärke der Frequenz.
+- \(|c_n|\) beschreibt die Stärke dieses zweiseitigen Frequenzanteils.
 - \(\arg(c_n)\) beschreibt die Phase.
+
+Wichtig: Bei reellwertigen Signalen verteilt sich eine reale Sinus- oder Kosinusamplitude auf ein Paar positiver und negativer Frequenzen. Zum Beispiel hat
+
+$$
+\cos(\omega_0t)
+= \frac12 e^{i\omega_0t}+\frac12 e^{-i\omega_0t}
+$$
+
+die reale Amplitude \(1\), aber die zweiseitigen Koeffizienten \(c_1=c_{-1}=1/2\). In einem einseitigen Amplitudenspektrum fasst man diese beiden Beiträge oft zusammen; dann taucht für \(n>0\) ein Faktor \(2\) auf.
 
 Für reellwertige Signale gilt:
 

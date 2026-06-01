@@ -54,20 +54,22 @@ Die FFT ist kein anderes mathematisches Objekt als die DFT. Sie ist ein schnelle
 
 ## 5.5 Abtastung und Nyquist-Grenze
 
-Wenn ein kontinuierliches Signal mit Abtastrate \(f_s\) abgetastet wird, können Frequenzen bis höchstens
+Wenn ein kontinuierliches Signal mit Abtastrate \(f_s\) abgetastet wird, können Frequenzen mit \(|f|<f_s/2\) ohne Aliasing eindeutig dargestellt werden. Die Grenze
 
 $$
 f_N=\frac{f_s}{2}
 $$
 
-eindeutig dargestellt werden. Diese Grenze heißt Nyquist-Frequenz.
+heißt Nyquist-Frequenz.
+
+Der exakte Randfall \(f=f_s/2\) ist ein Sonderfall: positive und negative Frequenz fallen dort auf denselben Abtastwertwechsel von Sample zu Sample. In der DFT ist das bei geradem \(N\) der Nyquist-Bin \(k=N/2\), der keine separate positive/negative Gegenfrequenz hat. Praktisch hält man Nutzsignale deshalb unterhalb der Nyquist-Frequenz und verwendet vor der Abtastung ein Anti-Aliasing-Filter.
 
 Frequenzen oberhalb dieser Grenze erscheinen als falsche niedrigere Frequenzen. Das nennt man Aliasing.
 
 ## Übungen zu Einheit 5
 
 1. Was ist der Unterschied zwischen DFT und FFT?
-2. Ein Signal wird mit \(f_s=1000\,\text{Hz}\) abgetastet. Was ist die Nyquist-Frequenz?
+2. Ein Signal wird mit \(f_s=1000\,\text{Hz}\) abgetastet. Was ist die Nyquist-Frequenz, und welcher Frequenzbereich ist ohne Aliasing eindeutig?
 3. Warum ist Aliasing problematisch?
 4. Was bedeutet der DFT-Koeffizient \(X[0]\)?
 

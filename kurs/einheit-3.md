@@ -36,10 +36,21 @@ Dabei liefert:
 
 ## 3.4 Beispiel: Dirac-Impuls
 
+Der Dirac-Impuls \(\delta(t)\) ist keine gewöhnliche Funktion, sondern eine idealisierte Distribution. Man verwendet ihn über seine Siebeigenschaft:
+
+$$
+\int_{-\infty}^{\infty} f(t)\delta(t-t_0)\,dt=f(t_0).
+$$
+
+Alle folgenden Aussagen über \(\delta\) sind in diesem Sinn zu verstehen.
+
 Für den Dirac-Impuls \(\delta(t)\) gilt:
 
 $$
-\mathcal{F}\{\delta(t)\}=1.
+\mathcal{F}\{\delta(t)\}
+=\int_{-\infty}^{\infty}\delta(t)e^{-i\omega t}\,dt
+=e^{-i\omega\cdot 0}
+=1.
 $$
 
 Ein unendlich kurzer Impuls enthält alle Frequenzen gleich stark.
@@ -49,7 +60,9 @@ Ein unendlich kurzer Impuls enthält alle Frequenzen gleich stark.
 Für \(\delta(t-t_0)\) gilt:
 
 $$
-\mathcal{F}\{\delta(t-t_0)\}=e^{-i\omega t_0}.
+\mathcal{F}\{\delta(t-t_0)\}
+=\int_{-\infty}^{\infty}\delta(t-t_0)e^{-i\omega t}\,dt
+=e^{-i\omega t_0}.
 $$
 
 Eine Zeitverschiebung erzeugt also eine frequenzabhängige Phase.
