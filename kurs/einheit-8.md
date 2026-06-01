@@ -39,7 +39,7 @@ Zusammen ergeben sie ein sehr starkes Werkzeug:
 3. Fourier-Analyse misst, welche Frequenzen in einem Signal stecken.
 4. Zeitverschiebung entspricht Phasenänderung; Skalierung im Zeitbereich entspricht inverser Skalierung im Frequenzbereich.
 5. Faltung im Zeitbereich entspricht Multiplikation im Frequenzbereich. LTI-Systeme sind im Frequenzbereich punktweise Multiplikation mit dem Frequenzgang.
-6. Die Hilbert-Transformation ist ein LTI-Operator mit Frequenzgang \(-i\operatorname{sgn}(\omega)\); im Zeitbereich Faltung mit \(1/(\pi t)\).
+6. Die Hilbert-Transformation ist ein LTI-Operator mit Frequenzgang $-i\operatorname{sgn}(\omega)$; im Zeitbereich Faltung mit $1/(\pi t)$.
 7. Das analytische Signal entfernt negative Frequenzen, erhält den Gleichanteil und macht Amplitude und Phase zugänglich.
 8. Zeitliche und spektrale Konzentration stehen in Konkurrenz (Sinc beim Rechteckpuls, Gauß als Optimalfall).
 
@@ -49,7 +49,7 @@ Wer mit einer Implementation arbeitet, sollte zusätzlich die Konventionsfragen 
 
 ![Linearer Chirp, Hüllkurve und rekonstruierte Momentanfrequenz](bilder/einheit-8.png)
 
-Der Chirp \(x(t)=\cos\phi(t)\) hat eine linear wachsende Momentanfrequenz von 20 Hz auf 200 Hz. Aus dem analytischen Signal lässt sich die Momentanfrequenz als Ableitung der entfalteten Phase zurückgewinnen — sie folgt der theoretischen Rampe sehr genau. An den Rändern sind Hilbert-Randeffekte zu sehen; in der Praxis arbeitet man dort mit Fensterung oder ignoriert die Randbereiche.
+Der Chirp $x(t)=\cos\phi(t)$ hat eine linear wachsende Momentanfrequenz von 20 Hz auf 200 Hz. Aus dem analytischen Signal lässt sich die Momentanfrequenz als Ableitung der entfalteten Phase zurückgewinnen — sie folgt der theoretischen Rampe sehr genau. An den Rändern sind Hilbert-Randeffekte zu sehen; in der Praxis arbeitet man dort mit Fensterung oder ignoriert die Randbereiche.
 
 Kernidee in Python (vollständiges Skript: [`scripts/einheit-8.py`](scripts/einheit-8.py)):
 
@@ -83,7 +83,7 @@ als Summe komplexer Exponentialfunktionen.
 
 ### Aufgabe 2
 
-Bestimme die Fourier-Transformierte von \(\delta(t-2)\).
+Bestimme die Fourier-Transformierte von $\delta(t-2)$.
 
 ### Aufgabe 3
 
@@ -93,22 +93,22 @@ $$
 x(t)=\cos(8t).
 $$
 
-Die \(8\) ist hier eine Kreisfrequenz in rad/s, kein Hertz-Wert.
+Die $8$ ist hier eine Kreisfrequenz in rad/s, kein Hertz-Wert.
 
 Bestimme:
 
-1. \(\mathcal{H}\{x\}(t)\),
-2. das analytische Signal \(z(t)\),
+1. $\mathcal{H}\{x\}(t)$,
+2. das analytische Signal $z(t)$,
 3. die Hüllkurve,
 4. die Momentanfrequenz.
 
 ### Aufgabe 4
 
-Ein lineares zeitinvariantes System hat Impulsantwort \(h(t)\). Erkläre mit Fourier-Transformation, warum die Ausgabe \(y(t)=x(t)*h(t)\) im Frequenzbereich durch \(Y(\omega)=X(\omega)H(\omega)\) beschrieben wird.
+Ein lineares zeitinvariantes System hat Impulsantwort $h(t)$. Erkläre mit Fourier-Transformation, warum die Ausgabe $y(t)=x(t)*h(t)$ im Frequenzbereich durch $Y(\omega)=X(\omega)H(\omega)$ beschrieben wird.
 
 ### Aufgabe 5
 
-Ein Signal wird mit \(f_s=8000\,\text{Hz}\) abgetastet. Welche Frequenzen können ohne Aliasing dargestellt werden?
+Ein Signal wird mit $f_s=8000\,\text{Hz}$ abgetastet. Welche Frequenzen können ohne Aliasing dargestellt werden?
 
 ### Aufgabe 6 (Synthese: Euler, Fourier, Hilbert auf einen Schlag)
 
@@ -118,11 +118,11 @@ $$
 x(t)=\bigl(1+\tfrac12\cos(2\pi\,5\,t)\bigr)\cos(2\pi\,100\,t).
 $$
 
-a) Schreibe \(x\) mit der Euler-Formel als Summe komplexer Schwingungen und gib deren Frequenzen in Hertz an.
+a) Schreibe $x$ mit der Euler-Formel als Summe komplexer Schwingungen und gib deren Frequenzen in Hertz an.
 
-b) Skizziere — qualitativ — das Spektrum \(X(f)\) als Linienspektrum (Lage, relative Höhen, Phasen).
+b) Skizziere — qualitativ — das Spektrum $X(f)$ als Linienspektrum (Lage, relative Höhen, Phasen).
 
-c) Begründe mit der Bedrosian-Bedingung, dass das analytische Signal hier \(z(t)=\bigl(1+\tfrac12\cos(2\pi\,5\,t)\bigr)e^{i\,2\pi\,100\,t}\) ist, und gib die Hüllkurve \(|z(t)|\) sowie die Momentanfrequenz \(f_{\text{inst}}(t)\) an.
+c) Begründe mit der Bedrosian-Bedingung, dass das analytische Signal hier $z(t)=\bigl(1+\tfrac12\cos(2\pi\,5\,t)\bigr)e^{i\,2\pi\,100\,t}$ ist, und gib die Hüllkurve $|z(t)|$ sowie die Momentanfrequenz $f_{\text{inst}}(t)$ an.
 
 ### Aufgabe 7 (Reflexion)
 
@@ -139,7 +139,7 @@ Prüfe die folgenden Aussagen. Markiere jeweils, ob sie richtig, falsch oder nur
 
 ## Abschluss-Selbstcheck
 
-- [ ] Ich kann zwischen Kreisfrequenz \(\omega\) und Frequenz \(f\) sicher wechseln.
+- [ ] Ich kann zwischen Kreisfrequenz $\omega$ und Frequenz $f$ sicher wechseln.
 - [ ] Ich kann ein Signal mit Euler in komplexe Exponentialfunktionen zerlegen.
 - [ ] Ich kann erklären, wie Fourier-Rechnung LTI-Systeme und Filter vereinfacht.
 - [ ] Ich kann das analytische Signal als Verbindung von Fourier- und Hilbert-Idee erklären.

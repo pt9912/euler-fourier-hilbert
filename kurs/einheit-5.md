@@ -1,6 +1,6 @@
 # Einheit 5: Diskrete Signale, DFT und FFT
 
-Computer können kein Integral über unendlich viele Zeiten auswerten; sie speichern endlich viele Zahlen. Die Leitfrage dieser Einheit lautet: Was bedeutet "Fourier", wenn nur \(N\) Abtastwerte vorliegen? Die Antwort führt zur DFT, zur FFT und zur unvermeidlichen Nyquist-Grenze.
+Computer können kein Integral über unendlich viele Zeiten auswerten; sie speichern endlich viele Zahlen. Die Leitfrage dieser Einheit lautet: Was bedeutet "Fourier", wenn nur $N$ Abtastwerte vorliegen? Die Antwort führt zur DFT, zur FFT und zur unvermeidlichen Nyquist-Grenze.
 
 ## 5.1 Warum diskret?
 
@@ -29,13 +29,13 @@ $$
 
 **Periodizität.** Aus den Definitionen folgt direkt
 $$X[k+N]=X[k],\qquad x[n+N]=x[n].$$
-DFT und Eingangsfolge sind also implizit \(N\)-periodisch fortgesetzt. Das erklärt, warum es nur \(N\) verschiedene Frequenzbins gibt — und es ist auch der Grund, weshalb Aliasing in der DFT überhaupt auftritt.
+DFT und Eingangsfolge sind also implizit $N$-periodisch fortgesetzt. Das erklärt, warum es nur $N$ verschiedene Frequenzbins gibt — und es ist auch der Grund, weshalb Aliasing in der DFT überhaupt auftritt.
 
-**Normierungskonvention.** Wir wählen den Faktor \(1/N\) bei der **inversen** Transformation. Das ist die Konvention von NumPy (`numpy.fft.fft`/`ifft`), SciPy und MATLAB. Andere Quellen verwenden \(1/\sqrt N\) auf beiden Seiten (symmetrische Variante) oder \(1/N\) vorne; die Sätze sind dieselben, die Zahlenwerte einzelner Koeffizienten unterscheiden sich um einen Vorfaktor.
+**Normierungskonvention.** Wir wählen den Faktor $1/N$ bei der **inversen** Transformation. Das ist die Konvention von NumPy (`numpy.fft.fft`/`ifft`), SciPy und MATLAB. Andere Quellen verwenden $1/\sqrt N$ auf beiden Seiten (symmetrische Variante) oder $1/N$ vorne; die Sätze sind dieselben, die Zahlenwerte einzelner Koeffizienten unterscheiden sich um einen Vorfaktor.
 
 ## 5.3 Interpretation der Frequenzindizes
 
-Wenn die Abtastrate \(f_s\) ist, gehört zum Index \(k\) die Frequenz
+Wenn die Abtastrate $f_s$ ist, gehört zum Index $k$ die Frequenz
 
 $$
 f_k = \frac{k}{N}f_s.
@@ -51,24 +51,24 @@ f_k =
 \end{cases}
 $$
 
-Für ungerades \(N\) ist die Aufteilung in positive (\(k<N/2\)) und negative (\(k>N/2\)) Frequenzen eindeutig. Für gerades \(N\) ist der **Nyquist-Bin** \(k=N/2\) ein Sonderfall: positive und negative Frequenz \(\pm f_s/2\) fallen dort algebraisch zusammen, weil sich die Abtastwerte einer Schwingung mit \(f=f_s/2\) nur im Vorzeichen unterscheiden. NumPys `fft.fftfreq` ordnet diesen Bin der negativen Frequenz \(-f_s/2\) zu (also der zweite Fall oben mit \(k=N/2\)); inhaltlich macht das keinen Unterschied, weil das Bild dort symmetrisch ist.
+Für ungerades $N$ ist die Aufteilung in positive ($k<N/2$) und negative ($k>N/2$) Frequenzen eindeutig. Für gerades $N$ ist der **Nyquist-Bin** $k=N/2$ ein Sonderfall: positive und negative Frequenz $\pm f_s/2$ fallen dort algebraisch zusammen, weil sich die Abtastwerte einer Schwingung mit $f=f_s/2$ nur im Vorzeichen unterscheiden. NumPys `fft.fftfreq` ordnet diesen Bin der negativen Frequenz $-f_s/2$ zu (also der zweite Fall oben mit $k=N/2$); inhaltlich macht das keinen Unterschied, weil das Bild dort symmetrisch ist.
 
-**Symmetrie reeller Signale.** Ist \(x[n]\) reell, so gilt
+**Symmetrie reeller Signale.** Ist $x[n]$ reell, so gilt
 $$
 X[N-k]=\overline{X[k]},\qquad k=1,\ldots,N-1.
 $$
-Insbesondere ist \(|X[N-k]|=|X[k]|\) und \(\arg X[N-k]=-\arg X[k]\). Positive und negative Frequenzanteile tragen also redundante Information. In der Praxis genügt es daher, die Bins \(k=0,\ldots,\lfloor N/2\rfloor\) anzuzeigen (einseitiges Spektrum). Das ist auch der Grund, warum NumPys `rfft` nur diese Hälfte zurückgibt.
+Insbesondere ist $|X[N-k]|=|X[k]|$ und $\arg X[N-k]=-\arg X[k]$. Positive und negative Frequenzanteile tragen also redundante Information. In der Praxis genügt es daher, die Bins $k=0,\ldots,\lfloor N/2\rfloor$ anzuzeigen (einseitiges Spektrum). Das ist auch der Grund, warum NumPys `rfft` nur diese Hälfte zurückgibt.
 
 ## 5.4 FFT
 
 Die FFT ist kein anderes mathematisches Objekt als die DFT. Sie ist ein schneller Algorithmus zur Berechnung der DFT.
 
-- Direkte DFT: ungefähr \(N^2\) Operationen.
-- FFT: ungefähr \(N\log_2 N\) Operationen.
+- Direkte DFT: ungefähr $N^2$ Operationen.
+- FFT: ungefähr $N\log_2 N$ Operationen.
 
 ## 5.5 Frequenzauflösung, Leckage und Fensterung
 
-Die DFT sieht nur \(N\) Samples über eine endliche Messdauer
+Die DFT sieht nur $N$ Samples über eine endliche Messdauer
 $$
 T_{\text{mess}}=\frac{N}{f_s}.
 $$
@@ -81,9 +81,9 @@ Eine Sinusschwingung fällt genau auf einen DFT-Bin, wenn
 $$
 f_0=m\Delta f
 $$
-für eine ganze Zahl \(m\) gilt. Dann enthält das Messfenster eine ganze Zahl von Perioden; man nennt die Abtastung **kohärent**. Fällt \(f_0\) zwischen zwei Bins, verteilt sich die Energie auf viele Bins. Das ist **Spektralleckage**.
+für eine ganze Zahl $m$ gilt. Dann enthält das Messfenster eine ganze Zahl von Perioden; man nennt die Abtastung **kohärent**. Fällt $f_0$ zwischen zwei Bins, verteilt sich die Energie auf viele Bins. Das ist **Spektralleckage**.
 
-Der Grund ist nicht, dass die FFT ungenau wäre. Die DFT behandelt die \(N\) Samples als eine Periode einer periodischen Fortsetzung. Wenn Anfang und Ende des Messfensters nicht zusammenpassen, entsteht in dieser periodischen Fortsetzung ein Sprung. Sprünge erzeugen breite Spektralanteile.
+Der Grund ist nicht, dass die FFT ungenau wäre. Die DFT behandelt die $N$ Samples als eine Periode einer periodischen Fortsetzung. Wenn Anfang und Ende des Messfensters nicht zusammenpassen, entsteht in dieser periodischen Fortsetzung ein Sprung. Sprünge erzeugen breite Spektralanteile.
 
 Eine **Fensterfunktion** (z. B. Hann- oder Hamming-Fenster) dämpft die Ränder des Messfensters und verringert Nebenkeulen. Der Preis ist ein breiteres Hauptmaximum und veränderte Amplitudenskalen. Fensterung verbessert also die Lesbarkeit des Spektrums, aber sie zaubert keine zusätzliche Information in die Daten.
 
@@ -91,7 +91,7 @@ Auch **Zero Padding** muss man richtig einordnen: Wenn man Nullen anhängt, beko
 
 ## 5.6 Abtastung und Nyquist-Grenze
 
-Wenn ein kontinuierliches Signal mit Abtastrate \(f_s\) abgetastet wird, können Frequenzen mit \(|f|<f_s/2\) ohne Aliasing eindeutig dargestellt werden. Die Grenze
+Wenn ein kontinuierliches Signal mit Abtastrate $f_s$ abgetastet wird, können Frequenzen mit $|f|<f_s/2$ ohne Aliasing eindeutig dargestellt werden. Die Grenze
 
 $$
 f_N=\frac{f_s}{2}
@@ -99,7 +99,7 @@ $$
 
 heißt Nyquist-Frequenz.
 
-Der exakte Randfall \(f=f_s/2\) ist ein Sonderfall: positive und negative Frequenz fallen dort auf denselben Abtastwertwechsel von Sample zu Sample. In der DFT ist das bei geradem \(N\) der Nyquist-Bin \(k=N/2\), der keine separate positive/negative Gegenfrequenz hat. Praktisch hält man Nutzsignale deshalb unterhalb der Nyquist-Frequenz und verwendet vor der Abtastung ein Anti-Aliasing-Filter.
+Der exakte Randfall $f=f_s/2$ ist ein Sonderfall: positive und negative Frequenz fallen dort auf denselben Abtastwertwechsel von Sample zu Sample. In der DFT ist das bei geradem $N$ der Nyquist-Bin $k=N/2$, der keine separate positive/negative Gegenfrequenz hat. Praktisch hält man Nutzsignale deshalb unterhalb der Nyquist-Frequenz und verwendet vor der Abtastung ein Anti-Aliasing-Filter.
 
 Frequenzen oberhalb dieser Grenze erscheinen als falsche niedrigere Frequenzen. Das nennt man Aliasing.
 
@@ -107,7 +107,7 @@ Frequenzen oberhalb dieser Grenze erscheinen als falsche niedrigere Frequenzen. 
 
 ![Aliasing: identische Samples, DFT-Spektrum und Rückfaltung ins Nyquist-Band](bilder/einheit-5.png)
 
-Links: Eine 1-Hz-Schwingung und eine 11-Hz-Schwingung erzeugen bei \(f_s=10\,\text{Hz}\) **exakt dieselben Abtastwerte** — die roten Kreise umschließen die schwarzen Punkte. Aus den Samples allein lassen sich die beiden Frequenzen nicht unterscheiden, das ist Aliasing. In der Mitte zeigt die DFT eines 30-Hz-Kosinus bei \(f_s=100\,\text{Hz}\) zwei symmetrische Linien bei \(\pm 30\,\text{Hz}\) (konjugierte Symmetrie reeller Signale). Rechts sieht man dieselbe Aliasing-Idee im Spektrum: Linien außerhalb des Nyquist-Bands werden in das Band \([-f_s/2,f_s/2)\) zurückgefaltet.
+Links: Eine 1-Hz-Schwingung und eine 11-Hz-Schwingung erzeugen bei $f_s=10\,\text{Hz}$ **exakt dieselben Abtastwerte** — die roten Kreise umschließen die schwarzen Punkte. Aus den Samples allein lassen sich die beiden Frequenzen nicht unterscheiden, das ist Aliasing. In der Mitte zeigt die DFT eines 30-Hz-Kosinus bei $f_s=100\,\text{Hz}$ zwei symmetrische Linien bei $\pm 30\,\text{Hz}$ (konjugierte Symmetrie reeller Signale). Rechts sieht man dieselbe Aliasing-Idee im Spektrum: Linien außerhalb des Nyquist-Bands werden in das Band $[-f_s/2,f_s/2)$ zurückgefaltet.
 
 Kernidee in Python (vollständiges Skript: [`scripts/einheit-5.py`](scripts/einheit-5.py)):
 
@@ -126,11 +126,11 @@ freqs = np.fft.fftfreq(N, d=1 / fs)        # signierte Frequenzachse
 ## Übungen zu Einheit 5
 
 1. Was ist der Unterschied zwischen DFT und FFT?
-2. Ein Signal wird mit \(f_s=1000\,\text{Hz}\) abgetastet. Was ist die Nyquist-Frequenz, und welcher Frequenzbereich ist ohne Aliasing eindeutig?
+2. Ein Signal wird mit $f_s=1000\,\text{Hz}$ abgetastet. Was ist die Nyquist-Frequenz, und welcher Frequenzbereich ist ohne Aliasing eindeutig?
 3. Warum ist Aliasing problematisch?
-4. Was bedeutet der DFT-Koeffizient \(X[0]\)?
-5. Du tastest \(\cos(2\pi\cdot 7\,\text{Hz}\cdot t)\) mit \(f_s=10\,\text{Hz}\) ab. Welche scheinbare Frequenz misst die DFT im Nyquist-Band?
-6. Eine Messung verwendet \(f_s=1000\,\text{Hz}\) und \(N=250\). Wie groß ist die Bin-Breite \(\Delta f\)? Fällt ein \(77\,\text{Hz}\)-Sinus auf einen DFT-Bin?
+4. Was bedeutet der DFT-Koeffizient $X[0]$?
+5. Du tastest $\cos(2\pi\cdot 7\,\text{Hz}\cdot t)$ mit $f_s=10\,\text{Hz}$ ab. Welche scheinbare Frequenz misst die DFT im Nyquist-Band?
+6. Eine Messung verwendet $f_s=1000\,\text{Hz}$ und $N=250$. Wie groß ist die Bin-Breite $\Delta f$? Fällt ein $77\,\text{Hz}$-Sinus auf einen DFT-Bin?
 7. Fehlerdiagnose: Jemand sagt: "Ich nutze Zero Padding, deshalb steigt die echte Frequenzauflösung meiner Messung." Was ist daran falsch?
 8. Warum kann ein Fenster Spektralleckage reduzieren, obwohl es das Signal im Zeitbereich verändert?
 
@@ -143,7 +143,7 @@ freqs = np.fft.fftfreq(N, d=1 / fs)        # signierte Frequenzachse
 - [ ] Ich kann sagen, was Fensterung und Zero Padding leisten und was nicht.
 - [ ] Ich kann den Nyquist-Bereich für eine gegebene Abtastrate bestimmen.
 - [ ] Ich kann Aliasing an einem konkreten Zahlenbeispiel berechnen.
-- [ ] Ich kann \(X[0]\) als Gleichanteil/Mittelwertinformation deuten.
+- [ ] Ich kann $X[0]$ als Gleichanteil/Mittelwertinformation deuten.
 
 Lösungen: [loesungen/einheit-5.md](loesungen/einheit-5.md)
 

@@ -10,16 +10,16 @@ $$
 z = a + ib
 $$
 
-mit Realteil \(a\), Imaginärteil \(b\) und \(i^2 = -1\).
+mit Realteil $a$, Imaginärteil $b$ und $i^2 = -1$.
 
-Man kann \(z\) als Punkt oder Vektor in der komplexen Ebene ansehen:
+Man kann $z$ als Punkt oder Vektor in der komplexen Ebene ansehen:
 
-- \(a\): horizontale Achse,
-- \(b\): vertikale Achse,
-- \(|z| = \sqrt{a^2 + b^2}\): Abstand vom Ursprung,
-- \(\arg(z)\): Winkel zur positiven reellen Achse.
+- $a$: horizontale Achse,
+- $b$: vertikale Achse,
+- $|z| = \sqrt{a^2 + b^2}$: Abstand vom Ursprung,
+- $\arg(z)$: Winkel zur positiven reellen Achse.
 
-Der Winkel ist nur bis auf ganzzahlige Vielfache von \(2\pi\) festgelegt. Wir wählen als **Hauptwert** das Intervall \((-\pi,\pi]\); für \(z=-1\) ist also \(\arg(-1)=\pi\). Diese Wahl ist konsistent mit `numpy.angle` und wird in [Einheit 7](einheit-7.md#75-momentane-phase) beim Phasen-Unwrapping wieder wichtig.
+Der Winkel ist nur bis auf ganzzahlige Vielfache von $2\pi$ festgelegt. Wir wählen als **Hauptwert** das Intervall $(-\pi,\pi]$; für $z=-1$ ist also $\arg(-1)=\pi$. Diese Wahl ist konsistent mit `numpy.angle` und wird in [Einheit 7](einheit-7.md#75-momentane-phase) beim Phasen-Unwrapping wieder wichtig.
 
 ## 1.2 Polarform
 
@@ -57,7 +57,7 @@ $$
 e^z := \sum_{k=0}^{\infty}\frac{z^k}{k!},\qquad z\in\mathbb C.
 $$
 
-Die Reihe konvergiert für jedes \(z\in\mathbb C\) absolut. Zwei Konsequenzen brauchen wir gleich:
+Die Reihe konvergiert für jedes $z\in\mathbb C$ absolut. Zwei Konsequenzen brauchen wir gleich:
 
 - Real- und Imaginärteil dürfen gliedweise betrachtet werden;
 - absolute Konvergenz erlaubt es, die Reihe nach geraden und ungeraden Potenzen zu sortieren.
@@ -78,7 +78,7 @@ $$
 \sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots
 $$
 
-Setzt man \(x = i\varphi\), erhält man:
+Setzt man $x = i\varphi$, erhält man:
 
 $$
 e^{i\varphi}
@@ -88,7 +88,7 @@ e^{i\varphi}
 + \cdots
 $$
 
-Da \(i^2=-1\), \(i^3=-i\), \(i^4=1\), trennen sich reelle und imaginäre Terme:
+Da $i^2=-1$, $i^3=-i$, $i^4=1$, trennen sich reelle und imaginäre Terme:
 
 $$
 e^{i\varphi}
@@ -104,9 +104,9 @@ $$
 
 ## 1.5 Geometrische Bedeutung
 
-Die Zahl \(e^{i\varphi}\) liegt auf dem Einheitskreis. Wenn \(\varphi\) wächst, rotiert der Punkt gegen den Uhrzeigersinn.
+Die Zahl $e^{i\varphi}$ liegt auf dem Einheitskreis. Wenn $\varphi$ wächst, rotiert der Punkt gegen den Uhrzeigersinn.
 
-Multiplikation mit \(e^{i\alpha}\) bedeutet: Rotation um den Winkel \(\alpha\).
+Multiplikation mit $e^{i\alpha}$ bedeutet: Rotation um den Winkel $\alpha$.
 
 Beispiel:
 
@@ -114,7 +114,7 @@ $$
 z = 2e^{i\pi/3}
 $$
 
-hat Betrag \(2\) und Winkel \(\pi/3 = 60^\circ\).
+hat Betrag $2$ und Winkel $\pi/3 = 60^\circ$.
 
 ## 1.6 Nützliche Folgerungen
 
@@ -136,9 +136,9 @@ Diese beiden Gleichungen sind die Brücke zur Fourier-Analyse: Sinus und Kosinus
 
 ![Einheitskreis und Projektion auf Real-/Imaginärachse](bilder/einheit-1.png)
 
-Wenn \(\varphi\) gleichmäßig anwächst, läuft \(e^{i\varphi}\) auf dem Einheitskreis um. Die gestrichelten Loten zeigen, wie der Kreispunkt bei \(\varphi=2\pi/3\) auf Real- und Imaginärachse projiziert wird; rechts laufen \(\cos\varphi\) und \(\sin\varphi\) als zwei um \(\pi/2\) verschobene Schwingungen mit — der Phasenversatz ist die geometrische Folge der Achsenprojektion.
+Wenn $\varphi$ gleichmäßig anwächst, läuft $e^{i\varphi}$ auf dem Einheitskreis um. Die gestrichelten Loten zeigen, wie der Kreispunkt bei $\varphi=2\pi/3$ auf Real- und Imaginärachse projiziert wird; rechts laufen $\cos\varphi$ und $\sin\varphi$ als zwei um $\pi/2$ verschobene Schwingungen mit — der Phasenversatz ist die geometrische Folge der Achsenprojektion.
 
-Die orangenen und grünen Punkte sind in beiden Bildern derselbe Wert: algebraisch \(e^{i\varphi}=\cos\varphi+i\sin\varphi\), geometrisch der Bogen auf dem Einheitskreis, numerisch ein Punkt \(z\) in der komplexen Ebene. Genau dieser Repräsentationswechsel wird später im Spektrum wiederkehren: dieselbe Information erscheint als Formel, Bild und Datenpunkt.
+Die orangenen und grünen Punkte sind in beiden Bildern derselbe Wert: algebraisch $e^{i\varphi}=\cos\varphi+i\sin\varphi$, geometrisch der Bogen auf dem Einheitskreis, numerisch ein Punkt $z$ in der komplexen Ebene. Genau dieser Repräsentationswechsel wird später im Spektrum wiederkehren: dieselbe Information erscheint als Formel, Bild und Datenpunkt.
 
 Kernidee in Python (vollständiges Skript: [`scripts/einheit-1.py`](scripts/einheit-1.py)):
 
@@ -153,21 +153,21 @@ im_part = z.imag               # sin phi
 
 ## Übungen zu Einheit 1
 
-1. Schreibe \(3(\cos(\pi/4)+i\sin(\pi/4))\) in der Form \(re^{i\varphi}\).
-2. Berechne \(e^{i\pi}\).
-3. Zeige mit der Euler-Formel, dass \(\cos(-x)=\cos x\) und \(\sin(-x)=-\sin x\).
-4. Was bewirkt die Multiplikation einer komplexen Zahl mit \(e^{i\pi/2}\)? (Hinweis: \(e^{i\pi/2}=i\).)
-5. Zeige mit der Euler-Formel die Additionstheoreme für \(\cos(\alpha+\beta)\) und \(\sin(\alpha+\beta)\). (Hinweis: Vergleiche \(e^{i(\alpha+\beta)}\) mit \(e^{i\alpha}e^{i\beta}\).)
-6. Fehlerdiagnose: Eine Person sagt: "\(e^{i\varphi}\) ist eine Exponentialfunktion, also muss der Wert reell und positiv sein." Korrigiere die Aussage mit Formel und Geometrie.
+1. Schreibe $3(\cos(\pi/4)+i\sin(\pi/4))$ in der Form $re^{i\varphi}$.
+2. Berechne $e^{i\pi}$.
+3. Zeige mit der Euler-Formel, dass $\cos(-x)=\cos x$ und $\sin(-x)=-\sin x$.
+4. Was bewirkt die Multiplikation einer komplexen Zahl mit $e^{i\pi/2}$? (Hinweis: $e^{i\pi/2}=i$.)
+5. Zeige mit der Euler-Formel die Additionstheoreme für $\cos(\alpha+\beta)$ und $\sin(\alpha+\beta)$. (Hinweis: Vergleiche $e^{i(\alpha+\beta)}$ mit $e^{i\alpha}e^{i\beta}$.)
+6. Fehlerdiagnose: Eine Person sagt: "$e^{i\varphi}$ ist eine Exponentialfunktion, also muss der Wert reell und positiv sein." Korrigiere die Aussage mit Formel und Geometrie.
 
 ## Selbstcheck zu Einheit 1
 
-- [ ] Ich kann \(a+ib\), \(re^{i\varphi}\) und den Punkt in der Ebene ineinander übersetzen.
-- [ ] Ich kann erklären, warum \(e^{i\varphi}\) auf dem Einheitskreis liegt.
+- [ ] Ich kann $a+ib$, $re^{i\varphi}$ und den Punkt in der Ebene ineinander übersetzen.
+- [ ] Ich kann erklären, warum $e^{i\varphi}$ auf dem Einheitskreis liegt.
 - [ ] Ich kann Sinus und Kosinus als Real- und Imaginärteil einer komplexen Schwingung lesen.
-- [ ] Ich kann eine Multiplikation mit \(e^{i\alpha}\) geometrisch als Rotation deuten.
+- [ ] Ich kann eine Multiplikation mit $e^{i\alpha}$ geometrisch als Rotation deuten.
 - [ ] Ich kann einfache Symmetrie- und Additionstheoreme aus Euler ableiten.
-- [ ] Ich kann die Fehlvorstellung auflösen, dass \(e^{i\varphi}\) wie \(e^x\) auf der positiven reellen Achse liegen müsse.
+- [ ] Ich kann die Fehlvorstellung auflösen, dass $e^{i\varphi}$ wie $e^x$ auf der positiven reellen Achse liegen müsse.
 
 Lösungen: [loesungen/einheit-1.md](loesungen/einheit-1.md)
 

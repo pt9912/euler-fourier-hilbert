@@ -2,7 +2,7 @@
 
 Aufgabenstellung: [Einheit 3 — Übungen](../einheit-3.md#übungen-zu-einheit-3)
 
-1. Fourier-Reihen beschreiben periodische Signale durch diskrete Frequenzen \(n\omega_0\):
+1. Fourier-Reihen beschreiben periodische Signale durch diskrete Frequenzen $n\omega_0$:
 
    $$
    f(t)=\sum_{n=-\infty}^{\infty}c_ne^{in\omega_0t}.
@@ -32,17 +32,17 @@ Aufgabenstellung: [Einheit 3 — Übungen](../einheit-3.md#übungen-zu-einheit-3
    X(\omega)=\frac{2\sin(\omega a)}{\omega}.
    $$
 
-   Wird der Puls breiter, wächst \(a\). Die erste Nullstelle liegt bei \(\omega a=\pi\), also bei
+   Wird der Puls breiter, wächst $a$. Die erste Nullstelle liegt bei $\omega a=\pi$, also bei
 
    $$
    \omega=\frac{\pi}{a}.
    $$
 
-   Größeres \(a\) bedeutet kleinere Nullstellenabstände: Das Spektrum wird schmaler.
+   Größeres $a$ bedeutet kleinere Nullstellenabstände: Das Spektrum wird schmaler.
 
 4. Ein sehr kurzer Impuls ist stark im Zeitbereich konzentriert. Um eine solche Konzentration aus Schwingungen zusammenzusetzen, braucht man viele Frequenzen mit passend abgestimmten Phasen. Zeitliche Konzentration und spektrale Ausdehnung stehen deshalb in einem Gegenspiel.
 
-5. Der Faktor \(\operatorname{rect}(t/T)\) begrenzt den Kosinus auf ein endliches Zeitfenster. Das Fenster allein hat ein Sinc-förmiges Spektrum \(R(\omega)\), also ein breites Hauptmaximum mit abklingenden Nebenkeulen.
+5. Der Faktor $\operatorname{rect}(t/T)$ begrenzt den Kosinus auf ein endliches Zeitfenster. Das Fenster allein hat ein Sinc-förmiges Spektrum $R(\omega)$, also ein breites Hauptmaximum mit abklingenden Nebenkeulen.
 
    Multiplikation mit
 
@@ -56,9 +56,9 @@ Aufgabenstellung: [Einheit 3 — Übungen](../einheit-3.md#übungen-zu-einheit-3
    X(\omega)=\frac12 R(\omega-\omega_0)+\frac12 R(\omega+\omega_0).
    $$
 
-   Qualitativ skizziert man also zwei Sinc-Pakete, eines um \(+\omega_0\), eines um \(-\omega_0\). Was du daraus mitnehmen solltest: Zeitliche Begrenzung macht aus idealen Linien breite Spektralpakete.
+   Qualitativ skizziert man also zwei Sinc-Pakete, eines um $+\omega_0$, eines um $-\omega_0$. Was du daraus mitnehmen solltest: Zeitliche Begrenzung macht aus idealen Linien breite Spektralpakete.
 
-6. Der Dirac-Impuls ist keine gewöhnliche Funktion mit einem wohldefinierten Funktionswert bei \(0\). Die Schreibweise \(\delta(0)=\infty\) ist höchstens eine gefährliche Merkhilfe und keine Rechenregel.
+6. Der Dirac-Impuls ist keine gewöhnliche Funktion mit einem wohldefinierten Funktionswert bei $0$. Die Schreibweise $\delta(0)=\infty$ ist höchstens eine gefährliche Merkhilfe und keine Rechenregel.
 
    Sauber verwendet man die Siebeigenschaft:
 
@@ -66,7 +66,7 @@ Aufgabenstellung: [Einheit 3 — Übungen](../einheit-3.md#übungen-zu-einheit-3
    \int_{-\infty}^{\infty} f(t)\delta(t-t_0)\,dt=f(t_0).
    $$
 
-   Für \(t_0=0\) und \(f(t)=e^{-i\omega t}\) folgt deshalb
+   Für $t_0=0$ und $f(t)=e^{-i\omega t}$ folgt deshalb
 
    $$
    \mathcal F\{\delta(t)\}=e^{-i\omega\cdot 0}=1.

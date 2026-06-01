@@ -34,34 +34,34 @@ Die Lösungen zu allen Übungen und Abschlussaufgaben stehen separat in [`loesun
 
 Damit der Kurs handlich bleibt, treffen wir an ein paar Stellen feste Entscheidungen:
 
-- **Fourier-Konvention.** Wir verwenden die Kreisfrequenz \(\omega=2\pi f\) und die unsymmetrische Form
+- **Fourier-Konvention.** Wir verwenden die Kreisfrequenz $\omega=2\pi f$ und die unsymmetrische Form
   $$
   X(\omega)=\int_{-\infty}^{\infty} x(t)e^{-i\omega t}\,dt,\qquad
   x(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty} X(\omega)e^{i\omega t}\,d\omega.
   $$
-  In der Literatur findet man auch die Variante in \(f\) (kein Vorfaktor \(1/2\pi\)) oder die symmetrische Variante mit \(1/\sqrt{2\pi}\) auf beiden Seiten. Die Sätze sind in jeder Konvention richtig, die Vorfaktoren in einzelnen Formeln können sich aber unterscheiden.
-- **Kreisfrequenz vs. Frequenz.** Im theoretischen Teil rechnen wir meist mit \(\omega\) in rad/s, weil \(e^{i\omega t}\) die Formeln knapp macht. In numerischen Beispielen, Akustik und Abtastung verwenden wir oft \(f\) in Hertz. Die Umrechnung ist immer
+  In der Literatur findet man auch die Variante in $f$ (kein Vorfaktor $1/2\pi$) oder die symmetrische Variante mit $1/\sqrt{2\pi}$ auf beiden Seiten. Die Sätze sind in jeder Konvention richtig, die Vorfaktoren in einzelnen Formeln können sich aber unterscheiden.
+- **Kreisfrequenz vs. Frequenz.** Im theoretischen Teil rechnen wir meist mit $\omega$ in rad/s, weil $e^{i\omega t}$ die Formeln knapp macht. In numerischen Beispielen, Akustik und Abtastung verwenden wir oft $f$ in Hertz. Die Umrechnung ist immer
   $$
   \omega=2\pi f,\qquad f=\frac{\omega}{2\pi}.
   $$
-  Wenn also \(\cos(8t)\) ohne \(2\pi\) geschrieben ist, ist \(8\) eine Kreisfrequenz; \(\cos(2\pi\cdot 8\,t)\) meint dagegen \(8\,\text{Hz}\).
-- **DFT-Konvention.** Die DFT ist ohne Vorfaktor definiert, die inverse DFT trägt den Faktor \(1/N\). NumPy (`numpy.fft`) und MATLAB folgen dieser Wahl; SciPys `scipy.fft` ebenfalls.
-- **Regularität.** Wir behandeln Konvergenz- und Integrierbarkeitsfragen nicht im Detail. Alle Aussagen gelten unter den üblichen Voraussetzungen (z. B. \(L^1\cap L^2\) für die Fourier-Transformation, hinreichend abklingende und differenzierbare Funktionen bei der Ableitungsregel). Für \(\delta\) und für reine Schwingungen \(e^{i\omega_0 t}\) interpretiert man die Aussagen distributionentheoretisch.
-- **Notation.** Realteil/Imaginärteil als \(\operatorname{Re}, \operatorname{Im}\); komplex Konjugiertes als \(\overline{z}\). Phase und Argument werden synonym verwendet.
+  Wenn also $\cos(8t)$ ohne $2\pi$ geschrieben ist, ist $8$ eine Kreisfrequenz; $\cos(2\pi\cdot 8\,t)$ meint dagegen $8\,\text{Hz}$.
+- **DFT-Konvention.** Die DFT ist ohne Vorfaktor definiert, die inverse DFT trägt den Faktor $1/N$. NumPy (`numpy.fft`) und MATLAB folgen dieser Wahl; SciPys `scipy.fft` ebenfalls.
+- **Regularität.** Wir behandeln Konvergenz- und Integrierbarkeitsfragen nicht im Detail. Alle Aussagen gelten unter den üblichen Voraussetzungen (z. B. $L^1\cap L^2$ für die Fourier-Transformation, hinreichend abklingende und differenzierbare Funktionen bei der Ableitungsregel). Für $\delta$ und für reine Schwingungen $e^{i\omega_0 t}$ interpretiert man die Aussagen distributionentheoretisch.
+- **Notation.** Realteil/Imaginärteil als $\operatorname{Re}, \operatorname{Im}$; komplex Konjugiertes als $\overline{z}$. Phase und Argument werden synonym verwendet.
 
 ## Voraussetzungscheck
 
 Bevor du in Einheit 1 startest, solltest du die folgenden Aufgaben ohne längere Recherche lösen können:
 
-1. Wandle \(3(\cos(\pi/6)+i\sin(\pi/6))\) in Real- und Imaginärteil um.
-2. Erkläre, warum \(\sin(2\pi f t)\) bei Frequenz \(f\) die Kreisfrequenz \(\omega=2\pi f\) hat.
-3. Berechne \(\int_{-1}^{1} e^{-i\omega t}\,dt\) bis auf den Grenzwert bei \(\omega=0\).
-4. Erkläre an zwei Vektoren in \(\mathbb R^2\), was Orthogonalität und Projektion bedeuten.
-5. Lies in Python oder Pseudocode aus einer Liste \(x[0],\ldots,x[N-1]\) den Mittelwert aus.
+1. Wandle $3(\cos(\pi/6)+i\sin(\pi/6))$ in Real- und Imaginärteil um.
+2. Erkläre, warum $\sin(2\pi f t)$ bei Frequenz $f$ die Kreisfrequenz $\omega=2\pi f$ hat.
+3. Berechne $\int_{-1}^{1} e^{-i\omega t}\,dt$ bis auf den Grenzwert bei $\omega=0$.
+4. Erkläre an zwei Vektoren in $\mathbb R^2$, was Orthogonalität und Projektion bedeuten.
+5. Lies in Python oder Pseudocode aus einer Liste $x[0],\ldots,x[N-1]$ den Mittelwert aus.
 
 Wenn dir 1-2 schwerfallen, arbeite vor Einheit 1 komplexe Zahlen und Bogenmaß nach. Wenn 3-4 schwerfallen, plane für die Einheiten 2-4 mehr Zeit ein. Wenn 5 neu ist, kannst du den mathematischen Kurs trotzdem lesen, solltest die Python-Abschnitte aber eher als kommentierte Beispiele behandeln.
 
-Die fortgeschrittenen Begriffe \(L^2\), Distribution, Dirac-Impuls, Cauchy-Hauptwert und Plancherel werden im Kurs nur so weit präzisiert, wie es für die Rechnungen nötig ist. Sie markieren keine zusätzlichen Prüfziele, sondern die Stellen, an denen Analysis im Hintergrund arbeitet.
+Die fortgeschrittenen Begriffe $L^2$, Distribution, Dirac-Impuls, Cauchy-Hauptwert und Plancherel werden im Kurs nur so weit präzisiert, wie es für die Rechnungen nötig ist. Sie markieren keine zusätzlichen Prüfziele, sondern die Stellen, an denen Analysis im Hintergrund arbeitet.
 
 ## Einheitsschema und Arbeitsweise
 
@@ -81,18 +81,18 @@ Jede Einheit folgt demselben Muster: Leitfrage, Definition, Beweisidee oder Beis
 
 | Symbol | Bedeutung | Erstes Vorkommen |
 | --- | --- | --- |
-| \(i\) | imaginäre Einheit, \(i^2=-1\) | [§1.1](einheit-1.md#11-komplexe-zahlen) |
-| \(z=a+ib\) | komplexe Zahl mit Real- und Imaginärteil | [§1.1](einheit-1.md#11-komplexe-zahlen) |
-| \(|z|\), \(\arg z\) | Betrag und Phase einer komplexen Zahl | [§1.1](einheit-1.md#11-komplexe-zahlen) |
-| \(e^{i\varphi}\) | Punkt auf dem Einheitskreis, rotierender Zeiger | [§1.3](einheit-1.md#13-euler-formel) |
-| \(T\), \(\omega_0\) | Periode und Grundkreisfrequenz \(2\pi/T\) | [§2.1](einheit-2.md#21-grundidee) |
-| \(c_n\) | Fourier-Reihen-Koeffizient der \(n\)-ten Harmonischen | [§2.2](einheit-2.md#22-komplexe-fourier-reihe) |
-| \(X(\omega)\) | Fourier-Transformierte von \(x(t)\) | [§3.2](einheit-3.md#32-definition) |
-| \(H(\omega)\) | Frequenzgang eines Filters oder LTI-Systems | [§4.6](einheit-4.md#46-faltung) |
-| \(f_s\), \(f_N\) | Abtastrate und Nyquist-Frequenz | [§5.6](einheit-5.md#56-abtastung-und-nyquist-grenze) |
-| \(\mathcal H\{x\}\) | Hilbert-Transformierte von \(x\) | [§6.2](einheit-6.md#62-definition-im-frequenzbereich) |
-| \(z(t)=x(t)+i\mathcal H\{x\}(t)\) | analytisches Signal | [§7.1](einheit-7.md#71-definition) |
-| \(\phi(t)\), \(f_{\text{inst}}\) | momentane Phase und Momentanfrequenz | [§7.5](einheit-7.md#75-momentane-phase) |
+| $i$ | imaginäre Einheit, $i^2=-1$ | [§1.1](einheit-1.md#11-komplexe-zahlen) |
+| $z=a+ib$ | komplexe Zahl mit Real- und Imaginärteil | [§1.1](einheit-1.md#11-komplexe-zahlen) |
+| $\lvert z\rvert$, $\arg z$ | Betrag und Phase einer komplexen Zahl | [§1.1](einheit-1.md#11-komplexe-zahlen) |
+| $e^{i\varphi}$ | Punkt auf dem Einheitskreis, rotierender Zeiger | [§1.3](einheit-1.md#13-euler-formel) |
+| $T$, $\omega_0$ | Periode und Grundkreisfrequenz $2\pi/T$ | [§2.1](einheit-2.md#21-grundidee) |
+| $c_n$ | Fourier-Reihen-Koeffizient der $n$-ten Harmonischen | [§2.2](einheit-2.md#22-komplexe-fourier-reihe) |
+| $X(\omega)$ | Fourier-Transformierte von $x(t)$ | [§3.2](einheit-3.md#32-definition) |
+| $H(\omega)$ | Frequenzgang eines Filters oder LTI-Systems | [§4.6](einheit-4.md#46-faltung) |
+| $f_s$, $f_N$ | Abtastrate und Nyquist-Frequenz | [§5.6](einheit-5.md#56-abtastung-und-nyquist-grenze) |
+| $\mathcal H\{x\}$ | Hilbert-Transformierte von $x$ | [§6.2](einheit-6.md#62-definition-im-frequenzbereich) |
+| $z(t)=x(t)+i\mathcal H\{x\}(t)$ | analytisches Signal | [§7.1](einheit-7.md#71-definition) |
+| $\phi(t)$, $f_{\text{inst}}$ | momentane Phase und Momentanfrequenz | [§7.5](einheit-7.md#75-momentane-phase) |
 
 ## Anwendungsanker
 
@@ -100,7 +100,7 @@ Jede Einheit folgt demselben Muster: Leitfrage, Definition, Beweisidee oder Beis
 - **Nachrichtentechnik:** Modulation, AM-Signale und Hüllkurven nutzen direkt Fourier- und Hilbert-Werkzeuge.
 - **Bildverarbeitung:** Faltung und Frequenzfilter wirken genauso, nur mit zwei Ortsvariablen statt einer Zeitvariablen.
 - **Quantenmechanik:** Wellenfunktion und Impulsraum sind Fourier-Paare; die Gaußfunktion zeigt die Unschärfe besonders klar.
-- **Systemtheorie:** LTI-Systeme werden im Frequenzbereich durch Multiplikation mit \(H(\omega)\) beschrieben.
+- **Systemtheorie:** LTI-Systeme werden im Frequenzbereich durch Multiplikation mit $H(\omega)$ beschrieben.
 
 ## Weiterführende Projektideen
 
@@ -109,7 +109,7 @@ Jede Einheit folgt demselben Muster: Leitfrage, Definition, Beweisidee oder Beis
    *Referenz-Implementation:* [`scripts/projekte/projekt-1-fft-signale.py`](scripts/projekte/projekt-1-fft-signale.py) → ![Projekt 1](bilder/projekt-1.png)
 
 2. **Hilbert-Hüllkurve eines AM-Signals.**
-   Simuliere \(x(t)=(1+0{,}5\cos(2\pi f_m t))\cos(2\pi f_c t)\) und extrahiere die Hüllkurve mit der Hilbert-Transformation. Der Basisfall ist bereits als Visualisierung in [Einheit 7](einheit-7.md#78-visualisierung) durchgespielt; die Referenz-Implementation zeigt die **Vertiefung**: was passiert, wenn die Bedrosian-Bedingung \(W < f_c\) verletzt wird (Spektralüberlappung von Modulation und Träger).
+   Simuliere $x(t)=(1+0{,}5\cos(2\pi f_m t))\cos(2\pi f_c t)$ und extrahiere die Hüllkurve mit der Hilbert-Transformation. Der Basisfall ist bereits als Visualisierung in [Einheit 7](einheit-7.md#78-visualisierung) durchgespielt; die Referenz-Implementation zeigt die **Vertiefung**: was passiert, wenn die Bedrosian-Bedingung $W < f_c$ verletzt wird (Spektralüberlappung von Modulation und Träger).
    *Referenz-Implementation (Vertiefung):* [`scripts/projekte/projekt-2-am-bedrosian.py`](scripts/projekte/projekt-2-am-bedrosian.py) → ![Projekt 2](bilder/projekt-2.png)
 
 3. **Phasenanalyse eines Chirp-Signals.**

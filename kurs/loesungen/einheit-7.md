@@ -2,7 +2,7 @@
 
 Aufgabenstellung: [Einheit 7 — Übungen](../einheit-7.md#übungen-zu-einheit-7)
 
-1. Für \(\omega_0>0\) gilt:
+1. Für $\omega_0>0$ gilt:
 
    $$
    \mathcal{H}\{\cos(\omega_0t)\}=\sin(\omega_0t).
@@ -20,7 +20,7 @@ Aufgabenstellung: [Einheit 7 — Übungen](../einheit-7.md#übungen-zu-einheit-7
    z(t)=3\cos(10t)+i3\sin(10t)=3e^{i10t}.
    $$
 
-2. Für \(\omega_0=5>0\) liefert die Hilbert-Transformation \(\mathcal{H}\{2\cos(5t+\pi/4)\}=2\sin(5t+\pi/4)\). Damit ist das analytische Signal
+2. Für $\omega_0=5>0$ liefert die Hilbert-Transformation $\mathcal{H}\{2\cos(5t+\pi/4)\}=2\sin(5t+\pi/4)$. Damit ist das analytische Signal
 
    $$
    z(t)=2\cos(5t+\pi/4)+i\cdot 2\sin(5t+\pi/4)=2e^{i(5t+\pi/4)}.
@@ -32,7 +32,7 @@ Aufgabenstellung: [Einheit 7 — Übungen](../einheit-7.md#übungen-zu-einheit-7
    |z(t)|=2,\qquad \phi(t)=5t+\pi/4.
    $$
 
-   Die konstante Hüllkurve \(2\) entspricht der reellen Amplitude des Kosinus, die lineare Phase mit Steigung \(5\) der Trägerkreisfrequenz.
+   Die konstante Hüllkurve $2$ entspricht der reellen Amplitude des Kosinus, die lineare Phase mit Steigung $5$ der Trägerkreisfrequenz.
 
 3. Die Phase ist
 
@@ -52,7 +52,7 @@ Aufgabenstellung: [Einheit 7 — Übungen](../einheit-7.md#übungen-zu-einheit-7
    f_{\text{inst}}(t)=\frac{7}{2\pi}.
    $$
 
-4. Im Frequenzbereich gilt für \(z=x+i\mathcal{H}x\):
+4. Im Frequenzbereich gilt für $z=x+i\mathcal{H}x$:
 
    $$
    Z(\omega)=X(\omega)+i\left[-i\,\operatorname{sgn}(\omega)X(\omega)\right]
@@ -60,7 +60,7 @@ Aufgabenstellung: [Einheit 7 — Übungen](../einheit-7.md#übungen-zu-einheit-7
    \left(1+\operatorname{sgn}(\omega)\right)X(\omega).
    $$
 
-   Damit ist \(Z(\omega)=2X(\omega)\) für \(\omega>0\), \(Z(\omega)=0\) für \(\omega<0\), und der Gleichanteil bleibt separat erhalten. In der DFT-Version gilt zusätzlich: Bei geradem \(N\) bleibt auch der Nyquist-Bin \(k=N/2\) unverändert, weil er nicht eindeutig zu einer positiven oder negativen Frequenzhälfte gehört.
+   Damit ist $Z(\omega)=2X(\omega)$ für $\omega>0$, $Z(\omega)=0$ für $\omega<0$, und der Gleichanteil bleibt separat erhalten. In der DFT-Version gilt zusätzlich: Bei geradem $N$ bleibt auch der Nyquist-Bin $k=N/2$ unverändert, weil er nicht eindeutig zu einer positiven oder negativen Frequenzhälfte gehört.
 
 5. Ein Beispiel ist
 
@@ -68,30 +68,30 @@ Aufgabenstellung: [Einheit 7 — Übungen](../einheit-7.md#übungen-zu-einheit-7
    x(t)=\bigl(1+0{,}8\cos(2\pi\cdot 60\,t)\bigr)\cos(2\pi\cdot 50\,t).
    $$
 
-   Formal hat das die AM-Form \(A(t)\cos(2\pi f_ct)\) mit \(f_c=50\,\text{Hz}\), aber die Modulationsfrequenz \(60\,\text{Hz}\) liegt nicht deutlich unter dem Träger. Das Spektrum von \(A(t)\) hat Linien bei \(0\) und \(\pm60\,\text{Hz}\); nach der Modulation entstehen Linien bei
+   Formal hat das die AM-Form $A(t)\cos(2\pi f_ct)$ mit $f_c=50\,\text{Hz}$, aber die Modulationsfrequenz $60\,\text{Hz}$ liegt nicht deutlich unter dem Träger. Das Spektrum von $A(t)$ hat Linien bei $0$ und $\pm60\,\text{Hz}$; nach der Modulation entstehen Linien bei
 
    $$
    50\,\text{Hz},\quad 50\pm60\,\text{Hz},
    $$
 
-   also auch bei \(-10\,\text{Hz}\) bzw. \(10\,\text{Hz}\). Positive und negative Anteile sind nicht sauber getrennt. Die Bedrosian-Bedingung ist verletzt, daher muss
+   also auch bei $-10\,\text{Hz}$ bzw. $10\,\text{Hz}$. Positive und negative Anteile sind nicht sauber getrennt. Die Bedrosian-Bedingung ist verletzt, daher muss
 
    $$
    \mathcal H\{A(t)\cos(2\pi f_ct)\}=A(t)\sin(2\pi f_ct)
    $$
 
-   nicht gelten. Folglich ist auch \(|z(t)|\) im Allgemeinen nicht gleich \(A(t)\).
+   nicht gelten. Folglich ist auch $|z(t)|$ im Allgemeinen nicht gleich $A(t)$.
 
    Was du daraus mitnehmen solltest: Eine AM-Schreibweise allein reicht nicht; die Spektraltrennung entscheidet, ob die Hilbert-Hüllkurve die modellierte Amplitude trifft.
 
-6. Bei \(N=8\) liegen die DFT-Bins bei \(k=0,\ldots,7\). Der Gleichanteil ist \(k=0\), der Nyquist-Bin ist \(k=N/2=4\).
+6. Bei $N=8$ liegen die DFT-Bins bei $k=0,\ldots,7$. Der Gleichanteil ist $k=0$, der Nyquist-Bin ist $k=N/2=4$.
 
    Für das analytische Signal gilt:
 
-   - \(k=0\) bleibt erhalten.
-   - \(k=1,2,3\) werden verdoppelt.
-   - \(k=4\) bleibt als Nyquist-Sonderbin erhalten.
-   - \(k=5,6,7\) werden auf null gesetzt.
+   - $k=0$ bleibt erhalten.
+   - $k=1,2,3$ werden verdoppelt.
+   - $k=4$ bleibt als Nyquist-Sonderbin erhalten.
+   - $k=5,6,7$ werden auf null gesetzt.
 
    Als Multiplikatorfolge kann man das schreiben als
 

@@ -8,7 +8,7 @@ Aufgabenstellung: [Einheit 4 — Übungen](../einheit-4.md#übungen-zu-einheit-4
    x(t-t_0)\leftrightarrow e^{-i\omega t_0}X(\omega).
    $$
 
-   Der Faktor \(e^{-i\omega t_0}\) hat Betrag \(1\). Deshalb bleibt \(|X(\omega)|\) gleich, aber die Phase ändert sich um \(-\omega t_0\).
+   Der Faktor $e^{-i\omega t_0}$ hat Betrag $1$. Deshalb bleibt $|X(\omega)|$ gleich, aber die Phase ändert sich um $-\omega t_0$.
 
 2. Die Ableitung erfüllt:
 
@@ -32,15 +32,15 @@ Aufgabenstellung: [Einheit 4 — Übungen](../einheit-4.md#übungen-zu-einheit-4
 
    Eine Faltung ist ein Integral über alle Verschiebungen. Im Frequenzbereich wird daraus eine punktweise Multiplikation, was theoretisch und numerisch oft einfacher ist.
 
-4. Wenn \(y=x*h\), dann folgt direkt aus dem Faltungssatz:
+4. Wenn $y=x*h$, dann folgt direkt aus dem Faltungssatz:
 
    $$
    Y(\omega)=X(\omega)H(\omega).
    $$
 
-   \(H(\omega)\) beschreibt also, welche Frequenzen das System verstärkt, abschwächt oder in der Phase verschiebt.
+   $H(\omega)$ beschreibt also, welche Frequenzen das System verstärkt, abschwächt oder in der Phase verschiebt.
 
-5. Setze \(u=t_0-t\). Dann ist \(t=t_0-u\) und \(dt=-du\). Im Fourier-Integral folgt:
+5. Setze $u=t_0-t$. Dann ist $t=t_0-u$ und $dt=-du$. Im Fourier-Integral folgt:
 
    $$
    Y(\omega)
@@ -49,7 +49,7 @@ Aufgabenstellung: [Einheit 4 — Übungen](../einheit-4.md#übungen-zu-einheit-4
    =e^{-i\omega t_0}X(-\omega).
    $$
 
-   Die Spiegelung vertauscht also \(\omega\) und \(-\omega\); die anschließende Verschiebung erzeugt den Phasenfaktor \(e^{-i\omega t_0}\). Was du daraus mitnehmen solltest: Zusammengesetzte Signaloperationen lassen sich regelweise zerlegen, aber die Reihenfolge entscheidet über den Phasenfaktor.
+   Die Spiegelung vertauscht also $\omega$ und $-\omega$; die anschließende Verschiebung erzeugt den Phasenfaktor $e^{-i\omega t_0}$. Was du daraus mitnehmen solltest: Zusammengesetzte Signaloperationen lassen sich regelweise zerlegen, aber die Reihenfolge entscheidet über den Phasenfaktor.
 
 6. Zuerst betrachten wir die verzögerte Version
 
@@ -63,14 +63,14 @@ Aufgabenstellung: [Einheit 4 — Übungen](../einheit-4.md#übungen-zu-einheit-4
    U(\omega)=e^{-i\omega t_0}X(\omega).
    $$
 
-   Danach wird mit \(e^{i\omega_ct}\) moduliert. Das verschiebt das Spektrum:
+   Danach wird mit $e^{i\omega_ct}$ moduliert. Das verschiebt das Spektrum:
 
    $$
    Y(\omega)=U(\omega-\omega_c)
    =e^{-i(\omega-\omega_c)t_0}X(\omega-\omega_c).
    $$
 
-   Die Reihenfolge zeigt sich im Phasenfaktor: Er enthält \(\omega-\omega_c\), weil erst verzögert und danach das bereits verzögerte Spektrum verschoben wird.
+   Die Reihenfolge zeigt sich im Phasenfaktor: Er enthält $\omega-\omega_c$, weil erst verzögert und danach das bereits verzögerte Spektrum verschoben wird.
 
 ---
 

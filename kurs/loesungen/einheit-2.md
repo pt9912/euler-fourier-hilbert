@@ -8,7 +8,7 @@ Aufgabenstellung: [Einheit 2 — Übungen](../einheit-2.md#übungen-zu-einheit-2
    \cos \theta=\frac{e^{i\theta}+e^{-i\theta}}{2}
    $$
 
-   folgt mit \(\theta=3\omega_0t\):
+   folgt mit $\theta=3\omega_0t$:
 
    $$
    2\cos(3\omega_0t)
@@ -21,7 +21,7 @@ Aufgabenstellung: [Einheit 2 — Übungen](../einheit-2.md#übungen-zu-einheit-2
    c_3=1,\qquad c_{-3}=1.
    $$
 
-   Die reelle Kosinusamplitude \(2\) verteilt sich auf die beiden zweiseitigen Koeffizienten.
+   Die reelle Kosinusamplitude $2$ verteilt sich auf die beiden zweiseitigen Koeffizienten.
 
 2. Aus
 
@@ -60,15 +60,15 @@ Aufgabenstellung: [Einheit 2 — Übungen](../einheit-2.md#übungen-zu-einheit-2
 
    also reell. Positive und negative Frequenzen treten deshalb paarweise auf.
 
-4. Die Grundfrequenz ist \(\omega_0=2\pi/T\). Oberwellen sind ganzzahlige Vielfache davon:
+4. Die Grundfrequenz ist $\omega_0=2\pi/T$. Oberwellen sind ganzzahlige Vielfache davon:
 
    $$
    2\omega_0,\;3\omega_0,\;4\omega_0,\ldots
    $$
 
-   Der Index \(n\) zählt also, wie viele Grundschwingungen in eine Periode passen.
+   Der Index $n$ zählt also, wie viele Grundschwingungen in eine Periode passen.
 
-5. Eine einfache Wahl ist jede ungerade \(2\pi\)-periodische Funktion, zum Beispiel
+5. Eine einfache Wahl ist jede ungerade $2\pi$-periodische Funktion, zum Beispiel
 
    $$
    f(t)=\sin t+\frac12\sin(3t).
@@ -90,7 +90,7 @@ Aufgabenstellung: [Einheit 2 — Übungen](../einheit-2.md#übungen-zu-einheit-2
    c_{-n}=\overline{c_n}.
    $$
 
-   Wenn \(c_3=2\) ist, muss also mindestens
+   Wenn $c_3=2$ ist, muss also mindestens
 
    $$
    c_{-3}=2
@@ -102,7 +102,7 @@ Aufgabenstellung: [Einheit 2 — Übungen](../einheit-2.md#übungen-zu-einheit-2
    2e^{i3\omega_0t}+2e^{-i3\omega_0t}=4\cos(3\omega_0t),
    $$
 
-   also ein reelles Signal. Nur \(2e^{i3\omega_0t}\) allein wäre komplexwertig.
+   also ein reelles Signal. Nur $2e^{i3\omega_0t}$ allein wäre komplexwertig.
 
 ---
 
