@@ -24,13 +24,13 @@ Am klarsten ist die Hilbert-Transformation im Frequenzbereich. Für ein Signal $
 ```math
 \mathcal{F}\{\mathcal{H}x\}(\omega)
 =
--i\,\operatorname{sgn}(\omega)X(\omega).
+-i\,\mathrm{sgn}(\omega)X(\omega).
 ```
 
 Dabei ist
 
 ```math
-\operatorname{sgn}(\omega)=
+\mathrm{sgn}(\omega)=
 \begin{cases}
 1, & \omega>0,\\
 0, & \omega=0,\\
@@ -59,9 +59,9 @@ Strukturell ist das eine **Faltung** mit dem Kern $h(t)=1/(\pi t)$:
 ```
 Die Hilbert-Transformation ist also ein linearer, zeitinvarianter (LTI-)Operator und passt in den Rahmen von [Einheit 4](einheit-4.md): Ihr Frequenzgang ist
 ```math
-\mathcal F\{1/(\pi t)\}(\omega)=-i\,\operatorname{sgn}(\omega)
+\mathcal F\{1/(\pi t)\}(\omega)=-i\,\mathrm{sgn}(\omega)
 ```
-im distributionellen Sinn. Nach dem Faltungssatz aus [§4.6](einheit-4.md#46-faltung) wird Faltung mit $1/(\pi t)$ daher zur Multiplikation mit $-i\thinspace \operatorname{sgn}(\omega)$. §6.2 und §6.3 sind also dieselbe Transformation in zwei Sprachen.
+im distributionellen Sinn. Nach dem Faltungssatz aus [§4.6](einheit-4.md#46-faltung) wird Faltung mit $1/(\pi t)$ daher zur Multiplikation mit $-i\thinspace \mathrm{sgn}(\omega)$. §6.2 und §6.3 sind also dieselbe Transformation in zwei Sprachen.
 
 ## 6.4 Beispiele
 
@@ -91,7 +91,7 @@ das man am bequemsten im Frequenzbereich nachweist (die Fourier-Transformierte v
 ```math
 \mathcal F\{\cos(\omega_0 t)\}(\omega)=\pi\bigl[\delta(\omega-\omega_0)+\delta(\omega+\omega_0)\bigr].
 ```
-Multiplikation mit $-i\operatorname{sgn}(\omega)$ liefert (unter Beachtung von $\operatorname{sgn}(\pm\omega_0)=\pm 1$):
+Multiplikation mit $-i\mathrm{sgn}(\omega)$ liefert (unter Beachtung von $\mathrm{sgn}(\pm\omega_0)=\pm 1$):
 ```math
 \pi\bigl[-i\,\delta(\omega-\omega_0)+i\,\delta(\omega+\omega_0)\bigr]
 = \frac{\pi}{i}\bigl[\delta(\omega-\omega_0)-\delta(\omega+\omega_0)\bigr]
@@ -101,13 +101,13 @@ Rücktransformation gibt also $\sin(\omega_0 t)$. Die analoge Rechnung für $\si
 
 ## 6.5 Zweimalige Hilbert-Transformation
 
-Im Frequenzbereich wird zweimal mit $-i\operatorname{sgn}(\omega)$ multipliziert:
+Im Frequenzbereich wird zweimal mit $-i\mathrm{sgn}(\omega)$ multipliziert:
 
 ```math
-\left(-i\operatorname{sgn}(\omega)\right)^2 = -1
+\left(-i\mathrm{sgn}(\omega)\right)^2 = -1
 ```
 
-für $\omega\ne0$. Bei $\omega=0$ ist $\operatorname{sgn}(0)=0$, der Gleichanteil wird also bereits beim ersten Anwenden gelöscht. Damit gilt allgemein
+für $\omega\ne0$. Bei $\omega=0$ ist $\mathrm{sgn}(0)=0$, der Gleichanteil wird also bereits beim ersten Anwenden gelöscht. Damit gilt allgemein
 
 ```math
 \mathcal{H}\bigl\{\mathcal{H}\{x\}\bigr\}=-\bigl(x-\langle x\rangle\bigr)=-x+\langle x\rangle,
@@ -117,7 +117,7 @@ wobei $\langle x\rangle$ den Gleichanteil bezeichnet. Diese Schreibweise ist bes
 
 Für klassische Signale auf $\mathbb R$, bei denen kein separater Gleichanteil als $\delta(\omega)$-Atom vorliegt, schreibt man in Lehrbüchern häufig kurz
 ```math
-\mathcal H^2=-\operatorname{id}
+\mathcal H^2=-\mathrm{id}
 ```
 auf dem passenden Funktionenraum. Im Rechnen mit FFTs solltest du trotzdem die DC-Behandlung ausdrücklich im Blick behalten.
 
@@ -152,7 +152,7 @@ hilbert_cos = np.imag(analytic)        # = sin(2 pi 5 t)
 
 ## Selbstcheck zu Einheit 6
 
-- [ ] Ich kann die Hilbert-Transformation als Multiplikation mit $-i\operatorname{sgn}(\omega)$ erklären.
+- [ ] Ich kann die Hilbert-Transformation als Multiplikation mit $-i\mathrm{sgn}(\omega)$ erklären.
 - [ ] Ich kann positive und negative Frequenzen mit der passenden $90^\circ$-Drehung verbinden.
 - [ ] Ich kann $\mathcal H\lbrace \cos(\omega_0t)\rbrace $ und $\mathcal H\lbrace \sin(\omega_0t)\rbrace $ bestimmen.
 - [ ] Ich kann sagen, warum im Zeitbereich ein Cauchy-Hauptwert nötig ist.

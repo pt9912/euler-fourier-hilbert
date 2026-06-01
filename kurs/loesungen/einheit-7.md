@@ -6,11 +6,11 @@ Aufgabenstellung: [Einheit 7 — Übungen](../einheit-7.md#übungen-zu-einheit-7
 
 Für $\omega_0>0$ gilt:
 
-$$\mathcal{H}\{\cos(\omega_0t)\}=\sin(\omega_0t).$$
+$$\mathcal{H}\lbrace \cos(\omega_0t)\rbrace =\sin(\omega_0t).$$
 
 Also:
 
-$$\mathcal{H}\{3\cos(10t)\}=3\sin(10t).$$
+$$\mathcal{H}\lbrace 3\cos(10t)\rbrace =3\sin(10t).$$
 
 Das analytische Signal ist
 
@@ -46,7 +46,7 @@ $$f_{\text{inst}}(t)=\frac{7}{2\pi}.$$
 
 Im Frequenzbereich gilt für $z=x+i\mathcal{H}x$:
 
-$$Z(\omega)=X(\omega)+i\left[-i\,\operatorname{sgn}(\omega)X(\omega)\right] = \left(1+\operatorname{sgn}(\omega)\right)X(\omega).$$
+$$Z(\omega)=X(\omega)+i\left[-i\thinspace \mathrm{sgn}(\omega)X(\omega)\right] = \left(1+\mathrm{sgn}(\omega)\right)X(\omega).$$
 
 Damit ist $Z(\omega)=2X(\omega)$ für $\omega>0$, $Z(\omega)=0$ für $\omega<0$, und der Gleichanteil bleibt separat erhalten. In der DFT-Version gilt zusätzlich: Bei geradem $N$ bleibt auch der Nyquist-Bin $k=N/2$ unverändert, weil er nicht eindeutig zu einer positiven oder negativen Frequenzhälfte gehört.
 
@@ -54,15 +54,15 @@ Damit ist $Z(\omega)=2X(\omega)$ für $\omega>0$, $Z(\omega)=0$ für $\omega<0$,
 
 Ein Beispiel ist
 
-$$x(t)=\bigl(1+0{,}8\cos(2\pi\cdot 60\,t)\bigr)\cos(2\pi\cdot 50\,t).$$
+$$x(t)=\bigl(1+0{,}8\cos(2\pi\cdot 60\thinspace t)\bigr)\cos(2\pi\cdot 50\thinspace t).$$
 
 Formal hat das die AM-Form $A(t)\cos(2\pi f_ct)$ mit $f_c=50\thinspace \text{Hz}$, aber die Modulationsfrequenz $60\thinspace \text{Hz}$ liegt nicht deutlich unter dem Träger. Das Spektrum von $A(t)$ hat Linien bei $0$ und $\pm60\thinspace \text{Hz}$; nach der Modulation entstehen Linien bei
 
-$$50\,\text{Hz},\quad 50\pm60\,\text{Hz},$$
+$$50\thinspace \text{Hz},\quad 50\pm60\thinspace \text{Hz},$$
 
 also auch bei $-10\thinspace \text{Hz}$ bzw. $10\thinspace \text{Hz}$. Positive und negative Anteile sind nicht sauber getrennt. Die Bedrosian-Bedingung ist verletzt, daher muss
 
-$$\mathcal H\{A(t)\cos(2\pi f_ct)\}=A(t)\sin(2\pi f_ct)$$
+$$\mathcal H\lbrace A(t)\cos(2\pi f_ct)\rbrace =A(t)\sin(2\pi f_ct)$$
 
 nicht gelten. Folglich ist auch $|z(t)|$ im Allgemeinen nicht gleich $A(t)$.
 

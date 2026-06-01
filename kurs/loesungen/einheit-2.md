@@ -26,7 +26,7 @@ $$\sin \theta=\frac{e^{i\theta}-e^{-i\theta}}{2i}$$
 
 folgt:
 
-$$4\sin(2\omega_0t) =\frac{4}{2i}\left(e^{i2\omega_0t}-e^{-i2\omega_0t}\right) =-2i\,e^{i2\omega_0t}+2i\,e^{-i2\omega_0t}.$$
+$$4\sin(2\omega_0t) =\frac{4}{2i}\left(e^{i2\omega_0t}-e^{-i2\omega_0t}\right) =-2i\thinspace e^{i2\omega_0t}+2i\thinspace e^{-i2\omega_0t}.$$
 
 Daher:
 
@@ -40,7 +40,7 @@ $$c_{-n}=\overline{c_n}.$$
 
 Dann ist
 
-$$c_ne^{in\omega_0t}+c_{-n}e^{-in\omega_0t} = c_ne^{in\omega_0t}+\overline{c_ne^{in\omega_0t}} =2\operatorname{Re}\left(c_ne^{in\omega_0t}\right),$$
+$$c_ne^{in\omega_0t}+c_{-n}e^{-in\omega_0t} = c_ne^{in\omega_0t}+\overline{c_ne^{in\omega_0t}} =2\mathrm{Re}\left(c_ne^{in\omega_0t}\right),$$
 
 also reell. Positive und negative Frequenzen treten deshalb paarweise auf.
 

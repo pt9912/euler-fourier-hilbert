@@ -17,9 +17,9 @@ Es kombiniert:
 
 ## 7.2 Frequenzbereich
 
-Das analytische Signal enthält keine negativen Frequenzen. Mit $\operatorname{sgn}(0):=0$ lässt sich das kompakt schreiben als
+Das analytische Signal enthält keine negativen Frequenzen. Mit $\mathrm{sgn}(0):=0$ lässt sich das kompakt schreiben als
 ```math
-Z(\omega) = \bigl(1+\operatorname{sgn}(\omega)\bigr)X(\omega).
+Z(\omega) = \bigl(1+\mathrm{sgn}(\omega)\bigr)X(\omega).
 ```
 Aufgeschlüsselt:
 

@@ -10,7 +10,7 @@ $$f(t)=\sum_{n=-\infty}^{\infty}c_ne^{in\omega_0t}.$$
 
 Die Fourier-Transformation beschreibt nichtperiodische Signale durch ein kontinuierliches Spektrum:
 
-$$x(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}X(\omega)e^{i\omega t}\,d\omega.$$
+$$x(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}X(\omega)e^{i\omega t}\thinspace d\omega.$$
 
 Anschaulich wird aus der Summe über Frequenzlinien ein Integral über alle Frequenzen.
 
@@ -18,7 +18,7 @@ Anschaulich wird aus der Summe über Frequenzlinien ein Integral über alle Freq
 
 Mit der Siebeigenschaft des Dirac-Impulses:
 
-$$\mathcal{F}\{\delta(t-3)\} = \int_{-\infty}^{\infty}\delta(t-3)e^{-i\omega t}\,dt = e^{-i3\omega}.$$
+$$\mathcal{F}\lbrace \delta(t-3)\rbrace  = \int_{-\infty}^{\infty}\delta(t-3)e^{-i\omega t}\thinspace dt = e^{-i3\omega}.$$
 
 ## Lösung 3
 
@@ -38,7 +38,7 @@ Ein sehr kurzer Impuls ist stark im Zeitbereich konzentriert. Um eine solche Kon
 
 ## Lösung 5
 
-Der Faktor $\operatorname{rect}(t/T)$ begrenzt den Kosinus auf ein endliches Zeitfenster. Das Fenster allein hat ein Sinc-förmiges Spektrum $R(\omega)$, also ein breites Hauptmaximum mit abklingenden Nebenkeulen.
+Der Faktor $\mathrm{rect}(t/T)$ begrenzt den Kosinus auf ein endliches Zeitfenster. Das Fenster allein hat ein Sinc-förmiges Spektrum $R(\omega)$, also ein breites Hauptmaximum mit abklingenden Nebenkeulen.
 
 Multiplikation mit
 
@@ -56,11 +56,11 @@ Der Dirac-Impuls ist keine gewöhnliche Funktion mit einem wohldefinierten Funkt
 
 Sauber verwendet man die Siebeigenschaft:
 
-$$\int_{-\infty}^{\infty} f(t)\delta(t-t_0)\,dt=f(t_0).$$
+$$\int_{-\infty}^{\infty} f(t)\delta(t-t_0)\thinspace dt=f(t_0).$$
 
 Für $t_0=0$ und $f(t)=e^{-i\omega t}$ folgt deshalb
 
-$$\mathcal F\{\delta(t)\}=e^{-i\omega\cdot 0}=1.$$
+$$\mathcal F\lbrace \delta(t)\rbrace =e^{-i\omega\cdot 0}=1.$$
 
 ---
 

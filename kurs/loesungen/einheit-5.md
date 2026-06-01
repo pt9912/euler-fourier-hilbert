@@ -16,7 +16,7 @@ Was du daraus mitnehmen solltest: Wenn sich ein Spektrum zwischen DFT und FFT un
 
 Die Nyquist-Frequenz ist
 
-$$f_N=\frac{f_s}{2}=\frac{1000\,\text{Hz}}{2}=500\,\text{Hz}.$$
+$$f_N=\frac{f_s}{2}=\frac{1000\thinspace \text{Hz}}{2}=500\thinspace \text{Hz}.$$
 
 Ohne Aliasing eindeutig sind Frequenzen mit $|f|<500\thinspace \text{Hz}$. Der exakte Rand $500\thinspace \text{Hz}$ ist ein Sonderfall und wird praktisch nicht als frei nutzbarer Frequenzbereich behandelt.
 
@@ -44,7 +44,7 @@ $$-\frac{f_s}{2}\le f < \frac{f_s}{2},$$
 
 hier also $[-5,5)\thinspace \text{Hz}$. Die Frequenz $7\thinspace \text{Hz}$ wird um $f_s=10\thinspace \text{Hz}$ zurückgefaltet:
 
-$$7\,\text{Hz}-10\,\text{Hz}=-3\,\text{Hz}.$$
+$$7\thinspace \text{Hz}-10\thinspace \text{Hz}=-3\thinspace \text{Hz}.$$
 
 Für einen Kosinus ist $-3\thinspace \text{Hz}$ im Betrag nicht von $+3\thinspace \text{Hz}$ zu unterscheiden, weil $\cos(-2\pi 3t)=\cos(2\pi 3t)$. Die scheinbare Frequenz ist also $3\thinspace \text{Hz}$; im signierten Spektrum erscheint die Linie als Paar bei $\pm3\thinspace \text{Hz}$.
 
@@ -54,7 +54,7 @@ Was du daraus mitnehmen solltest: Aliasing ist keine Unschärfe der DFT, sondern
 
 Die Bin-Breite ist
 
-$$\Delta f=\frac{f_s}{N}=\frac{1000\,\text{Hz}}{250}=4\,\text{Hz}.$$
+$$\Delta f=\frac{f_s}{N}=\frac{1000\thinspace \text{Hz}}{250}=4\thinspace \text{Hz}.$$
 
 Die DFT-Bins liegen also bei $0,4,8,\ldots$ Hz (und entsprechend bei negativen Frequenzen). Ein $77\thinspace \text{Hz}$-Sinus fällt nicht exakt auf einen Bin, weil $77/4=19{,}25$ nicht ganzzahlig ist. Die Abtastung ist für diese Frequenz nicht kohärent; im Betragsspektrum ist Spektralleckage zu erwarten.
 

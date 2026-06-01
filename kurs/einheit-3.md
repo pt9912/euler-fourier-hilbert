@@ -89,10 +89,10 @@ Dann:
 X(\omega)
 = \int_{-a}^{a} e^{-i\omega t}\,dt
 = \frac{2\sin(\omega a)}{\omega}
-= 2a\,\operatorname{sinc}\!\left(\frac{\omega a}{\pi}\right).
+= 2a\,\mathrm{sinc}\!\left(\frac{\omega a}{\pi}\right).
 ```
 
-Dabei ist $\operatorname{sinc}(x)=\sin(\pi x)/(\pi x)$ die **normierte Sinc-Funktion** (manche Autoren verwenden die unnormierte Variante $\sin(x)/x$; beim Lesen also auf die Konvention achten). Sie hat ihre erste Nullstelle bei $x=1$ und gleicht über den ganzen Kurs als Spektralform jedes Rechteckpulses.
+Dabei ist $\mathrm{sinc}(x)=\sin(\pi x)/(\pi x)$ die **normierte Sinc-Funktion** (manche Autoren verwenden die unnormierte Variante $\sin(x)/x$; beim Lesen also auf die Konvention achten). Sie hat ihre erste Nullstelle bei $x=1$ und gleicht über den ganzen Kurs als Spektralform jedes Rechteckpulses.
 
 Für $\omega=0$ nimmt man den Grenzwert:
 
@@ -149,7 +149,7 @@ gauss_ft = np.sqrt(np.pi) * np.exp(-omega**2 / 4)
 2. Berechne $\mathcal{F}\lbrace \delta(t-3)\rbrace $.
 3. Was passiert mit dem Spektrum eines Rechteckpulses, wenn der Puls im Zeitbereich breiter wird?
 4. Warum enthält ein sehr kurzer Impuls viele Frequenzen?
-5. Skizziere ohne Integralrechnung qualitativ das Spektrum von $x(t)=\cos(\omega_0t)\cdot \operatorname{rect}(t/T)$. Nutze die Idee, dass ein zeitlich begrenzter Kosinus ein Rechteckspektrum um $\pm\omega_0$ verschiebt. Prüfe deine Begründung nach [§4.3](einheit-4.md#43-frequenzverschiebung) erneut.
+5. Skizziere ohne Integralrechnung qualitativ das Spektrum von $x(t)=\cos(\omega_0t)\cdot \mathrm{rect}(t/T)$. Nutze die Idee, dass ein zeitlich begrenzter Kosinus ein Rechteckspektrum um $\pm\omega_0$ verschiebt. Prüfe deine Begründung nach [§4.3](einheit-4.md#43-frequenzverschiebung) erneut.
 6. Fehlerdiagnose: Jemand schreibt $\delta(0)=\infty$ und versucht damit $\mathcal F\lbrace \delta\rbrace $ wie ein gewöhnliches Integral auszurechnen. Warum ist das keine saubere Begründung? Welche Eigenschaft verwendet man stattdessen?
 
 ## Selbstcheck zu Einheit 3

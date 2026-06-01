@@ -35,14 +35,14 @@ Die Lösungen zu allen Übungen und Abschlussaufgaben stehen separat in [`loesun
 Damit der Kurs handlich bleibt, treffen wir an ein paar Stellen feste Entscheidungen:
 
 - **Fourier-Konvention.** Wir verwenden die Kreisfrequenz $\omega=2\pi f$ und die unsymmetrische Form
-  $$X(\omega)=\int_{-\infty}^{\infty} x(t)e^{-i\omega t}\,dt,\qquad x(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty} X(\omega)e^{i\omega t}\,d\omega.$$
+  $$X(\omega)=\int_{-\infty}^{\infty} x(t)e^{-i\omega t}\thinspace dt,\qquad x(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty} X(\omega)e^{i\omega t}\thinspace d\omega.$$
   In der Literatur findet man auch die Variante in $f$ (kein Vorfaktor $1/2\pi$) oder die symmetrische Variante mit $1/\sqrt{2\pi}$ auf beiden Seiten. Die Sätze sind in jeder Konvention richtig, die Vorfaktoren in einzelnen Formeln können sich aber unterscheiden.
 - **Kreisfrequenz vs. Frequenz.** Im theoretischen Teil rechnen wir meist mit $\omega$ in rad/s, weil $e^{i\omega t}$ die Formeln knapp macht. In numerischen Beispielen, Akustik und Abtastung verwenden wir oft $f$ in Hertz. Die Umrechnung ist immer
   $$\omega=2\pi f,\qquad f=\frac{\omega}{2\pi}.$$
   Wenn also $\cos(8t)$ ohne $2\pi$ geschrieben ist, ist $8$ eine Kreisfrequenz; $\cos(2\pi\cdot 8\thinspace t)$ meint dagegen $8\thinspace \text{Hz}$.
 - **DFT-Konvention.** Die DFT ist ohne Vorfaktor definiert, die inverse DFT trägt den Faktor $1/N$. NumPy (`numpy.fft`) und MATLAB folgen dieser Wahl; SciPys `scipy.fft` ebenfalls.
 - **Regularität.** Wir behandeln Konvergenz- und Integrierbarkeitsfragen nicht im Detail. Alle Aussagen gelten unter den üblichen Voraussetzungen (z. B. $L^1\cap L^2$ für die Fourier-Transformation, hinreichend abklingende und differenzierbare Funktionen bei der Ableitungsregel). Für $\delta$ und für reine Schwingungen $e^{i\omega_0 t}$ interpretiert man die Aussagen distributionentheoretisch.
-- **Notation.** Realteil/Imaginärteil als $\operatorname{Re}, \operatorname{Im}$; komplex Konjugiertes als $\overline{z}$. Phase und Argument werden synonym verwendet.
+- **Notation.** Realteil/Imaginärteil als $\mathrm{Re}, \mathrm{Im}$; komplex Konjugiertes als $\overline{z}$. Phase und Argument werden synonym verwendet.
 
 ## Voraussetzungscheck
 

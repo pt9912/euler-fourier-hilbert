@@ -155,7 +155,7 @@ Konsequenzen für die Praxis:
 
 ![Faltung zweier Rechteckpulse ergibt einen Dreieckspuls; Multiplikation der Sinc-Spektren ergibt sinc²](bilder/einheit-4.png)
 
-Zwei identische Rechteckpulse werden gefaltet — heraus kommt der klassische Dreieckspuls. Im Frequenzbereich entspricht das einfach der punktweisen Multiplikation der beiden Sinc-Spektren, die das bekannte $\operatorname{sinc}^2$-Profil ergibt (nichtnegativ, weil Quadrat).
+Zwei identische Rechteckpulse werden gefaltet — heraus kommt der klassische Dreieckspuls. Im Frequenzbereich entspricht das einfach der punktweisen Multiplikation der beiden Sinc-Spektren, die das bekannte $\mathrm{sinc}^2$-Profil ergibt (nichtnegativ, weil Quadrat).
 
 Kernidee in Python (vollständiges Skript: [`scripts/einheit-4.py`](scripts/einheit-4.py)):
 

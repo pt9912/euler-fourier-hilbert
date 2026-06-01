@@ -23,7 +23,7 @@ Die Hilbert-Transformation verändert die Phase dieser Frequenzanteile:
 ```math
 X(\omega)
 \mapsto
--i\operatorname{sgn}(\omega)X(\omega).
+-i\mathrm{sgn}(\omega)X(\omega).
 ```
 
 Zusammen ergeben sie ein sehr starkes Werkzeug:
@@ -39,7 +39,7 @@ Zusammen ergeben sie ein sehr starkes Werkzeug:
 3. Fourier-Analyse misst, welche Frequenzen in einem Signal stecken.
 4. Zeitverschiebung entspricht Phasenänderung; Skalierung im Zeitbereich entspricht inverser Skalierung im Frequenzbereich.
 5. Faltung im Zeitbereich entspricht Multiplikation im Frequenzbereich. LTI-Systeme sind im Frequenzbereich punktweise Multiplikation mit dem Frequenzgang.
-6. Die Hilbert-Transformation ist ein LTI-Operator mit Frequenzgang $-i\operatorname{sgn}(\omega)$; im Zeitbereich Faltung mit $1/(\pi t)$.
+6. Die Hilbert-Transformation ist ein LTI-Operator mit Frequenzgang $-i\mathrm{sgn}(\omega)$; im Zeitbereich Faltung mit $1/(\pi t)$.
 7. Das analytische Signal entfernt negative Frequenzen, erhält den Gleichanteil und macht Amplitude und Phase zugänglich.
 8. Zeitliche und spektrale Konzentration stehen in Konkurrenz (Sinc beim Rechteckpuls, Gauß als Optimalfall).
 
