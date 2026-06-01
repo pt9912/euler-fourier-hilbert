@@ -32,7 +32,7 @@ ax_time.set_ylabel("Amplitude")
 ax_time.set_title("Zwei verschiedene Schwingungen, identische Samples")
 ax_time.legend(loc="lower left", fontsize=8)
 
-N = 256
+N = 500
 fs_demo = 100.0
 n = np.arange(N)
 true_freq = 30.0

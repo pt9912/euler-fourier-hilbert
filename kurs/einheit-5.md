@@ -90,7 +90,7 @@ Kernidee in Python (vollständiges Skript: [`scripts/einheit-5.py`](scripts/einh
 import numpy as np
 
 fs = 100.0
-N = 256
+N = 500
 n = np.arange(N)
 signal = np.cos(2 * np.pi * 30.0 * n / fs)
 

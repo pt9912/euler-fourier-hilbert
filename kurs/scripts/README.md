@@ -26,7 +26,7 @@ python3 kurs/scripts/einheit-3.py
 ## Alle Abbildungen neu erzeugen
 
 ```bash
-for f in kurs/scripts/einheit-*.py; do python3 "$f"; done
+for f in kurs/scripts/einheit-*.py kurs/scripts/projekte/*.py; do python3 "$f"; done
 ```
 
 ## Aufbau

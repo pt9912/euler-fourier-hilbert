@@ -17,7 +17,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 fs = 1000.0
-N = 1024
+N = 1000
 t = (np.arange(N) - N / 2) / fs       # symmetrisch um 0
 
 freq = 50.0
@@ -56,7 +56,8 @@ for row, (name, x) in enumerate(signals.items()):
     axes[row, 1].set_xlabel("f (Hz)")
     axes[row, 1].grid(alpha=0.3)
 
-    axes[row, 2].plot(freqs, phase_display, color="C3", lw=1.4)
+    axes[row, 2].plot(freqs, phase_display, color="C3", linestyle="none",
+                      marker="o", markersize=3)
     axes[row, 2].set_xlim(-150, 150)
     axes[row, 2].set_ylim(-np.pi - 0.2, np.pi + 0.2)
     axes[row, 2].set_yticks([-np.pi, -np.pi / 2, 0, np.pi / 2, np.pi])
