@@ -80,8 +80,10 @@ der Träger $\cos(2\pi\thinspace 100\thinspace t)=\tfrac12 e^{i\thinspace 2\pi\t
 denn aus den Mischprodukten $\cos(2\pi 5t)\cos(2\pi 100t)=\tfrac12\bigl[\cos(2\pi 95t)+\cos(2\pi 105t)\bigr]$ folgt
 
 ```math
-x(t) = \underbrace{\tfrac{1}{2} e^{i\,2\pi\,100\,t} + \tfrac{1}{2} e^{-i\,2\pi\,100\,t}}_{\text{Träger}} + \tfrac{1}{8}\bigl(e^{i\,2\pi\,95\,t}+e^{-i\,2\pi\,95\,t}+e^{i\,2\pi\,105\,t}+e^{-i\,2\pi\,105\,t}\bigr).
+x(t) = \tfrac{1}{2} e^{i\,2\pi\,100\,t} + \tfrac{1}{2} e^{-i\,2\pi\,100\,t} + \tfrac{1}{8}\bigl(e^{i\,2\pi\,95\,t}+e^{-i\,2\pi\,95\,t}+e^{i\,2\pi\,105\,t}+e^{-i\,2\pi\,105\,t}\bigr).
 ```
+
+Die ersten beiden Terme bilden den Träger bei $\pm 100\,\text{Hz}$; die übrigen vier Terme sind die Seitenbänder bei $\pm 95$ und $\pm 105\,\text{Hz}$.
 
 **b)** Das Linienspektrum ist eine $\delta$-Summe (Faktor $\pi$ entfällt, wenn man das Spektrum als $c_n$ interpretiert): zentrale Linien bei $\pm 100\thinspace \text{Hz}$ mit Höhe $\tfrac12$, Seitenbänder bei $\pm 95,\pm 105\thinspace \text{Hz}$ mit Höhe $\tfrac18$. Alle Phasen sind $0$, weil das Signal reell und gerade ist — Bestätigung der Symmetrie­tabelle aus [§4.8](../einheit-4.md#48-symmetrien-reeller-und-geraderungerader-signale).
 
