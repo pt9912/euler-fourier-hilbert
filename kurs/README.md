@@ -35,16 +35,16 @@ Die Lösungen zu allen Übungen und Abschlussaufgaben stehen separat in [`loesun
 Damit der Kurs handlich bleibt, treffen wir an ein paar Stellen feste Entscheidungen:
 
 - **Fourier-Konvention.** Wir verwenden die Kreisfrequenz $\omega=2\pi f$ und die unsymmetrische Form
-  $$
+  ```math
   X(\omega)=\int_{-\infty}^{\infty} x(t)e^{-i\omega t}\,dt,\qquad
   x(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty} X(\omega)e^{i\omega t}\,d\omega.
-  $$
+  ```
   In der Literatur findet man auch die Variante in $f$ (kein Vorfaktor $1/2\pi$) oder die symmetrische Variante mit $1/\sqrt{2\pi}$ auf beiden Seiten. Die Sätze sind in jeder Konvention richtig, die Vorfaktoren in einzelnen Formeln können sich aber unterscheiden.
 - **Kreisfrequenz vs. Frequenz.** Im theoretischen Teil rechnen wir meist mit $\omega$ in rad/s, weil $e^{i\omega t}$ die Formeln knapp macht. In numerischen Beispielen, Akustik und Abtastung verwenden wir oft $f$ in Hertz. Die Umrechnung ist immer
-  $$
+  ```math
   \omega=2\pi f,\qquad f=\frac{\omega}{2\pi}.
-  $$
-  Wenn also $\cos(8t)$ ohne $2\pi$ geschrieben ist, ist $8$ eine Kreisfrequenz; $\cos(2\pi\cdot 8\,t)$ meint dagegen $8\,\text{Hz}$.
+  ```
+  Wenn also $\cos(8t)$ ohne $2\pi$ geschrieben ist, ist $8$ eine Kreisfrequenz; $\cos(2\pi\cdot 8\thinspace t)$ meint dagegen $8\thinspace \text{Hz}$.
 - **DFT-Konvention.** Die DFT ist ohne Vorfaktor definiert, die inverse DFT trägt den Faktor $1/N$. NumPy (`numpy.fft`) und MATLAB folgen dieser Wahl; SciPys `scipy.fft` ebenfalls.
 - **Regularität.** Wir behandeln Konvergenz- und Integrierbarkeitsfragen nicht im Detail. Alle Aussagen gelten unter den üblichen Voraussetzungen (z. B. $L^1\cap L^2$ für die Fourier-Transformation, hinreichend abklingende und differenzierbare Funktionen bei der Ableitungsregel). Für $\delta$ und für reine Schwingungen $e^{i\omega_0 t}$ interpretiert man die Aussagen distributionentheoretisch.
 - **Notation.** Realteil/Imaginärteil als $\operatorname{Re}, \operatorname{Im}$; komplex Konjugiertes als $\overline{z}$. Phase und Argument werden synonym verwendet.
@@ -55,7 +55,7 @@ Bevor du in Einheit 1 startest, solltest du die folgenden Aufgaben ohne längere
 
 1. Wandle $3(\cos(\pi/6)+i\sin(\pi/6))$ in Real- und Imaginärteil um.
 2. Erkläre, warum $\sin(2\pi f t)$ bei Frequenz $f$ die Kreisfrequenz $\omega=2\pi f$ hat.
-3. Berechne $\int_{-1}^{1} e^{-i\omega t}\,dt$ bis auf den Grenzwert bei $\omega=0$.
+3. Berechne $\int_{-1}^{1} e^{-i\omega t}\thinspace dt$ bis auf den Grenzwert bei $\omega=0$.
 4. Erkläre an zwei Vektoren in $\mathbb R^2$, was Orthogonalität und Projektion bedeuten.
 5. Lies in Python oder Pseudocode aus einer Liste $x[0],\ldots,x[N-1]$ den Mittelwert aus.
 
@@ -90,8 +90,8 @@ Jede Einheit folgt demselben Muster: Leitfrage, Definition, Beweisidee oder Beis
 | $X(\omega)$ | Fourier-Transformierte von $x(t)$ | [§3.2](einheit-3.md#32-definition) |
 | $H(\omega)$ | Frequenzgang eines Filters oder LTI-Systems | [§4.6](einheit-4.md#46-faltung) |
 | $f_s$, $f_N$ | Abtastrate und Nyquist-Frequenz | [§5.6](einheit-5.md#56-abtastung-und-nyquist-grenze) |
-| $\mathcal H\{x\}$ | Hilbert-Transformierte von $x$ | [§6.2](einheit-6.md#62-definition-im-frequenzbereich) |
-| $z(t)=x(t)+i\mathcal H\{x\}(t)$ | analytisches Signal | [§7.1](einheit-7.md#71-definition) |
+| $\mathcal H\lbrace x\rbrace $ | Hilbert-Transformierte von $x$ | [§6.2](einheit-6.md#62-definition-im-frequenzbereich) |
+| $z(t)=x(t)+i\mathcal H\lbrace x\rbrace (t)$ | analytisches Signal | [§7.1](einheit-7.md#71-definition) |
 | $\phi(t)$, $f_{\text{inst}}$ | momentane Phase und Momentanfrequenz | [§7.5](einheit-7.md#75-momentane-phase) |
 
 ## Anwendungsanker

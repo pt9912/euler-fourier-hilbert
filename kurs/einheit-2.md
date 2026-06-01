@@ -6,15 +6,15 @@ Welche Bausteine braucht man, um ein periodisches Signal vollständig zusammenzu
 
 Viele periodische Signale lassen sich als Summe einfacher Schwingungen schreiben. Statt Sinus und Kosinus verwendet man oft komplexe Exponentialfunktionen:
 
-$$
+```math
 e^{in\omega_0 t}
-$$
+```
 
 mit Grundkreisfrequenz
 
-$$
+```math
 \omega_0 = \frac{2\pi}{T}.
-$$
+```
 
 Hier ist $T$ die Periode und $n$ eine ganze Zahl.
 
@@ -22,15 +22,15 @@ Hier ist $T$ die Periode und $n$ eine ganze Zahl.
 
 Für ein periodisches Signal $f(t)$ mit Periode $T$ gilt unter geeigneten Bedingungen:
 
-$$
+```math
 f(t) = \sum_{n=-\infty}^{\infty} c_n e^{in\omega_0 t}.
-$$
+```
 
 Die Koeffizienten sind:
 
-$$
+```math
 c_n = \frac{1}{T}\int_{t_0}^{t_0+T} f(t)e^{-in\omega_0 t}\,dt.
-$$
+```
 
 Die Zahl $c_n$ sagt:
 
@@ -40,22 +40,22 @@ Die Zahl $c_n$ sagt:
 ## 2.3 Warum funktioniert das?
 
 Die Idee ist dieselbe wie in $\mathbb R^2$. Für einen Vektor $v$ und die Standardbasis $e_1=(1,0)$, $e_2=(0,1)$ sind die Koordinaten gerade Projektionen:
-$$
+```math
 v_1=\langle v,e_1\rangle,\qquad v_2=\langle v,e_2\rangle.
-$$
+```
 Dass $e_1$ und $e_2$ orthonormal sind, macht diese Projektionen eindeutig und einfach. Fourier-Analyse überträgt dieses Bild auf Funktionen: Die "Basisvektoren" sind jetzt Schwingungen.
 
 Auf dem Raum der $T$-periodischen Funktionen definieren wir das Skalarprodukt
 
-$$
+```math
 \langle f,g\rangle := \frac{1}{T}\int_{0}^{T} f(t)\overline{g(t)}\,dt.
-$$
+```
 
-Beachte den **komplex konjugierten** zweiten Faktor — bei komplexen Funktionen ist das nötig, damit $\langle f,f\rangle=\frac{1}{T}\int_0^T|f(t)|^2\,dt$ reell und nichtnegativ ist.
+Beachte den **komplex konjugierten** zweiten Faktor — bei komplexen Funktionen ist das nötig, damit $\langle f,f\rangle=\frac{1}{T}\int_0^T|f(t)|^2\thinspace dt$ reell und nichtnegativ ist.
 
 Die Funktionen $e_n(t)=e^{in\omega_0 t}$ sind bezüglich dieses Skalarprodukts orthonormal:
 
-$$
+```math
 \langle e_n,e_m\rangle
 =\frac{1}{T}\int_{0}^{T} e^{in\omega_0 t}\,\overline{e^{im\omega_0 t}}\,dt
 =\frac{1}{T}\int_{0}^{T} e^{i(n-m)\omega_0 t}\,dt
@@ -64,7 +64,7 @@ $$
 1, & n=m,\\
 0, & n\ne m.
 \end{cases}
-$$
+```
 
 Das ist die direkte Verallgemeinerung rechtwinkliger Vektoren: Die Koeffizienten $c_n=\langle f,e_n\rangle$ sind die Projektionen des Signals auf die Frequenzrichtungen $e_n$.
 
@@ -74,76 +74,76 @@ Konvergenzfragen (punktweise, gleichmäßig oder im $L^2$-Sinne) lassen wir hier
 
 Sei
 
-$$
+```math
 f(t) = \cos(\omega_0 t).
-$$
+```
 
 Mit Euler:
 
-$$
+```math
 \cos(\omega_0 t)
 = \frac{e^{i\omega_0 t}+e^{-i\omega_0 t}}{2}.
-$$
+```
 
 Also sind nur zwei Koeffizienten ungleich null:
 
-$$
+```math
 c_1 = \frac12, \qquad c_{-1} = \frac12.
-$$
+```
 
 ## 2.5 Beispiel: Reine Sinusschwingung
 
 Sei
 
-$$
+```math
 f(t)=\sin(\omega_0 t).
-$$
+```
 
 Dann:
 
-$$
+```math
 \sin(\omega_0 t)
 = \frac{e^{i\omega_0 t}-e^{-i\omega_0 t}}{2i}.
-$$
+```
 
 Also:
 
-$$
+```math
 c_1 = \frac{1}{2i} = -\frac{i}{2},
 \qquad
 c_{-1} = -\frac{1}{2i} = \frac{i}{2}.
-$$
+```
 
 ## 2.6 Beispiel mit Integral: Rechteckwelle
 
 Sei $f$ die $2\pi$-periodische Rechteckwelle mit $\omega_0=1$,
 
-$$
+```math
 f(t)=
 \begin{cases}
 +1, & 0<t<\pi,\\
 -1, & -\pi<t<0.
 \end{cases}
-$$
+```
 
 Wir rechnen $c_n$ für $n\ne 0$ direkt aus der Definition aus und nutzen, dass das Integral über jede Periode dasselbe ergibt:
 
-$$
+```math
 c_n
 = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(t)e^{-int}\,dt
 = \frac{1}{2\pi}\left[\int_{0}^{\pi}e^{-int}\,dt-\int_{-\pi}^{0}e^{-int}\,dt\right].
-$$
+```
 
 Beide Integrale lassen sich elementar berechnen,
 
-$$
+```math
 \int_{0}^{\pi}e^{-int}\,dt = \frac{1-e^{-in\pi}}{in},\qquad
 \int_{-\pi}^{0}e^{-int}\,dt = \frac{e^{in\pi}-1}{in}.
-$$
+```
 
 Mit $e^{\pm in\pi}=(-1)^n$ folgt
 
-$$
+```math
 c_n
 = \frac{1}{2\pi}\cdot\frac{2\bigl(1-(-1)^n\bigr)}{in}
 =
@@ -151,21 +151,21 @@ c_n
 \dfrac{2}{i\pi n}=-\dfrac{2i}{\pi n}, & n \text{ ungerade},\\
 0, & n \text{ gerade}.
 \end{cases}
-$$
+```
 
 Der Mittelwert ist $c_0=0$, weil das Signal symmetrisch um null pendelt. Setzt man die Beiträge für $\pm n$ (ungerade $n>0$) zusammen, erhält man mit $c_{-n}=\overline{c_n}$ und der Sinus-Formel aus Einheit 1:
 
-$$
+```math
 c_n e^{int}+c_{-n}e^{-int}
 =-\frac{2i}{\pi n}\bigl(e^{int}-e^{-int}\bigr)
 =\frac{4}{\pi n}\sin(nt).
-$$
+```
 
 Aufsummiert ergibt sich die berühmte Reihe
 
-$$
+```math
 f(t)=\frac{4}{\pi}\sum_{k=0}^{\infty}\frac{\sin\bigl((2k+1)t\bigr)}{2k+1}.
-$$
+```
 
 Genau diese Partialsummen werden in §2.8 grafisch verglichen — die Theorie hier liefert die Linien des Bildes.
 
@@ -178,18 +178,18 @@ Ein Fourier-Koeffizient $c_n$ ist komplex.
 
 Wichtig: Bei reellwertigen Signalen verteilt sich eine reale Sinus- oder Kosinusamplitude auf ein Paar positiver und negativer Frequenzen. Zum Beispiel hat
 
-$$
+```math
 \cos(\omega_0t)
 = \frac12 e^{i\omega_0t}+\frac12 e^{-i\omega_0t}
-$$
+```
 
 die reelle Amplitude $1$, aber die zweiseitigen Koeffizienten $c_1=c_{-1}=1/2$. In einem einseitigen Amplitudenspektrum fasst man diese beiden Beiträge oft zusammen; dann taucht für $n>0$ ein Faktor $2$ auf.
 
 Für reellwertige Signale gilt:
 
-$$
+```math
 c_{-n} = \overline{c_n}.
-$$
+```
 
 Das bedeutet: Positive und negative Frequenzen sind nicht unabhängig, wenn das Signal reell ist.
 

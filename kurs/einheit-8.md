@@ -6,25 +6,25 @@ Was ist nach sieben Einheiten der gemeinsame Gedanke? Euler liefert die Sprache 
 
 Die Euler-Formel ist die Sprache:
 
-$$
+```math
 e^{i\omega t}=\cos(\omega t)+i\sin(\omega t).
-$$
+```
 
 Die Fourier-Transformation nutzt diese Sprache, um Signale zu zerlegen:
 
-$$
+```math
 x(t)
 =
 \frac{1}{2\pi}\int_{-\infty}^{\infty}X(\omega)e^{i\omega t}\,d\omega.
-$$
+```
 
 Die Hilbert-Transformation verändert die Phase dieser Frequenzanteile:
 
-$$
+```math
 X(\omega)
 \mapsto
 -i\operatorname{sgn}(\omega)X(\omega).
-$$
+```
 
 Zusammen ergeben sie ein sehr starkes Werkzeug:
 
@@ -75,9 +75,9 @@ t_freq = (t[:-1] + t[1:]) / 2
 
 Schreibe
 
-$$
+```math
 x(t)=5\cos(4t-\pi/3)
-$$
+```
 
 als Summe komplexer Exponentialfunktionen.
 
@@ -89,15 +89,15 @@ Bestimme die Fourier-Transformierte von $\delta(t-2)$.
 
 Sei
 
-$$
+```math
 x(t)=\cos(8t).
-$$
+```
 
 Die $8$ ist hier eine Kreisfrequenz in rad/s, kein Hertz-Wert.
 
 Bestimme:
 
-1. $\mathcal{H}\{x\}(t)$,
+1. $\mathcal{H}\lbrace x\rbrace (t)$,
 2. das analytische Signal $z(t)$,
 3. die Hüllkurve,
 4. die Momentanfrequenz.
@@ -108,21 +108,21 @@ Ein lineares zeitinvariantes System hat Impulsantwort $h(t)$. Erkläre mit Fouri
 
 ### Aufgabe 5
 
-Ein Signal wird mit $f_s=8000\,\text{Hz}$ abgetastet. Welche Frequenzen können ohne Aliasing dargestellt werden?
+Ein Signal wird mit $f_s=8000\thinspace \text{Hz}$ abgetastet. Welche Frequenzen können ohne Aliasing dargestellt werden?
 
 ### Aufgabe 6 (Synthese: Euler, Fourier, Hilbert auf einen Schlag)
 
 Gegeben ist das AM-Signal
 
-$$
+```math
 x(t)=\bigl(1+\tfrac12\cos(2\pi\,5\,t)\bigr)\cos(2\pi\,100\,t).
-$$
+```
 
 a) Schreibe $x$ mit der Euler-Formel als Summe komplexer Schwingungen und gib deren Frequenzen in Hertz an.
 
 b) Skizziere — qualitativ — das Spektrum $X(f)$ als Linienspektrum (Lage, relative Höhen, Phasen).
 
-c) Begründe mit der Bedrosian-Bedingung, dass das analytische Signal hier $z(t)=\bigl(1+\tfrac12\cos(2\pi\,5\,t)\bigr)e^{i\,2\pi\,100\,t}$ ist, und gib die Hüllkurve $|z(t)|$ sowie die Momentanfrequenz $f_{\text{inst}}(t)$ an.
+c) Begründe mit der Bedrosian-Bedingung, dass das analytische Signal hier $z(t)=\bigl(1+\tfrac12\cos(2\pi\thinspace 5\thinspace t)\bigr)e^{i\thinspace 2\pi\thinspace 100\thinspace t}$ ist, und gib die Hüllkurve $|z(t)|$ sowie die Momentanfrequenz $f_{\text{inst}}(t)$ an.
 
 ### Aufgabe 7 (Reflexion)
 

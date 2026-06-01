@@ -12,18 +12,18 @@ Die Fourier-Transformation ersetzt die diskreten Frequenzen $n\omega_0$ durch ei
 
 Wir verwenden die Konvention aus der [Kurs-Übersicht](README.md#konventionen-und-voraussetzungen): $\omega$ ist die Kreisfrequenz in rad/s. Wenn später numerische Beispiele in Hertz auftreten, gilt immer $\omega=2\pi f$.
 
-$$
+```math
 X(\omega) = \mathcal{F}\{x(t)\}
 = \int_{-\infty}^{\infty} x(t)e^{-i\omega t}\,dt.
-$$
+```
 
 Die Rücktransformation lautet:
 
-$$
+```math
 x(t)
 = \mathcal{F}^{-1}\{X(\omega)\}
 = \frac{1}{2\pi}\int_{-\infty}^{\infty} X(\omega)e^{i\omega t}\,d\omega.
-$$
+```
 
 Das Integral konvergiert als gewöhnliches Lebesgue-Integral für $x\in L^1(\mathbb R)$. Für $x\in L^2(\mathbb R)$ erklärt man $\mathcal F$ über einen Grenzprozess (Satz von Plancherel); für $\delta$, $\sin$ und $\cos$ interpretiert man die Aussagen distributionentheoretisch. Vergleiche auch die Konventionshinweise in der [Kurs-Übersicht](README.md#konventionen-und-voraussetzungen).
 
@@ -42,20 +42,20 @@ Dabei liefert:
 
 Der Dirac-Impuls $\delta(t)$ ist keine gewöhnliche Funktion, sondern eine idealisierte Distribution. Man verwendet ihn über seine Siebeigenschaft:
 
-$$
+```math
 \int_{-\infty}^{\infty} f(t)\delta(t-t_0)\,dt=f(t_0).
-$$
+```
 
 Alle folgenden Aussagen über $\delta$ sind in diesem Sinn zu verstehen.
 
 Für den Dirac-Impuls $\delta(t)$ gilt:
 
-$$
+```math
 \mathcal{F}\{\delta(t)\}
 =\int_{-\infty}^{\infty}\delta(t)e^{-i\omega t}\,dt
 =e^{-i\omega\cdot 0}
 =1.
-$$
+```
 
 Ein unendlich kurzer Impuls enthält alle Frequenzen gleich stark.
 
@@ -63,11 +63,11 @@ Ein unendlich kurzer Impuls enthält alle Frequenzen gleich stark.
 
 Für $\delta(t-t_0)$ gilt:
 
-$$
+```math
 \mathcal{F}\{\delta(t-t_0)\}
 =\int_{-\infty}^{\infty}\delta(t-t_0)e^{-i\omega t}\,dt
 =e^{-i\omega t_0}.
-$$
+```
 
 Eine Zeitverschiebung erzeugt also eine frequenzabhängige Phase.
 
@@ -75,30 +75,30 @@ Eine Zeitverschiebung erzeugt also eine frequenzabhängige Phase.
 
 Sei
 
-$$
+```math
 x(t)=
 \begin{cases}
 1, & |t|\le a,\\
 0, & |t|>a.
 \end{cases}
-$$
+```
 
 Dann:
 
-$$
+```math
 X(\omega)
 = \int_{-a}^{a} e^{-i\omega t}\,dt
 = \frac{2\sin(\omega a)}{\omega}
 = 2a\,\operatorname{sinc}\!\left(\frac{\omega a}{\pi}\right).
-$$
+```
 
 Dabei ist $\operatorname{sinc}(x)=\sin(\pi x)/(\pi x)$ die **normierte Sinc-Funktion** (manche Autoren verwenden die unnormierte Variante $\sin(x)/x$; beim Lesen also auf die Konvention achten). Sie hat ihre erste Nullstelle bei $x=1$ und gleicht über den ganzen Kurs als Spektralform jedes Rechteckpulses.
 
 Für $\omega=0$ nimmt man den Grenzwert:
 
-$$
+```math
 X(0)=2a.
-$$
+```
 
 Ein breiter Puls im Zeitbereich hat ein schmales Spektrum; ein schmaler Puls hat ein breites Spektrum. Quantitativ ist das eine Form der **Unschärferelation**: Zeit- und Frequenzkonzentration sind nicht gleichzeitig beliebig klein.
 
@@ -106,15 +106,15 @@ Ein breiter Puls im Zeitbereich hat ein schmales Spektrum; ein schmaler Puls hat
 
 Für
 
-$$
+```math
 x(t)=e^{-at^2}, \qquad a>0
-$$
+```
 
 ist auch die Fourier-Transformierte eine Gaußfunktion:
 
-$$
+```math
 X(\omega)=\sqrt{\frac{\pi}{a}}e^{-\omega^2/(4a)}.
-$$
+```
 
 Beweisidee: Im Integranden $e^{-at^2}e^{-i\omega t}$ lässt sich der Exponent durch **quadratische Ergänzung** umformen zu $-a(t+\tfrac{i\omega}{2a})^2-\tfrac{\omega^2}{4a}$. Der $\omega$-abhängige Teil zieht aus dem Integral heraus, und der verbleibende Gauß-Anteil liefert mit einem Konturargument den Faktor $\sqrt{\pi/a}$.
 
@@ -146,11 +146,11 @@ gauss_ft = np.sqrt(np.pi) * np.exp(-omega**2 / 4)
 ## Übungen zu Einheit 3
 
 1. Was ist der Unterschied zwischen Fourier-Reihe und Fourier-Transformation?
-2. Berechne $\mathcal{F}\{\delta(t-3)\}$.
+2. Berechne $\mathcal{F}\lbrace \delta(t-3)\rbrace $.
 3. Was passiert mit dem Spektrum eines Rechteckpulses, wenn der Puls im Zeitbereich breiter wird?
 4. Warum enthält ein sehr kurzer Impuls viele Frequenzen?
 5. Skizziere ohne Integralrechnung qualitativ das Spektrum von $x(t)=\cos(\omega_0t)\cdot \operatorname{rect}(t/T)$. Nutze die Idee, dass ein zeitlich begrenzter Kosinus ein Rechteckspektrum um $\pm\omega_0$ verschiebt. Prüfe deine Begründung nach [§4.3](einheit-4.md#43-frequenzverschiebung) erneut.
-6. Fehlerdiagnose: Jemand schreibt $\delta(0)=\infty$ und versucht damit $\mathcal F\{\delta\}$ wie ein gewöhnliches Integral auszurechnen. Warum ist das keine saubere Begründung? Welche Eigenschaft verwendet man stattdessen?
+6. Fehlerdiagnose: Jemand schreibt $\delta(0)=\infty$ und versucht damit $\mathcal F\lbrace \delta\rbrace $ wie ein gewöhnliches Integral auszurechnen. Warum ist das keine saubere Begründung? Welche Eigenschaft verwendet man stattdessen?
 
 ## Selbstcheck zu Einheit 3
 

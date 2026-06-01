@@ -6,9 +6,9 @@ Wir brauchen für diesen Kurs eine Zahlebene statt einer Zahlengeraden, weil **R
 
 Eine komplexe Zahl hat die Form
 
-$$
+```math
 z = a + ib
-$$
+```
 
 mit Realteil $a$, Imaginärteil $b$ und $i^2 = -1$.
 
@@ -25,37 +25,37 @@ Der Winkel ist nur bis auf ganzzahlige Vielfache von $2\pi$ festgelegt. Wir wäh
 
 Jede komplexe Zahl ungleich null lässt sich schreiben als
 
-$$
+```math
 z = r(\cos \varphi + i\sin \varphi)
-$$
+```
 
 mit
 
-$$
+```math
 r = |z|, \qquad \varphi = \arg(z).
-$$
+```
 
 ## 1.3 Euler-Formel
 
 Die Euler-Formel lautet:
 
-$$
+```math
 e^{i\varphi} = \cos \varphi + i\sin \varphi.
-$$
+```
 
 Damit wird die Polarform besonders einfach:
 
-$$
+```math
 z = r e^{i\varphi}.
-$$
+```
 
 ## 1.4 Herleitung über Taylor-Reihen
 
 Streng genommen *definiert* man die komplexe Exponentialfunktion durch die Potenzreihe
 
-$$
+```math
 e^z := \sum_{k=0}^{\infty}\frac{z^k}{k!},\qquad z\in\mathbb C.
-$$
+```
 
 Die Reihe konvergiert für jedes $z\in\mathbb C$ absolut. Zwei Konsequenzen brauchen wir gleich:
 
@@ -66,41 +66,41 @@ Das ist der einzige analytische Punkt in der Herleitung: Wir benutzen keine neue
 
 Die Taylor-Reihen von Exponentialfunktion, Sinus und Kosinus sind:
 
-$$
+```math
 e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \cdots
-$$
+```
 
-$$
+```math
 \cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \cdots
-$$
+```
 
-$$
+```math
 \sin x = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots
-$$
+```
 
 Setzt man $x = i\varphi$, erhält man:
 
-$$
+```math
 e^{i\varphi}
 = 1 + i\varphi + \frac{(i\varphi)^2}{2!}
 + \frac{(i\varphi)^3}{3!}
 + \frac{(i\varphi)^4}{4!}
 + \cdots
-$$
+```
 
 Da $i^2=-1$, $i^3=-i$, $i^4=1$, trennen sich reelle und imaginäre Terme:
 
-$$
+```math
 e^{i\varphi}
 = \left(1 - \frac{\varphi^2}{2!} + \frac{\varphi^4}{4!} - \cdots \right)
 + i\left(\varphi - \frac{\varphi^3}{3!} + \frac{\varphi^5}{5!} - \cdots \right).
-$$
+```
 
 Also:
 
-$$
+```math
 e^{i\varphi} = \cos \varphi + i\sin \varphi.
-$$
+```
 
 ## 1.5 Geometrische Bedeutung
 
@@ -110,9 +110,9 @@ Multiplikation mit $e^{i\alpha}$ bedeutet: Rotation um den Winkel $\alpha$.
 
 Beispiel:
 
-$$
+```math
 z = 2e^{i\pi/3}
-$$
+```
 
 hat Betrag $2$ und Winkel $\pi/3 = 60^\circ$.
 
@@ -120,15 +120,15 @@ hat Betrag $2$ und Winkel $\pi/3 = 60^\circ$.
 
 Aus der Euler-Formel folgen:
 
-$$
+```math
 \cos x = \frac{e^{ix}+e^{-ix}}{2}
-$$
+```
 
 und
 
-$$
+```math
 \sin x = \frac{e^{ix}-e^{-ix}}{2i}.
-$$
+```
 
 Diese beiden Gleichungen sind die Brücke zur Fourier-Analyse: Sinus und Kosinus werden durch komplexe Exponentialfunktionen ersetzt.
 

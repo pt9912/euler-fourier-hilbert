@@ -4,81 +4,81 @@ Aufgabenstellung: [Einheit 7 — Übungen](../einheit-7.md#übungen-zu-einheit-7
 
 1. Für $\omega_0>0$ gilt:
 
-   $$
+   ```math
    \mathcal{H}\{\cos(\omega_0t)\}=\sin(\omega_0t).
-   $$
+   ```
 
    Also:
 
-   $$
+   ```math
    \mathcal{H}\{3\cos(10t)\}=3\sin(10t).
-   $$
+   ```
 
    Das analytische Signal ist
 
-   $$
+   ```math
    z(t)=3\cos(10t)+i3\sin(10t)=3e^{i10t}.
-   $$
+   ```
 
-2. Für $\omega_0=5>0$ liefert die Hilbert-Transformation $\mathcal{H}\{2\cos(5t+\pi/4)\}=2\sin(5t+\pi/4)$. Damit ist das analytische Signal
+2. Für $\omega_0=5>0$ liefert die Hilbert-Transformation $\mathcal{H}\lbrace 2\cos(5t+\pi/4)\rbrace =2\sin(5t+\pi/4)$. Damit ist das analytische Signal
 
-   $$
+   ```math
    z(t)=2\cos(5t+\pi/4)+i\cdot 2\sin(5t+\pi/4)=2e^{i(5t+\pi/4)}.
-   $$
+   ```
 
    Hüllkurve und Phase liest man am komplexen Zeiger direkt ab:
 
-   $$
+   ```math
    |z(t)|=2,\qquad \phi(t)=5t+\pi/4.
-   $$
+   ```
 
    Die konstante Hüllkurve $2$ entspricht der reellen Amplitude des Kosinus, die lineare Phase mit Steigung $5$ der Trägerkreisfrequenz.
 
 3. Die Phase ist
 
-   $$
+   ```math
    \phi(t)=7t.
-   $$
+   ```
 
    Daher:
 
-   $$
+   ```math
    \omega_{\text{inst}}(t)=\frac{d}{dt}\phi(t)=7.
-   $$
+   ```
 
    In Hertz:
 
-   $$
+   ```math
    f_{\text{inst}}(t)=\frac{7}{2\pi}.
-   $$
+   ```
 
 4. Im Frequenzbereich gilt für $z=x+i\mathcal{H}x$:
 
-   $$
+   ```math
    Z(\omega)=X(\omega)+i\left[-i\,\operatorname{sgn}(\omega)X(\omega)\right]
    =
    \left(1+\operatorname{sgn}(\omega)\right)X(\omega).
-   $$
+   ```
 
    Damit ist $Z(\omega)=2X(\omega)$ für $\omega>0$, $Z(\omega)=0$ für $\omega<0$, und der Gleichanteil bleibt separat erhalten. In der DFT-Version gilt zusätzlich: Bei geradem $N$ bleibt auch der Nyquist-Bin $k=N/2$ unverändert, weil er nicht eindeutig zu einer positiven oder negativen Frequenzhälfte gehört.
 
 5. Ein Beispiel ist
 
-   $$
+   ```math
    x(t)=\bigl(1+0{,}8\cos(2\pi\cdot 60\,t)\bigr)\cos(2\pi\cdot 50\,t).
-   $$
+   ```
 
-   Formal hat das die AM-Form $A(t)\cos(2\pi f_ct)$ mit $f_c=50\,\text{Hz}$, aber die Modulationsfrequenz $60\,\text{Hz}$ liegt nicht deutlich unter dem Träger. Das Spektrum von $A(t)$ hat Linien bei $0$ und $\pm60\,\text{Hz}$; nach der Modulation entstehen Linien bei
+   Formal hat das die AM-Form $A(t)\cos(2\pi f_ct)$ mit $f_c=50\thinspace \text{Hz}$, aber die Modulationsfrequenz $60\thinspace \text{Hz}$ liegt nicht deutlich unter dem Träger. Das Spektrum von $A(t)$ hat Linien bei $0$ und $\pm60\thinspace \text{Hz}$; nach der Modulation entstehen Linien bei
 
-   $$
+   ```math
    50\,\text{Hz},\quad 50\pm60\,\text{Hz},
-   $$
+   ```
 
-   also auch bei $-10\,\text{Hz}$ bzw. $10\,\text{Hz}$. Positive und negative Anteile sind nicht sauber getrennt. Die Bedrosian-Bedingung ist verletzt, daher muss
+   also auch bei $-10\thinspace \text{Hz}$ bzw. $10\thinspace \text{Hz}$. Positive und negative Anteile sind nicht sauber getrennt. Die Bedrosian-Bedingung ist verletzt, daher muss
 
-   $$
+   ```math
    \mathcal H\{A(t)\cos(2\pi f_ct)\}=A(t)\sin(2\pi f_ct)
-   $$
+   ```
 
    nicht gelten. Folglich ist auch $|z(t)|$ im Allgemeinen nicht gleich $A(t)$.
 
@@ -95,9 +95,9 @@ Aufgabenstellung: [Einheit 7 — Übungen](../einheit-7.md#übungen-zu-einheit-7
 
    Als Multiplikatorfolge kann man das schreiben als
 
-   $$
+   ```math
    [1,2,2,2,1,0,0,0].
-   $$
+   ```
 
 ---
 

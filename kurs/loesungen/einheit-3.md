@@ -4,39 +4,39 @@ Aufgabenstellung: [Einheit 3 — Übungen](../einheit-3.md#übungen-zu-einheit-3
 
 1. Fourier-Reihen beschreiben periodische Signale durch diskrete Frequenzen $n\omega_0$:
 
-   $$
+   ```math
    f(t)=\sum_{n=-\infty}^{\infty}c_ne^{in\omega_0t}.
-   $$
+   ```
 
    Die Fourier-Transformation beschreibt nichtperiodische Signale durch ein kontinuierliches Spektrum:
 
-   $$
+   ```math
    x(t)=\frac{1}{2\pi}\int_{-\infty}^{\infty}X(\omega)e^{i\omega t}\,d\omega.
-   $$
+   ```
 
    Anschaulich wird aus der Summe über Frequenzlinien ein Integral über alle Frequenzen.
 
 2. Mit der Siebeigenschaft des Dirac-Impulses:
 
-   $$
+   ```math
    \mathcal{F}\{\delta(t-3)\}
    =
    \int_{-\infty}^{\infty}\delta(t-3)e^{-i\omega t}\,dt
    =
    e^{-i3\omega}.
-   $$
+   ```
 
 3. Beim Rechteckpuls aus der Einheit gilt:
 
-   $$
+   ```math
    X(\omega)=\frac{2\sin(\omega a)}{\omega}.
-   $$
+   ```
 
    Wird der Puls breiter, wächst $a$. Die erste Nullstelle liegt bei $\omega a=\pi$, also bei
 
-   $$
+   ```math
    \omega=\frac{\pi}{a}.
-   $$
+   ```
 
    Größeres $a$ bedeutet kleinere Nullstellenabstände: Das Spektrum wird schmaler.
 
@@ -46,15 +46,15 @@ Aufgabenstellung: [Einheit 3 — Übungen](../einheit-3.md#übungen-zu-einheit-3
 
    Multiplikation mit
 
-   $$
+   ```math
    \cos(\omega_0t)=\frac12\left(e^{i\omega_0t}+e^{-i\omega_0t}\right)
-   $$
+   ```
 
    erzeugt zwei verschobene Kopien dieses Fensterspektrums:
 
-   $$
+   ```math
    X(\omega)=\frac12 R(\omega-\omega_0)+\frac12 R(\omega+\omega_0).
-   $$
+   ```
 
    Qualitativ skizziert man also zwei Sinc-Pakete, eines um $+\omega_0$, eines um $-\omega_0$. Was du daraus mitnehmen solltest: Zeitliche Begrenzung macht aus idealen Linien breite Spektralpakete.
 
@@ -62,15 +62,15 @@ Aufgabenstellung: [Einheit 3 — Übungen](../einheit-3.md#übungen-zu-einheit-3
 
    Sauber verwendet man die Siebeigenschaft:
 
-   $$
+   ```math
    \int_{-\infty}^{\infty} f(t)\delta(t-t_0)\,dt=f(t_0).
-   $$
+   ```
 
    Für $t_0=0$ und $f(t)=e^{-i\omega t}$ folgt deshalb
 
-   $$
+   ```math
    \mathcal F\{\delta(t)\}=e^{-i\omega\cdot 0}=1.
-   $$
+   ```
 
 ---
 

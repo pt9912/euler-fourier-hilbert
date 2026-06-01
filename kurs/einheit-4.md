@@ -18,44 +18,44 @@ Für den ersten Durchgang sind besonders wichtig: Zeitverschiebung, Frequenzvers
 
 Wenn
 
-$$
+```math
 x(t) \leftrightarrow X(\omega), \qquad y(t)\leftrightarrow Y(\omega),
-$$
+```
 
 dann gilt:
 
-$$
+```math
 ax(t)+by(t) \leftrightarrow aX(\omega)+bY(\omega).
-$$
+```
 
 ## 4.2 Zeitverschiebung
 
-$$
+```math
 x(t-t_0) \leftrightarrow e^{-i\omega t_0}X(\omega).
-$$
+```
 
 Eine Verschiebung im Zeitbereich ändert die Phase im Frequenzbereich.
 
 **Beweis (musterhaft, weil derselbe Trick überall wiederkehrt):** Substitution $u=t-t_0$ im Definitionsintegral liefert
-$$
+```math
 \int_{-\infty}^{\infty} x(t-t_0)e^{-i\omega t}\,dt
 = \int_{-\infty}^{\infty} x(u)e^{-i\omega(u+t_0)}\,du
 = e^{-i\omega t_0}\int_{-\infty}^{\infty} x(u)e^{-i\omega u}\,du
 = e^{-i\omega t_0}X(\omega).
-$$
+```
 Die übrigen Eigenschaften in diesem Kapitel folgen mit analogen Substitutionen oder partieller Integration.
 
 ## 4.3 Frequenzverschiebung
 
-$$
+```math
 e^{i\omega_0t}x(t) \leftrightarrow X(\omega-\omega_0).
-$$
+```
 
 Multiplikation mit einer komplexen Schwingung verschiebt das Spektrum. Mit $\cos(\omega_c t)=\tfrac12(e^{i\omega_c t}+e^{-i\omega_c t})$ folgt sofort die **Modulationsregel**:
 
-$$
+```math
 x(t)\cos(\omega_c t)\leftrightarrow \tfrac12\bigl[X(\omega-\omega_c)+X(\omega+\omega_c)\bigr].
-$$
+```
 
 Genau dieser Mechanismus erklärt das AM-Signal in [§7.7](einheit-7.md#77-typische-anwendung-am-signal): ein Tiefpass-Spektrum $X$ wird durch die Trägerschwingung in zwei Kopien um $\pm\omega_c$ gespiegelt — die spätere Bedrosian-Bedingung verlangt, dass diese Kopien sich nicht überlappen.
 
@@ -65,9 +65,9 @@ Genau dieser Mechanismus erklärt das AM-Signal in [§7.7](einheit-7.md#77-typis
 
 Für $a\ne0$:
 
-$$
+```math
 x(at) \leftrightarrow \frac{1}{|a|}X\left(\frac{\omega}{a}\right).
-$$
+```
 
 Zeitliche Stauchung führt zu spektraler Streckung.
 
@@ -75,9 +75,9 @@ Zeitliche Stauchung führt zu spektraler Streckung.
 
 Unter der Voraussetzung, dass $x$ und $x'$ integrierbar sind und $x(t)\to0$ für $|t|\to\infty$, gilt:
 
-$$
+```math
 \frac{d}{dt}x(t) \leftrightarrow i\omega X(\omega).
-$$
+```
 
 Beweis durch partielle Integration; die Randterme verschwinden gerade wegen $x(t)\to0$. Die Regel zeigt: Ableiten verstärkt hohe Frequenzen, weil der Faktor $i\omega$ für große $|\omega|$ groß wird.
 
@@ -85,23 +85,23 @@ Beweis durch partielle Integration; die Randterme verschwinden gerade wegen $x(t
 
 Die Faltung zweier Funktionen ist:
 
-$$
+```math
 (x*h)(t)=\int_{-\infty}^{\infty}x(\tau)h(t-\tau)\,d\tau.
-$$
+```
 
 Im Frequenzbereich gilt:
 
-$$
+```math
 x*h \leftrightarrow X(\omega)H(\omega).
-$$
+```
 
 Faltung im Zeitbereich wird Multiplikation im Frequenzbereich.
 
 Umgekehrt gilt:
 
-$$
+```math
 x(t)h(t) \leftrightarrow \frac{1}{2\pi}(X*H)(\omega).
-$$
+```
 
 **Zwischenstopp 2.** Merke die Paarung bewusst:
 
@@ -114,19 +114,19 @@ Der Faktor $1/(2\pi)$ im zweiten Satz kommt nur aus unserer Fourier-Konvention.
 
 Für $x\in L^2(\mathbb R)$ gilt:
 
-$$
+```math
 \int_{-\infty}^{\infty}|x(t)|^2\,dt
 =
 \frac{1}{2\pi}\int_{-\infty}^{\infty}|X(\omega)|^2\,d\omega.
-$$
+```
 
 Die Energie eines Signals kann im Zeit- oder Frequenzbereich gemessen werden.
 
 Allgemeiner gilt für innere Produkte:
 
-$$
+```math
 \langle x,y\rangle_t = \frac{1}{2\pi}\langle X,Y\rangle_\omega.
-$$
+```
 
 Die Fourier-Transformation ist also eine Isometrie auf $L^2$ bis auf den konventionsbedingten Faktor $2\pi$: Abstände und Winkel im Signalraum bleiben im Frequenzraum erhalten, nur die Skala ändert sich.
 
@@ -177,9 +177,9 @@ triangle = np.convolve(rect, rect, mode="same") * dt   # = (rect * rect)(t)
 4. Ein Filter hat Spektrum $H(\omega)$. Was ist das Spektrum des gefilterten Signals $y=x*h$?
 5. Ein Signal wird zuerst gespiegelt und dann verschoben: $y(t)=x(-(t-t_0))=x(t_0-t)$. Was passiert mit $X(\omega)$?
 6. Transfer: Ein Signal wird zuerst um $t_0$ verzögert und dann mit $e^{i\omega_c t}$ moduliert:
-   $$
+   ```math
    y(t)=e^{i\omega_ct}x(t-t_0).
-   $$
+   ```
    Bestimme $Y(\omega)$. Wo zeigt sich die Reihenfolge der Operationen?
 
 ## Selbstcheck zu Einheit 4
