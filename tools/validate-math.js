@@ -6,15 +6,23 @@
 // Bricht KaTeX ab, wird die Fehlermeldung mit Dateipfad und Zeilennummer
 // gemeldet.
 //
-// GitHubs KaTeX-Konfiguration ist in der oeffentlichen Doku nicht
-// vollstaendig dokumentiert. Wir konfigurieren KaTeX hier konservativ
-// (strict throw, kein trust) — das deckt erfahrungsgemaess die Faelle ab,
-// die auch GitHub live zurueckweist.
+// Zusaetzlich gemeldet werden Quirks von GitHubs Render-Pipeline, die
+// KaTeX-validen Inhalt trotzdem live brechen koennen:
+//
+// - In ```math-Fences: `\\` am Zeilenende. GitHubs Pre-Processor blaeht
+//   es zu `\\\` auf (reproduzierbar ueber die /markdown-API). KaTeX-
+//   lokal sieht das nicht, das Rendering auf github.com fliegt aber.
+//
+// - In $...$ und einzeiligem $$...$$: Backslash vor ASCII-Interpunktion
+//   aus dem CommonMark-Escape-Set. CommonMark frisst den Backslash, bevor
+//   KaTeX den Inhalt sieht: \, → ,  \{ → {  usw. KaTeX-validen Quelltext
+//   rendert GitHub dann mit falscher Bedeutung.
 //
 // Aufruf:
 //   node validate-math.js                          # alle *.md ab cwd
-//   node validate-math.js path/to/file.md ...      # bestimmte Dateien
+//   node validate-math.js path/to/file.md ...      # bestimmte Dateien/Pfade
 //   node validate-math.js --verbose                # auch OK-Bloecke melden
+//   node validate-math.js --no-warn                # Warnungen unterdruecken
 
 const katex = require('katex');
 const fs = require('fs');
@@ -26,6 +34,10 @@ const KATEX_OPTIONS = {
   trust: false,
   output: 'html',
 };
+
+// CommonMark escape set: Backslash vor diesen Zeichen verliert in
+// $...$ und einzeiligem $$...$$ den Backslash.
+const CM_ESCAPABLE = new Set('!"#$%&\'()*+,-./:;<=>?@[]^_`{|}~');
 
 function* findMathBlocks(content) {
   const lines = content.split('\n');
@@ -65,8 +77,7 @@ function* findMathBlocks(content) {
       continue;
     }
 
-    // Außerhalb von Fences: $$...$$ einzeilig und $...$ inline finden.
-    // Wir suchen non-greedy nach paaren.
+    // Außerhalb von Fences: $$...$$ einzeilig und $...$ inline
     let j = 0;
     while (j < line.length) {
       if (line[j] === '$') {
@@ -83,8 +94,6 @@ function* findMathBlocks(content) {
             continue;
           }
         }
-        // Single dollar inline. Match bis zum naechsten $, das nicht von einem
-        // weiteren $ gefolgt ist (Heuristik gut genug fuer unsere Inhalte).
         let end = j + 1;
         while (end < line.length) {
           if (line[end] === '$' && line[end + 1] !== '$') break;
@@ -106,74 +115,80 @@ function* findMathBlocks(content) {
   }
 }
 
-// CommonMark consumiert Backslash vor jeder ASCII-Interpunktion. Außerhalb
-// von Code-Fences (also in $...$ und $$...$$-Inhalten) verschwindet damit
-// z.B. \, → , oder \{ → {, bevor KaTeX den Inhalt sieht.
-const CM_ESCAPABLE = new Set('!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~');
-function simulateCommonMarkEscapes(s) {
-  let out = '';
-  for (let i = 0; i < s.length; i++) {
-    if (s[i] === '\\' && i + 1 < s.length && CM_ESCAPABLE.has(s[i + 1])) {
-      out += s[i + 1];
-      i++;
-    } else {
-      out += s[i];
+function* detectQuirks(block) {
+  if (block.source === 'fence') {
+    // \\ am Zeilenende → GitHub blaeht zu \\\
+    const lines = block.content.split('\n');
+    for (let i = 0; i < lines.length; i++) {
+      // \\ direkt am Ende (auch mit trailing whitespace? Eher nein.)
+      if (lines[i].endsWith('\\\\') && i < lines.length - 1) {
+        yield {
+          relLine: i,
+          kind: 'github-fence-backslash',
+          message: '`\\\\` am Zeilenende in ```math-Fence — GitHub blaeht zu `\\\\\\`, KaTeX scheitert dann live',
+        };
+      }
+    }
+  } else {
+    // \X mit X aus CommonMark-Escape-Set in $...$ / $$...$$ einzeilig
+    for (let i = 0; i < block.content.length - 1; i++) {
+      if (block.content[i] === '\\' && CM_ESCAPABLE.has(block.content[i + 1])) {
+        yield {
+          relLine: 0,
+          col: i,
+          kind: 'commonmark-escape',
+          message: `\`\\${block.content[i + 1]}\` in ${block.type === 'inline' ? '$...$' : '$$...$$'} — CommonMark frisst Backslash, KaTeX-Bedeutung geht verloren`,
+        };
+      }
     }
   }
-  return out;
 }
 
-// GitHubs ```math-Pre-Processor blaeht `\\` am Zeilenende zu `\\\` auf
-// (reproduziert über die /markdown-API). Der Effekt ist visuell harmlos im
-// HTML-Output, aber KaTeX sieht dann `\\\` und bricht ab.
-function simulateGithubFenceBackslashQuirk(s) {
-  // `\\` am Zeilenende → `\\\` (drei Backslashes)
-  return s.replace(/\\\\(\r?\n)/g, '\\\\\\$1');
-}
-
-function quirkPreprocess(block) {
-  if (block.source === 'fence') {
-    return simulateGithubFenceBackslashQuirk(block.content);
-  }
-  // Inline und einzeiliges $$ gehen durch CommonMark
-  return simulateCommonMarkEscapes(block.content);
-}
-
-function validate(filePath, verbose = false) {
+function validate(filePath, opts) {
   let text;
   try {
     text = fs.readFileSync(filePath, 'utf8');
   } catch (e) {
     console.error(`${filePath}: cannot read (${e.code})`);
-    return 1;
+    return { errors: 1, warnings: 0 };
   }
   let errors = 0;
+  let warnings = 0;
   let total = 0;
   for (const block of findMathBlocks(text)) {
     total++;
-    const processed = quirkPreprocess(block);
+    // 1. KaTeX-Render (harte Fehler)
     try {
-      katex.renderToString(processed, {
+      katex.renderToString(block.content, {
         ...KATEX_OPTIONS,
         displayMode: block.type === 'display',
       });
-      if (verbose) {
+      if (opts.verbose) {
         console.log(`${filePath}:${block.line} (${block.type}/${block.source}) OK`);
       }
     } catch (e) {
       errors++;
-      console.log(`${filePath}:${block.line} (${block.type}/${block.source}) FAIL`);
+      console.log(`${filePath}:${block.line} (${block.type}/${block.source}) ERROR`);
       console.log(`  ${e.message.split('\n')[0]}`);
-      if (processed !== block.content) {
-        console.log(`  (Inhalt wurde durch GitHub-Quirk-Simulation veraendert)`);
-      }
       console.log(`  content: ${block.content.length > 120 ? block.content.substring(0, 120) + '...' : block.content}`);
     }
+    // 2. Quirk-Warnungen (auch wenn KaTeX OK)
+    if (!opts.noWarn) {
+      for (const q of detectQuirks(block)) {
+        warnings++;
+        const lineNum = block.line + q.relLine;
+        console.log(`${filePath}:${lineNum} (${block.type}/${block.source}) WARN [${q.kind}]`);
+        console.log(`  ${q.message}`);
+      }
+    }
   }
-  if (verbose || errors > 0) {
-    console.log(`${filePath}: ${total - errors}/${total} OK${errors ? `, ${errors} FAIL` : ''}`);
+  if (opts.verbose || errors > 0 || warnings > 0) {
+    const parts = [`${total - errors}/${total} OK`];
+    if (errors) parts.push(`${errors} ERROR`);
+    if (warnings) parts.push(`${warnings} WARN`);
+    console.log(`${filePath}: ${parts.join(', ')}`);
   }
-  return errors;
+  return { errors, warnings };
 }
 
 function walk(dir, out = []) {
@@ -190,7 +205,10 @@ function walk(dir, out = []) {
 }
 
 const args = process.argv.slice(2);
-const verbose = args.includes('--verbose') || args.includes('-v');
+const opts = {
+  verbose: args.includes('--verbose') || args.includes('-v'),
+  noWarn: args.includes('--no-warn'),
+};
 const files = args.filter((a) => !a.startsWith('-'));
 
 let targets;
@@ -208,14 +226,16 @@ if (files.length === 0) {
   }
 }
 
-let total = 0;
+let totalErrors = 0;
+let totalWarnings = 0;
 for (const f of targets) {
-  total += validate(f, verbose);
+  const r = validate(f, opts);
+  totalErrors += r.errors;
+  totalWarnings += r.warnings;
 }
-if (total === 0) {
-  console.log(`\nOK: ${targets.length} Datei(en) — kein KaTeX-Fehler.`);
-  process.exit(0);
-} else {
-  console.log(`\nFAILED: ${total} KaTeX-Fehler insgesamt.`);
-  process.exit(1);
-}
+const summary = [`${targets.length} Datei(en)`];
+if (totalErrors) summary.push(`${totalErrors} KaTeX-Fehler`);
+else summary.push('kein KaTeX-Fehler');
+if (totalWarnings && !opts.noWarn) summary.push(`${totalWarnings} GitHub-Quirk-Warnung(en)`);
+console.log(`\n${totalErrors === 0 ? 'OK' : 'FAILED'}: ${summary.join(' — ')}.`);
+process.exit(totalErrors === 0 ? 0 : 1);

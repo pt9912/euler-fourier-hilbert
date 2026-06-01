@@ -50,13 +50,13 @@ Daher kann man das System im Frequenzbereich als frequenzabhängigen Verstärkun
 Die Nyquist-Frequenz ist
 
 ```math
-f_N=\frac{f_s}{2}=4000\,\text{Hz}.
+f_N=\frac{f_s}{2}=4000\thinspace \text{Hz}.
 ```
 
 Ohne Aliasing eindeutig darstellbar sind Frequenzen mit
 
 ```math
-|f|<4000\,\text{Hz}.
+|f|<4000\thinspace \text{Hz}.
 ```
 
 Für reelle Signale spricht man im einseitigen Spektrum meist vom Bereich $0\le f<4000\thinspace \text{Hz}$. Der exakte Rand bei $4000\thinspace \text{Hz}$ ist der Nyquist-Sonderfall; praktisch arbeitet man knapp darunter und verwendet ein Anti-Aliasing-Filter.
@@ -74,7 +74,7 @@ Für reelle Signale spricht man im einseitigen Spektrum meist vom Bereich $0\le 
 der Träger $\cos(2\pi\thinspace 100\thinspace t)=\tfrac12 e^{i\thinspace 2\pi\thinspace 100\thinspace t}+\tfrac12 e^{-i\thinspace 2\pi\thinspace 100\thinspace t}$ liefert zwei. Im Produkt entstehen sechs Linien bei den Frequenzen
 
 ```math
-\pm 100\,\text{Hz},\qquad \pm 95\,\text{Hz},\qquad \pm 105\,\text{Hz},
+\pm 100\thinspace \text{Hz},\qquad \pm 95\thinspace \text{Hz},\qquad \pm 105\thinspace \text{Hz},
 ```
 
 denn aus den Mischprodukten $\cos(2\pi 5t)\cos(2\pi 100t)=\tfrac12\bigl[\cos(2\pi 95t)+\cos(2\pi 105t)\bigr]$ folgt
@@ -83,7 +83,7 @@ denn aus den Mischprodukten $\cos(2\pi 5t)\cos(2\pi 100t)=\tfrac12\bigl[\cos(2\p
 x(t) = \tfrac{1}{2} e^{i\,2\pi\,100\,t} + \tfrac{1}{2} e^{-i\,2\pi\,100\,t} + \tfrac{1}{8}\bigl(e^{i\,2\pi\,95\,t}+e^{-i\,2\pi\,95\,t}+e^{i\,2\pi\,105\,t}+e^{-i\,2\pi\,105\,t}\bigr).
 ```
 
-Die ersten beiden Terme bilden den Träger bei $\pm 100\,\text{Hz}$; die übrigen vier Terme sind die Seitenbänder bei $\pm 95$ und $\pm 105\,\text{Hz}$.
+Die ersten beiden Terme bilden den Träger bei $\pm 100\thinspace \text{Hz}$; die übrigen vier Terme sind die Seitenbänder bei $\pm 95$ und $\pm 105\thinspace \text{Hz}$.
 
 **b)** Das Linienspektrum ist eine $\delta$-Summe (Faktor $\pi$ entfällt, wenn man das Spektrum als $c_n$ interpretiert): zentrale Linien bei $\pm 100\thinspace \text{Hz}$ mit Höhe $\tfrac12$, Seitenbänder bei $\pm 95,\pm 105\thinspace \text{Hz}$ mit Höhe $\tfrac18$. Alle Phasen sind $0$, weil das Signal reell und gerade ist — Bestätigung der Symmetrie­tabelle aus [§4.8](../einheit-4.md#48-symmetrien-reeller-und-geraderungerader-signale).
 
@@ -97,7 +97,7 @@ z(t)=A(t)e^{i\,2\pi\,100\,t},\qquad
 Die Phase ist $\phi(t)=2\pi\thinspace 100\thinspace t$, also
 
 ```math
-f_{\text{inst}}(t)=\frac{1}{2\pi}\frac{d\phi}{dt}=100\,\text{Hz}\quad\text{(konstant)}.
+f_{\text{inst}}(t)=\frac{1}{2\pi}\frac{d\phi}{dt}=100\thinspace \text{Hz}\quad\text{(konstant)}.
 ```
 
 Die Hüllkurve trägt also die langsame 5-Hz-Modulation, während die Momentanfrequenz die Trägerfrequenz unverändert anzeigt.

@@ -48,7 +48,7 @@ also reell. Positive und negative Frequenzen treten deshalb paarweise auf.
 
 Die Grundfrequenz ist $\omega_0=2\pi/T$. Oberwellen sind ganzzahlige Vielfache davon:
 
-$$2\omega_0,\;3\omega_0,\;4\omega_0,\ldots$$
+$$2\omega_0,\thickspace 3\omega_0,\thickspace 4\omega_0,\ldots$$
 
 Der Index $n$ zählt also, wie viele Grundschwingungen in eine Periode passen.
 

@@ -47,17 +47,25 @@ sauber, sonst Anzahl der Fehler.
 - Display-Math einzeilig: `$$...$$`
 - Display-Math als Code-Fence: ` ```math ... ``` `
 
-### Was wird nicht abgedeckt
+### Was geprüft wird
 
-- GitHubs Pre-Prozessor-Bugs: GitHub fügt z.B. im ```math-Fence einen
-  zusätzlichen Backslash hinzu, wenn `\\` am Zeilenende steht. Der
-  Validator sieht den Inhalt so, wie er in der Datei steht — er merkt
-  also nicht, wenn GitHub den Inhalt vor KaTeX noch verändert. Aus dem
-  Grund haben wir solche Stellen empirisch ermittelt und das Kursmaterial
-  so umformuliert, dass keine `\\` am Zeilenende mehr vorkommen.
-- CommonMark-Escape-Verarbeitung: in `$...$` oder einzeiligem `$$...$$`
-  konsumiert CommonMark Backslashes vor ASCII-Interpunktion. Der
-  Validator simuliert das nicht; er rendert den Quelltext direkt mit
-  KaTeX. Wir verwenden im Kursmaterial daher die KaTeX-Aequivalente
-  `\thinspace`, `\lbrace`, `\rbrace` statt `\,`, `\{`, `\}` außerhalb von
-  Fences.
+**ERROR** — KaTeX bricht beim Rendern ab. Der Quelltext muss korrigiert
+werden, sonst rendert er auch lokal nicht.
+
+**WARN** — KaTeX akzeptiert den Quelltext, aber GitHubs proprietäre
+Render-Pipeline verändert ihn auf bekannte Weise, sodass das Live-
+Rendering trotzdem kaputt wäre. Empirisch beobachtete Quirks:
+
+- `github-fence-backslash`: `\\` direkt am Zeilenende in einem
+  ```math-Fence. GitHub bläht das Backslash-Paar zu `\\\` auf
+  (reproduzierbar über die `/markdown`-API). Workaround: `\\` so
+  platzieren, dass weiterer Inhalt auf derselben Zeile folgt — also
+  `\begin{cases}` & `\\`-Trennzeichen `& Folgecase \end{cases}` alles
+  in einer Zeile innerhalb der Fence.
+
+- `commonmark-escape`: Backslash vor ASCII-Interpunktion in `$...$`
+  oder einzeiligem `$$...$$`. CommonMark frisst den Backslash, bevor
+  KaTeX den Inhalt sieht. Workaround: in Inline-Math die LaTeX-
+  Äquivalente verwenden, also `\thinspace` statt `\,`, `\lbrace`/
+  `\rbrace` statt `\{`/`\}`, oder die Backtick-geschützte Form
+  `` $`...`$ ``.
