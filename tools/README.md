@@ -2,22 +2,31 @@
 
 Hilfsskripte rund um den Kurs. Nicht Teil des Kursmaterials.
 
-## MathJax-Validator
+## docs-check
 
-`Dockerfile` + `validate-math.js` liefern einen reproduzierbaren Math-Check
-für die Markdown-Dateien. Es wird dieselbe Engine verwendet, die GitHub für
-das Live-Rendering nutzt (`mathjax-full` aus
-<https://github.com/mathjax/MathJax-src>) — laut [GitHubs offizieller
-Doku](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/writing-mathematical-expressions):
-*„GitHub's math rendering capability uses MathJax."*
+`Dockerfile` + `docs-check.js` liefern einen reproduzierbaren Health-Check
+für die Kurs-Dokumentation. Geprüft wird:
 
-Damit muss man nicht jedes Mal pushen und auf GitHub schauen, um zu sehen,
-ob Math-Inhalte sauber rendern.
+1. **Math-Inhalte** — Inline `$...$`, einzeiliges `$$...$$` und
+   ```math-Fences werden mit MathJax 3.2.0 + AllPackages exakt wie auf
+   GitHub gerendert; zusätzlich GitHub-spezifische Quirks als Warnung
+   (siehe unten).
+2. **Interne Markdown-Links** `[text](pfad.md#anker)` — Datei vorhanden?
+   Bei Anker: gibt es die zugehörige Heading-ID?
+3. **Bild-Referenzen** `![alt](pfad.png|jpg|gif|svg)` — Datei vorhanden?
+4. **Skript-Referenzen** `[text](*.py|*.js|*.ipynb)` — Datei vorhanden?
+5. **Externe Links** (`http://`, `https://`) — optional per HTTP HEAD
+   geprüft, schaltet sich mit `--external` ein.
+
+Die GitHub-Engine MathJax ist offiziell dokumentiert in
+<https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/writing-mathematical-expressions>;
+das verwendete Bundle ist `mathjax/es5/tex-chtml-full` Version 3.2.0
+(Inspektion von `chunk-vendors-node_modules_mathjax_es5_tex-chtml-full_…`).
 
 ### Bauen
 
 ```bash
-docker build -t math-check tools/
+docker build -t docs-check tools/
 ```
 
 ### Verwenden
@@ -25,72 +34,67 @@ docker build -t math-check tools/
 Vom Repo-Root aus, prüft alle `*.md` rekursiv:
 
 ```bash
-docker run --rm -v "$PWD":/work math-check
+docker run --rm -v "$PWD":/work docs-check
 ```
 
 Eine einzelne Datei prüfen:
 
 ```bash
-docker run --rm -v "$PWD":/work math-check kurs/einheit-5.md
+docker run --rm -v "$PWD":/work docs-check kurs/einheit-5.md
 ```
 
-Auch erfolgreich gerenderte Blöcke melden:
+Auch OK-Items melden:
 
 ```bash
-docker run --rm -v "$PWD":/work math-check --verbose kurs/einheit-5.md
+docker run --rm -v "$PWD":/work docs-check --verbose kurs/
 ```
 
-### Drei Meldungs-Arten
+Externe Links zusätzlich per HTTP HEAD prüfen (langsam):
 
-**ERROR** — MathJax bricht beim Rendern ab. Der Quelltext muss korrigiert
-werden, sonst rendert er auch live nicht. Exit-Code 1.
+```bash
+docker run --rm -v "$PWD":/work docs-check --external
+```
 
-**DENIED** — Quelltext nutzt ein Makro, das MathJax kennt, aber GitHubs
-Pipeline explizit blockiert. Die Live-Seite zeigt dann
-*„The following macros are not allowed: …"*. Aktuell in der Liste:
-`\operatorname`. Exit-Code 1.
+Math-Validierung überspringen (z.B. nur Links interessieren):
 
-**WARN** — MathJax akzeptiert den Quelltext, aber GitHubs Pre-Processor
-verändert ihn vor dem Rendering. Exit-Code bleibt 0. Empirisch
-beobachtete Quirks:
+```bash
+docker run --rm -v "$PWD":/work docs-check --no-math
+```
 
-- `github-fence-backslash`: `\\` direkt am Zeilenende in einem
-  ```math-Fence. GitHub bläht das Backslash-Paar zu `\\\` auf
-  (reproduzierbar über die `/markdown`-API). Workaround: `\\` so
-  platzieren, dass weiterer Inhalt auf derselben Zeile folgt — also
-  alle Fälle eines `\begin{cases}…\end{cases}` in einer Zeile innerhalb
-  der Fence.
+Warnungen unterdrücken:
 
-- `github-html-roundtrip-lt`: `<` direkt vor einem ASCII-Buchstaben
-  (z.B. `k<N`). GitHubs `math-renderer` macht in
-  `tempDocumentContentForSanitization()` einen HTML-Parse-Roundtrip
-  über `document.implementation.createHTMLDocument`; der HTML-Parser
-  interpretiert `<N` als Start eines `<N>`-Tags und verschluckt allen
-  Math-Inhalt bis zum nächsten `>` (z.B. das `\end{cases}` der gleichen
-  Formel). MathJax bekommt verstümmelten Input und scheitert. Workaround:
+```bash
+docker run --rm -v "$PWD":/work docs-check --no-warn
+```
+
+### Drei Schweregrade
+
+**ERROR** — fehlende Datei, toter Anker, MathJax bricht beim Rendern ab.
+Exit-Code 1.
+
+**DENIED** — Math-Inhalt nutzt ein Makro, das MathJax kennt, aber GitHub
+explizit blockiert (z.B. `\operatorname`). Exit-Code 1.
+
+**WARN** — MathJax akzeptiert den Quelltext, GitHubs Pre-Processor
+verändert ihn aber vor dem Rendern. Exit-Code bleibt 0. Bekannte Quirks:
+
+- `commonmark-escape` — Backslash vor ASCII-Interpunktion in `$...$` oder
+  einzeiligem `$$...$$`. CommonMark frisst den Backslash (z.B. `\,` → `,`).
+  Workaround: LaTeX-Äquivalente wie `\thinspace`, `\lbrace`/`\rbrace` —
+  oder den Block in einen ```math-Fence verschieben.
+
+- `github-fence-backslash` — `\\` direkt am Zeilenende in einer
+  ```math-Fence. GitHub bläht es zu `\\\` auf (reproduzierbar über die
+  `/markdown`-API). Workaround: `\\` so platzieren, dass weiterer Inhalt
+  auf derselben Zeile folgt.
+
+- `github-html-roundtrip-lt` — `<` direkt vor einem ASCII-Buchstaben
+  (z.B. `k<N`). GitHubs `math-renderer` macht einen
+  `document.implementation.createHTMLDocument()`-Roundtrip; der
+  HTML-Parser interpretiert `<N` als Start eines `<N>`-Tags und
+  verschluckt den Rest der Formel inkl. `\end{cases}`. Workaround:
   Leerzeichen einfügen (`k < N`) oder `\lt` benutzen.
 
-- `commonmark-escape`: Backslash vor ASCII-Interpunktion in `$...$`
-  oder einzeiligem `$$...$$`. CommonMark frisst den Backslash, bevor
-  MathJax den Inhalt sieht. Workaround: in Inline-Math die LaTeX-
-  Äquivalente verwenden, also `\thinspace` statt `\,`, `\lbrace`/
-  `\rbrace` statt `\{`/`\}`. Für nicht-trivial gespacedte Ausdrücke
-  den Block in einen ```math-Fence verschieben, wo `\,`, `\;`, `\:`
-  unbeschädigt durchgehen.
-
-### MathJax-Version und -Konfiguration
-
-GitHub lädt MathJax als das vorgebackene Bundle
-`mathjax/es5/tex-chtml-full`. Eine Inspektion dieses Bundles ergibt:
-
-- Version `3.2.0`
-- Pakete `AllPackages` (alle TeX-Pakete aktiviert)
-
-Der Validator pinnt deshalb `mathjax-full@3.2.0` und konfiguriert
-`packages: AllPackages` — damit ist die lokale Engine bit-genau mit
-GitHubs Live-Engine identisch.
-
-Zusätzliche Restriktionen, die GitHub außerhalb von MathJax auf eigene
-Faust dazu legt (z. B. die `operatorname`-Blockade per
-„macros not allowed"-Filter), pflegen wir explizit in
-`GITHUB_DENIED_MACROS` in `validate-math.js`.
+- `anchor-not-indexed` — Markdown-Link zeigt auf eine `.md` außerhalb
+  des aktuellen Scopes; der Validator kann den Anker nicht prüfen.
+  Beim nächsten Lauf mit größerem Scope verschwindet die Warnung.

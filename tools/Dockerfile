@@ -13,7 +13,7 @@ WORKDIR /app
 
 RUN npm install --no-audit --no-fund mathjax-full@3.2.0
 
-COPY validate-math.js /app/validate-math.js
+COPY docs-check.js /app/docs-check.js
 
 WORKDIR /work
-ENTRYPOINT ["node", "/app/validate-math.js"]
+ENTRYPOINT ["node", "/app/docs-check.js"]
