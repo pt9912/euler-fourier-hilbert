@@ -28,6 +28,12 @@ $$
 
 "p.v." steht für Cauchy-Hauptwert. Das ist nötig, weil der Integrand bei \(\tau=t\) singulär ist.
 
+Strukturell ist das eine **Faltung** mit dem Kern \(h(t)=1/(\pi t)\):
+$$
+\mathcal H\{x\} = h * x,\qquad h(t)=\frac{1}{\pi t}.
+$$
+Die Hilbert-Transformation ist also ein linearer, zeitinvarianter (LTI-)Operator und passt in den Rahmen von [Einheit 4](einheit-4.md): Ihr "Frequenzgang" ist genau die Funktion aus Abschnitt 6.3.
+
 ## 6.3 Definition im Frequenzbereich
 
 Viel einfacher ist die Hilbert-Transformation im Frequenzbereich:
@@ -66,6 +72,18 @@ $$
 $$
 
 Die Hilbert-Transformation entspricht also einer Quadratur-Komponente.
+
+**Nachrechnen am Beispiel \(\cos\) im Frequenzbereich.** Die Fourier-Transformierte von \(\cos(\omega_0 t)\) ist
+$$
+\mathcal F\{\cos(\omega_0 t)\}(\omega)=\pi\bigl[\delta(\omega-\omega_0)+\delta(\omega+\omega_0)\bigr].
+$$
+Multiplikation mit \(-i\operatorname{sgn}(\omega)\) liefert (unter Beachtung von \(\operatorname{sgn}(\pm\omega_0)=\pm 1\)):
+$$
+\pi\bigl[-i\,\delta(\omega-\omega_0)+i\,\delta(\omega+\omega_0)\bigr]
+= \frac{\pi}{i}\bigl[\delta(\omega-\omega_0)-\delta(\omega+\omega_0)\bigr]
+= \mathcal F\{\sin(\omega_0 t)\}(\omega).
+$$
+Rücktransformation gibt also \(\sin(\omega_0 t)\). Die analoge Rechnung für \(\sin\) liefert \(-\cos\).
 
 ## 6.5 Zweimalige Hilbert-Transformation
 

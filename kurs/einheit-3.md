@@ -23,6 +23,8 @@ x(t)
 = \frac{1}{2\pi}\int_{-\infty}^{\infty} X(\omega)e^{i\omega t}\,d\omega.
 $$
 
+Das Integral konvergiert als gewöhnliches Lebesgue-Integral für \(x\in L^1(\mathbb R)\). Für \(x\in L^2(\mathbb R)\) erklärt man \(\mathcal F\) über einen Grenzprozess (Satz von Plancherel); für \(\delta\), \(\sin\) und \(\cos\) interpretiert man die Aussagen distributionentheoretisch. Vergleiche auch die Konventionshinweise in der [Kurs-Übersicht](README.md#konventionen-und-voraussetzungen).
+
 ## 3.3 Interpretation
 
 Die Fourier-Transformation fragt für jede Kreisfrequenz \(\omega\):
@@ -84,8 +86,11 @@ Dann:
 $$
 X(\omega)
 = \int_{-a}^{a} e^{-i\omega t}\,dt
-= \frac{2\sin(\omega a)}{\omega}.
+= \frac{2\sin(\omega a)}{\omega}
+= 2a\,\operatorname{sinc}\!\left(\frac{\omega a}{\pi}\right).
 $$
+
+Dabei ist \(\operatorname{sinc}(x)=\sin(\pi x)/(\pi x)\) die **normierte Sinc-Funktion** (manche Autoren verwenden die unnormierte Variante \(\sin(x)/x\); beim Lesen also auf die Konvention achten). Sie hat ihre erste Nullstelle bei \(x=1\) und gleicht über den ganzen Kurs als Spektralform jedes Rechteckpulses.
 
 Für \(\omega=0\) nimmt man den Grenzwert:
 
@@ -93,7 +98,7 @@ $$
 X(0)=2a.
 $$
 
-Ein breiter Puls im Zeitbereich hat ein schmales Spektrum; ein schmaler Puls hat ein breites Spektrum.
+Ein breiter Puls im Zeitbereich hat ein schmales Spektrum; ein schmaler Puls hat ein breites Spektrum. Quantitativ ist das eine Form der **Unschärferelation**: Zeit- und Frequenzkonzentration sind nicht gleichzeitig beliebig klein.
 
 ## 3.7 Beispiel: Gaußfunktion
 
@@ -109,7 +114,9 @@ $$
 X(\omega)=\sqrt{\frac{\pi}{a}}e^{-\omega^2/(4a)}.
 $$
 
-Die Gaußfunktion ist deshalb in Wahrscheinlichkeitstheorie, Quantenmechanik und Signalverarbeitung besonders wichtig.
+Beweisidee: Im Integranden \(e^{-at^2}e^{-i\omega t}\) lässt sich der Exponent durch **quadratische Ergänzung** umformen zu \(-a(t+\tfrac{i\omega}{2a})^2-\tfrac{\omega^2}{4a}\). Der \(\omega\)-abhängige Teil zieht aus dem Integral heraus, und der verbleibende Gauß-Anteil liefert mit einem Konturargument den Faktor \(\sqrt{\pi/a}\).
+
+Die Gaußfunktion ist deshalb in Wahrscheinlichkeitstheorie, Quantenmechanik und Signalverarbeitung besonders wichtig: Sie ist (bis auf Skalierung) ihre eigene Fourier-Transformierte und minimiert die Zeit-Frequenz-Unschärfe.
 
 ## Übungen zu Einheit 3
 

@@ -21,7 +21,7 @@ Aufgabenstellung: [Einheit 2 — Übungen](../einheit-2.md#übungen-zu-einheit-2
    c_3=1,\qquad c_{-3}=1.
    $$
 
-   Die reale Kosinusamplitude \(2\) verteilt sich auf die beiden zweiseitigen Koeffizienten.
+   Die reelle Kosinusamplitude \(2\) verteilt sich auf die beiden zweiseitigen Koeffizienten.
 
 2. Aus
 

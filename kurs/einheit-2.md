@@ -37,10 +37,20 @@ Die Zahl \(c_n\) sagt:
 
 ## 2.3 Warum funktioniert das?
 
-Die Funktionen \(e^{in\omega_0 t}\) sind über eine Periode orthogonal:
+Auf dem Raum der \(T\)-periodischen Funktionen definieren wir das Skalarprodukt
 
 $$
-\frac{1}{T}\int_{0}^{T} e^{in\omega_0 t}e^{-im\omega_0 t}\,dt
+\langle f,g\rangle := \frac{1}{T}\int_{0}^{T} f(t)\overline{g(t)}\,dt.
+$$
+
+Beachte den **komplex konjugierten** zweiten Faktor — bei komplexen Funktionen ist das nötig, damit \(\langle f,f\rangle=\frac{1}{T}\int_0^T|f(t)|^2\,dt\) reell und nichtnegativ ist.
+
+Die Funktionen \(e_n(t)=e^{in\omega_0 t}\) sind bezüglich dieses Skalarprodukts orthonormal:
+
+$$
+\langle e_n,e_m\rangle
+=\frac{1}{T}\int_{0}^{T} e^{in\omega_0 t}\,\overline{e^{im\omega_0 t}}\,dt
+=\frac{1}{T}\int_{0}^{T} e^{i(n-m)\omega_0 t}\,dt
 =
 \begin{cases}
 1, & n=m,\\
@@ -48,7 +58,9 @@ $$
 \end{cases}
 $$
 
-Das ist ähnlich wie bei rechtwinkligen Vektoren im Raum: Man kann ein Signal auf eine Frequenzrichtung projizieren.
+Das ist die direkte Verallgemeinerung rechtwinkliger Vektoren: Die Koeffizienten \(c_n=\langle f,e_n\rangle\) sind die Projektionen des Signals auf die Frequenzrichtungen \(e_n\).
+
+Konvergenzfragen (punktweise, gleichmäßig oder im \(L^2\)-Sinne) lassen wir hier offen. Für glatte Signale konvergiert die Fourier-Reihe punktweise gegen das Signal; für stückweise stetige Signale gilt die Konvergenz im quadratischen Mittel und an Sprungstellen im Sinne der Dirichlet-Bedingungen.
 
 ## 2.4 Beispiel: Reine Kosinusschwingung
 
@@ -108,7 +120,7 @@ $$
 = \frac12 e^{i\omega_0t}+\frac12 e^{-i\omega_0t}
 $$
 
-die reale Amplitude \(1\), aber die zweiseitigen Koeffizienten \(c_1=c_{-1}=1/2\). In einem einseitigen Amplitudenspektrum fasst man diese beiden Beiträge oft zusammen; dann taucht für \(n>0\) ein Faktor \(2\) auf.
+die reelle Amplitude \(1\), aber die zweiseitigen Koeffizienten \(c_1=c_{-1}=1/2\). In einem einseitigen Amplitudenspektrum fasst man diese beiden Beiträge oft zusammen; dann taucht für \(n>0\) ein Faktor \(2\) auf.
 
 Für reellwertige Signale gilt:
 

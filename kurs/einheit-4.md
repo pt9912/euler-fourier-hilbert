@@ -24,6 +24,15 @@ $$
 
 Eine Verschiebung im Zeitbereich ändert die Phase im Frequenzbereich.
 
+**Beweis (musterhaft, weil derselbe Trick überall wiederkehrt):** Substitution \(u=t-t_0\) im Definitionsintegral liefert
+$$
+\int_{-\infty}^{\infty} x(t-t_0)e^{-i\omega t}\,dt
+= \int_{-\infty}^{\infty} x(u)e^{-i\omega(u+t_0)}\,du
+= e^{-i\omega t_0}\int_{-\infty}^{\infty} x(u)e^{-i\omega u}\,du
+= e^{-i\omega t_0}X(\omega).
+$$
+Die übrigen Eigenschaften in diesem Kapitel folgen mit analogen Substitutionen oder partieller Integration.
+
 ## 4.3 Frequenzverschiebung
 
 $$
@@ -44,11 +53,13 @@ Zeitliche Stauchung führt zu spektraler Streckung.
 
 ## 4.5 Ableitung
 
+Unter der Voraussetzung, dass \(x\) und \(x'\) integrierbar sind und \(x(t)\to0\) für \(|t|\to\infty\), gilt:
+
 $$
 \frac{d}{dt}x(t) \leftrightarrow i\omega X(\omega).
 $$
 
-Ableiten verstärkt hohe Frequenzen.
+Beweis durch partielle Integration; die Randterme verschwinden gerade wegen \(x(t)\to0\). Die Regel zeigt: Ableiten verstärkt hohe Frequenzen, weil der Faktor \(i\omega\) für große \(|\omega|\) groß wird.
 
 ## 4.6 Faltung
 
@@ -72,9 +83,9 @@ $$
 x(t)h(t) \leftrightarrow \frac{1}{2\pi}(X*H)(\omega).
 $$
 
-## 4.7 Parseval-Identität
+## 4.7 Parseval-Identität (Plancherel)
 
-Für geeignete Signale gilt:
+Für \(x\in L^2(\mathbb R)\) gilt:
 
 $$
 \int_{-\infty}^{\infty}|x(t)|^2\,dt
@@ -82,7 +93,7 @@ $$
 \frac{1}{2\pi}\int_{-\infty}^{\infty}|X(\omega)|^2\,d\omega.
 $$
 
-Die Energie eines Signals kann im Zeit- oder Frequenzbereich gemessen werden.
+Die Energie eines Signals kann im Zeit- oder Frequenzbereich gemessen werden. Allgemeiner gilt das innere Produkt: \(\langle x,y\rangle_t = \tfrac{1}{2\pi}\langle X,Y\rangle_\omega\); die Fourier-Transformation ist also (bis auf den Faktor \(2\pi\)) eine Isometrie auf \(L^2\).
 
 ## Übungen zu Einheit 4
 

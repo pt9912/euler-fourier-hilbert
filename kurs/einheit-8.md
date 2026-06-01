@@ -35,10 +35,13 @@ Zusammen ergeben sie ein sehr starkes Werkzeug:
 1. Komplexe Exponentialfunktionen sind rotierende Zeiger.
 2. Sinus und Kosinus sind Kombinationen positiver und negativer komplexer Frequenzen.
 3. Fourier-Analyse misst, welche Frequenzen in einem Signal stecken.
-4. Zeitverschiebung entspricht Phasenänderung.
-5. Faltung im Zeitbereich entspricht Multiplikation im Frequenzbereich.
-6. Die Hilbert-Transformation ist im Frequenzbereich besonders einfach.
+4. Zeitverschiebung entspricht Phasenänderung; Skalierung im Zeitbereich entspricht inverser Skalierung im Frequenzbereich.
+5. Faltung im Zeitbereich entspricht Multiplikation im Frequenzbereich. LTI-Systeme sind im Frequenzbereich punktweise Multiplikation mit dem Frequenzgang.
+6. Die Hilbert-Transformation ist ein LTI-Operator mit Frequenzgang \(-i\operatorname{sgn}(\omega)\); im Zeitbereich Faltung mit \(1/(\pi t)\).
 7. Das analytische Signal entfernt negative Frequenzen, erhält den Gleichanteil und macht Amplitude und Phase zugänglich.
+8. Zeitliche und spektrale Konzentration stehen in Konkurrenz (Sinc beim Rechteckpuls, Gauß als Optimalfall).
+
+Wer mit einer Implementation arbeitet, sollte zusätzlich die Konventionsfragen aus der [Kurs-Übersicht](README.md#konventionen-und-voraussetzungen) kennen — gerade die Normierung von FFT und die DC-Behandlung beim analytischen Signal sind klassische Stolperfallen.
 
 ## 8.3 Abschlussaufgaben
 

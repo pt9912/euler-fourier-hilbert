@@ -15,18 +15,23 @@ Es kombiniert:
 
 ## 7.2 Frequenzbereich
 
-Das analytische Signal enthält keine negativen Frequenzen:
+Das analytische Signal enthält keine negativen Frequenzen. Mit \(\operatorname{sgn}(0):=0\) lässt sich das kompakt schreiben als
+$$
+Z(\omega) = \bigl(1+\operatorname{sgn}(\omega)\bigr)X(\omega).
+$$
+Aufgeschlüsselt:
 
 $$
 Z(\omega)=
 \begin{cases}
 2X(\omega), & \omega>0,\\
-X(0), & \omega=0,\\
-0, & \omega<0.
+0, & \omega<0,
 \end{cases}
 $$
 
-Negative Frequenzen werden entfernt, positive Frequenzen werden verdoppelt, und der Gleichanteil bleibt erhalten.
+und für den Gleichanteil bleibt der Wert bei \(\omega=0\) unverändert. Bei reinen Schwingungen (also bei \(X\), das aus \(\delta\)-Distributionen besteht) entfällt die punktweise Frage; bei der numerischen DFT-Implementierung wird der Gleichanteil \(X[0]\) deshalb **nicht** verdoppelt, alle anderen positiven Bins schon.
+
+Kurz: Negative Frequenzen werden entfernt, positive Frequenzen werden verdoppelt, und der Gleichanteil bleibt erhalten.
 
 ## 7.3 Beispiel: Kosinus
 
@@ -70,7 +75,7 @@ $$
 \phi(t)=\arg z(t).
 $$
 
-Damit die Phase nicht bei \(\pi\) springt, verwendet man in numerischen Anwendungen oft eine entfaltete Phase.
+Der Hauptzweig von \(\arg\) liefert Werte in \((-\pi,\pi]\). Sobald die Phase über die Grenze \(\pm\pi\) hinausläuft, springt der Hauptwert um \(2\pi\). Damit die Phase als Funktion der Zeit stetig wird, verwendet man in numerischen Anwendungen das **Phasen-Unwrapping** (z. B. `numpy.unwrap`): Es addiert an jeder Sprungstelle \(\pm 2\pi\), sodass die Sprünge verschwinden, ohne den eigentlichen Phasenverlauf zu verändern.
 
 ## 7.6 Momentanfrequenz
 

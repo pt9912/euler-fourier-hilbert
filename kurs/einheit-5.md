@@ -25,6 +25,12 @@ $$
 x[n] = \frac{1}{N}\sum_{k=0}^{N-1}X[k]e^{i2\pi kn/N}.
 $$
 
+**Periodizität.** Aus den Definitionen folgt direkt
+$$X[k+N]=X[k],\qquad x[n+N]=x[n].$$
+DFT und Eingangsfolge sind also implizit \(N\)-periodisch fortgesetzt. Das erklärt, warum es nur \(N\) verschiedene Frequenzbins gibt — und es ist auch der Grund, weshalb Aliasing in der DFT überhaupt auftritt.
+
+**Normierungskonvention.** Wir wählen den Faktor \(1/N\) bei der **inversen** Transformation. Das ist die Konvention von NumPy (`numpy.fft.fft`/`ifft`), SciPy und MATLAB. Andere Quellen verwenden \(1/\sqrt N\) auf beiden Seiten (symmetrische Variante) oder \(1/N\) vorne; die Sätze sind dieselben, die Zahlenwerte einzelner Koeffizienten unterscheiden sich um einen Vorfaktor.
+
 ## 5.3 Interpretation der Frequenzindizes
 
 Wenn die Abtastrate \(f_s\) ist, gehört zum Index \(k\) die Frequenz
@@ -43,7 +49,13 @@ f_k =
 \end{cases}
 $$
 
-Die Bins oberhalb der Nyquist-Grenze stehen also für negative Frequenzen. Für gerades \(N\) ist der Bin \(k=N/2\) der Nyquist-Bin und hat keine separate positive/negative Gegenfrequenz. Bei reellwertigen Signalen kommt zusätzlich konjugierte Symmetrie hinzu: positive und negative Frequenzanteile tragen redundante Information.
+Die Bins oberhalb der Nyquist-Grenze stehen also für negative Frequenzen. Für gerades \(N\) ist der Bin \(k=N/2\) der Nyquist-Bin und hat keine separate positive/negative Gegenfrequenz.
+
+**Symmetrie reeller Signale.** Ist \(x[n]\) reell, so gilt
+$$
+X[N-k]=\overline{X[k]},\qquad k=1,\ldots,N-1.
+$$
+Insbesondere ist \(|X[N-k]|=|X[k]|\) und \(\arg X[N-k]=-\arg X[k]\). Positive und negative Frequenzanteile tragen also redundante Information. In der Praxis genügt es daher, die Bins \(k=0,\ldots,\lfloor N/2\rfloor\) anzuzeigen (einseitiges Spektrum). Das ist auch der Grund, warum NumPys `rfft` nur diese Hälfte zurückgibt.
 
 ## 5.4 FFT
 

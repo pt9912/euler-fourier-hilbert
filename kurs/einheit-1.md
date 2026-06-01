@@ -47,6 +47,14 @@ $$
 
 ## 1.4 Herleitung über Taylor-Reihen
 
+Streng genommen *definiert* man die komplexe Exponentialfunktion durch die Potenzreihe
+
+$$
+e^z := \sum_{k=0}^{\infty}\frac{z^k}{k!},\qquad z\in\mathbb C.
+$$
+
+Die Reihe konvergiert für jedes \(z\in\mathbb C\) absolut. Erst dadurch dürfen wir im Folgenden Real- und Imaginärteil aus der Summe herausziehen und die Reihe nach geraden und ungeraden Potenzen umsortieren. Die Euler-Formel ist dann eine Folgerung, kein eigenständiges Axiom.
+
 Die Taylor-Reihen von Exponentialfunktion, Sinus und Kosinus sind:
 
 $$
@@ -120,7 +128,7 @@ Diese beiden Gleichungen sind die Brücke zur Fourier-Analyse: Sinus und Kosinus
 1. Schreibe \(3(\cos(\pi/4)+i\sin(\pi/4))\) in der Form \(re^{i\varphi}\).
 2. Berechne \(e^{i\pi}\).
 3. Zeige mit der Euler-Formel, dass \(\cos(-x)=\cos x\) und \(\sin(-x)=-\sin x\).
-4. Was bewirkt die Multiplikation einer komplexen Zahl mit \(e^{i\pi/2}\)?
+4. Was bewirkt die Multiplikation einer komplexen Zahl mit \(e^{i\pi/2}\)? (Hinweis: \(e^{i\pi/2}=i\).)
 
 Lösungen: [loesungen/einheit-1.md](loesungen/einheit-1.md)
 
