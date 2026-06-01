@@ -31,6 +31,8 @@ for f in kurs/scripts/einheit-*.py; do python3 "$f"; done
 
 ## Aufbau
 
+### Kapitel-Visualisierungen
+
 | Skript | Inhalt |
 | --- | --- |
 | `einheit-1.py` | Einheitskreis und Projektion auf Real-/Imaginärachse |
@@ -41,3 +43,12 @@ for f in kurs/scripts/einheit-*.py; do python3 "$f"; done
 | `einheit-6.py` | Hilbert-Transformierte eines Kosinus |
 | `einheit-7.py` | Hüllkurve eines AM-Signals via analytisches Signal |
 | `einheit-8.py` | Linearer Chirp und Momentanfrequenz |
+
+### Weiterführende Projekte
+
+Diese Skripte gehören zu den Projektideen in der [Kurs-Übersicht](../README.md#weiterführende-projektideen).
+
+| Skript | Inhalt |
+| --- | --- |
+| `projekte/projekt-1-fft-signale.py` | FFT von Sinus, Rechteck und Gauß — Betrag und Phase |
+| `projekte/projekt-4-filter.py`      | Tief-, Hoch- und Bandpass durch Multiplikation im Spektrum |

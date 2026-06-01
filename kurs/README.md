@@ -43,14 +43,18 @@ Damit der Kurs handlich bleibt, treffen wir an ein paar Stellen feste Entscheidu
 
 ## Weiterführende Projektideen
 
-1. **Python-Notebook zur Fourier-Transformation**
-   Erzeuge Sinus-, Rechteck- und Gaußsignale und visualisiere Betrag und Phase ihrer FFT.
+1. **FFT klassischer Signale — Betrag und Phase.**
+   Erzeuge Sinus, Rechteck und Gauß und visualisiere jeweils Zeitsignal, Betragsspektrum und Phasenspektrum. Lerneffekt: gerade Signale haben Phase 0 oder ±π, ungerade ±π/2; Zeitverschiebung erzeugt lineare Phase.
+   *Referenz-Implementation:* [`scripts/projekte/projekt-1-fft-signale.py`](scripts/projekte/projekt-1-fft-signale.py) → ![Projekt 1](bilder/projekt-1.png)
 
-2. **Hilbert-Hüllkurve eines AM-Signals**
-   Simuliere \(x(t)=(1+0.5\cos(2\pi f_mt))\cos(2\pi f_ct)\) und extrahiere die Hüllkurve mit der Hilbert-Transformation.
+2. **Hilbert-Hüllkurve eines AM-Signals.**
+   Simuliere \(x(t)=(1+0{,}5\cos(2\pi f_m t))\cos(2\pi f_c t)\) und extrahiere die Hüllkurve mit der Hilbert-Transformation.
+   *Bereits als Visualisierung in [Einheit 7](einheit-7.md#78-visualisierung) durchgespielt.* Eigene Vertiefung: andere \(A(t)\), Spektralüberlappung, Bedrosian-Bedingung verletzen.
 
-3. **Phasenanalyse**
-   Berechne die entfaltete Phase eines Chirp-Signals und daraus die Momentanfrequenz.
+3. **Phasenanalyse eines Chirp-Signals.**
+   Berechne die entfaltete Phase und daraus die Momentanfrequenz.
+   *Bereits als Visualisierung in [Einheit 8](einheit-8.md#83-visualisierung-alles-auf-einmal) durchgespielt.* Eigene Vertiefung: exponentieller Chirp, Mehrkomponenten-Signal, Randeffekte mit Fensterung dämpfen.
 
-4. **Filter im Frequenzbereich**
-   Implementiere Tiefpass, Hochpass und Bandpass über Multiplikation im Spektrum.
+4. **Filter im Frequenzbereich.**
+   Implementiere Tiefpass, Hochpass und Bandpass über Multiplikation des Spektrums mit einer Übertragungsfunktion. Untersuche die Gibbs-Artefakte rechteckiger Filter.
+   *Referenz-Implementation:* [`scripts/projekte/projekt-4-filter.py`](scripts/projekte/projekt-4-filter.py) → ![Projekt 4](bilder/projekt-4.png)
