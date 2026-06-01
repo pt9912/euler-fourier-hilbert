@@ -44,10 +44,7 @@ f_k = \frac{k}{N}f_s.
 Diese Formel beschreibt zunächst die unsortierte DFT-Bin-Position. Für die physikalische Interpretation verwendet man meist die signierte Frequenz:
 
 ```math
-f_k =
-\begin{cases}
-\frac{k}{N}f_s, & 0\le k < \left\lceil\frac{N}{2}\right\rceil,\\ \frac{k-N}{N}f_s, & \left\lceil\frac{N}{2}\right\rceil\le k<N.
-\end{cases}
+f_k = \begin{cases} \frac{k}{N}f_s, & 0\le k < \left\lceil\frac{N}{2}\right\rceil,\\ \frac{k-N}{N}f_s, & \left\lceil\frac{N}{2}\right\rceil\le k<N. \end{cases}
 ```
 
 Für ungerades $N$ ist die Aufteilung in positive ($k<N/2$) und negative ($k>N/2$) Frequenzen eindeutig. Für gerades $N$ ist der **Nyquist-Bin** $k=N/2$ ein Sonderfall: positive und negative Frequenz $\pm f_s/2$ fallen dort algebraisch zusammen, weil sich die Abtastwerte einer Schwingung mit $f=f_s/2$ nur im Vorzeichen unterscheiden. NumPys `fft.fftfreq` ordnet diesen Bin der negativen Frequenz $-f_s/2$ zu (also der zweite Fall oben mit $k=N/2$); inhaltlich macht das keinen Unterschied, weil das Bild dort symmetrisch ist.

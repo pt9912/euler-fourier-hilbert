@@ -76,10 +76,7 @@ Eine Zeitverschiebung erzeugt also eine frequenzabhängige Phase.
 Sei
 
 ```math
-x(t)=
-\begin{cases}
-1, & |t|\le a,\\ 0, & |t|>a.
-\end{cases}
+x(t)= \begin{cases} 1, & |t|\le a,\\ 0, & |t|>a. \end{cases}
 ```
 
 Dann:

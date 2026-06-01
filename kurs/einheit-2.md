@@ -56,13 +56,7 @@ Beachte den **komplex konjugierten** zweiten Faktor — bei komplexen Funktionen
 Die Funktionen $e_n(t)=e^{in\omega_0 t}$ sind bezüglich dieses Skalarprodukts orthonormal:
 
 ```math
-\langle e_n,e_m\rangle
-=\frac{1}{T}\int_{0}^{T} e^{in\omega_0 t}\,\overline{e^{im\omega_0 t}}\,dt
-=\frac{1}{T}\int_{0}^{T} e^{i(n-m)\omega_0 t}\,dt
-=
-\begin{cases}
-1, & n=m,\\ 0, & n\ne m.
-\end{cases}
+\langle e_n,e_m\rangle =\frac{1}{T}\int_{0}^{T} e^{in\omega_0 t}\,\overline{e^{im\omega_0 t}}\,dt =\frac{1}{T}\int_{0}^{T} e^{i(n-m)\omega_0 t}\,dt = \begin{cases} 1, & n=m,\\ 0, & n\ne m. \end{cases}
 ```
 
 Das ist die direkte Verallgemeinerung rechtwinkliger Vektoren: Die Koeffizienten $c_n=\langle f,e_n\rangle$ sind die Projektionen des Signals auf die Frequenzrichtungen $e_n$.
@@ -118,10 +112,7 @@ c_{-1} = -\frac{1}{2i} = \frac{i}{2}.
 Sei $f$ die $2\pi$-periodische Rechteckwelle mit $\omega_0=1$,
 
 ```math
-f(t)=
-\begin{cases}
-+1, & 0<t<\pi,\\ -1, & -\pi<t<0.
-\end{cases}
+f(t)= \begin{cases} +1, & 0<t<\pi,\\ -1, & -\pi<t<0. \end{cases}
 ```
 
 Wir rechnen $c_n$ für $n\ne 0$ direkt aus der Definition aus und nutzen, dass das Integral über jede Periode dasselbe ergibt:
@@ -142,12 +133,7 @@ Beide Integrale lassen sich elementar berechnen,
 Mit $e^{\pm in\pi}=(-1)^n$ folgt
 
 ```math
-c_n
-= \frac{1}{2\pi}\cdot\frac{2\bigl(1-(-1)^n\bigr)}{in}
-=
-\begin{cases}
-\dfrac{2}{i\pi n}=-\dfrac{2i}{\pi n}, & n \text{ ungerade},\\ 0, & n \text{ gerade}.
-\end{cases}
+c_n = \frac{1}{2\pi}\cdot\frac{2\bigl(1-(-1)^n\bigr)}{in} = \begin{cases} \dfrac{2}{i\pi n}=-\dfrac{2i}{\pi n}, & n \text{ ungerade},\\ 0, & n \text{ gerade}. \end{cases}
 ```
 
 Der Mittelwert ist $c_0=0$, weil das Signal symmetrisch um null pendelt. Setzt man die Beiträge für $\pm n$ (ungerade $n>0$) zusammen, erhält man mit $c_{-n}=\overline{c_n}$ und der Sinus-Formel aus Einheit 1:

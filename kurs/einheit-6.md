@@ -30,10 +30,7 @@ Am klarsten ist die Hilbert-Transformation im Frequenzbereich. Für ein Signal $
 Dabei ist
 
 ```math
-\mathrm{sgn}(\omega)=
-\begin{cases}
-1, & \omega>0,\\ 0, & \omega=0,\\ -1, & \omega<0.
-\end{cases}
+\mathrm{sgn}(\omega)= \begin{cases} 1, & \omega>0,\\ 0, & \omega=0,\\ -1, & \omega<0. \end{cases}
 ```
 
 Positive Frequenzen werden mit $-i$ multipliziert, also um $-90^\circ$ gedreht. Negative Frequenzen werden mit $+i$ multipliziert, also um $+90^\circ$ gedreht. Der Gleichanteil bei $\omega=0$ wird auf null gesetzt.
