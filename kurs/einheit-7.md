@@ -38,10 +38,10 @@ Kurz: Negative Frequenzen werden entfernt, positive Frequenzen werden verdoppelt
 Sei
 
 $$
-x(t)=A\cos(\omega_0t+\varphi).
+x(t)=A\cos(\omega_0t+\varphi),\qquad \omega_0>0.
 $$
 
-Dann:
+Die Annahme \(\omega_0>0\) ist wichtig: \(\mathcal H\) wirkt frequenzabhängig, und das Vorzeichen von \(\omega_0\) bestimmt, ob aus \(\cos\) ein \(+\sin\) oder ein \(-\sin\) wird (vgl. [§6.4](einheit-6.md#64-beispiele)). Für \(\omega_0<0\) würde sich das Vorzeichen umkehren. Unter der Annahme \(\omega_0>0\) gilt:
 
 $$
 \mathcal{H}\{x\}(t)=A\sin(\omega_0t+\varphi).
@@ -101,15 +101,20 @@ $$
 
 wobei \(A(t)\) langsam gegenüber der Trägerschwingung \(\cos(\omega_ct)\) variiert. Praktisch bedeutet das: \(A(t)\) ist bandbegrenzt deutlich unterhalb der Trägerfrequenz und im Idealfall nicht negativ.
 
-Diese Spektraltrennung ist der entscheidende Punkt. Unter passenden Bedingungen, oft als Bedrosian-Bedingung formuliert, bleibt die langsamere Amplitude beim Bilden der Quadratur-Komponente von der schnellen Trägerschwingung getrennt.
+Diese Spektraltrennung ist der entscheidende Punkt. Präzise gefasst wird das durch die **Bedrosian-Bedingung**:
 
-Dann ist näherungsweise:
+> Sind die Spektren \(\hat A\) und \(\widehat{\cos(\omega_c\cdot)}\) disjunkt — konkret \(\hat A(\omega)=0\) für \(|\omega|\ge\omega_c\) und der Träger ist eine reine Schwingung bei \(\pm\omega_c\) —, so gilt exakt
+> $$\mathcal H\bigl\{A(t)\cos(\omega_c t)\bigr\}(t)=A(t)\sin(\omega_c t).$$
+
+Diese Voraussetzung ist über die Modulations­regel aus [§4.3](einheit-4.md#43-frequenzverschiebung) anschaulich: das Spektrum von \(A(t)\cos(\omega_c t)\) ist genau \(\tfrac12[\hat A(\omega-\omega_c)+\hat A(\omega+\omega_c)]\); damit \(\mathcal H\) die beiden Kopien sauber mit \(\mp i\) gewichten kann, dürfen sie sich nicht überlappen.
+
+Unter dieser Bedingung ist exakt:
 
 $$
-z(t)\approx A(t)e^{i\omega_ct}.
+z(t)=A(t)e^{i\omega_ct}.
 $$
 
-Die Hüllkurve \(|z(t)|\) approximiert dann \(A(t)\). Wenn \(A(t)\) das Vorzeichen wechseln kann, liefert die Hüllkurve eher \(|A(t)|\); bei Spektralüberlappung zwischen Modulation und Träger wird die Näherung schlechter.
+Die Hüllkurve \(|z(t)|\) approximiert dann \(A(t)\). Wenn \(A(t)\) das Vorzeichen wechseln kann, liefert die Hüllkurve eher \(|A(t)|\); bei Spektral­überlappung zwischen Modulation und Träger wird die Näherung schlechter, und in der Praxis (siehe Abbildung in §7.8) bleibt sie für \(f_m\ll f_c\) gut.
 
 ## 7.8 Visualisierung
 
@@ -134,7 +139,7 @@ recovered = np.abs(hilbert(signal))    # ≈ envelope
 ## Übungen zu Einheit 7
 
 1. Bilde das analytische Signal zu \(x(t)=3\cos(10t)\).
-2. Was ist die Hüllkurve von \(z(t)=2e^{i(5t+\pi/4)}\)?
+2. Berechne die Hüllkurve und die momentane Phase von \(x(t)=2\cos(5t+\pi/4)\). (Hinweis: bilde zuerst das analytische Signal.)
 3. Was ist die Momentanfrequenz von \(z(t)=e^{i(7t)}\)?
 4. Warum entfernt das analytische Signal negative Frequenzen?
 

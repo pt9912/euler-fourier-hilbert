@@ -39,7 +39,13 @@ $$
 e^{i\omega_0t}x(t) \leftrightarrow X(\omega-\omega_0).
 $$
 
-Multiplikation mit einer komplexen Schwingung verschiebt das Spektrum.
+Multiplikation mit einer komplexen Schwingung verschiebt das Spektrum. Mit \(\cos(\omega_c t)=\tfrac12(e^{i\omega_c t}+e^{-i\omega_c t})\) folgt sofort die **Modulationsregel**:
+
+$$
+x(t)\cos(\omega_c t)\leftrightarrow \tfrac12\bigl[X(\omega-\omega_c)+X(\omega+\omega_c)\bigr].
+$$
+
+Genau dieser Mechanismus erklärt das AM-Signal in [§7.7](einheit-7.md#77-typische-anwendung-am-signal): ein Tiefpass-Spektrum \(X\) wird durch die Trägerschwingung in zwei Kopien um \(\pm\omega_c\) gespiegelt — die spätere Bedrosian-Bedingung verlangt, dass diese Kopien sich nicht überlappen.
 
 ## 4.4 Skalierung
 
@@ -95,7 +101,26 @@ $$
 
 Die Energie eines Signals kann im Zeit- oder Frequenzbereich gemessen werden. Allgemeiner gilt das innere Produkt: \(\langle x,y\rangle_t = \tfrac{1}{2\pi}\langle X,Y\rangle_\omega\); die Fourier-Transformation ist also (bis auf den Faktor \(2\pi\)) eine Isometrie auf \(L^2\).
 
-## 4.8 Visualisierung
+## 4.8 Symmetrien reeller und gerader/ungerader Signale
+
+Viele Aussagen über das Spektrum eines reellen Signals folgen direkt aus der Definition durch Konjugation und Substitution \(t\to -t\). Es lohnt sich, sie als Tabelle griffbereit zu haben:
+
+| Zeitsignal \(x(t)\) | Spektrum \(X(\omega)\) |
+| --- | --- |
+| reell | hermitesch: \(X(-\omega)=\overline{X(\omega)}\) |
+| imaginär | antihermitesch: \(X(-\omega)=-\overline{X(\omega)}\) |
+| gerade (\(x(-t)=x(t)\)) | gerade: \(X(-\omega)=X(\omega)\) |
+| ungerade (\(x(-t)=-x(t)\)) | ungerade: \(X(-\omega)=-X(\omega)\) |
+| reell und gerade | reell und gerade |
+| reell und ungerade | rein imaginär und ungerade |
+
+Konsequenzen für die Praxis:
+
+- Bei reellen Signalen genügt das **einseitige Spektrum** \(\omega\ge 0\); die andere Hälfte ist konjugiert (siehe auch [§2.7](einheit-2.md#27-betrag-und-phase) und [§5.3](einheit-5.md#53-interpretation-der-frequenzindizes)).
+- Bei reellen, geraden Signalen (z. B. Rechteckpuls aus §3.6, Gauß aus §3.7) ist die Phase nur \(0\) oder \(\pm\pi\) — wertvoll für die Plausibilitätsprüfung in Projekt 1.
+- Bei reellen, ungeraden Signalen ist die Phase \(\pm\pi/2\) — daher das rein imaginäre Spektrum eines Sinus.
+
+## 4.9 Visualisierung
 
 ![Faltung zweier Rechteckpulse ergibt einen Dreieckspuls; Multiplikation der Sinc-Spektren ergibt sinc²](bilder/einheit-4.png)
 

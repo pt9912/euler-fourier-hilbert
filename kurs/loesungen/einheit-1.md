@@ -40,7 +40,7 @@ Aufgabenstellung: [Einheit 1 — Übungen](../einheit-1.md#übungen-zu-einheit-1
    ze^{i\pi/2}=re^{i(\varphi+\pi/2)}.
    $$
 
-   Die Multiplikation rotiert \(z\) also um \(90^\circ\) gegen den Uhrzeigersinn, ohne den Betrag zu ändern.
+   Die Multiplikation rotiert \(z\) also um \(90^\circ\) gegen den Uhrzeigersinn, ohne den Betrag zu ändern. Genau in diesem Sinn ist die imaginäre Achse die um \(90^\circ\) gedrehte reelle Achse — und genau das wird die Hilbert-Transformation in [Einheit 6](../einheit-6.md) für jede einzelne Frequenz tun.
 
 ---
 

@@ -122,7 +122,7 @@ Die Gaußfunktion ist deshalb in Wahrscheinlichkeitstheorie, Quantenmechanik und
 
 ![Rechteck/Sinc und Gauß/Gauß als Beispiele der Zeit-Frequenz-Dualität](bilder/einheit-3.png)
 
-Oben: Ein scharf begrenzter Rechteckpuls hat ein langsam abklingendes, oszillierendes Sinc-Spektrum. Unten: Eine Gaußfunktion hat eine Gauß-Transformierte; ihre Form bleibt erhalten, nur die Skalen kehren sich um.
+Oben: Ein scharf begrenzter Rechteckpuls hat ein langsam abklingendes, oszillierendes Sinc-Spektrum. Unten: Eine Gaußfunktion hat eine Gauß-Transformierte; ihre Form bleibt erhalten, nur die Skalen kehren sich um. Die absoluten Höhen der vier Panels sind nicht normiert (Sinc-Maximum \(2a=2\), Gauß-Spektrum-Maximum \(\sqrt{\pi/a}\approx 1{,}77\)); der Vergleich gilt also Formen und Breiten, nicht Amplituden.
 
 Kernidee in Python (vollständiges Skript: [`scripts/einheit-3.py`](scripts/einheit-3.py)):
 

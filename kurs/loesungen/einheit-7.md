@@ -20,11 +20,19 @@ Aufgabenstellung: [Einheit 7 — Übungen](../einheit-7.md#übungen-zu-einheit-7
    z(t)=3\cos(10t)+i3\sin(10t)=3e^{i10t}.
    $$
 
-2. Die Hüllkurve ist der Betrag:
+2. Für \(\omega_0=5>0\) liefert die Hilbert-Transformation \(\mathcal{H}\{2\cos(5t+\pi/4)\}=2\sin(5t+\pi/4)\). Damit ist das analytische Signal
 
    $$
-   |z(t)|=|2e^{i(5t+\pi/4)}|=2|e^{i(5t+\pi/4)}|=2.
+   z(t)=2\cos(5t+\pi/4)+i\cdot 2\sin(5t+\pi/4)=2e^{i(5t+\pi/4)}.
    $$
+
+   Hüllkurve und Phase liest man am komplexen Zeiger direkt ab:
+
+   $$
+   |z(t)|=2,\qquad \phi(t)=5t+\pi/4.
+   $$
+
+   Die konstante Hüllkurve \(2\) entspricht der reellen Amplitude des Kosinus, die lineare Phase mit Steigung \(5\) der Trägerkreisfrequenz.
 
 3. Die Phase ist
 

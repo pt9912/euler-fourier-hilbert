@@ -44,6 +44,8 @@ $$
 -i\,\operatorname{sgn}(\omega)X(\omega).
 $$
 
+Dass beide Definitionen dasselbe Objekt beschreiben, sieht man am Frequenzgang des Kerns: \(\mathcal F\{1/(\pi t)\}(\omega)=-i\,\operatorname{sgn}(\omega)\) (im distributionellen Sinn). Faltung mit \(1/(\pi t)\) wird damit nach dem Faltungssatz aus [§4.6](einheit-4.md#46-faltung) zur Multiplikation mit \(-i\,\operatorname{sgn}(\omega)\), und §6.2 und §6.3 sind dasselbe in zwei Sprachen.
+
 Dabei ist
 
 $$
@@ -73,6 +75,14 @@ $$
 
 Die Hilbert-Transformation entspricht also einer Quadratur-Komponente.
 
+Ein klassisches nichttriviales Paar (oft Lehrbuch­übung) ist
+
+$$
+\mathcal{H}\!\left\{\frac{1}{1+t^2}\right\}(t)=\frac{t}{1+t^2},
+$$
+
+das man am bequemsten im Frequenzbereich nachweist (die Fourier-Transformierte von \(1/(1+t^2)\) ist \(\pi e^{-|\omega|}\)). Es zeigt, dass die Hilbert-Transformation gerade Funktionen in ungerade überführt und umgekehrt — passend zur Symmetrie­tabelle in [§4.8](einheit-4.md#48-symmetrien-reeller-und-geraderungerader-signale).
+
 **Nachrechnen am Beispiel \(\cos\) im Frequenzbereich.** Die Fourier-Transformierte von \(\cos(\omega_0 t)\) ist
 $$
 \mathcal F\{\cos(\omega_0 t)\}(\omega)=\pi\bigl[\delta(\omega-\omega_0)+\delta(\omega+\omega_0)\bigr].
@@ -93,11 +103,13 @@ $$
 \left(-i\operatorname{sgn}(\omega)\right)^2 = -1
 $$
 
-für \(\omega\ne0\). Daher gilt für Signale ohne Gleichanteil:
+für \(\omega\ne0\). Bei \(\omega=0\) ist \(\operatorname{sgn}(0)=0\), der Gleichanteil wird also bereits beim ersten Anwenden gelöscht. Damit gilt allgemein
 
 $$
-\mathcal{H}\{\mathcal{H}\{x\}\} = -x.
+\mathcal{H}\bigl\{\mathcal{H}\{x\}\bigr\}=-\bigl(x-\langle x\rangle\bigr)=-x+\langle x\rangle,
 $$
+
+wobei \(\langle x\rangle\) den Gleichanteil bezeichnet. Für gleichanteilfreie Signale reduziert sich das auf die einprägsame Form \(\mathcal H^2=-\operatorname{id}\).
 
 ## 6.6 Visualisierung
 

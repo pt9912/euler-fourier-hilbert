@@ -60,7 +60,7 @@ $$
 
 Das ist die direkte Verallgemeinerung rechtwinkliger Vektoren: Die Koeffizienten \(c_n=\langle f,e_n\rangle\) sind die Projektionen des Signals auf die Frequenzrichtungen \(e_n\).
 
-Konvergenzfragen (punktweise, gleichmäßig oder im \(L^2\)-Sinne) lassen wir hier offen. Für glatte Signale konvergiert die Fourier-Reihe punktweise gegen das Signal; für stückweise stetige Signale gilt die Konvergenz im quadratischen Mittel und an Sprungstellen im Sinne der Dirichlet-Bedingungen.
+Konvergenzfragen (punktweise, gleichmäßig oder im \(L^2\)-Sinne) lassen wir hier offen. Für glatte Signale konvergiert die Fourier-Reihe punktweise gegen das Signal; für stückweise stetige Signale gilt die Konvergenz im quadratischen Mittel. Die **Dirichlet-Bedingungen** sind ein hinreichendes Kriterium für punktweise Konvergenz: \(f\) ist auf jedem Periodenintervall stückweise stetig, stückweise monoton und hat endlich viele Sprungstellen; an einer Sprungstelle konvergiert die Reihe gegen den Mittelwert \(\tfrac12\bigl(f(t^-)+f(t^+)\bigr)\).
 
 ## 2.4 Beispiel: Reine Kosinusschwingung
 
@@ -106,7 +106,62 @@ c_1 = \frac{1}{2i} = -\frac{i}{2},
 c_{-1} = -\frac{1}{2i} = \frac{i}{2}.
 $$
 
-## 2.6 Betrag und Phase
+## 2.6 Beispiel mit Integral: Rechteckwelle
+
+Sei \(f\) die \(2\pi\)-periodische Rechteckwelle mit \(\omega_0=1\),
+
+$$
+f(t)=
+\begin{cases}
++1, & 0<t<\pi,\\
+-1, & -\pi<t<0.
+\end{cases}
+$$
+
+Wir rechnen \(c_n\) für \(n\ne 0\) direkt aus der Definition aus und nutzen, dass das Integral über jede Periode dasselbe ergibt:
+
+$$
+c_n
+= \frac{1}{2\pi}\int_{-\pi}^{\pi} f(t)e^{-int}\,dt
+= \frac{1}{2\pi}\left[\int_{0}^{\pi}e^{-int}\,dt-\int_{-\pi}^{0}e^{-int}\,dt\right].
+$$
+
+Beide Integrale lassen sich elementar berechnen,
+
+$$
+\int_{0}^{\pi}e^{-int}\,dt = \frac{1-e^{-in\pi}}{in},\qquad
+\int_{-\pi}^{0}e^{-int}\,dt = \frac{e^{in\pi}-1}{in}.
+$$
+
+Mit \(e^{\pm in\pi}=(-1)^n\) folgt
+
+$$
+c_n
+= \frac{1}{2\pi}\cdot\frac{2\bigl(1-(-1)^n\bigr)}{in}
+=
+\begin{cases}
+\dfrac{2}{i\pi n}=-\dfrac{2i}{\pi n}, & n \text{ ungerade},\\
+0, & n \text{ gerade}.
+\end{cases}
+$$
+
+Der Mittelwert ist \(c_0=0\), weil das Signal symmetrisch um null pendelt. Setzt man die Beiträge für \(\pm n\) (ungerade \(n>0\)) zusammen, erhält man mit \(c_{-n}=\overline{c_n}\) und der Sinus-Formel aus Einheit 1:
+
+$$
+c_n e^{int}+c_{-n}e^{-int}
+=-\frac{2i}{\pi n}\bigl(e^{int}-e^{-int}\bigr)
+=\frac{4}{\pi n}\sin(nt).
+$$
+
+Aufsummiert ergibt sich die berühmte Reihe
+
+$$
+f(t)=\frac{4}{\pi}\sum_{k=0}^{\infty}\frac{\sin\bigl((2k+1)t\bigr)}{2k+1}.
+$$
+
+Genau diese Partialsummen werden in §2.8 grafisch verglichen — die Theorie hier liefert die Linien des Bildes.
+
+## 2.7 Betrag und Phase
 
 Ein Fourier-Koeffizient \(c_n\) ist komplex.
 
@@ -130,11 +185,11 @@ $$
 
 Das bedeutet: Positive und negative Frequenzen sind nicht unabhängig, wenn das Signal reell ist.
 
-## 2.7 Visualisierung
+## 2.8 Visualisierung
 
 ![Rechteckwelle als Fourier-Reihe mit wachsender Anzahl Harmonischer](bilder/einheit-2.png)
 
-Die Partialsummen aus immer mehr ungeraden Harmonischen nähern sich der Rechteckwelle an. An den Sprungstellen bleibt das **Gibbs-Überschwingen** stehen — auch bei \(N\to\infty\) verschwinden die Spitzen nicht ganz, ihre Breite schrumpft aber.
+Die Partialsummen aus immer mehr ungeraden Harmonischen nähern sich der in §2.6 hergeleiteten Reihe an. An den Sprungstellen bleibt das **Gibbs-Überschwingen** stehen — auch bei \(N\to\infty\) verschwinden die Spitzen nicht ganz, ihre Breite schrumpft aber. Genau an den Sprungstellen liefert die Reihe übrigens den Mittelwert \(\tfrac12(f(t^-)+f(t^+))=0\), wie es die Dirichlet-Bedingungen vorhersagen.
 
 Kernidee in Python (vollständiges Skript: [`scripts/einheit-2.py`](scripts/einheit-2.py)):
 

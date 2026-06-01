@@ -106,6 +106,20 @@ Ein lineares zeitinvariantes System hat Impulsantwort \(h(t)\). Erkläre mit Fou
 
 Ein Signal wird mit \(f_s=8000\,\text{Hz}\) abgetastet. Welche Frequenzen können ohne Aliasing dargestellt werden?
 
+### Aufgabe 6 (Synthese: Euler, Fourier, Hilbert auf einen Schlag)
+
+Gegeben ist das AM-Signal
+
+$$
+x(t)=\bigl(1+\tfrac12\cos(2\pi\,5\,t)\bigr)\cos(2\pi\,100\,t).
+$$
+
+a) Schreibe \(x\) mit der Euler-Formel als Summe komplexer Schwingungen und gib deren Frequenzen in Hertz an.
+
+b) Skizziere — qualitativ — das Spektrum \(X(f)\) als Linienspektrum (Lage, relative Höhen, Phasen).
+
+c) Begründe mit der Bedrosian-Bedingung, dass das analytische Signal hier \(z(t)=\bigl(1+\tfrac12\cos(2\pi\,5\,t)\bigr)e^{i\,2\pi\,100\,t}\) ist, und gib die Hüllkurve \(|z(t)|\) sowie die Momentanfrequenz \(f_{\text{inst}}(t)\) an.
+
 Lösungen: [loesungen/einheit-8.md](loesungen/einheit-8.md)
 
 ---

@@ -1,5 +1,7 @@
 # Einheit 1: Komplexe Zahlen und Euler-Formel
 
+Wir brauchen für diesen Kurs eine Zahlebene statt einer Zahlengeraden, weil **Rotation und Schwingung dieselbe algebraische Struktur sind**. Multiplikation in der Ebene wird zur Drehung, die Euler-Formel macht aus einer Drehbewegung eine Schwingung. Erst damit lassen sich Sinus und Kosinus durch eine einzige Exponentialfunktion ersetzen — das ist die Sprache, in der Fourier- und Hilbert-Transformation natürlich werden.
+
 ## 1.1 Komplexe Zahlen
 
 Eine komplexe Zahl hat die Form
@@ -16,6 +18,8 @@ Man kann \(z\) als Punkt oder Vektor in der komplexen Ebene ansehen:
 - \(b\): vertikale Achse,
 - \(|z| = \sqrt{a^2 + b^2}\): Abstand vom Ursprung,
 - \(\arg(z)\): Winkel zur positiven reellen Achse.
+
+Der Winkel ist nur bis auf ganzzahlige Vielfache von \(2\pi\) festgelegt. Wir wählen als **Hauptwert** das Intervall \((-\pi,\pi]\); für \(z=-1\) ist also \(\arg(-1)=\pi\). Diese Wahl ist konsistent mit `numpy.angle` und wird in [Einheit 7](einheit-7.md#75-momentane-phase) beim Phasen-Unwrapping wieder wichtig.
 
 ## 1.2 Polarform
 
@@ -53,7 +57,12 @@ $$
 e^z := \sum_{k=0}^{\infty}\frac{z^k}{k!},\qquad z\in\mathbb C.
 $$
 
-Die Reihe konvergiert für jedes \(z\in\mathbb C\) absolut. Erst dadurch dürfen wir im Folgenden Real- und Imaginärteil aus der Summe herausziehen und die Reihe nach geraden und ungeraden Potenzen umsortieren. Die Euler-Formel ist dann eine Folgerung, kein eigenständiges Axiom.
+Die Reihe konvergiert für jedes \(z\in\mathbb C\) absolut. Zwei Konsequenzen brauchen wir gleich:
+
+- weil Konvergenz in \(\mathbb C\) gleichbedeutend mit getrennter Konvergenz von Real- und Imaginärteil ist, dürfen wir die Projektionen \(\operatorname{Re},\operatorname{Im}\) in die Summe ziehen;
+- weil absolute Konvergenz das **Umordnungsprinzip** liefert (großer Umordnungssatz), dürfen wir die Reihe nach geraden und ungeraden Potenzen sortieren.
+
+Die Euler-Formel ist dann eine Folgerung, kein eigenständiges Axiom.
 
 Die Taylor-Reihen von Exponentialfunktion, Sinus und Kosinus sind:
 
@@ -127,7 +136,7 @@ Diese beiden Gleichungen sind die Brücke zur Fourier-Analyse: Sinus und Kosinus
 
 ![Einheitskreis und Projektion auf Real-/Imaginärachse](bilder/einheit-1.png)
 
-Wenn \(\varphi\) gleichmäßig anwächst, läuft \(e^{i\varphi}\) auf dem Einheitskreis um. Die Projektion auf die Realachse ergibt \(\cos\varphi\), auf die Imaginärachse \(\sin\varphi\) — der Phasenversatz um \(\pi/2\) ist die geometrische Folge.
+Wenn \(\varphi\) gleichmäßig anwächst, läuft \(e^{i\varphi}\) auf dem Einheitskreis um. Die gestrichelten Loten zeigen, wie der Kreispunkt bei \(\varphi=2\pi/3\) auf Real- und Imaginärachse projiziert wird; rechts laufen \(\cos\varphi\) und \(\sin\varphi\) als zwei um \(\pi/2\) verschobene Schwingungen mit — der Phasenversatz ist die geometrische Folge der Achsenprojektion.
 
 Kernidee in Python (vollständiges Skript: [`scripts/einheit-1.py`](scripts/einheit-1.py)):
 
