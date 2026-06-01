@@ -11,7 +11,7 @@ WORKDIR /app
 # per eigener Allow-Liste. Diese GitHub-spezifischen Restriktionen pflegen
 # wir explizit im Validator.
 
-RUN npm install --no-audit --no-fund mathjax-full@3.2.2
+RUN npm install --no-audit --no-fund mathjax-full@3.2.0
 
 COPY validate-math.js /app/validate-math.js
 

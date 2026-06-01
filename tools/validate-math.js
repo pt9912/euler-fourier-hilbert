@@ -34,19 +34,19 @@ const { TeX } = require('mathjax-full/js/input/tex.js');
 const { SVG } = require('mathjax-full/js/output/svg.js');
 const { liteAdaptor } = require('mathjax-full/js/adaptors/liteAdaptor.js');
 const { RegisterHTMLHandler } = require('mathjax-full/js/handlers/html.js');
-// Paket-Subset, das GitHubs MathJax-Konfiguration empirisch entspricht.
-// base + ams deckt alle dokumentierten LaTeX-Standardmakros ab und laesst
-// z.B. \thickspace und \medspace als "Undefined control sequence" durch —
-// das deckt sich mit der roten Anzeige, die GitHub fuer diese Makros liefert.
-require('mathjax-full/js/input/tex/base/BaseConfiguration.js');
-require('mathjax-full/js/input/tex/ams/AmsConfiguration.js');
+const { AllPackages } = require('mathjax-full/js/input/tex/AllPackages.js');
 const fs = require('fs');
 const path = require('path');
 
+// MathJax 3.2.0 mit tex-chtml-full Setup — laut Bundle-Inspektion identisch
+// zu GitHubs Live-Konfiguration:
+//   chunk-vendors-node_modules_mathjax_es5_tex-chtml-full_js-...
+//   version: "3.2.0"
+//   packages: AllPackages
 const adaptor = liteAdaptor();
 RegisterHTMLHandler(adaptor);
 const tex = new TeX({
-  packages: ['base', 'ams'],
+  packages: AllPackages,
   formatError: (jax, err) => { throw err; },
 });
 const svg = new SVG({ fontCache: 'none' });

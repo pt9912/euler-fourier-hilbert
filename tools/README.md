@@ -69,14 +69,19 @@ beobachtete Quirks:
   den Block in einen ```math-Fence verschieben, wo `\,`, `\;`, `\:`
   unbeschädigt durchgehen.
 
-### MathJax-Paket-Subset
+### MathJax-Version und -Konfiguration
 
-Der Validator nutzt nur `base + ams` (nicht `AllPackages`), um GitHubs
-empirisches Verhalten möglichst genau zu spiegeln. Damit fängt er
-Makros wie `\thickspace` und `\medspace` als Fehler ab — beide sind in
-MathJax-Erweiterungen (`physics`, `mhchem`, …) definiert, in GitHubs
-Setup aber nicht.
+GitHub lädt MathJax als das vorgebackene Bundle
+`mathjax/es5/tex-chtml-full`. Eine Inspektion dieses Bundles ergibt:
 
-Wenn neue GitHub-spezifische Einschränkungen auftauchen, lassen sich
-die in der Konstanten `GITHUB_DENIED_MACROS` in `validate-math.js`
-ergänzen.
+- Version `3.2.0`
+- Pakete `AllPackages` (alle TeX-Pakete aktiviert)
+
+Der Validator pinnt deshalb `mathjax-full@3.2.0` und konfiguriert
+`packages: AllPackages` — damit ist die lokale Engine bit-genau mit
+GitHubs Live-Engine identisch.
+
+Zusätzliche Restriktionen, die GitHub außerhalb von MathJax auf eigene
+Faust dazu legt (z. B. die `operatorname`-Blockade per
+„macros not allowed"-Filter), pflegen wir explizit in
+`GITHUB_DENIED_MACROS` in `validate-math.js`.
