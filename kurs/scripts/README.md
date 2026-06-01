@@ -50,5 +50,7 @@ Diese Skripte gehören zu den Projektideen in der [Kurs-Übersicht](../README.md
 
 | Skript | Inhalt |
 | --- | --- |
-| `projekte/projekt-1-fft-signale.py` | FFT von Sinus, Rechteck und Gauß — Betrag und Phase |
-| `projekte/projekt-4-filter.py`      | Tief-, Hoch- und Bandpass durch Multiplikation im Spektrum |
+| `projekte/projekt-1-fft-signale.py`  | FFT von Sinus, Rechteck und Gauß — Betrag und Phase |
+| `projekte/projekt-2-am-bedrosian.py` | AM-Hüllkurve: Bedrosian-Bedingung erfüllt vs. verletzt |
+| `projekte/projekt-3-chirp-phase.py`  | Phasenanalyse: exp. Chirp, Mehrkomponenten, Fensterung |
+| `projekte/projekt-4-filter.py`       | Tief-, Hoch- und Bandpass durch Multiplikation im Spektrum |

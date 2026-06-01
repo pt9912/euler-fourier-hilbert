@@ -109,12 +109,12 @@ Jede Einheit folgt demselben Muster: Leitfrage, Definition, Beweisidee oder Beis
    *Referenz-Implementation:* [`scripts/projekte/projekt-1-fft-signale.py`](scripts/projekte/projekt-1-fft-signale.py) → ![Projekt 1](bilder/projekt-1.png)
 
 2. **Hilbert-Hüllkurve eines AM-Signals.**
-   Simuliere \(x(t)=(1+0{,}5\cos(2\pi f_m t))\cos(2\pi f_c t)\) und extrahiere die Hüllkurve mit der Hilbert-Transformation.
-   *Bereits als Visualisierung in [Einheit 7](einheit-7.md#78-visualisierung) durchgespielt.* Eigene Vertiefung: andere \(A(t)\), Spektralüberlappung, Bedrosian-Bedingung verletzen.
+   Simuliere \(x(t)=(1+0{,}5\cos(2\pi f_m t))\cos(2\pi f_c t)\) und extrahiere die Hüllkurve mit der Hilbert-Transformation. Der Basisfall ist bereits als Visualisierung in [Einheit 7](einheit-7.md#78-visualisierung) durchgespielt; die Referenz-Implementation zeigt die **Vertiefung**: was passiert, wenn die Bedrosian-Bedingung \(W < f_c\) verletzt wird (Spektralüberlappung von Modulation und Träger).
+   *Referenz-Implementation (Vertiefung):* [`scripts/projekte/projekt-2-am-bedrosian.py`](scripts/projekte/projekt-2-am-bedrosian.py) → ![Projekt 2](bilder/projekt-2.png)
 
 3. **Phasenanalyse eines Chirp-Signals.**
-   Berechne die entfaltete Phase und daraus die Momentanfrequenz.
-   *Bereits als Visualisierung in [Einheit 8](einheit-8.md#83-visualisierung-alles-auf-einmal) durchgespielt.* Eigene Vertiefung: exponentieller Chirp, Mehrkomponenten-Signal, Randeffekte mit Fensterung dämpfen.
+   Berechne die entfaltete Phase und daraus die Momentanfrequenz. Der lineare Basisfall ist bereits als Visualisierung in [Einheit 8](einheit-8.md#83-visualisierung-alles-auf-einmal) durchgespielt; die Referenz-Implementation zeigt die **Vertiefung**: exponentieller Chirp, Mehrkomponenten-Signal (Grenzen des IF-Konzepts) und Tukey-Fensterung gegen Randartefakte.
+   *Referenz-Implementation (Vertiefung):* [`scripts/projekte/projekt-3-chirp-phase.py`](scripts/projekte/projekt-3-chirp-phase.py) → ![Projekt 3](bilder/projekt-3.png)
 
 4. **Filter im Frequenzbereich.**
    Implementiere Tiefpass, Hochpass und Bandpass über Multiplikation des Spektrums mit einer Übertragungsfunktion. Untersuche die Gibbs-Artefakte rechteckiger Filter.
