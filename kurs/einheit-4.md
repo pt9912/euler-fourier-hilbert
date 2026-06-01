@@ -177,9 +177,7 @@ triangle = np.convolve(rect, rect, mode="same") * dt   # = (rect * rect)(t)
 4. Ein Filter hat Spektrum $H(\omega)$. Was ist das Spektrum des gefilterten Signals $y=x*h$?
 5. Ein Signal wird zuerst gespiegelt und dann verschoben: $y(t)=x(-(t-t_0))=x(t_0-t)$. Was passiert mit $X(\omega)$?
 6. Transfer: Ein Signal wird zuerst um $t_0$ verzögert und dann mit $e^{i\omega_c t}$ moduliert:
-   ```math
-   y(t)=e^{i\omega_ct}x(t-t_0).
-   ```
+   $$y(t)=e^{i\omega_ct}x(t-t_0).$$
    Bestimme $Y(\omega)$. Wo zeigt sich die Reihenfolge der Operationen?
 
 ## Selbstcheck zu Einheit 4
