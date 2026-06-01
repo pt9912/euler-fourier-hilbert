@@ -2,7 +2,16 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-RUN npm install --no-audit --no-fund katex@0.16.9
+# mathjax-full ist das offizielle Node.js-Paket aus
+# https://github.com/mathjax/MathJax-src und damit dieselbe Engine, die
+# GitHub fuer das Rendering nutzt:
+# https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/writing-mathematical-expressions
+#
+# Hinweis: GitHub deaktiviert zusaetzlich einige Makros (z.B. \operatorname)
+# per eigener Allow-Liste. Diese GitHub-spezifischen Restriktionen pflegen
+# wir explizit im Validator.
+
+RUN npm install --no-audit --no-fund mathjax-full@3.2.2
 
 COPY validate-math.js /app/validate-math.js
 

@@ -2,17 +2,22 @@
 
 Hilfsskripte rund um den Kurs. Nicht Teil des Kursmaterials.
 
-## KaTeX-Validator
+## MathJax-Validator
 
-`Dockerfile` + `validate-math.js` liefern einen reproduzierbaren KaTeX-Check
-für die Markdown-Dateien. KaTeX wird offline im Container ausgeführt; man
-muss also nicht jedes Mal Pushen und auf GitHub schauen, um zu sehen, ob
-Math-Inhalte sauber rendern.
+`Dockerfile` + `validate-math.js` liefern einen reproduzierbaren Math-Check
+für die Markdown-Dateien. Es wird dieselbe Engine verwendet, die GitHub für
+das Live-Rendering nutzt (`mathjax-full` aus
+<https://github.com/mathjax/MathJax-src>) — laut [GitHubs offizieller
+Doku](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/writing-mathematical-expressions):
+*„GitHub's math rendering capability uses MathJax."*
+
+Damit muss man nicht jedes Mal pushen und auf GitHub schauen, um zu sehen,
+ob Math-Inhalte sauber rendern.
 
 ### Bauen
 
 ```bash
-docker build -t katex-check tools/
+docker build -t math-check tools/
 ```
 
 ### Verwenden
@@ -20,52 +25,58 @@ docker build -t katex-check tools/
 Vom Repo-Root aus, prüft alle `*.md` rekursiv:
 
 ```bash
-docker run --rm -v "$PWD":/work katex-check
+docker run --rm -v "$PWD":/work math-check
 ```
 
 Eine einzelne Datei prüfen:
 
 ```bash
-docker run --rm -v "$PWD":/work katex-check kurs/einheit-5.md
+docker run --rm -v "$PWD":/work math-check kurs/einheit-5.md
 ```
 
 Auch erfolgreich gerenderte Blöcke melden:
 
 ```bash
-docker run --rm -v "$PWD":/work katex-check --verbose kurs/einheit-5.md
+docker run --rm -v "$PWD":/work math-check --verbose kurs/einheit-5.md
 ```
 
-### Ausgabe
+### Drei Meldungs-Arten
 
-Fehlerhafte Math-Blöcke werden mit Dateipfad, Zeilennummer, Art (`inline`
-oder `display`) und der KaTeX-Fehlermeldung gemeldet. Exit-Code 0 = alles
-sauber, sonst Anzahl der Fehler.
+**ERROR** — MathJax bricht beim Rendern ab. Der Quelltext muss korrigiert
+werden, sonst rendert er auch live nicht. Exit-Code 1.
 
-### Was wird abgedeckt
+**DENIED** — Quelltext nutzt ein Makro, das MathJax kennt, aber GitHubs
+Pipeline explizit blockiert. Die Live-Seite zeigt dann
+*„The following macros are not allowed: …"*. Aktuell in der Liste:
+`\operatorname`. Exit-Code 1.
 
-- Inline-Math: `$...$`
-- Display-Math einzeilig: `$$...$$`
-- Display-Math als Code-Fence: ` ```math ... ``` `
-
-### Was geprüft wird
-
-**ERROR** — KaTeX bricht beim Rendern ab. Der Quelltext muss korrigiert
-werden, sonst rendert er auch lokal nicht.
-
-**WARN** — KaTeX akzeptiert den Quelltext, aber GitHubs proprietäre
-Render-Pipeline verändert ihn auf bekannte Weise, sodass das Live-
-Rendering trotzdem kaputt wäre. Empirisch beobachtete Quirks:
+**WARN** — MathJax akzeptiert den Quelltext, aber GitHubs Pre-Processor
+verändert ihn vor dem Rendering. Exit-Code bleibt 0. Empirisch
+beobachtete Quirks:
 
 - `github-fence-backslash`: `\\` direkt am Zeilenende in einem
   ```math-Fence. GitHub bläht das Backslash-Paar zu `\\\` auf
   (reproduzierbar über die `/markdown`-API). Workaround: `\\` so
   platzieren, dass weiterer Inhalt auf derselben Zeile folgt — also
-  `\begin{cases}` & `\\`-Trennzeichen `& Folgecase \end{cases}` alles
-  in einer Zeile innerhalb der Fence.
+  alle Fälle eines `\begin{cases}…\end{cases}` in einer Zeile innerhalb
+  der Fence.
 
 - `commonmark-escape`: Backslash vor ASCII-Interpunktion in `$...$`
   oder einzeiligem `$$...$$`. CommonMark frisst den Backslash, bevor
-  KaTeX den Inhalt sieht. Workaround: in Inline-Math die LaTeX-
+  MathJax den Inhalt sieht. Workaround: in Inline-Math die LaTeX-
   Äquivalente verwenden, also `\thinspace` statt `\,`, `\lbrace`/
-  `\rbrace` statt `\{`/`\}`, oder die Backtick-geschützte Form
-  `` $`...`$ ``.
+  `\rbrace` statt `\{`/`\}`. Für nicht-trivial gespacedte Ausdrücke
+  den Block in einen ```math-Fence verschieben, wo `\,`, `\;`, `\:`
+  unbeschädigt durchgehen.
+
+### MathJax-Paket-Subset
+
+Der Validator nutzt nur `base + ams` (nicht `AllPackages`), um GitHubs
+empirisches Verhalten möglichst genau zu spiegeln. Damit fängt er
+Makros wie `\thickspace` und `\medspace` als Fehler ab — beide sind in
+MathJax-Erweiterungen (`physics`, `mhchem`, …) definiert, in GitHubs
+Setup aber nicht.
+
+Wenn neue GitHub-spezifische Einschränkungen auftauchen, lassen sich
+die in der Konstanten `GITHUB_DENIED_MACROS` in `validate-math.js`
+ergänzen.
