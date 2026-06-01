@@ -66,7 +66,30 @@ Die FFT ist kein anderes mathematisches Objekt als die DFT. Sie ist ein schnelle
 - Direkte DFT: ungefähr \(N^2\) Operationen.
 - FFT: ungefähr \(N\log_2 N\) Operationen.
 
-## 5.5 Abtastung und Nyquist-Grenze
+## 5.5 Frequenzauflösung, Leckage und Fensterung
+
+Die DFT sieht nur \(N\) Samples über eine endliche Messdauer
+$$
+T_{\text{mess}}=\frac{N}{f_s}.
+$$
+Dadurch liegen die Frequenzbins im Abstand
+$$
+\Delta f=\frac{f_s}{N}=\frac{1}{T_{\text{mess}}}.
+$$
+
+Eine Sinusschwingung fällt genau auf einen DFT-Bin, wenn
+$$
+f_0=m\Delta f
+$$
+für eine ganze Zahl \(m\) gilt. Dann enthält das Messfenster eine ganze Zahl von Perioden; man nennt die Abtastung **kohärent**. Fällt \(f_0\) zwischen zwei Bins, verteilt sich die Energie auf viele Bins. Das ist **Spektralleckage**.
+
+Der Grund ist nicht, dass die FFT ungenau wäre. Die DFT behandelt die \(N\) Samples als eine Periode einer periodischen Fortsetzung. Wenn Anfang und Ende des Messfensters nicht zusammenpassen, entsteht in dieser periodischen Fortsetzung ein Sprung. Sprünge erzeugen breite Spektralanteile.
+
+Eine **Fensterfunktion** (z. B. Hann- oder Hamming-Fenster) dämpft die Ränder des Messfensters und verringert Nebenkeulen. Der Preis ist ein breiteres Hauptmaximum und veränderte Amplitudenskalen. Fensterung verbessert also die Lesbarkeit des Spektrums, aber sie zaubert keine zusätzliche Information in die Daten.
+
+Auch **Zero Padding** muss man richtig einordnen: Wenn man Nullen anhängt, bekommt man mehr gezeichnete Frequenzpunkte zwischen den ursprünglichen Bins. Das Spektrum wirkt glatter, aber die physikalische Auflösung bleibt durch die ursprüngliche Messdauer bestimmt.
+
+## 5.6 Abtastung und Nyquist-Grenze
 
 Wenn ein kontinuierliches Signal mit Abtastrate \(f_s\) abgetastet wird, können Frequenzen mit \(|f|<f_s/2\) ohne Aliasing eindeutig dargestellt werden. Die Grenze
 
@@ -80,7 +103,7 @@ Der exakte Randfall \(f=f_s/2\) ist ein Sonderfall: positive und negative Freque
 
 Frequenzen oberhalb dieser Grenze erscheinen als falsche niedrigere Frequenzen. Das nennt man Aliasing.
 
-## 5.6 Visualisierung
+## 5.7 Visualisierung
 
 ![Aliasing: identische Samples, DFT-Spektrum und Rückfaltung ins Nyquist-Band](bilder/einheit-5.png)
 
@@ -107,11 +130,17 @@ freqs = np.fft.fftfreq(N, d=1 / fs)        # signierte Frequenzachse
 3. Warum ist Aliasing problematisch?
 4. Was bedeutet der DFT-Koeffizient \(X[0]\)?
 5. Du tastest \(\cos(2\pi\cdot 7\,\text{Hz}\cdot t)\) mit \(f_s=10\,\text{Hz}\) ab. Welche scheinbare Frequenz misst die DFT im Nyquist-Band?
+6. Eine Messung verwendet \(f_s=1000\,\text{Hz}\) und \(N=250\). Wie groß ist die Bin-Breite \(\Delta f\)? Fällt ein \(77\,\text{Hz}\)-Sinus auf einen DFT-Bin?
+7. Fehlerdiagnose: Jemand sagt: "Ich nutze Zero Padding, deshalb steigt die echte Frequenzauflösung meiner Messung." Was ist daran falsch?
+8. Warum kann ein Fenster Spektralleckage reduzieren, obwohl es das Signal im Zeitbereich verändert?
 
 ## Selbstcheck zu Einheit 5
 
 - [ ] Ich kann die DFT-Definition von der FFT als Algorithmus unterscheiden.
 - [ ] Ich kann DFT-Bins in physikalische Frequenzen umrechnen.
+- [ ] Ich kann Bin-Breite, Messdauer und kohärente Abtastung verbinden.
+- [ ] Ich kann Spektralleckage als Folge eines endlichen, nicht periodisch passenden Messfensters erklären.
+- [ ] Ich kann sagen, was Fensterung und Zero Padding leisten und was nicht.
 - [ ] Ich kann den Nyquist-Bereich für eine gegebene Abtastrate bestimmen.
 - [ ] Ich kann Aliasing an einem konkreten Zahlenbeispiel berechnen.
 - [ ] Ich kann \(X[0]\) als Gleichanteil/Mittelwertinformation deuten.

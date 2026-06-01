@@ -10,7 +10,7 @@ Dies ist der inhaltliche Teil des Kurses. Ein Überblick über Zielgruppe und Le
 | [2](einheit-2.md) | Fourier-Reihen | Periodische Signale als Summe komplexer Schwingungen |
 | [3](einheit-3.md) | Fourier-Transformation | Nichtperiodische Signale als kontinuierliches Frequenzspektrum |
 | [4](einheit-4.md) | Eigenschaften der Fourier-Transformation | Verschieben, Skalieren, Falten, Ableiten |
-| [5](einheit-5.md) | Diskrete Signale, DFT und FFT | Abtastung und Nyquist-Grenze |
+| [5](einheit-5.md) | Diskrete Signale, DFT und FFT | Bins, Leckage, Fensterung und Nyquist-Grenze |
 | [6](einheit-6.md) | Hilbert-Transformation | Frequenzabhängige Phasenverschiebung um 90 Grad |
 | [7](einheit-7.md) | Analytisches Signal | Amplitude, Phase und Momentanfrequenz |
 | [8](einheit-8.md) | Gemeinsames Bild | Verknüpfung aller drei Themen mit Abschlussaufgaben |
@@ -25,7 +25,7 @@ Die Lösungen zu allen Übungen und Abschlussaufgaben stehen separat in [`loesun
 | 2 | periodische Signale als Projektionen auf orthogonale Schwingungen deuten |
 | 3 | Spektren nichtperiodischer Signale qualitativ und rechnerisch lesen |
 | 4 | Zeitoperationen im Frequenzbereich vorhersagen und Parseval als Energieerhaltung interpretieren |
-| 5 | DFT-Bins, FFT, Nyquist-Grenze und Aliasing an konkreten Zahlen erklären |
+| 5 | DFT-Bins, FFT, Binauflösung, Spektralleckage, Nyquist-Grenze und Aliasing an konkreten Zahlen erklären |
 | 6 | die Hilbert-Transformation als 90-Grad-Phasenoperator im Frequenzbereich beschreiben |
 | 7 | aus dem analytischen Signal Hüllkurve, Phase und Momentanfrequenz gewinnen und die Bedrosian-Bedingung prüfen |
 | 8 | Euler, Fourier und Hilbert in einem zusammengesetzten Signal gemeinsam einsetzen |
@@ -48,6 +48,20 @@ Damit der Kurs handlich bleibt, treffen wir an ein paar Stellen feste Entscheidu
 - **DFT-Konvention.** Die DFT ist ohne Vorfaktor definiert, die inverse DFT trägt den Faktor \(1/N\). NumPy (`numpy.fft`) und MATLAB folgen dieser Wahl; SciPys `scipy.fft` ebenfalls.
 - **Regularität.** Wir behandeln Konvergenz- und Integrierbarkeitsfragen nicht im Detail. Alle Aussagen gelten unter den üblichen Voraussetzungen (z. B. \(L^1\cap L^2\) für die Fourier-Transformation, hinreichend abklingende und differenzierbare Funktionen bei der Ableitungsregel). Für \(\delta\) und für reine Schwingungen \(e^{i\omega_0 t}\) interpretiert man die Aussagen distributionentheoretisch.
 - **Notation.** Realteil/Imaginärteil als \(\operatorname{Re}, \operatorname{Im}\); komplex Konjugiertes als \(\overline{z}\). Phase und Argument werden synonym verwendet.
+
+## Voraussetzungscheck
+
+Bevor du in Einheit 1 startest, solltest du die folgenden Aufgaben ohne längere Recherche lösen können:
+
+1. Wandle \(3(\cos(\pi/6)+i\sin(\pi/6))\) in Real- und Imaginärteil um.
+2. Erkläre, warum \(\sin(2\pi f t)\) bei Frequenz \(f\) die Kreisfrequenz \(\omega=2\pi f\) hat.
+3. Berechne \(\int_{-1}^{1} e^{-i\omega t}\,dt\) bis auf den Grenzwert bei \(\omega=0\).
+4. Erkläre an zwei Vektoren in \(\mathbb R^2\), was Orthogonalität und Projektion bedeuten.
+5. Lies in Python oder Pseudocode aus einer Liste \(x[0],\ldots,x[N-1]\) den Mittelwert aus.
+
+Wenn dir 1-2 schwerfallen, arbeite vor Einheit 1 komplexe Zahlen und Bogenmaß nach. Wenn 3-4 schwerfallen, plane für die Einheiten 2-4 mehr Zeit ein. Wenn 5 neu ist, kannst du den mathematischen Kurs trotzdem lesen, solltest die Python-Abschnitte aber eher als kommentierte Beispiele behandeln.
+
+Die fortgeschrittenen Begriffe \(L^2\), Distribution, Dirac-Impuls, Cauchy-Hauptwert und Plancherel werden im Kurs nur so weit präzisiert, wie es für die Rechnungen nötig ist. Sie markieren keine zusätzlichen Prüfziele, sondern die Stellen, an denen Analysis im Hintergrund arbeitet.
 
 ## Einheitsschema und Arbeitsweise
 
@@ -75,7 +89,7 @@ Jede Einheit folgt demselben Muster: Leitfrage, Definition, Beweisidee oder Beis
 | \(c_n\) | Fourier-Reihen-Koeffizient der \(n\)-ten Harmonischen | [§2.2](einheit-2.md#22-komplexe-fourier-reihe) |
 | \(X(\omega)\) | Fourier-Transformierte von \(x(t)\) | [§3.2](einheit-3.md#32-definition) |
 | \(H(\omega)\) | Frequenzgang eines Filters oder LTI-Systems | [§4.6](einheit-4.md#46-faltung) |
-| \(f_s\), \(f_N\) | Abtastrate und Nyquist-Frequenz | [§5.5](einheit-5.md#55-abtastung-und-nyquist-grenze) |
+| \(f_s\), \(f_N\) | Abtastrate und Nyquist-Frequenz | [§5.6](einheit-5.md#56-abtastung-und-nyquist-grenze) |
 | \(\mathcal H\{x\}\) | Hilbert-Transformierte von \(x\) | [§6.2](einheit-6.md#62-definition-im-frequenzbereich) |
 | \(z(t)=x(t)+i\mathcal H\{x\}(t)\) | analytisches Signal | [§7.1](einheit-7.md#71-definition) |
 | \(\phi(t)\), \(f_{\text{inst}}\) | momentane Phase und Momentanfrequenz | [§7.5](einheit-7.md#75-momentane-phase) |

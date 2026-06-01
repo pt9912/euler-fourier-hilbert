@@ -60,7 +60,7 @@ Aufgabenstellung: [Einheit 7 — Übungen](../einheit-7.md#übungen-zu-einheit-7
    \left(1+\operatorname{sgn}(\omega)\right)X(\omega).
    $$
 
-   Damit ist \(Z(\omega)=2X(\omega)\) für \(\omega>0\), \(Z(\omega)=0\) für \(\omega<0\), und der Gleichanteil bleibt separat erhalten.
+   Damit ist \(Z(\omega)=2X(\omega)\) für \(\omega>0\), \(Z(\omega)=0\) für \(\omega<0\), und der Gleichanteil bleibt separat erhalten. In der DFT-Version gilt zusätzlich: Bei geradem \(N\) bleibt auch der Nyquist-Bin \(k=N/2\) unverändert, weil er nicht eindeutig zu einer positiven oder negativen Frequenzhälfte gehört.
 
 5. Ein Beispiel ist
 
@@ -83,6 +83,21 @@ Aufgabenstellung: [Einheit 7 — Übungen](../einheit-7.md#übungen-zu-einheit-7
    nicht gelten. Folglich ist auch \(|z(t)|\) im Allgemeinen nicht gleich \(A(t)\).
 
    Was du daraus mitnehmen solltest: Eine AM-Schreibweise allein reicht nicht; die Spektraltrennung entscheidet, ob die Hilbert-Hüllkurve die modellierte Amplitude trifft.
+
+6. Bei \(N=8\) liegen die DFT-Bins bei \(k=0,\ldots,7\). Der Gleichanteil ist \(k=0\), der Nyquist-Bin ist \(k=N/2=4\).
+
+   Für das analytische Signal gilt:
+
+   - \(k=0\) bleibt erhalten.
+   - \(k=1,2,3\) werden verdoppelt.
+   - \(k=4\) bleibt als Nyquist-Sonderbin erhalten.
+   - \(k=5,6,7\) werden auf null gesetzt.
+
+   Als Multiplikatorfolge kann man das schreiben als
+
+   $$
+   [1,2,2,2,1,0,0,0].
+   $$
 
 ---
 

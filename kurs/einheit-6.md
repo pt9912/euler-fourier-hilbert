@@ -113,7 +113,13 @@ $$
 \mathcal{H}\bigl\{\mathcal{H}\{x\}\bigr\}=-\bigl(x-\langle x\rangle\bigr)=-x+\langle x\rangle,
 $$
 
-wobei \(\langle x\rangle\) den Gleichanteil bezeichnet. Für gleichanteilfreie Signale reduziert sich das auf die einprägsame Form \(\mathcal H^2=-\operatorname{id}\).
+wobei \(\langle x\rangle\) den Gleichanteil bezeichnet. Diese Schreibweise ist besonders für periodische Signale und für die DFT-Interpretation nützlich: Der Nullfrequenzanteil wird vom Hilbert-Operator nicht in Quadratur verschoben, sondern auf null gesetzt.
+
+Für klassische Signale auf \(\mathbb R\), bei denen kein separater Gleichanteil als \(\delta(\omega)\)-Atom vorliegt, schreibt man in Lehrbüchern häufig kurz
+$$
+\mathcal H^2=-\operatorname{id}
+$$
+auf dem passenden Funktionenraum. Im Rechnen mit FFTs solltest du trotzdem die DC-Behandlung ausdrücklich im Blick behalten.
 
 ## 6.6 Visualisierung
 
@@ -142,6 +148,7 @@ hilbert_cos = np.imag(analytic)        # = sin(2 pi 5 t)
 3. Berechne \(\mathcal{H}\{\sin(5t)\}\).
 4. Warum braucht die Zeitbereichsdefinition einen Hauptwert?
 5. Begründe ohne Integralrechnung: Die Hilbert-Transformierte eines reellen geraden Signals ist ungerade.
+6. Fehlerdiagnose: Warum ist \(\mathcal H\{1\}=0\), obwohl man manchmal sagt, die Hilbert-Transformation verschiebe "jede Frequenz" um \(90^\circ\)?
 
 ## Selbstcheck zu Einheit 6
 
@@ -150,6 +157,7 @@ hilbert_cos = np.imag(analytic)        # = sin(2 pi 5 t)
 - [ ] Ich kann \(\mathcal H\{\cos(\omega_0t)\}\) und \(\mathcal H\{\sin(\omega_0t)\}\) bestimmen.
 - [ ] Ich kann sagen, warum im Zeitbereich ein Cauchy-Hauptwert nötig ist.
 - [ ] Ich kann die Hilbert-Transformation als LTI-Operator mit einem Frequenzgang deuten.
+- [ ] Ich kann erklären, warum der Gleichanteil kein gewöhnlicher Quadraturanteil ist.
 
 Lösungen: [loesungen/einheit-6.md](loesungen/einheit-6.md)
 

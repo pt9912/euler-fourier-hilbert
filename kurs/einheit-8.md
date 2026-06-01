@@ -43,7 +43,7 @@ Zusammen ergeben sie ein sehr starkes Werkzeug:
 7. Das analytische Signal entfernt negative Frequenzen, erhält den Gleichanteil und macht Amplitude und Phase zugänglich.
 8. Zeitliche und spektrale Konzentration stehen in Konkurrenz (Sinc beim Rechteckpuls, Gauß als Optimalfall).
 
-Wer mit einer Implementation arbeitet, sollte zusätzlich die Konventionsfragen aus der [Kurs-Übersicht](README.md#konventionen-und-voraussetzungen) kennen — gerade die Normierung von FFT und die DC-Behandlung beim analytischen Signal sind klassische Stolperfallen.
+Wer mit einer Implementation arbeitet, sollte zusätzlich die Konventionsfragen aus der [Kurs-Übersicht](README.md#konventionen-und-voraussetzungen) kennen — gerade die Normierung von FFT und die Behandlung der Sonderbins DC und Nyquist beim analytischen Signal sind klassische Stolperfallen.
 
 ## 8.3 Visualisierung: Alles auf einmal
 
@@ -128,6 +128,15 @@ c) Begründe mit der Bedrosian-Bedingung, dass das analytische Signal hier \(z(t
 
 Welche der drei Perspektiven — Euler, Fourier oder Hilbert — hat dir beim Verstehen des Abschlussbeispiels am meisten geholfen, und warum? Antworte mit einem konkreten Bezug auf Formel, Bild oder Code.
 
+### Aufgabe 8 (Fehleranalyse)
+
+Prüfe die folgenden Aussagen. Markiere jeweils, ob sie richtig, falsch oder nur unter Zusatzbedingungen richtig sind, und korrigiere sie knapp:
+
+1. "Die Hilbert-Transformation verschiebt ein ganzes reelles Signal einfach um eine Viertelperiode."
+2. "Zero Padding erhöht die echte Frequenzauflösung einer Messung."
+3. "Ein analytisches Signal entsteht, indem man negative Frequenzen entfernt und alle übrigen Bins verdoppelt."
+4. "Wenn ein Signal reell und gerade ist, sollte sein Fourier-Spektrum reell und gerade sein."
+
 ## Abschluss-Selbstcheck
 
 - [ ] Ich kann zwischen Kreisfrequenz \(\omega\) und Frequenz \(f\) sicher wechseln.
@@ -135,6 +144,7 @@ Welche der drei Perspektiven — Euler, Fourier oder Hilbert — hat dir beim Ve
 - [ ] Ich kann erklären, wie Fourier-Rechnung LTI-Systeme und Filter vereinfacht.
 - [ ] Ich kann das analytische Signal als Verbindung von Fourier- und Hilbert-Idee erklären.
 - [ ] Ich kann an einem AM- oder Chirp-Beispiel Hüllkurve, Phase und Momentanfrequenz unterscheiden.
+- [ ] Ich kann typische falsche Kurzsätze zu Hilbert, FFT und analytischem Signal präzise korrigieren.
 
 Lösungen: [loesungen/einheit-8.md](loesungen/einheit-8.md)
 

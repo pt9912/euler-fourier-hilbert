@@ -221,6 +221,7 @@ def partial_sum(num_terms):
 3. Warum treten bei reellen Signalen positive und negative Frequenzen paarweise auf?
 4. Erkläre den Unterschied zwischen Grundfrequenz und Oberwelle.
 5. Konstruiere eine \(2\pi\)-periodische Funktion, deren Fourier-Reihe nur Sinus-Terme enthält. Wovon hängt diese Eigenschaft ab?
+6. Fehlerdiagnose: Jemand behauptet, ein reelles Signal könne nur den Koeffizienten \(c_3=2\) haben und alle anderen \(c_n=0\). Kann das stimmen? Falls nicht: Wie muss mindestens ergänzt werden?
 
 ## Selbstcheck zu Einheit 2
 
@@ -229,6 +230,7 @@ def partial_sum(num_terms):
 - [ ] Ich kann den Unterschied zwischen reeller Amplitude und zweiseitigen Koeffizienten benennen.
 - [ ] Ich kann sagen, was die Reihe an einer Sprungstelle liefert.
 - [ ] Ich kann Symmetrien eines Signals mit fehlenden Sinus- oder Kosinus-Termen verbinden.
+- [ ] Ich kann an Koeffizienten erkennen, ob ein Signal reellwertig sein kann.
 
 Lösungen: [loesungen/einheit-2.md](loesungen/einheit-2.md)
 

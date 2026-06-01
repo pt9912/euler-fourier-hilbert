@@ -4,6 +4,16 @@ Welche Manipulationen am Signal lassen sich im Frequenzbereich einfacher beschre
 
 Die folgenden Eigenschaften sind oft wichtiger als einzelne Integrale.
 
+## 4.0 Arbeitsweg durch die Werkzeugkiste
+
+Diese Einheit ist dichter als die vorherigen: Sie ist keine lange Einzelrechnung, sondern eine Sammlung von Werkzeugen. Arbeite deshalb in drei Durchgängen:
+
+1. **Erst Bedeutung lesen:** Was passiert mit Betrag, Phase, Breite oder Energie?
+2. **Dann eine Formel prüfen:** Setze ein einfaches Beispiel wie \(x(t)=\cos(3t)\), einen Rechteckpuls oder eine Gaußfunktion ein.
+3. **Zum Schluss Regeln kombinieren:** Viele Aufgaben bestehen daraus, zwei Operationen nacheinander korrekt zu ordnen.
+
+Für den ersten Durchgang sind besonders wichtig: Zeitverschiebung, Frequenzverschiebung, Faltung und Symmetrietabelle. Skalierung, Ableitung und Parseval kannst du danach als Vertiefung ergänzen.
+
 ## 4.1 Linearität
 
 Wenn
@@ -49,6 +59,8 @@ $$
 
 Genau dieser Mechanismus erklärt das AM-Signal in [§7.7](einheit-7.md#77-typische-anwendung-am-signal): ein Tiefpass-Spektrum \(X\) wird durch die Trägerschwingung in zwei Kopien um \(\pm\omega_c\) gespiegelt — die spätere Bedrosian-Bedingung verlangt, dass diese Kopien sich nicht überlappen.
 
+**Zwischenstopp 1.** Ohne zu rechnen: Eine Zeitverschiebung verändert die Phase, aber nicht den Betrag des Spektrums. Eine Multiplikation mit \(e^{i\omega_0t}\) verschiebt dagegen das ganze Spektrum. Wenn du diese beiden Sätze verwechselst, lies §4.2 und §4.3 noch einmal mit einem Skizzenbeispiel.
+
 ## 4.4 Skalierung
 
 Für \(a\ne0\):
@@ -91,6 +103,13 @@ $$
 x(t)h(t) \leftrightarrow \frac{1}{2\pi}(X*H)(\omega).
 $$
 
+**Zwischenstopp 2.** Merke die Paarung bewusst:
+
+- Faltung in der Zeit wird Multiplikation im Frequenzbereich.
+- Multiplikation in der Zeit wird Faltung im Frequenzbereich.
+
+Der Faktor \(1/(2\pi)\) im zweiten Satz kommt nur aus unserer Fourier-Konvention.
+
 ## 4.7 Parseval-Identität (Plancherel)
 
 Für \(x\in L^2(\mathbb R)\) gilt:
@@ -130,6 +149,8 @@ Konsequenzen für die Praxis:
 - Bei reellen, geraden Signalen (z. B. Rechteckpuls aus §3.6, Gauß aus §3.7) ist die Phase nur \(0\) oder \(\pm\pi\) — wertvoll für die Plausibilitätsprüfung in Projekt 1.
 - Bei reellen, ungeraden Signalen ist die Phase \(\pm\pi/2\) — daher das rein imaginäre Spektrum eines Sinus.
 
+**Zwischenstopp 3.** Die Tabelle ist ein Diagnosewerkzeug: Wenn dein numerisches Spektrum eines reellen Signals nicht hermitesch ist, stimmt meistens die Frequenzachse, die Zentrierung oder die komplexe Auswertung nicht.
+
 ## 4.9 Visualisierung
 
 ![Faltung zweier Rechteckpulse ergibt einen Dreieckspuls; Multiplikation der Sinc-Spektren ergibt sinc²](bilder/einheit-4.png)
@@ -155,6 +176,11 @@ triangle = np.convolve(rect, rect, mode="same") * dt   # = (rect * rect)(t)
 3. Was ist der Vorteil des Faltungssatzes?
 4. Ein Filter hat Spektrum \(H(\omega)\). Was ist das Spektrum des gefilterten Signals \(y=x*h\)?
 5. Ein Signal wird zuerst gespiegelt und dann verschoben: \(y(t)=x(-(t-t_0))=x(t_0-t)\). Was passiert mit \(X(\omega)\)?
+6. Transfer: Ein Signal wird zuerst um \(t_0\) verzögert und dann mit \(e^{i\omega_c t}\) moduliert:
+   $$
+   y(t)=e^{i\omega_ct}x(t-t_0).
+   $$
+   Bestimme \(Y(\omega)\). Wo zeigt sich die Reihenfolge der Operationen?
 
 ## Selbstcheck zu Einheit 4
 
@@ -163,6 +189,7 @@ triangle = np.convolve(rect, rect, mode="same") * dt   # = (rect * rect)(t)
 - [ ] Ich kann begründen, warum Faltung im Zeitbereich Multiplikation im Frequenzbereich wird.
 - [ ] Ich kann Parseval als Energieerhaltung interpretieren.
 - [ ] Ich kann die Symmetrietabelle auf ein konkretes Beispiel anwenden.
+- [ ] Ich kann zwei Signaloperationen nacheinander in die richtige Frequenzbereichsform übersetzen.
 
 Lösungen: [loesungen/einheit-4.md](loesungen/einheit-4.md)
 

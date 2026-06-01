@@ -75,6 +75,20 @@ Aufgabenstellung: [Einheit 1 — Übungen](../einheit-1.md#übungen-zu-einheit-1
 
    Was du daraus mitnehmen solltest: Die Euler-Formel ist nicht nur eine Kurzschreibweise, sondern überträgt Rechenregeln der Exponentialfunktion auf trigonometrische Identitäten.
 
+6. Die Aussage verwechselt die reelle Exponentialfunktion \(e^x\) mit der komplexen Exponentialfunktion auf der imaginären Achse. Nach Euler gilt
+
+   $$
+   e^{i\varphi}=\cos\varphi+i\sin\varphi.
+   $$
+
+   Der Wert ist im Allgemeinen komplex. Sein Betrag ist
+
+   $$
+   |e^{i\varphi}|=\sqrt{\cos^2\varphi+\sin^2\varphi}=1.
+   $$
+
+   Geometrisch liegt \(e^{i\varphi}\) also nicht auf der positiven reellen Achse, sondern auf dem Einheitskreis. Wenn \(\varphi\) wächst, rotiert der Punkt um den Ursprung.
+
 ---
 
 [Zurück zur Einheit](../einheit-1.md) · [Lösungs-Index](README.md) · [Weiter: Lösungen zu Einheit 2](einheit-2.md)

@@ -58,6 +58,20 @@ Aufgabenstellung: [Einheit 3 — Übungen](../einheit-3.md#übungen-zu-einheit-3
 
    Qualitativ skizziert man also zwei Sinc-Pakete, eines um \(+\omega_0\), eines um \(-\omega_0\). Was du daraus mitnehmen solltest: Zeitliche Begrenzung macht aus idealen Linien breite Spektralpakete.
 
+6. Der Dirac-Impuls ist keine gewöhnliche Funktion mit einem wohldefinierten Funktionswert bei \(0\). Die Schreibweise \(\delta(0)=\infty\) ist höchstens eine gefährliche Merkhilfe und keine Rechenregel.
+
+   Sauber verwendet man die Siebeigenschaft:
+
+   $$
+   \int_{-\infty}^{\infty} f(t)\delta(t-t_0)\,dt=f(t_0).
+   $$
+
+   Für \(t_0=0\) und \(f(t)=e^{-i\omega t}\) folgt deshalb
+
+   $$
+   \mathcal F\{\delta(t)\}=e^{-i\omega\cdot 0}=1.
+   $$
+
 ---
 
 [Zurück: Lösungen zu Einheit 2](einheit-2.md) · [Zurück zur Einheit](../einheit-3.md) · [Lösungs-Index](README.md) · [Weiter: Lösungen zu Einheit 4](einheit-4.md)

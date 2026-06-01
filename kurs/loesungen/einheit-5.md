@@ -52,6 +52,26 @@ Aufgabenstellung: [Einheit 5 — Übungen](../einheit-5.md#übungen-zu-einheit-5
 
    Was du daraus mitnehmen solltest: Aliasing ist keine Unschärfe der DFT, sondern eine eindeutige Faltung modulo Abtastrate.
 
+6. Die Bin-Breite ist
+
+   $$
+   \Delta f=\frac{f_s}{N}=\frac{1000\,\text{Hz}}{250}=4\,\text{Hz}.
+   $$
+
+   Die DFT-Bins liegen also bei \(0,4,8,\ldots\) Hz (und entsprechend bei negativen Frequenzen). Ein \(77\,\text{Hz}\)-Sinus fällt nicht exakt auf einen Bin, weil \(77/4=19{,}25\) nicht ganzzahlig ist. Die Abtastung ist für diese Frequenz nicht kohärent; im Betragsspektrum ist Spektralleckage zu erwarten.
+
+7. Zero Padding fügt keine zusätzlichen Messdaten hinzu. Es wertet die Fourier-Information nur auf einem feineren gezeichneten Frequenzraster aus, ähnlich einer Interpolation des Spektrums. Die echte Auflösung bleibt durch die Messdauer
+
+   $$
+   T_{\text{mess}}=\frac{N}{f_s}
+   $$
+
+   bestimmt. Um zwei nahe Frequenzen besser zu trennen, braucht man im Kern eine längere Messdauer oder ein passenderes Messmodell, nicht nur angehängte Nullen.
+
+8. Ein endliches Messfenster wird von der DFT periodisch fortgesetzt. Wenn Anfang und Ende nicht zusammenpassen, entsteht in dieser Fortsetzung ein Sprung, und Sprünge erzeugen breite Spektralanteile. Ein Fenster dämpft die Ränder, macht die periodische Fortsetzung glatter und reduziert deshalb Nebenkeulen.
+
+   Der Preis ist, dass das Hauptmaximum breiter wird und Amplituden korrigiert werden müssen. Fensterung ist also ein kontrollierter Kompromiss: weniger Leckage-Nebenkeulen, aber keine zusätzliche Information.
+
 ---
 
 [Zurück: Lösungen zu Einheit 4](einheit-4.md) · [Zurück zur Einheit](../einheit-5.md) · [Lösungs-Index](README.md) · [Weiter: Lösungen zu Einheit 6](einheit-6.md)

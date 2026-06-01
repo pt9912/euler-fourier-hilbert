@@ -56,6 +56,20 @@ Aufgabenstellung: [Einheit 6 — Übungen](../einheit-6.md#übungen-zu-einheit-6
 
    Was du daraus mitnehmen solltest: Die Hilbert-Transformation vertauscht bei reellen Signalen die Parität, weil ihr Frequenzgang selbst ungerade ist.
 
+6. Die konstante Funktion besteht nur aus Gleichanteil, also aus Frequenz \(\omega=0\). In der Frequenzbereichsdefinition steht der Faktor
+
+   $$
+   -i\operatorname{sgn}(\omega).
+   $$
+
+   Weil \(\operatorname{sgn}(0)=0\), wird der Gleichanteil auf null gesetzt. Daher gilt
+
+   $$
+   \mathcal H\{1\}=0.
+   $$
+
+   Die Kurzform "jede Frequenz wird um \(90^\circ\) verschoben" meint die echten positiven und negativen Frequenzen. Der Gleichanteil rotiert nicht; er hat keine Schwingungsphase, die man sinnvoll um \(90^\circ\) verschieben könnte.
+
 ---
 
 [Zurück: Lösungen zu Einheit 5](einheit-5.md) · [Zurück zur Einheit](../einheit-6.md) · [Lösungs-Index](README.md) · [Weiter: Lösungen zu Einheit 7](einheit-7.md)

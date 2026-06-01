@@ -84,6 +84,26 @@ Aufgabenstellung: [Einheit 2 — Übungen](../einheit-2.md#übungen-zu-einheit-2
 
    Was du daraus mitnehmen solltest: Fehlende Terme sind oft keine Rechenzufälle, sondern Symmetrieinformationen.
 
+6. Das kann für ein reellwertiges Signal nicht stimmen. Für reelle Signale gilt immer
+
+   $$
+   c_{-n}=\overline{c_n}.
+   $$
+
+   Wenn \(c_3=2\) ist, muss also mindestens
+
+   $$
+   c_{-3}=2
+   $$
+
+   hinzukommen. Dann ergibt das Paar
+
+   $$
+   2e^{i3\omega_0t}+2e^{-i3\omega_0t}=4\cos(3\omega_0t),
+   $$
+
+   also ein reelles Signal. Nur \(2e^{i3\omega_0t}\) allein wäre komplexwertig.
+
 ---
 
 [Zurück: Lösungen zu Einheit 1](einheit-1.md) · [Zurück zur Einheit](../einheit-2.md) · [Lösungs-Index](README.md) · [Weiter: Lösungen zu Einheit 3](einheit-3.md)

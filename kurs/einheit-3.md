@@ -150,6 +150,7 @@ gauss_ft = np.sqrt(np.pi) * np.exp(-omega**2 / 4)
 3. Was passiert mit dem Spektrum eines Rechteckpulses, wenn der Puls im Zeitbereich breiter wird?
 4. Warum enthält ein sehr kurzer Impuls viele Frequenzen?
 5. Skizziere ohne Integralrechnung qualitativ das Spektrum von \(x(t)=\cos(\omega_0t)\cdot \operatorname{rect}(t/T)\). Nutze die Idee, dass ein zeitlich begrenzter Kosinus ein Rechteckspektrum um \(\pm\omega_0\) verschiebt. Prüfe deine Begründung nach [§4.3](einheit-4.md#43-frequenzverschiebung) erneut.
+6. Fehlerdiagnose: Jemand schreibt \(\delta(0)=\infty\) und versucht damit \(\mathcal F\{\delta\}\) wie ein gewöhnliches Integral auszurechnen. Warum ist das keine saubere Begründung? Welche Eigenschaft verwendet man stattdessen?
 
 ## Selbstcheck zu Einheit 3
 
@@ -158,6 +159,7 @@ gauss_ft = np.sqrt(np.pi) * np.exp(-omega**2 / 4)
 - [ ] Ich kann Rechteckpuls und Sinc-Spektrum als Zeit-Frequenz-Dualität lesen.
 - [ ] Ich kann qualitativ vorhersagen, wie Breite im Zeitbereich und Breite im Frequenzbereich zusammenhängen.
 - [ ] Ich kann aus einer Visualisierung eine Spektrumeigenschaft formulieren, nicht nur die Formel wiederholen.
+- [ ] Ich kann den Dirac-Impuls als Distribution über seine Siebeigenschaft statt als gewöhnliche Funktion verwenden.
 
 Lösungen: [loesungen/einheit-3.md](loesungen/einheit-3.md)
 

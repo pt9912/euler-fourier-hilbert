@@ -51,6 +51,27 @@ Aufgabenstellung: [Einheit 4 — Übungen](../einheit-4.md#übungen-zu-einheit-4
 
    Die Spiegelung vertauscht also \(\omega\) und \(-\omega\); die anschließende Verschiebung erzeugt den Phasenfaktor \(e^{-i\omega t_0}\). Was du daraus mitnehmen solltest: Zusammengesetzte Signaloperationen lassen sich regelweise zerlegen, aber die Reihenfolge entscheidet über den Phasenfaktor.
 
+6. Zuerst betrachten wir die verzögerte Version
+
+   $$
+   u(t)=x(t-t_0).
+   $$
+
+   Nach der Zeitverschiebungsregel gilt
+
+   $$
+   U(\omega)=e^{-i\omega t_0}X(\omega).
+   $$
+
+   Danach wird mit \(e^{i\omega_ct}\) moduliert. Das verschiebt das Spektrum:
+
+   $$
+   Y(\omega)=U(\omega-\omega_c)
+   =e^{-i(\omega-\omega_c)t_0}X(\omega-\omega_c).
+   $$
+
+   Die Reihenfolge zeigt sich im Phasenfaktor: Er enthält \(\omega-\omega_c\), weil erst verzögert und danach das bereits verzögerte Spektrum verschoben wird.
+
 ---
 
 [Zurück: Lösungen zu Einheit 3](einheit-3.md) · [Zurück zur Einheit](../einheit-4.md) · [Lösungs-Index](README.md) · [Weiter: Lösungen zu Einheit 5](einheit-5.md)

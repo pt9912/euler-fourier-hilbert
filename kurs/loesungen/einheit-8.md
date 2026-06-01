@@ -112,6 +112,16 @@ Hier gibt es keine eindeutig richtige Musterantwort, aber eine gute Antwort nenn
 
 Stark ist eine Antwort, wenn sie nicht nur einen Namen nennt, sondern eine konkrete Formel, ein Spektrumbild oder die Python-Auswertung aus §8.3 als Beleg verwendet.
 
+## Lösung 8
+
+1. **Nur unter Zusatzbedingungen richtig.** Für eine einzelne reine positive Frequenz kann man die Hilbert-Transformation als Quadraturverschiebung lesen, etwa \(\mathcal H\{\cos(\omega_0t)\}=\sin(\omega_0t)\). Für ein allgemeines Mehrkomponentensignal ist "eine Viertelperiode" aber nicht eindeutig, weil verschiedene Frequenzen verschiedene Perioden haben. Korrekt ist: Im Frequenzbereich werden positive Frequenzen mit \(-i\), negative mit \(+i\) multipliziert.
+
+2. **Falsch.** Zero Padding macht das gezeichnete Frequenzraster feiner, fügt aber keine neuen Messdaten hinzu. Die echte Frequenzauflösung wird im Wesentlichen durch die Messdauer bestimmt.
+
+3. **Falsch formuliert.** Negative Frequenzen werden entfernt und echte positive Frequenzen werden verdoppelt. Sonderbins bleiben erhalten: DC wird nicht verdoppelt, und bei geradem \(N\) wird auch der Nyquist-Bin nicht verdoppelt.
+
+4. **Richtig** unter den üblichen Voraussetzungen und mit passender Zentrierung/Interpretation der Frequenzachse. Diese Symmetrie ist ein guter Plausibilitätstest für Rechnungen und FFT-Plots.
+
 ---
 
 [Zurück: Lösungen zu Einheit 7](einheit-7.md) · [Zurück zur Einheit](../einheit-8.md) · [Lösungs-Index](README.md)

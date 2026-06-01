@@ -158,6 +158,7 @@ im_part = z.imag               # sin phi
 3. Zeige mit der Euler-Formel, dass \(\cos(-x)=\cos x\) und \(\sin(-x)=-\sin x\).
 4. Was bewirkt die Multiplikation einer komplexen Zahl mit \(e^{i\pi/2}\)? (Hinweis: \(e^{i\pi/2}=i\).)
 5. Zeige mit der Euler-Formel die Additionstheoreme für \(\cos(\alpha+\beta)\) und \(\sin(\alpha+\beta)\). (Hinweis: Vergleiche \(e^{i(\alpha+\beta)}\) mit \(e^{i\alpha}e^{i\beta}\).)
+6. Fehlerdiagnose: Eine Person sagt: "\(e^{i\varphi}\) ist eine Exponentialfunktion, also muss der Wert reell und positiv sein." Korrigiere die Aussage mit Formel und Geometrie.
 
 ## Selbstcheck zu Einheit 1
 
@@ -166,6 +167,7 @@ im_part = z.imag               # sin phi
 - [ ] Ich kann Sinus und Kosinus als Real- und Imaginärteil einer komplexen Schwingung lesen.
 - [ ] Ich kann eine Multiplikation mit \(e^{i\alpha}\) geometrisch als Rotation deuten.
 - [ ] Ich kann einfache Symmetrie- und Additionstheoreme aus Euler ableiten.
+- [ ] Ich kann die Fehlvorstellung auflösen, dass \(e^{i\varphi}\) wie \(e^x\) auf der positiven reellen Achse liegen müsse.
 
 Lösungen: [loesungen/einheit-1.md](loesungen/einheit-1.md)
 

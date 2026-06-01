@@ -31,9 +31,13 @@ Z(\omega)=
 \end{cases}
 $$
 
-und für den Gleichanteil bleibt der Wert bei \(\omega=0\) unverändert. Bei reinen Schwingungen (also bei \(X\), das aus \(\delta\)-Distributionen besteht) entfällt die punktweise Frage; bei der numerischen DFT-Implementierung wird der Gleichanteil \(X[0]\) deshalb **nicht** verdoppelt, alle anderen positiven Bins schon.
+und für den Gleichanteil bleibt der Wert bei \(\omega=0\) unverändert. Bei reinen Schwingungen (also bei \(X\), das aus \(\delta\)-Distributionen besteht) entfällt die punktweise Frage; bei der numerischen DFT-Implementierung muss man die Sonderbins explizit behandeln:
 
-Kurz: Negative Frequenzen werden entfernt, positive Frequenzen werden verdoppelt, und der Gleichanteil bleibt erhalten.
+- \(X[0]\) (DC/Gleichanteil) wird nicht verdoppelt.
+- Bei ungeradem \(N\) werden die positiven Bins \(k=1,\ldots,(N-1)/2\) verdoppelt; die restlichen Bins werden auf null gesetzt.
+- Bei geradem \(N\) werden nur \(k=1,\ldots,N/2-1\) verdoppelt. Der Nyquist-Bin \(k=N/2\) wird wie der Gleichanteil nicht verdoppelt, weil positive und negative Nyquist-Frequenz dort algebraisch zusammenfallen.
+
+Kurz: Negative Frequenzen werden entfernt, echte positive Frequenzen werden verdoppelt, und die Sonderbins DC sowie gegebenenfalls Nyquist bleiben erhalten.
 
 ## 7.3 Beispiel: Kosinus
 
@@ -151,11 +155,13 @@ recovered = np.abs(hilbert(signal))    # ≈ envelope
 3. Was ist die Momentanfrequenz von \(z(t)=e^{i(7t)}\)?
 4. Warum entfernt das analytische Signal negative Frequenzen?
 5. Konstruiere ein AM-ähnliches Beispiel, in dem \(|z(t)|\neq A(t)\), obwohl \(x(t)=A(t)\cos(\omega_ct)\) formal so aussieht. Begründe über die Bedrosian-Bedingung.
+6. Implementationscheck: Eine reelle Folge hat gerades \(N=8\). Welche DFT-Bins werden beim Bilden des analytischen Signals verdoppelt, welche bleiben erhalten, und welche werden auf null gesetzt?
 
 ## Selbstcheck zu Einheit 7
 
 - [ ] Ich kann das analytische Signal aus \(x\) und \(\mathcal H\{x\}\) bilden.
 - [ ] Ich kann erklären, warum negative Frequenzen entfernt und positive verdoppelt werden.
+- [ ] Ich kann bei einer DFT-Implementierung DC- und Nyquist-Bin korrekt behandeln.
 - [ ] Ich kann Betrag, Phase und Momentanfrequenz aus \(z(t)\) ablesen.
 - [ ] Ich kann die Bedrosian-Bedingung für ein AM-Signal qualitativ prüfen.
 - [ ] Ich kann ein Beispiel nennen, bei dem die Hilbert-Hüllkurve nicht die modellierte Amplitude ist.
