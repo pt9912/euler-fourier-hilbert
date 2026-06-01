@@ -1,5 +1,7 @@
 # Einheit 2: Fourier-Reihen
 
+Welche Bausteine braucht man, um ein periodisches Signal vollständig zusammenzusetzen? Die Leitfrage dieser Einheit ist: Wie werden Schwingungen zu Koordinatenachsen, und wie liest man aus einem Signal die passenden Koordinaten ab? Fourier-Reihen beantworten genau das für periodische Signale.
+
 ## 2.1 Grundidee
 
 Viele periodische Signale lassen sich als Summe einfacher Schwingungen schreiben. Statt Sinus und Kosinus verwendet man oft komplexe Exponentialfunktionen:
@@ -36,6 +38,12 @@ Die Zahl \(c_n\) sagt:
 - mit welcher Phase sie vorkommt.
 
 ## 2.3 Warum funktioniert das?
+
+Die Idee ist dieselbe wie in \(\mathbb R^2\). Für einen Vektor \(v\) und die Standardbasis \(e_1=(1,0)\), \(e_2=(0,1)\) sind die Koordinaten gerade Projektionen:
+$$
+v_1=\langle v,e_1\rangle,\qquad v_2=\langle v,e_2\rangle.
+$$
+Dass \(e_1\) und \(e_2\) orthonormal sind, macht diese Projektionen eindeutig und einfach. Fourier-Analyse überträgt dieses Bild auf Funktionen: Die "Basisvektoren" sind jetzt Schwingungen.
 
 Auf dem Raum der \(T\)-periodischen Funktionen definieren wir das Skalarprodukt
 
@@ -189,7 +197,7 @@ Das bedeutet: Positive und negative Frequenzen sind nicht unabhängig, wenn das 
 
 ![Rechteckwelle als Fourier-Reihe mit wachsender Anzahl Harmonischer](bilder/einheit-2.png)
 
-Die Partialsummen aus immer mehr ungeraden Harmonischen nähern sich der in §2.6 hergeleiteten Reihe an. An den Sprungstellen bleibt das **Gibbs-Überschwingen** stehen — auch bei \(N\to\infty\) verschwinden die Spitzen nicht ganz, ihre Breite schrumpft aber. Genau an den Sprungstellen liefert die Reihe übrigens den Mittelwert \(\tfrac12(f(t^-)+f(t^+))=0\), wie es die Dirichlet-Bedingungen vorhersagen.
+Die Partialsummen aus immer mehr ungeraden Harmonischen nähern sich der in §2.6 hergeleiteten Reihe an. An den Sprungstellen bleibt das **Gibbs-Überschwingen** stehen — auch bei \(N\to\infty\) verschwinden die Spitzen nicht ganz, ihre Breite schrumpft aber. Die senkrechte Markierung bei \(t=0\) zeigt die Dirichlet-Aussage im Bild: Genau an der Sprungstelle liefert die Reihe den Mittelwert \(\tfrac12(f(t^-)+f(t^+))=0\).
 
 Kernidee in Python (vollständiges Skript: [`scripts/einheit-2.py`](scripts/einheit-2.py)):
 
@@ -212,6 +220,15 @@ def partial_sum(num_terms):
 2. Bestimme die komplexen Fourier-Koeffizienten von \(f(t)=4\sin(2\omega_0t)\).
 3. Warum treten bei reellen Signalen positive und negative Frequenzen paarweise auf?
 4. Erkläre den Unterschied zwischen Grundfrequenz und Oberwelle.
+5. Konstruiere eine \(2\pi\)-periodische Funktion, deren Fourier-Reihe nur Sinus-Terme enthält. Wovon hängt diese Eigenschaft ab?
+
+## Selbstcheck zu Einheit 2
+
+- [ ] Ich kann erklären, warum Fourier-Koeffizienten Projektionen sind.
+- [ ] Ich kann \(c_n\) für reine Sinus- und Kosinusschwingungen bestimmen.
+- [ ] Ich kann den Unterschied zwischen reeller Amplitude und zweiseitigen Koeffizienten benennen.
+- [ ] Ich kann sagen, was die Reihe an einer Sprungstelle liefert.
+- [ ] Ich kann Symmetrien eines Signals mit fehlenden Sinus- oder Kosinus-Termen verbinden.
 
 Lösungen: [loesungen/einheit-2.md](loesungen/einheit-2.md)
 

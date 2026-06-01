@@ -1,5 +1,7 @@
 # Einheit 3: Fourier-Transformation
 
+Was bleibt von Fourier übrig, wenn ein Signal nicht periodisch ist und daher keine einzelne Grundfrequenz hat? Diese Einheit ersetzt die diskreten Linien der Fourier-Reihe durch ein kontinuierliches Spektrum. Damit werden Pulse, Fenster, Gaußfunktionen und reale Messsignale zugänglich.
+
 ## 3.1 Von Fourier-Reihe zur Fourier-Transformation
 
 Fourier-Reihen beschreiben periodische Signale. Viele reale Signale sind aber nicht periodisch: ein Puls, ein Messfenster, ein Ton mit Anfang und Ende.
@@ -8,7 +10,7 @@ Die Fourier-Transformation ersetzt die diskreten Frequenzen \(n\omega_0\) durch 
 
 ## 3.2 Definition
 
-Wir verwenden die Konvention:
+Wir verwenden die Konvention aus der [Kurs-Übersicht](README.md#konventionen-und-voraussetzungen): \(\omega\) ist die Kreisfrequenz in rad/s. Wenn später numerische Beispiele in Hertz auftreten, gilt immer \(\omega=2\pi f\).
 
 $$
 X(\omega) = \mathcal{F}\{x(t)\}
@@ -124,6 +126,8 @@ Die Gaußfunktion ist deshalb in Wahrscheinlichkeitstheorie, Quantenmechanik und
 
 Oben: Ein scharf begrenzter Rechteckpuls hat ein langsam abklingendes, oszillierendes Sinc-Spektrum. Unten: Eine Gaußfunktion hat eine Gauß-Transformierte; ihre Form bleibt erhalten, nur die Skalen kehren sich um. Die absoluten Höhen der vier Panels sind nicht normiert (Sinc-Maximum \(2a=2\), Gauß-Spektrum-Maximum \(\sqrt{\pi/a}\approx 1{,}77\)); der Vergleich gilt also Formen und Breiten, nicht Amplituden.
 
+Die Darstellung lohnt sich nicht nur als Bestätigung der Formeln. Sie macht eine Eigenschaft sichtbar, die in der Rechnung leicht untergeht: harte Kanten im Zeitbereich erzeugen lange spektrale Ausläufer, glatte Konzentration erzeugt glatte Konzentration im Spektrum.
+
 Kernidee in Python (vollständiges Skript: [`scripts/einheit-3.py`](scripts/einheit-3.py)):
 
 ```python
@@ -145,6 +149,15 @@ gauss_ft = np.sqrt(np.pi) * np.exp(-omega**2 / 4)
 2. Berechne \(\mathcal{F}\{\delta(t-3)\}\).
 3. Was passiert mit dem Spektrum eines Rechteckpulses, wenn der Puls im Zeitbereich breiter wird?
 4. Warum enthält ein sehr kurzer Impuls viele Frequenzen?
+5. Skizziere ohne Integralrechnung qualitativ das Spektrum von \(x(t)=\cos(\omega_0t)\cdot \operatorname{rect}(t/T)\). Nutze die Idee, dass ein zeitlich begrenzter Kosinus ein Rechteckspektrum um \(\pm\omega_0\) verschiebt. Prüfe deine Begründung nach [§4.3](einheit-4.md#43-frequenzverschiebung) erneut.
+
+## Selbstcheck zu Einheit 3
+
+- [ ] Ich kann erklären, warum aus Frequenzlinien ein kontinuierliches Spektrum wird.
+- [ ] Ich kann die Fourier-Transformierte eines verschobenen Dirac-Impulses bestimmen.
+- [ ] Ich kann Rechteckpuls und Sinc-Spektrum als Zeit-Frequenz-Dualität lesen.
+- [ ] Ich kann qualitativ vorhersagen, wie Breite im Zeitbereich und Breite im Frequenzbereich zusammenhängen.
+- [ ] Ich kann aus einer Visualisierung eine Spektrumeigenschaft formulieren, nicht nur die Formel wiederholen.
 
 Lösungen: [loesungen/einheit-3.md](loesungen/einheit-3.md)
 

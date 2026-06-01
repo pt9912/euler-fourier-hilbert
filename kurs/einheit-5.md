@@ -1,5 +1,7 @@
 # Einheit 5: Diskrete Signale, DFT und FFT
 
+Computer können kein Integral über unendlich viele Zeiten auswerten; sie speichern endlich viele Zahlen. Die Leitfrage dieser Einheit lautet: Was bedeutet "Fourier", wenn nur \(N\) Abtastwerte vorliegen? Die Antwort führt zur DFT, zur FFT und zur unvermeidlichen Nyquist-Grenze.
+
 ## 5.1 Warum diskret?
 
 Computer speichern endlich viele Messwerte:
@@ -80,9 +82,9 @@ Frequenzen oberhalb dieser Grenze erscheinen als falsche niedrigere Frequenzen. 
 
 ## 5.6 Visualisierung
 
-![Aliasing: zwei verschiedene Sinusse mit identischen Samples, daneben das DFT-Spektrum eines Sinus](bilder/einheit-5.png)
+![Aliasing: identische Samples, DFT-Spektrum und Rückfaltung ins Nyquist-Band](bilder/einheit-5.png)
 
-Links: Eine 1-Hz-Schwingung und eine 11-Hz-Schwingung erzeugen bei \(f_s=10\,\text{Hz}\) **exakt dieselben Abtastwerte** — die roten Kreise umschließen die schwarzen Punkte. Aus den Samples allein lassen sich die beiden Frequenzen nicht unterscheiden, das ist Aliasing. Rechts: Die DFT eines 30-Hz-Kosinus bei \(f_s=100\,\text{Hz}\) zeigt zwei symmetrische Linien bei \(\pm 30\,\text{Hz}\) (konjugierte Symmetrie reeller Signale).
+Links: Eine 1-Hz-Schwingung und eine 11-Hz-Schwingung erzeugen bei \(f_s=10\,\text{Hz}\) **exakt dieselben Abtastwerte** — die roten Kreise umschließen die schwarzen Punkte. Aus den Samples allein lassen sich die beiden Frequenzen nicht unterscheiden, das ist Aliasing. In der Mitte zeigt die DFT eines 30-Hz-Kosinus bei \(f_s=100\,\text{Hz}\) zwei symmetrische Linien bei \(\pm 30\,\text{Hz}\) (konjugierte Symmetrie reeller Signale). Rechts sieht man dieselbe Aliasing-Idee im Spektrum: Linien außerhalb des Nyquist-Bands werden in das Band \([-f_s/2,f_s/2)\) zurückgefaltet.
 
 Kernidee in Python (vollständiges Skript: [`scripts/einheit-5.py`](scripts/einheit-5.py)):
 
@@ -104,6 +106,15 @@ freqs = np.fft.fftfreq(N, d=1 / fs)        # signierte Frequenzachse
 2. Ein Signal wird mit \(f_s=1000\,\text{Hz}\) abgetastet. Was ist die Nyquist-Frequenz, und welcher Frequenzbereich ist ohne Aliasing eindeutig?
 3. Warum ist Aliasing problematisch?
 4. Was bedeutet der DFT-Koeffizient \(X[0]\)?
+5. Du tastest \(\cos(2\pi\cdot 7\,\text{Hz}\cdot t)\) mit \(f_s=10\,\text{Hz}\) ab. Welche scheinbare Frequenz misst die DFT im Nyquist-Band?
+
+## Selbstcheck zu Einheit 5
+
+- [ ] Ich kann die DFT-Definition von der FFT als Algorithmus unterscheiden.
+- [ ] Ich kann DFT-Bins in physikalische Frequenzen umrechnen.
+- [ ] Ich kann den Nyquist-Bereich für eine gegebene Abtastrate bestimmen.
+- [ ] Ich kann Aliasing an einem konkreten Zahlenbeispiel berechnen.
+- [ ] Ich kann \(X[0]\) als Gleichanteil/Mittelwertinformation deuten.
 
 Lösungen: [loesungen/einheit-5.md](loesungen/einheit-5.md)
 

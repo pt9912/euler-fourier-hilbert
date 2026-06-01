@@ -1,5 +1,7 @@
 # Einheit 8: Gemeinsames Bild
 
+Was ist nach sieben Einheiten der gemeinsame Gedanke? Euler liefert die Sprache der komplexen Schwingung, Fourier verteilt ein Signal auf diese Sprache, und Hilbert dreht die passenden Frequenzanteile zur Quadratur. Diese Abschluss-Einheit bündelt die Werkzeuge an einem Chirp und an Syntheseaufgaben.
+
 ## 8.1 Die Verbindung der drei Themen
 
 Die Euler-Formel ist die Sprache:
@@ -91,6 +93,8 @@ $$
 x(t)=\cos(8t).
 $$
 
+Die \(8\) ist hier eine Kreisfrequenz in rad/s, kein Hertz-Wert.
+
 Bestimme:
 
 1. \(\mathcal{H}\{x\}(t)\),
@@ -119,6 +123,18 @@ a) Schreibe \(x\) mit der Euler-Formel als Summe komplexer Schwingungen und gib 
 b) Skizziere — qualitativ — das Spektrum \(X(f)\) als Linienspektrum (Lage, relative Höhen, Phasen).
 
 c) Begründe mit der Bedrosian-Bedingung, dass das analytische Signal hier \(z(t)=\bigl(1+\tfrac12\cos(2\pi\,5\,t)\bigr)e^{i\,2\pi\,100\,t}\) ist, und gib die Hüllkurve \(|z(t)|\) sowie die Momentanfrequenz \(f_{\text{inst}}(t)\) an.
+
+### Aufgabe 7 (Reflexion)
+
+Welche der drei Perspektiven — Euler, Fourier oder Hilbert — hat dir beim Verstehen des Abschlussbeispiels am meisten geholfen, und warum? Antworte mit einem konkreten Bezug auf Formel, Bild oder Code.
+
+## Abschluss-Selbstcheck
+
+- [ ] Ich kann zwischen Kreisfrequenz \(\omega\) und Frequenz \(f\) sicher wechseln.
+- [ ] Ich kann ein Signal mit Euler in komplexe Exponentialfunktionen zerlegen.
+- [ ] Ich kann erklären, wie Fourier-Rechnung LTI-Systeme und Filter vereinfacht.
+- [ ] Ich kann das analytische Signal als Verbindung von Fourier- und Hilbert-Idee erklären.
+- [ ] Ich kann an einem AM- oder Chirp-Beispiel Hüllkurve, Phase und Momentanfrequenz unterscheiden.
 
 Lösungen: [loesungen/einheit-8.md](loesungen/einheit-8.md)
 

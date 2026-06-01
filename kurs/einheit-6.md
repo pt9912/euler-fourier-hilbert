@@ -1,5 +1,7 @@
 # Einheit 6: Hilbert-Transformation
 
+Wir suchen einen Operator, der jede Schwingung um \(90^\circ\) in die Quadratur verschiebt, ohne ihre Amplitude zu verändern. Dass dieser Operator im Frequenzbereich fast nur ein Vorzeichenfilter ist, ist die zentrale Überraschung. Die Zeitbereichsform mit Hauptwertintegral kommt danach als dieselbe Idee in der Sprache der Faltung.
+
 ## 6.1 Grundidee
 
 Die Hilbert-Transformation erzeugt aus einem Signal ein neues Signal, dessen Frequenzanteile um \(90^\circ\) phasenverschoben sind:
@@ -15,9 +17,32 @@ Sie ist besonders wichtig für:
 - Modulation,
 - Kausalitätsbeziehungen in Physik und Systemtheorie.
 
-## 6.2 Definition im Zeitbereich
+## 6.2 Definition im Frequenzbereich
 
-Für ein geeignetes Signal \(x(t)\) ist die Hilbert-Transformierte:
+Am klarsten ist die Hilbert-Transformation im Frequenzbereich. Für ein Signal \(x(t)\leftrightarrow X(\omega)\) definieren wir:
+
+$$
+\mathcal{F}\{\mathcal{H}x\}(\omega)
+=
+-i\,\operatorname{sgn}(\omega)X(\omega).
+$$
+
+Dabei ist
+
+$$
+\operatorname{sgn}(\omega)=
+\begin{cases}
+1, & \omega>0,\\
+0, & \omega=0,\\
+-1, & \omega<0.
+\end{cases}
+$$
+
+Positive Frequenzen werden mit \(-i\) multipliziert, also um \(-90^\circ\) gedreht. Negative Frequenzen werden mit \(+i\) multipliziert, also um \(+90^\circ\) gedreht. Der Gleichanteil bei \(\omega=0\) wird auf null gesetzt.
+
+## 6.3 Definition im Zeitbereich
+
+Die Zeitbereichsform wirkt auf den ersten Blick fremder, beschreibt aber denselben Operator. Für ein geeignetes Signal \(x(t)\) ist die Hilbert-Transformierte:
 
 $$
 \mathcal{H}\{x\}(t)
@@ -32,32 +57,11 @@ Strukturell ist das eine **Faltung** mit dem Kern \(h(t)=1/(\pi t)\):
 $$
 \mathcal H\{x\} = h * x,\qquad h(t)=\frac{1}{\pi t}.
 $$
-Die Hilbert-Transformation ist also ein linearer, zeitinvarianter (LTI-)Operator und passt in den Rahmen von [Einheit 4](einheit-4.md): Ihr "Frequenzgang" ist genau die Funktion aus Abschnitt 6.3.
-
-## 6.3 Definition im Frequenzbereich
-
-Viel einfacher ist die Hilbert-Transformation im Frequenzbereich:
-
+Die Hilbert-Transformation ist also ein linearer, zeitinvarianter (LTI-)Operator und passt in den Rahmen von [Einheit 4](einheit-4.md): Ihr Frequenzgang ist
 $$
-\mathcal{F}\{\mathcal{H}x\}(\omega)
-=
--i\,\operatorname{sgn}(\omega)X(\omega).
+\mathcal F\{1/(\pi t)\}(\omega)=-i\,\operatorname{sgn}(\omega)
 $$
-
-Dass beide Definitionen dasselbe Objekt beschreiben, sieht man am Frequenzgang des Kerns: \(\mathcal F\{1/(\pi t)\}(\omega)=-i\,\operatorname{sgn}(\omega)\) (im distributionellen Sinn). Faltung mit \(1/(\pi t)\) wird damit nach dem Faltungssatz aus [§4.6](einheit-4.md#46-faltung) zur Multiplikation mit \(-i\,\operatorname{sgn}(\omega)\), und §6.2 und §6.3 sind dasselbe in zwei Sprachen.
-
-Dabei ist
-
-$$
-\operatorname{sgn}(\omega)=
-\begin{cases}
-1, & \omega>0,\\
-0, & \omega=0,\\
--1, & \omega<0.
-\end{cases}
-$$
-
-Der Gleichanteil bei \(\omega=0\) wird auf null gesetzt.
+im distributionellen Sinn. Nach dem Faltungssatz aus [§4.6](einheit-4.md#46-faltung) wird Faltung mit \(1/(\pi t)\) daher zur Multiplikation mit \(-i\,\operatorname{sgn}(\omega)\). §6.2 und §6.3 sind also dieselbe Transformation in zwei Sprachen.
 
 ## 6.4 Beispiele
 
@@ -137,6 +141,15 @@ hilbert_cos = np.imag(analytic)        # = sin(2 pi 5 t)
 2. Berechne \(\mathcal{H}\{\cos(5t)\}\).
 3. Berechne \(\mathcal{H}\{\sin(5t)\}\).
 4. Warum braucht die Zeitbereichsdefinition einen Hauptwert?
+5. Begründe ohne Integralrechnung: Die Hilbert-Transformierte eines reellen geraden Signals ist ungerade.
+
+## Selbstcheck zu Einheit 6
+
+- [ ] Ich kann die Hilbert-Transformation als Multiplikation mit \(-i\operatorname{sgn}(\omega)\) erklären.
+- [ ] Ich kann positive und negative Frequenzen mit der passenden \(90^\circ\)-Drehung verbinden.
+- [ ] Ich kann \(\mathcal H\{\cos(\omega_0t)\}\) und \(\mathcal H\{\sin(\omega_0t)\}\) bestimmen.
+- [ ] Ich kann sagen, warum im Zeitbereich ein Cauchy-Hauptwert nötig ist.
+- [ ] Ich kann die Hilbert-Transformation als LTI-Operator mit einem Frequenzgang deuten.
 
 Lösungen: [loesungen/einheit-6.md](loesungen/einheit-6.md)
 

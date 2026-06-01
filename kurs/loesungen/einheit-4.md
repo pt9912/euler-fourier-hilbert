@@ -40,6 +40,17 @@ Aufgabenstellung: [Einheit 4 — Übungen](../einheit-4.md#übungen-zu-einheit-4
 
    \(H(\omega)\) beschreibt also, welche Frequenzen das System verstärkt, abschwächt oder in der Phase verschiebt.
 
+5. Setze \(u=t_0-t\). Dann ist \(t=t_0-u\) und \(dt=-du\). Im Fourier-Integral folgt:
+
+   $$
+   Y(\omega)
+   =\int_{-\infty}^{\infty}x(t_0-t)e^{-i\omega t}\,dt
+   =e^{-i\omega t_0}\int_{-\infty}^{\infty}x(u)e^{i\omega u}\,du
+   =e^{-i\omega t_0}X(-\omega).
+   $$
+
+   Die Spiegelung vertauscht also \(\omega\) und \(-\omega\); die anschließende Verschiebung erzeugt den Phasenfaktor \(e^{-i\omega t_0}\). Was du daraus mitnehmen solltest: Zusammengesetzte Signaloperationen lassen sich regelweise zerlegen, aber die Reihenfolge entscheidet über den Phasenfaktor.
+
 ---
 
 [Zurück: Lösungen zu Einheit 3](einheit-3.md) · [Zurück zur Einheit](../einheit-4.md) · [Lösungs-Index](README.md) · [Weiter: Lösungen zu Einheit 5](einheit-5.md)

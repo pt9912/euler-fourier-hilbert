@@ -68,6 +68,22 @@ Aufgabenstellung: [Einheit 2 — Übungen](../einheit-2.md#übungen-zu-einheit-2
 
    Der Index \(n\) zählt also, wie viele Grundschwingungen in eine Periode passen.
 
+5. Eine einfache Wahl ist jede ungerade \(2\pi\)-periodische Funktion, zum Beispiel
+
+   $$
+   f(t)=\sin t+\frac12\sin(3t).
+   $$
+
+   In reeller Schreibweise enthält ihre Fourier-Reihe nur Sinus-Terme. Der Grund ist die Symmetrie:
+
+   $$
+   f(-t)=-f(t).
+   $$
+
+   Kosinus-Terme sind gerade, sie können zu einer ungeraden Funktion keinen Beitrag leisten. Allgemeiner gilt: Ungerade reelle Funktionen haben nur Sinus-Terme; gerade reelle Funktionen haben nur Kosinus-Terme. In komplexer Schreibweise zeigt sich dieselbe Aussage in rein imaginären, ungeraden Koeffizienten.
+
+   Was du daraus mitnehmen solltest: Fehlende Terme sind oft keine Rechenzufälle, sondern Symmetrieinformationen.
+
 ---
 
 [Zurück: Lösungen zu Einheit 1](einheit-1.md) · [Zurück zur Einheit](../einheit-2.md) · [Lösungs-Index](README.md) · [Weiter: Lösungen zu Einheit 3](einheit-3.md)

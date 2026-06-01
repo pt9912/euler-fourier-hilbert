@@ -42,6 +42,39 @@ Aufgabenstellung: [Einheit 1 — Übungen](../einheit-1.md#übungen-zu-einheit-1
 
    Die Multiplikation rotiert \(z\) also um \(90^\circ\) gegen den Uhrzeigersinn, ohne den Betrag zu ändern. Genau in diesem Sinn ist die imaginäre Achse die um \(90^\circ\) gedrehte reelle Achse — und genau das wird die Hilbert-Transformation in [Einheit 6](../einheit-6.md) für jede einzelne Frequenz tun.
 
+5. Einerseits gilt
+
+   $$
+   e^{i(\alpha+\beta)}=\cos(\alpha+\beta)+i\sin(\alpha+\beta).
+   $$
+
+   Andererseits ist wegen der Rechenregel der Exponentialfunktion
+
+   $$
+   e^{i(\alpha+\beta)}
+   =e^{i\alpha}e^{i\beta}
+   =(\cos\alpha+i\sin\alpha)(\cos\beta+i\sin\beta).
+   $$
+
+   Ausmultiplizieren liefert
+
+   $$
+   (\cos\alpha\cos\beta-\sin\alpha\sin\beta)
+   +i(\sin\alpha\cos\beta+\cos\alpha\sin\beta).
+   $$
+
+   Vergleich von Real- und Imaginärteil ergibt:
+
+   $$
+   \cos(\alpha+\beta)=\cos\alpha\cos\beta-\sin\alpha\sin\beta,
+   $$
+
+   $$
+   \sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta.
+   $$
+
+   Was du daraus mitnehmen solltest: Die Euler-Formel ist nicht nur eine Kurzschreibweise, sondern überträgt Rechenregeln der Exponentialfunktion auf trigonometrische Identitäten.
+
 ---
 
 [Zurück zur Einheit](../einheit-1.md) · [Lösungs-Index](README.md) · [Weiter: Lösungen zu Einheit 2](einheit-2.md)

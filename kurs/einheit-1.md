@@ -59,10 +59,10 @@ $$
 
 Die Reihe konvergiert für jedes \(z\in\mathbb C\) absolut. Zwei Konsequenzen brauchen wir gleich:
 
-- weil Konvergenz in \(\mathbb C\) gleichbedeutend mit getrennter Konvergenz von Real- und Imaginärteil ist, dürfen wir die Projektionen \(\operatorname{Re},\operatorname{Im}\) in die Summe ziehen;
-- weil absolute Konvergenz das **Umordnungsprinzip** liefert (großer Umordnungssatz), dürfen wir die Reihe nach geraden und ungeraden Potenzen sortieren.
+- Real- und Imaginärteil dürfen gliedweise betrachtet werden;
+- absolute Konvergenz erlaubt es, die Reihe nach geraden und ungeraden Potenzen zu sortieren.
 
-Die Euler-Formel ist dann eine Folgerung, kein eigenständiges Axiom.
+Das ist der einzige analytische Punkt in der Herleitung: Wir benutzen keine neue Rechenregel für komplexe Zahlen, sondern die bekannten Taylor-Reihen in einer Situation, in der gliedweises Sortieren erlaubt ist. In einer Analysis-Vorlesung steckt dahinter der Umordnungssatz für absolut konvergente Reihen. Die Euler-Formel ist dann eine Folgerung, kein eigenständiges Axiom.
 
 Die Taylor-Reihen von Exponentialfunktion, Sinus und Kosinus sind:
 
@@ -138,6 +138,8 @@ Diese beiden Gleichungen sind die Brücke zur Fourier-Analyse: Sinus und Kosinus
 
 Wenn \(\varphi\) gleichmäßig anwächst, läuft \(e^{i\varphi}\) auf dem Einheitskreis um. Die gestrichelten Loten zeigen, wie der Kreispunkt bei \(\varphi=2\pi/3\) auf Real- und Imaginärachse projiziert wird; rechts laufen \(\cos\varphi\) und \(\sin\varphi\) als zwei um \(\pi/2\) verschobene Schwingungen mit — der Phasenversatz ist die geometrische Folge der Achsenprojektion.
 
+Die orangenen und grünen Punkte sind in beiden Bildern derselbe Wert: algebraisch \(e^{i\varphi}=\cos\varphi+i\sin\varphi\), geometrisch der Bogen auf dem Einheitskreis, numerisch ein Punkt \(z\) in der komplexen Ebene. Genau dieser Repräsentationswechsel wird später im Spektrum wiederkehren: dieselbe Information erscheint als Formel, Bild und Datenpunkt.
+
 Kernidee in Python (vollständiges Skript: [`scripts/einheit-1.py`](scripts/einheit-1.py)):
 
 ```python
@@ -155,6 +157,15 @@ im_part = z.imag               # sin phi
 2. Berechne \(e^{i\pi}\).
 3. Zeige mit der Euler-Formel, dass \(\cos(-x)=\cos x\) und \(\sin(-x)=-\sin x\).
 4. Was bewirkt die Multiplikation einer komplexen Zahl mit \(e^{i\pi/2}\)? (Hinweis: \(e^{i\pi/2}=i\).)
+5. Zeige mit der Euler-Formel die Additionstheoreme für \(\cos(\alpha+\beta)\) und \(\sin(\alpha+\beta)\). (Hinweis: Vergleiche \(e^{i(\alpha+\beta)}\) mit \(e^{i\alpha}e^{i\beta}\).)
+
+## Selbstcheck zu Einheit 1
+
+- [ ] Ich kann \(a+ib\), \(re^{i\varphi}\) und den Punkt in der Ebene ineinander übersetzen.
+- [ ] Ich kann erklären, warum \(e^{i\varphi}\) auf dem Einheitskreis liegt.
+- [ ] Ich kann Sinus und Kosinus als Real- und Imaginärteil einer komplexen Schwingung lesen.
+- [ ] Ich kann eine Multiplikation mit \(e^{i\alpha}\) geometrisch als Rotation deuten.
+- [ ] Ich kann einfache Symmetrie- und Additionstheoreme aus Euler ableiten.
 
 Lösungen: [loesungen/einheit-1.md](loesungen/einheit-1.md)
 

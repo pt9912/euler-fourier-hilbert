@@ -1,5 +1,7 @@
 # Einheit 7: Analytisches Signal
 
+Wie bekommt man aus einem reellen Messsignal eine Hüllkurve, eine Phase und eine Momentanfrequenz? Das analytische Signal ergänzt die fehlende Quadratur-Komponente mit der Hilbert-Transformation. Dadurch wird aus einer Schwingung ein komplexer Zeiger, dessen Betrag und Winkel direkt lesbar sind.
+
 ## 7.1 Definition
 
 Aus einem reellen Signal \(x(t)\) bildet man das analytische Signal:
@@ -116,11 +118,17 @@ $$
 
 Die Hüllkurve \(|z(t)|\) approximiert dann \(A(t)\). Wenn \(A(t)\) das Vorzeichen wechseln kann, liefert die Hüllkurve eher \(|A(t)|\); bei Spektral­überlappung zwischen Modulation und Träger wird die Näherung schlechter, und in der Praxis (siehe Abbildung in §7.8) bleibt sie für \(f_m\ll f_c\) gut.
 
+Ein typisches Negativbeispiel ist
+$$
+x(t)=\bigl(1+0{,}8\cos(2\pi\cdot 60\,t)\bigr)\cos(2\pi\cdot 50\,t).
+$$
+Es sieht formal wie AM aus, aber die Modulation liegt nicht mehr deutlich unter dem Träger. Die verschobenen Spektralkopien überlappen bzw. reichen durch die Nullfrequenz; die Hilbert-Hüllkurve muss dann nicht mehr \(A(t)\) sein. Genau deshalb ist Bedrosian keine Formalität, sondern eine Prüfbedingung.
+
 ## 7.8 Visualisierung
 
-![AM-Signal mit aus dem analytischen Signal extrahierter Hüllkurve](bilder/einheit-7.png)
+![AM-Signal mit Hilbert-Hüllkurve und Spektrum des analytischen Signals](bilder/einheit-7.png)
 
-Das schnelle Trägersignal \(\cos(\omega_c t)\) ist mit einer langsamen Amplitude \(A(t)=1+0{,}5\cos(2\pi f_m t)\) moduliert. Die Hüllkurve \(|z(t)|\) folgt genau \(A(t)\) — sie ist mit `np.abs(hilbert(x))` in zwei Zeilen Code zu haben.
+Oben: Das schnelle Trägersignal \(\cos(\omega_c t)\) ist mit einer langsamen Amplitude \(A(t)=1+0{,}5\cos(2\pi f_m t)\) moduliert. Die Hüllkurve \(|z(t)|\) folgt genau \(A(t)\) — sie ist mit `np.abs(hilbert(x))` in zwei Zeilen Code zu haben. Unten: Das Spektrum des analytischen Signals liegt nur auf der positiven Frequenzseite und besteht aus einem schmalen Paket um \(f_c=50\,\text{Hz}\); die Modulation bei \(f_m=3\,\text{Hz}\) bleibt deutlich vom Träger getrennt. Das ist die Bedrosian-Bedingung im Bild.
 
 Kernidee in Python (vollständiges Skript: [`scripts/einheit-7.py`](scripts/einheit-7.py)):
 
@@ -142,6 +150,15 @@ recovered = np.abs(hilbert(signal))    # ≈ envelope
 2. Berechne die Hüllkurve und die momentane Phase von \(x(t)=2\cos(5t+\pi/4)\). (Hinweis: bilde zuerst das analytische Signal.)
 3. Was ist die Momentanfrequenz von \(z(t)=e^{i(7t)}\)?
 4. Warum entfernt das analytische Signal negative Frequenzen?
+5. Konstruiere ein AM-ähnliches Beispiel, in dem \(|z(t)|\neq A(t)\), obwohl \(x(t)=A(t)\cos(\omega_ct)\) formal so aussieht. Begründe über die Bedrosian-Bedingung.
+
+## Selbstcheck zu Einheit 7
+
+- [ ] Ich kann das analytische Signal aus \(x\) und \(\mathcal H\{x\}\) bilden.
+- [ ] Ich kann erklären, warum negative Frequenzen entfernt und positive verdoppelt werden.
+- [ ] Ich kann Betrag, Phase und Momentanfrequenz aus \(z(t)\) ablesen.
+- [ ] Ich kann die Bedrosian-Bedingung für ein AM-Signal qualitativ prüfen.
+- [ ] Ich kann ein Beispiel nennen, bei dem die Hilbert-Hüllkurve nicht die modellierte Amplitude ist.
 
 Lösungen: [loesungen/einheit-7.md](loesungen/einheit-7.md)
 

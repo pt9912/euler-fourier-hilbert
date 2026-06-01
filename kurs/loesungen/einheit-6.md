@@ -44,6 +44,18 @@ Aufgabenstellung: [Einheit 6 — Übungen](../einheit-6.md#übungen-zu-einheit-6
 
    Bei \(\tau=t\) wird der Nenner null. Das Integral ist daher nicht als gewöhnliches uneigentliches Integral zu verstehen, sondern als Cauchy-Hauptwert, bei dem die Umgebung der Singularität symmetrisch behandelt wird.
 
+5. Ist \(x(t)\) reell und gerade, dann ist \(X(\omega)\) nach der Symmetrietabelle aus [§4.8](../einheit-4.md#48-symmetrien-reeller-und-geraderungerader-signale) ebenfalls reell und gerade.
+
+   Die Hilbert-Transformation multipliziert im Frequenzbereich mit
+
+   $$
+   -i\operatorname{sgn}(\omega).
+   $$
+
+   \(\operatorname{sgn}(\omega)\) ist ungerade. Gerade mal ungerade ergibt ungerade; der Faktor \(-i\) macht das Spektrum rein imaginär. Das Spektrum von \(\mathcal H\{x\}\) ist also rein imaginär und ungerade. Wieder nach der Symmetrietabelle gehört dazu ein reelles ungerades Zeitsignal.
+
+   Was du daraus mitnehmen solltest: Die Hilbert-Transformation vertauscht bei reellen Signalen die Parität, weil ihr Frequenzgang selbst ungerade ist.
+
 ---
 
 [Zurück: Lösungen zu Einheit 5](einheit-5.md) · [Zurück zur Einheit](../einheit-6.md) · [Lösungs-Index](README.md) · [Weiter: Lösungen zu Einheit 7](einheit-7.md)

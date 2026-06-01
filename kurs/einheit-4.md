@@ -1,5 +1,7 @@
 # Einheit 4: Eigenschaften der Fourier-Transformation
 
+Welche Manipulationen am Signal lassen sich im Frequenzbereich einfacher beschreiben als im Zeitbereich? Diese Einheit sammelt die Regeln, die später ständig wiederkehren: Verschieben, Modulieren, Skalieren, Ableiten, Falten und Energie vergleichen.
+
 Die folgenden Eigenschaften sind oft wichtiger als einzelne Integrale.
 
 ## 4.1 Linearität
@@ -99,7 +101,15 @@ $$
 \frac{1}{2\pi}\int_{-\infty}^{\infty}|X(\omega)|^2\,d\omega.
 $$
 
-Die Energie eines Signals kann im Zeit- oder Frequenzbereich gemessen werden. Allgemeiner gilt das innere Produkt: \(\langle x,y\rangle_t = \tfrac{1}{2\pi}\langle X,Y\rangle_\omega\); die Fourier-Transformation ist also (bis auf den Faktor \(2\pi\)) eine Isometrie auf \(L^2\).
+Die Energie eines Signals kann im Zeit- oder Frequenzbereich gemessen werden.
+
+Allgemeiner gilt für innere Produkte:
+
+$$
+\langle x,y\rangle_t = \frac{1}{2\pi}\langle X,Y\rangle_\omega.
+$$
+
+Die Fourier-Transformation ist also eine Isometrie auf \(L^2\) bis auf den konventionsbedingten Faktor \(2\pi\): Abstände und Winkel im Signalraum bleiben im Frequenzraum erhalten, nur die Skala ändert sich.
 
 ## 4.8 Symmetrien reeller und gerader/ungerader Signale
 
@@ -144,6 +154,15 @@ triangle = np.convolve(rect, rect, mode="same") * dt   # = (rect * rect)(t)
 2. Warum verstärkt Ableiten hohe Frequenzen?
 3. Was ist der Vorteil des Faltungssatzes?
 4. Ein Filter hat Spektrum \(H(\omega)\). Was ist das Spektrum des gefilterten Signals \(y=x*h\)?
+5. Ein Signal wird zuerst gespiegelt und dann verschoben: \(y(t)=x(-(t-t_0))=x(t_0-t)\). Was passiert mit \(X(\omega)\)?
+
+## Selbstcheck zu Einheit 4
+
+- [ ] Ich kann erklären, wie eine Zeitverschiebung Betrag und Phase des Spektrums verändert.
+- [ ] Ich kann die Modulationsregel aus der Frequenzverschiebung herleiten.
+- [ ] Ich kann begründen, warum Faltung im Zeitbereich Multiplikation im Frequenzbereich wird.
+- [ ] Ich kann Parseval als Energieerhaltung interpretieren.
+- [ ] Ich kann die Symmetrietabelle auf ein konkretes Beispiel anwenden.
 
 Lösungen: [loesungen/einheit-4.md](loesungen/einheit-4.md)
 

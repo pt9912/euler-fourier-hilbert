@@ -62,6 +62,28 @@ Aufgabenstellung: [Einheit 7 — Übungen](../einheit-7.md#übungen-zu-einheit-7
 
    Damit ist \(Z(\omega)=2X(\omega)\) für \(\omega>0\), \(Z(\omega)=0\) für \(\omega<0\), und der Gleichanteil bleibt separat erhalten.
 
+5. Ein Beispiel ist
+
+   $$
+   x(t)=\bigl(1+0{,}8\cos(2\pi\cdot 60\,t)\bigr)\cos(2\pi\cdot 50\,t).
+   $$
+
+   Formal hat das die AM-Form \(A(t)\cos(2\pi f_ct)\) mit \(f_c=50\,\text{Hz}\), aber die Modulationsfrequenz \(60\,\text{Hz}\) liegt nicht deutlich unter dem Träger. Das Spektrum von \(A(t)\) hat Linien bei \(0\) und \(\pm60\,\text{Hz}\); nach der Modulation entstehen Linien bei
+
+   $$
+   50\,\text{Hz},\quad 50\pm60\,\text{Hz},
+   $$
+
+   also auch bei \(-10\,\text{Hz}\) bzw. \(10\,\text{Hz}\). Positive und negative Anteile sind nicht sauber getrennt. Die Bedrosian-Bedingung ist verletzt, daher muss
+
+   $$
+   \mathcal H\{A(t)\cos(2\pi f_ct)\}=A(t)\sin(2\pi f_ct)
+   $$
+
+   nicht gelten. Folglich ist auch \(|z(t)|\) im Allgemeinen nicht gleich \(A(t)\).
+
+   Was du daraus mitnehmen solltest: Eine AM-Schreibweise allein reicht nicht; die Spektraltrennung entscheidet, ob die Hilbert-Hüllkurve die modellierte Amplitude trifft.
+
 ---
 
 [Zurück: Lösungen zu Einheit 6](einheit-6.md) · [Zurück zur Einheit](../einheit-7.md) · [Lösungs-Index](README.md) · [Weiter: Lösungen zu Einheit 8](einheit-8.md)

@@ -27,6 +27,8 @@ $$
 3. \(|z(t)|=1\) — die Hüllkurve ist konstant, weil die reelle Amplitude des Kosinus konstant gleich \(1\) ist.
 4. \(\omega_{\text{inst}}=8\), also \(f_{\text{inst}}=8/(2\pi)=4/\pi\approx 1{,}27\,\text{Hz}\) — die Momentanfrequenz ist konstant, weil das Signal eine reine harmonische Schwingung ist (lineare Phase \(\phi(t)=8t\)).
 
+   Achtung: In dieser Aufgabe ist \(8\) die Kreisfrequenz in rad/s, kein Hertz-Wert. Ein 8-Hz-Kosinus müsste als \(\cos(2\pi\cdot 8\,t)\) geschrieben werden.
+
 ## Lösung 4
 
 Die Ausgabe eines linearen zeitinvarianten Systems ist die Faltung von Eingabe und Impulsantwort:
@@ -99,6 +101,16 @@ f_{\text{inst}}(t)=\frac{1}{2\pi}\frac{d\phi}{dt}=100\,\text{Hz}\quad\text{(kons
 $$
 
 Die Hüllkurve trägt also die langsame 5-Hz-Modulation, während die Momentanfrequenz die Trägerfrequenz unverändert anzeigt.
+
+## Lösung 7
+
+Hier gibt es keine eindeutig richtige Musterantwort, aber eine gute Antwort nennt eine Perspektive und belegt sie konkret. Drei mögliche Richtungen:
+
+- **Euler:** hilfreich, weil die Zerlegung in \(e^{i\omega t}\) sofort zeigt, wo die Linien bei \(95\), \(100\) und \(105\,\text{Hz}\) herkommen.
+- **Fourier:** hilfreich, weil Modulation als Frequenzverschiebung sichtbar macht, warum Seitenbänder entstehen und warum Bedrosian hier gilt.
+- **Hilbert:** hilfreich, weil erst das analytische Signal Hüllkurve und Momentanfrequenz direkt zugänglich macht.
+
+Stark ist eine Antwort, wenn sie nicht nur einen Namen nennt, sondern eine konkrete Formel, ein Spektrumbild oder die Python-Auswertung aus §8.3 als Beleg verwendet.
 
 ---
 

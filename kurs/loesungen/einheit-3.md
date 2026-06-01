@@ -42,6 +42,22 @@ Aufgabenstellung: [Einheit 3 — Übungen](../einheit-3.md#übungen-zu-einheit-3
 
 4. Ein sehr kurzer Impuls ist stark im Zeitbereich konzentriert. Um eine solche Konzentration aus Schwingungen zusammenzusetzen, braucht man viele Frequenzen mit passend abgestimmten Phasen. Zeitliche Konzentration und spektrale Ausdehnung stehen deshalb in einem Gegenspiel.
 
+5. Der Faktor \(\operatorname{rect}(t/T)\) begrenzt den Kosinus auf ein endliches Zeitfenster. Das Fenster allein hat ein Sinc-förmiges Spektrum \(R(\omega)\), also ein breites Hauptmaximum mit abklingenden Nebenkeulen.
+
+   Multiplikation mit
+
+   $$
+   \cos(\omega_0t)=\frac12\left(e^{i\omega_0t}+e^{-i\omega_0t}\right)
+   $$
+
+   erzeugt zwei verschobene Kopien dieses Fensterspektrums:
+
+   $$
+   X(\omega)=\frac12 R(\omega-\omega_0)+\frac12 R(\omega+\omega_0).
+   $$
+
+   Qualitativ skizziert man also zwei Sinc-Pakete, eines um \(+\omega_0\), eines um \(-\omega_0\). Was du daraus mitnehmen solltest: Zeitliche Begrenzung macht aus idealen Linien breite Spektralpakete.
+
 ---
 
 [Zurück: Lösungen zu Einheit 2](einheit-2.md) · [Zurück zur Einheit](../einheit-3.md) · [Lösungs-Index](README.md) · [Weiter: Lösungen zu Einheit 4](einheit-4.md)

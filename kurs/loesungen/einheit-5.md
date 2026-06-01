@@ -10,6 +10,8 @@ Aufgabenstellung: [Einheit 5 — Übungen](../einheit-5.md#übungen-zu-einheit-5
 
    Die FFT ist ein schneller Algorithmus, der dieselben \(X[k]\) berechnet, aber statt ungefähr \(N^2\) nur ungefähr \(N\log_2N\) Operationen benötigt.
 
+   Was du daraus mitnehmen solltest: Wenn sich ein Spektrum zwischen DFT und FFT unterscheidet, liegt der Fehler nicht an der Mathematik der Transformation, sondern an Implementierung, Normierung oder Interpretation der Frequenzachse.
+
 2. Die Nyquist-Frequenz ist
 
    $$
@@ -33,6 +35,22 @@ Aufgabenstellung: [Einheit 5 — Übungen](../einheit-5.md#übungen-zu-einheit-5
    $$
 
    Bis auf diese Normierung entspricht \(X[0]\) dem Gleichanteil.
+
+5. Die DFT interpretiert Frequenzen im signierten Nyquist-Band
+
+   $$
+   -\frac{f_s}{2}\le f < \frac{f_s}{2},
+   $$
+
+   hier also \([-5,5)\,\text{Hz}\). Die Frequenz \(7\,\text{Hz}\) wird um \(f_s=10\,\text{Hz}\) zurückgefaltet:
+
+   $$
+   7\,\text{Hz}-10\,\text{Hz}=-3\,\text{Hz}.
+   $$
+
+   Für einen Kosinus ist \(-3\,\text{Hz}\) im Betrag nicht von \(+3\,\text{Hz}\) zu unterscheiden, weil \(\cos(-2\pi 3t)=\cos(2\pi 3t)\). Die scheinbare Frequenz ist also \(3\,\text{Hz}\); im signierten Spektrum erscheint die Linie als Paar bei \(\pm3\,\text{Hz}\).
+
+   Was du daraus mitnehmen solltest: Aliasing ist keine Unschärfe der DFT, sondern eine eindeutige Faltung modulo Abtastrate.
 
 ---
 
