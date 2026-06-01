@@ -62,7 +62,9 @@ signal = np.cos(phi)
 
 analytic = hilbert(signal)
 inst_phase = np.unwrap(np.angle(analytic))
+# np.diff lebt auf dem versetzten Gitter (Mittelpunkte zwischen den t-Werten)
 inst_freq = np.diff(inst_phase) / (2 * np.pi) * fs   # Momentanfrequenz in Hz
+t_freq = (t[:-1] + t[1:]) / 2
 ```
 
 ## 8.4 Abschlussaufgaben

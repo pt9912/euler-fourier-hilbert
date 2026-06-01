@@ -10,9 +10,8 @@ omega = np.linspace(-15, 15, 2000)
 
 a_rect = 1.0
 rect = np.where(np.abs(t) <= a_rect, 1.0, 0.0)
-rect_ft = np.where(np.abs(omega) > 1e-9,
-                   2 * np.sin(omega * a_rect) / np.where(omega == 0, 1, omega),
-                   2 * a_rect)
+# 2 sin(omega a)/omega = 2a * sinc(omega a / pi); np.sinc(x) = sin(pi x)/(pi x)
+rect_ft = 2 * a_rect * np.sinc(omega * a_rect / np.pi)
 
 a_gauss = 1.0
 gauss = np.exp(-a_gauss * t**2)

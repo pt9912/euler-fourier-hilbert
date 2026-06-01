@@ -82,7 +82,7 @@ Frequenzen oberhalb dieser Grenze erscheinen als falsche niedrigere Frequenzen. 
 
 ![Aliasing: zwei verschiedene Sinusse mit identischen Samples, daneben das DFT-Spektrum eines Sinus](bilder/einheit-5.png)
 
-Links: Ein 1-Hz-Sinus und ein 11-Hz-Sinus erzeugen bei \(f_s=10\,\text{Hz}\) **exakt dieselben Abtastwerte**. Aus den schwarzen Punkten allein lassen sich die beiden Frequenzen nicht unterscheiden — das ist Aliasing. Rechts: Die DFT eines 30-Hz-Sinus bei \(f_s=100\,\text{Hz}\) zeigt zwei symmetrische Linien bei \(\pm 30\,\text{Hz}\) (konjugierte Symmetrie reeller Signale).
+Links: Eine 1-Hz-Schwingung und eine 11-Hz-Schwingung erzeugen bei \(f_s=10\,\text{Hz}\) **exakt dieselben Abtastwerte** — die roten Kreise umschließen die schwarzen Punkte. Aus den Samples allein lassen sich die beiden Frequenzen nicht unterscheiden, das ist Aliasing. Rechts: Die DFT eines 30-Hz-Kosinus bei \(f_s=100\,\text{Hz}\) zeigt zwei symmetrische Linien bei \(\pm 30\,\text{Hz}\) (konjugierte Symmetrie reeller Signale).
 
 Kernidee in Python (vollständiges Skript: [`scripts/einheit-5.py`](scripts/einheit-5.py)):
 

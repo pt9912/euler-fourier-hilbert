@@ -21,7 +21,7 @@ fig, ax = plt.subplots(figsize=(10, 4.5))
 ax.plot(t, ground_truth, color="black", lw=1.2, label="Rechteckwelle")
 for num_terms, color in zip([1, 3, 7, 25], ["C0", "C1", "C2", "C3"]):
     ax.plot(t, partial_sum(num_terms), color=color, lw=1.4,
-            label=f"Partialsumme N={2*num_terms-1}")
+            label=f"Partialsumme bis n={2*num_terms-1}")
 ax.axhline(0, color="gray", lw=0.5)
 ax.set_xlabel("t")
 ax.set_title("Fourier-Reihe der Rechteckwelle: Annäherung wächst, Gibbs-Überschwinger bleibt")

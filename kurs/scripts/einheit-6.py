@@ -23,12 +23,15 @@ axes[0].set_title("Hilbert-Transformation verschiebt jede Frequenz um 90°")
 axes[0].legend(loc="upper right", fontsize=9)
 
 t_zoom_mask = t <= 0.4
-axes[1].plot(t[t_zoom_mask], cos_signal[t_zoom_mask], color="C0")
-axes[1].plot(t[t_zoom_mask], hilbert_cos[t_zoom_mask], color="C3")
+axes[1].plot(t[t_zoom_mask], cos_signal[t_zoom_mask], color="C0",
+             label=r"$\cos(\omega_0 t)$")
+axes[1].plot(t[t_zoom_mask], hilbert_cos[t_zoom_mask], color="C3",
+             label=r"$\sin(\omega_0 t)$ (Quadratur)")
 axes[1].axhline(0, color="gray", lw=0.5)
 axes[1].set_xlabel("t (s)")
 axes[1].set_ylabel("Amplitude")
-axes[1].set_title("Zoom: Maximum von cos fällt auf Nulldurchgang von sin (Quadratur)")
+axes[1].set_title("Zoom: Maximum von cos fällt auf Nulldurchgang von sin")
+axes[1].legend(loc="upper right", fontsize=9)
 
 fig.tight_layout()
 fig.savefig("kurs/bilder/einheit-6.png", dpi=120)

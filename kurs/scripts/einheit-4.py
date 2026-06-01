@@ -13,9 +13,7 @@ a = 0.5
 rect = np.where(np.abs(t) <= a, 1.0, 0.0)
 convolved = np.convolve(rect, rect, mode="same") * dt
 
-rect_ft = np.where(np.abs(omega) > 1e-9,
-                   2 * np.sin(omega * a) / np.where(omega == 0, 1, omega),
-                   2 * a)
+rect_ft = 2 * a * np.sinc(omega * a / np.pi)   # 2 sin(omega a)/omega, sauber bei 0
 product_ft = rect_ft ** 2
 
 fig, axes = plt.subplots(2, 2, figsize=(11, 6.5))

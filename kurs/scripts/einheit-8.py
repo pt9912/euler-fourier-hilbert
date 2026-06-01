@@ -16,8 +16,9 @@ signal = np.cos(phi)
 
 analytic = hilbert(signal)
 inst_phase = np.unwrap(np.angle(analytic))
+# np.diff lebt auf dem versetzten Gitter; Mittelpunkte als x-Achse verwenden
 inst_freq = np.diff(inst_phase) / (2 * np.pi) * fs
-t_freq = t[:-1]
+t_freq = (t[:-1] + t[1:]) / 2
 
 fig, axes = plt.subplots(2, 1, figsize=(11, 6), sharex=True)
 

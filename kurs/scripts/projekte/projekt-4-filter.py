@@ -58,6 +58,8 @@ axes[0, 1].grid(alpha=0.3)
 # Filter
 for row, (name, H) in enumerate(filters.items(), start=1):
     Y = X * H
+    # H ist gerade in f (H(-f)=H(f)) → Y bleibt hermitesch → y ist reell.
+    # Ohne diese Symmetrie (z.B. einseitiger Filter) wäre y komplex.
     y = np.real(np.fft.ifft(Y))
 
     axes[row, 0].plot(t, y, color="C0", lw=0.9)

@@ -39,7 +39,8 @@ for row, (name, x) in enumerate(signals.items()):
     magnitude = np.abs(X)
     phase = np.angle(X)
 
-    threshold = 0.02 * magnitude.max()
+    # Schwellwert klein wählen, damit auch die Nebenzipfel des Sinc sichtbar bleiben
+    threshold = 0.005 * magnitude.max()
     phase_display = np.where(magnitude > threshold, phase, np.nan)
 
     axes[row, 0].plot(t, x, color="C0", lw=1.0)

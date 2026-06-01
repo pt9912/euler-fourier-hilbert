@@ -133,7 +133,7 @@ t = np.linspace(-6, 6, 2000)
 omega = np.linspace(-15, 15, 2000)
 
 rect = np.where(np.abs(t) <= 1.0, 1.0, 0.0)
-rect_ft = 2 * np.sin(omega) / np.where(omega == 0, 1, omega)
+rect_ft = 2 * np.sinc(omega / np.pi)   # = 2 sin(omega)/omega, sauber bei omega=0
 
 gauss = np.exp(-t**2)
 gauss_ft = np.sqrt(np.pi) * np.exp(-omega**2 / 4)
