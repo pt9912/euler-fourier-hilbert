@@ -78,8 +78,7 @@ Sei
 ```math
 x(t)=
 \begin{cases}
-1, & |t|\le a,\\
-0, & |t|>a.
+1, & |t|\le a,\\ 0, & |t|>a.
 \end{cases}
 ```
 

@@ -46,8 +46,7 @@ Diese Formel beschreibt zunächst die unsortierte DFT-Bin-Position. Für die phy
 ```math
 f_k =
 \begin{cases}
-\frac{k}{N}f_s, & 0\le k < \left\lceil\frac{N}{2}\right\rceil,\\
-\frac{k-N}{N}f_s, & \left\lceil\frac{N}{2}\right\rceil\le k<N.
+\frac{k}{N}f_s, & 0\le k < \left\lceil\frac{N}{2}\right\rceil,\\ \frac{k-N}{N}f_s, & \left\lceil\frac{N}{2}\right\rceil\le k<N.
 \end{cases}
 ```
 

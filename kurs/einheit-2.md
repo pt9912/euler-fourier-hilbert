@@ -61,8 +61,7 @@ Die Funktionen $e_n(t)=e^{in\omega_0 t}$ sind bezüglich dieses Skalarprodukts o
 =\frac{1}{T}\int_{0}^{T} e^{i(n-m)\omega_0 t}\,dt
 =
 \begin{cases}
-1, & n=m,\\
-0, & n\ne m.
+1, & n=m,\\ 0, & n\ne m.
 \end{cases}
 ```
 
@@ -121,8 +120,7 @@ Sei $f$ die $2\pi$-periodische Rechteckwelle mit $\omega_0=1$,
 ```math
 f(t)=
 \begin{cases}
-+1, & 0<t<\pi,\\
--1, & -\pi<t<0.
++1, & 0<t<\pi,\\ -1, & -\pi<t<0.
 \end{cases}
 ```
 
@@ -148,8 +146,7 @@ c_n
 = \frac{1}{2\pi}\cdot\frac{2\bigl(1-(-1)^n\bigr)}{in}
 =
 \begin{cases}
-\dfrac{2}{i\pi n}=-\dfrac{2i}{\pi n}, & n \text{ ungerade},\\
-0, & n \text{ gerade}.
+\dfrac{2}{i\pi n}=-\dfrac{2i}{\pi n}, & n \text{ ungerade},\\ 0, & n \text{ gerade}.
 \end{cases}
 ```
 

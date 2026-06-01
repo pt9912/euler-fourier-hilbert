@@ -26,8 +26,7 @@ Aufgeschlüsselt:
 ```math
 Z(\omega)=
 \begin{cases}
-2X(\omega), & \omega>0,\\
-0, & \omega<0,
+2X(\omega), & \omega>0,\\ 0, & \omega<0,
 \end{cases}
 ```
 
