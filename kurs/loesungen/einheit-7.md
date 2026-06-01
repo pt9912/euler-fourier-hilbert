@@ -2,74 +2,86 @@
 
 Aufgabenstellung: [Einheit 7 — Übungen](../einheit-7.md#übungen-zu-einheit-7)
 
-1. Für $\omega_0>0$ gilt:
+## Lösung 1
 
-   $$\mathcal{H}\{\cos(\omega_0t)\}=\sin(\omega_0t).$$
+Für $\omega_0>0$ gilt:
 
-   Also:
+$$\mathcal{H}\{\cos(\omega_0t)\}=\sin(\omega_0t).$$
 
-   $$\mathcal{H}\{3\cos(10t)\}=3\sin(10t).$$
+Also:
 
-   Das analytische Signal ist
+$$\mathcal{H}\{3\cos(10t)\}=3\sin(10t).$$
 
-   $$z(t)=3\cos(10t)+i3\sin(10t)=3e^{i10t}.$$
+Das analytische Signal ist
 
-2. Für $\omega_0=5>0$ liefert die Hilbert-Transformation $\mathcal{H}\lbrace 2\cos(5t+\pi/4)\rbrace =2\sin(5t+\pi/4)$. Damit ist das analytische Signal
+$$z(t)=3\cos(10t)+i3\sin(10t)=3e^{i10t}.$$
 
-   $$z(t)=2\cos(5t+\pi/4)+i\cdot 2\sin(5t+\pi/4)=2e^{i(5t+\pi/4)}.$$
+## Lösung 2
 
-   Hüllkurve und Phase liest man am komplexen Zeiger direkt ab:
+Für $\omega_0=5>0$ liefert die Hilbert-Transformation $\mathcal{H}\lbrace 2\cos(5t+\pi/4)\rbrace =2\sin(5t+\pi/4)$. Damit ist das analytische Signal
 
-   $$|z(t)|=2,\qquad \phi(t)=5t+\pi/4.$$
+$$z(t)=2\cos(5t+\pi/4)+i\cdot 2\sin(5t+\pi/4)=2e^{i(5t+\pi/4)}.$$
 
-   Die konstante Hüllkurve $2$ entspricht der reellen Amplitude des Kosinus, die lineare Phase mit Steigung $5$ der Trägerkreisfrequenz.
+Hüllkurve und Phase liest man am komplexen Zeiger direkt ab:
 
-3. Die Phase ist
+$$|z(t)|=2,\qquad \phi(t)=5t+\pi/4.$$
 
-   $$\phi(t)=7t.$$
+Die konstante Hüllkurve $2$ entspricht der reellen Amplitude des Kosinus, die lineare Phase mit Steigung $5$ der Trägerkreisfrequenz.
 
-   Daher:
+## Lösung 3
 
-   $$\omega_{\text{inst}}(t)=\frac{d}{dt}\phi(t)=7.$$
+Die Phase ist
 
-   In Hertz:
+$$\phi(t)=7t.$$
 
-   $$f_{\text{inst}}(t)=\frac{7}{2\pi}.$$
+Daher:
 
-4. Im Frequenzbereich gilt für $z=x+i\mathcal{H}x$:
+$$\omega_{\text{inst}}(t)=\frac{d}{dt}\phi(t)=7.$$
 
-   $$Z(\omega)=X(\omega)+i\left[-i\,\operatorname{sgn}(\omega)X(\omega)\right] = \left(1+\operatorname{sgn}(\omega)\right)X(\omega).$$
+In Hertz:
 
-   Damit ist $Z(\omega)=2X(\omega)$ für $\omega>0$, $Z(\omega)=0$ für $\omega<0$, und der Gleichanteil bleibt separat erhalten. In der DFT-Version gilt zusätzlich: Bei geradem $N$ bleibt auch der Nyquist-Bin $k=N/2$ unverändert, weil er nicht eindeutig zu einer positiven oder negativen Frequenzhälfte gehört.
+$$f_{\text{inst}}(t)=\frac{7}{2\pi}.$$
 
-5. Ein Beispiel ist
+## Lösung 4
 
-   $$x(t)=\bigl(1+0{,}8\cos(2\pi\cdot 60\,t)\bigr)\cos(2\pi\cdot 50\,t).$$
+Im Frequenzbereich gilt für $z=x+i\mathcal{H}x$:
 
-   Formal hat das die AM-Form $A(t)\cos(2\pi f_ct)$ mit $f_c=50\thinspace \text{Hz}$, aber die Modulationsfrequenz $60\thinspace \text{Hz}$ liegt nicht deutlich unter dem Träger. Das Spektrum von $A(t)$ hat Linien bei $0$ und $\pm60\thinspace \text{Hz}$; nach der Modulation entstehen Linien bei
+$$Z(\omega)=X(\omega)+i\left[-i\,\operatorname{sgn}(\omega)X(\omega)\right] = \left(1+\operatorname{sgn}(\omega)\right)X(\omega).$$
 
-   $$50\,\text{Hz},\quad 50\pm60\,\text{Hz},$$
+Damit ist $Z(\omega)=2X(\omega)$ für $\omega>0$, $Z(\omega)=0$ für $\omega<0$, und der Gleichanteil bleibt separat erhalten. In der DFT-Version gilt zusätzlich: Bei geradem $N$ bleibt auch der Nyquist-Bin $k=N/2$ unverändert, weil er nicht eindeutig zu einer positiven oder negativen Frequenzhälfte gehört.
 
-   also auch bei $-10\thinspace \text{Hz}$ bzw. $10\thinspace \text{Hz}$. Positive und negative Anteile sind nicht sauber getrennt. Die Bedrosian-Bedingung ist verletzt, daher muss
+## Lösung 5
 
-   $$\mathcal H\{A(t)\cos(2\pi f_ct)\}=A(t)\sin(2\pi f_ct)$$
+Ein Beispiel ist
 
-   nicht gelten. Folglich ist auch $|z(t)|$ im Allgemeinen nicht gleich $A(t)$.
+$$x(t)=\bigl(1+0{,}8\cos(2\pi\cdot 60\,t)\bigr)\cos(2\pi\cdot 50\,t).$$
 
-   Was du daraus mitnehmen solltest: Eine AM-Schreibweise allein reicht nicht; die Spektraltrennung entscheidet, ob die Hilbert-Hüllkurve die modellierte Amplitude trifft.
+Formal hat das die AM-Form $A(t)\cos(2\pi f_ct)$ mit $f_c=50\thinspace \text{Hz}$, aber die Modulationsfrequenz $60\thinspace \text{Hz}$ liegt nicht deutlich unter dem Träger. Das Spektrum von $A(t)$ hat Linien bei $0$ und $\pm60\thinspace \text{Hz}$; nach der Modulation entstehen Linien bei
 
-6. Bei $N=8$ liegen die DFT-Bins bei $k=0,\ldots,7$. Der Gleichanteil ist $k=0$, der Nyquist-Bin ist $k=N/2=4$.
+$$50\,\text{Hz},\quad 50\pm60\,\text{Hz},$$
 
-   Für das analytische Signal gilt:
+also auch bei $-10\thinspace \text{Hz}$ bzw. $10\thinspace \text{Hz}$. Positive und negative Anteile sind nicht sauber getrennt. Die Bedrosian-Bedingung ist verletzt, daher muss
 
-   - $k=0$ bleibt erhalten.
-   - $k=1,2,3$ werden verdoppelt.
-   - $k=4$ bleibt als Nyquist-Sonderbin erhalten.
-   - $k=5,6,7$ werden auf null gesetzt.
+$$\mathcal H\{A(t)\cos(2\pi f_ct)\}=A(t)\sin(2\pi f_ct)$$
 
-   Als Multiplikatorfolge kann man das schreiben als
+nicht gelten. Folglich ist auch $|z(t)|$ im Allgemeinen nicht gleich $A(t)$.
 
-   $$[1,2,2,2,1,0,0,0].$$
+Was du daraus mitnehmen solltest: Eine AM-Schreibweise allein reicht nicht; die Spektraltrennung entscheidet, ob die Hilbert-Hüllkurve die modellierte Amplitude trifft.
+
+## Lösung 6
+
+Bei $N=8$ liegen die DFT-Bins bei $k=0,\ldots,7$. Der Gleichanteil ist $k=0$, der Nyquist-Bin ist $k=N/2=4$.
+
+Für das analytische Signal gilt:
+
+- $k=0$ bleibt erhalten.
+- $k=1,2,3$ werden verdoppelt.
+- $k=4$ bleibt als Nyquist-Sonderbin erhalten.
+- $k=5,6,7$ werden auf null gesetzt.
+
+Als Multiplikatorfolge kann man das schreiben als
+
+$$[1,2,2,2,1,0,0,0].$$
 
 ---
 

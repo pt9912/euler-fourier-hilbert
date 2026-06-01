@@ -2,73 +2,85 @@
 
 Aufgabenstellung: [Einheit 2 — Übungen](../einheit-2.md#übungen-zu-einheit-2)
 
-1. Aus
+## Lösung 1
 
-   $$\cos \theta=\frac{e^{i\theta}+e^{-i\theta}}{2}$$
+Aus
 
-   folgt mit $\theta=3\omega_0t$:
+$$\cos \theta=\frac{e^{i\theta}+e^{-i\theta}}{2}$$
 
-   $$2\cos(3\omega_0t) =e^{i3\omega_0t}+e^{-i3\omega_0t}.$$
+folgt mit $\theta=3\omega_0t$:
 
-   Also sind die einzigen von null verschiedenen Koeffizienten
+$$2\cos(3\omega_0t) =e^{i3\omega_0t}+e^{-i3\omega_0t}.$$
 
-   $$c_3=1,\qquad c_{-3}=1.$$
+Also sind die einzigen von null verschiedenen Koeffizienten
 
-   Die reelle Kosinusamplitude $2$ verteilt sich auf die beiden zweiseitigen Koeffizienten.
+$$c_3=1,\qquad c_{-3}=1.$$
 
-2. Aus
+Die reelle Kosinusamplitude $2$ verteilt sich auf die beiden zweiseitigen Koeffizienten.
 
-   $$\sin \theta=\frac{e^{i\theta}-e^{-i\theta}}{2i}$$
+## Lösung 2
 
-   folgt:
+Aus
 
-   $$4\sin(2\omega_0t) =\frac{4}{2i}\left(e^{i2\omega_0t}-e^{-i2\omega_0t}\right) =-2i\,e^{i2\omega_0t}+2i\,e^{-i2\omega_0t}.$$
+$$\sin \theta=\frac{e^{i\theta}-e^{-i\theta}}{2i}$$
 
-   Daher:
+folgt:
 
-   $$c_2=-2i,\qquad c_{-2}=2i.$$
+$$4\sin(2\omega_0t) =\frac{4}{2i}\left(e^{i2\omega_0t}-e^{-i2\omega_0t}\right) =-2i\,e^{i2\omega_0t}+2i\,e^{-i2\omega_0t}.$$
 
-3. Für reelle Signale muss gelten:
+Daher:
 
-   $$c_{-n}=\overline{c_n}.$$
+$$c_2=-2i,\qquad c_{-2}=2i.$$
 
-   Dann ist
+## Lösung 3
 
-   $$c_ne^{in\omega_0t}+c_{-n}e^{-in\omega_0t} = c_ne^{in\omega_0t}+\overline{c_ne^{in\omega_0t}} =2\operatorname{Re}\left(c_ne^{in\omega_0t}\right),$$
+Für reelle Signale muss gelten:
 
-   also reell. Positive und negative Frequenzen treten deshalb paarweise auf.
+$$c_{-n}=\overline{c_n}.$$
 
-4. Die Grundfrequenz ist $\omega_0=2\pi/T$. Oberwellen sind ganzzahlige Vielfache davon:
+Dann ist
 
-   $$2\omega_0,\;3\omega_0,\;4\omega_0,\ldots$$
+$$c_ne^{in\omega_0t}+c_{-n}e^{-in\omega_0t} = c_ne^{in\omega_0t}+\overline{c_ne^{in\omega_0t}} =2\operatorname{Re}\left(c_ne^{in\omega_0t}\right),$$
 
-   Der Index $n$ zählt also, wie viele Grundschwingungen in eine Periode passen.
+also reell. Positive und negative Frequenzen treten deshalb paarweise auf.
 
-5. Eine einfache Wahl ist jede ungerade $2\pi$-periodische Funktion, zum Beispiel
+## Lösung 4
 
-   $$f(t)=\sin t+\frac12\sin(3t).$$
+Die Grundfrequenz ist $\omega_0=2\pi/T$. Oberwellen sind ganzzahlige Vielfache davon:
 
-   In reeller Schreibweise enthält ihre Fourier-Reihe nur Sinus-Terme. Der Grund ist die Symmetrie:
+$$2\omega_0,\;3\omega_0,\;4\omega_0,\ldots$$
 
-   $$f(-t)=-f(t).$$
+Der Index $n$ zählt also, wie viele Grundschwingungen in eine Periode passen.
 
-   Kosinus-Terme sind gerade, sie können zu einer ungeraden Funktion keinen Beitrag leisten. Allgemeiner gilt: Ungerade reelle Funktionen haben nur Sinus-Terme; gerade reelle Funktionen haben nur Kosinus-Terme. In komplexer Schreibweise zeigt sich dieselbe Aussage in rein imaginären, ungeraden Koeffizienten.
+## Lösung 5
 
-   Was du daraus mitnehmen solltest: Fehlende Terme sind oft keine Rechenzufälle, sondern Symmetrieinformationen.
+Eine einfache Wahl ist jede ungerade $2\pi$-periodische Funktion, zum Beispiel
 
-6. Das kann für ein reellwertiges Signal nicht stimmen. Für reelle Signale gilt immer
+$$f(t)=\sin t+\frac12\sin(3t).$$
 
-   $$c_{-n}=\overline{c_n}.$$
+In reeller Schreibweise enthält ihre Fourier-Reihe nur Sinus-Terme. Der Grund ist die Symmetrie:
 
-   Wenn $c_3=2$ ist, muss also mindestens
+$$f(-t)=-f(t).$$
 
-   $$c_{-3}=2$$
+Kosinus-Terme sind gerade, sie können zu einer ungeraden Funktion keinen Beitrag leisten. Allgemeiner gilt: Ungerade reelle Funktionen haben nur Sinus-Terme; gerade reelle Funktionen haben nur Kosinus-Terme. In komplexer Schreibweise zeigt sich dieselbe Aussage in rein imaginären, ungeraden Koeffizienten.
 
-   hinzukommen. Dann ergibt das Paar
+Was du daraus mitnehmen solltest: Fehlende Terme sind oft keine Rechenzufälle, sondern Symmetrieinformationen.
 
-   $$2e^{i3\omega_0t}+2e^{-i3\omega_0t}=4\cos(3\omega_0t),$$
+## Lösung 6
 
-   also ein reelles Signal. Nur $2e^{i3\omega_0t}$ allein wäre komplexwertig.
+Das kann für ein reellwertiges Signal nicht stimmen. Für reelle Signale gilt immer
+
+$$c_{-n}=\overline{c_n}.$$
+
+Wenn $c_3=2$ ist, muss also mindestens
+
+$$c_{-3}=2$$
+
+hinzukommen. Dann ergibt das Paar
+
+$$2e^{i3\omega_0t}+2e^{-i3\omega_0t}=4\cos(3\omega_0t),$$
+
+also ein reelles Signal. Nur $2e^{i3\omega_0t}$ allein wäre komplexwertig.
 
 ---
 
