@@ -7,7 +7,7 @@
 //      werden mit MathJax 3.2.0 + AllPackages exakt wie auf GitHub
 //      gerendert. Zusaetzlich: GitHub-spezifische Quirks
 //      (commonmark-escape, github-fence-backslash, github-html-roundtrip-lt,
-//      github-denied-macro) als Warnung.
+//      github-table-cell-leading-math, github-denied-macro) als Warnung.
 //
 //   2. Interne Markdown-Links [text](pfad.md#anker): Datei vorhanden?
 //      Wenn Anker angegeben: gibt es eine passende Heading-Anker-ID?
@@ -245,6 +245,64 @@ function checkMath(filePath, text, report) {
     }
     for (const q of detectQuirks(block)) {
       report.warn(filePath, block.line + q.relLine, `math/${block.type}/${block.source}`, q.kind, q.message);
+    }
+  }
+  for (const q of findTableMathQuirks(text)) {
+    report.warn(filePath, q.line, 'math/table-cell', q.kind, q.message);
+  }
+}
+
+// Quirk: GitHubs MathJax-Preprocessor erkennt Inline-`$...$` in Tabellenzellen
+// nicht, wenn das oeffnende `$` direkt nach einem einzelnen Nicht-Whitespace-
+// Zeichen (z. B. einem Anfuehrungszeichen) am Zellanfang steht. `$...$` direkt
+// am Zellanfang (nur `|` davor) rendert dagegen fine — das ist der uebliche
+// Tabellen-Glossar-Stil.
+// Beispiele:
+//   | "$e^{i\varphi}$ ist eine Exponentialfunktion." | ... |   BROKEN
+//   | "Weil $e^{i\varphi}$ eine Exponentialfunktion..."| ... |   OK
+//   | $A(t)$                                          | ... |   OK (Glossar)
+function* findTableMathQuirks(content) {
+  const lines = content.split('\n');
+  let inFence = false;
+  // Trennzeile einer Tabelle (`| --- | --- |`) erkennen wir per Pattern
+  // und ueberspringen sie; Zellen mit `---` braucht niemand zu pruefen.
+  const sepLine = /^\s*\|?\s*:?-{3,}:?\s*(\|\s*:?-{3,}:?\s*)+\|?\s*$/;
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const lineNum = i + 1;
+    const trimmed = line.trimStart();
+    if (/^```/.test(trimmed)) { inFence = !inFence; continue; }
+    if (inFence) continue;
+    if (!trimmed.startsWith('|')) continue;
+    if (sepLine.test(line)) continue;
+
+    // Zellen splitten. `\|` (escaped pipe) zaehlt nicht als Trenner.
+    const parts = line.split(/(?<!\\)\|/);
+    // parts[0]/parts[parts.length-1] sind links/rechts vom aeussersten `|`
+    // und enthalten typischerweise nur Whitespace.
+    for (let c = 1; c < parts.length - 1; c++) {
+      const cell = parts[c];
+      const cellTrimmed = cell.replace(/^\s+/, '');
+      if (cellTrimmed.length < 2) continue;
+
+      // Nur ein einziges Pattern flaggen: ein nicht-Whitespace-Zeichen
+      // direkt vor einem `$`, gefolgt von Inline-Math (nicht `$$`).
+      if (cellTrimmed[1] !== '$') continue;
+      if (cellTrimmed[2] === '$' || cellTrimmed[2] === undefined) continue;
+      if (/\s/.test(cellTrimmed[0])) continue;
+
+      // Korrespondierendes schliessendes `$` finden (mindestens ein
+      // Zeichen Inhalt dazwischen, kein unmittelbarer `$$`-Anschluss).
+      const after = cellTrimmed.substring(2);
+      if (!/[^\s$][^$]*\$/.test(after)) continue;
+
+      const lead = cellTrimmed[0];
+      const snippet = cellTrimmed.length > 60 ? cellTrimmed.substring(0, 60) + '…' : cellTrimmed;
+      yield {
+        line: lineNum,
+        kind: 'github-table-cell-leading-math',
+        message: `Inline-Math \`$...$\` direkt nach \`${lead}\` am Zellanfang rendert auf GitHub nicht; Whitespace oder weiteres Zeichen zwischen \`${lead}\` und \`$\` setzen — Zelle: \`${snippet}\``,
+      };
     }
   }
 }

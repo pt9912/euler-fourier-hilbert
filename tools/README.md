@@ -95,6 +95,14 @@ verändert ihn aber vor dem Rendern. Exit-Code bleibt 0. Bekannte Quirks:
   verschluckt den Rest der Formel inkl. `\end{cases}`. Workaround:
   Leerzeichen einfügen (`k < N`) oder `\lt` benutzen.
 
+- `github-table-cell-leading-math` — Inline-`$...$` direkt nach einem
+  einzelnen Nicht-Whitespace-Zeichen (typisch `"` oder `'`) am Anfang
+  einer Tabellenzelle. GitHubs MathJax-Preprocessor erkennt das nicht
+  als Math und zeigt `$...$` literal. `$...$` direkt am Zellanfang
+  (nur `|` davor) ist dagegen unproblematisch — das ist der übliche
+  Glossar-Stil. Workaround: Text oder Whitespace zwischen das Zeichen
+  und das öffnende `$` setzen (`"Wegen $x$..."` statt `"$x$..."`).
+
 - `anchor-not-indexed` — Markdown-Link zeigt auf eine `.md` außerhalb
   des aktuellen Scopes; der Validator kann den Anker nicht prüfen.
   Beim nächsten Lauf mit größerem Scope verschwindet die Warnung.
