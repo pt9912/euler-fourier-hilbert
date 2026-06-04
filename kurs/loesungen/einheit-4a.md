@@ -56,6 +56,22 @@ für ein $t_0\ne 0$. Dann gilt $Y_2(\omega)=e^{-i\omega t_0}X(\omega)$, also $|Y
 
 Eine zweite Konstruktion ist die Zeitumkehr $y_2(t)=x(-t)$: Es gilt $Y_2(\omega)=X(-\omega)$, also wieder $|Y_2(\omega)|=|Y_1(\omega)|$ — allerdings spiegelt sich die Phase, und für reelle Signale ändert das nichts am Betrag, weil $|X(-\omega)|=|X(\omega)|$ aus der hermiteschen Symmetrie folgt. Was du daraus mitnehmen solltest: Betragsspektren sind nicht eindeutig zuordenbar — die Phase trägt die Lage- und Richtungsinformation.
 
+## Lösung 6
+
+Die behauptete Aussage $x(t)\cos(\omega_c t)\leftrightarrow X(\omega-\omega_c)$ hat zwei Fehler. Erstens fehlt der Vorfaktor $\tfrac12$, zweitens fehlt die zweite, nach $-\omega_c$ verschobene Kopie. Beide Fehler stammen aus derselben Quelle: $\cos$ wird stillschweigend mit $e^{i\omega_c t}$ verwechselt.
+
+Sauber gerechnet liefert die Euler-Zerlegung $\cos(\omega_c t)=\tfrac12(e^{i\omega_c t}+e^{-i\omega_c t})$ zusammen mit der Frequenzverschiebung aus §4a.3:
+
+$$x(t)\cos(\omega_c t)\leftrightarrow \tfrac12\bigl[X(\omega-\omega_c)+X(\omega+\omega_c)\bigr].$$
+
+**Spezialfall-Test.** Für $x(t)\equiv 1$ ist $X(\omega)=2\pi\delta(\omega)$, und das Signal wird zu $\cos(\omega_c t)$, dessen Spektrum bekannt ist:
+
+$$\mathcal F\lbrace\cos(\omega_c t)\rbrace=\pi\bigl[\delta(\omega-\omega_c)+\delta(\omega+\omega_c)\rbrack.$$
+
+Setzt man $X(\omega)=2\pi\delta(\omega)$ in die korrekte Regel ein, ergibt sich genau dasselbe — beide Linien tauchen mit Höhe $\pi$ auf. Die falsche Version $X(\omega-\omega_c)$ würde nur die Linie bei $+\omega_c$ liefern und damit das Spektrum eines komplexen Trägers $e^{i\omega_c t}$ statt eines reellen Kosinus beschreiben.
+
+Was du daraus mitnehmen solltest: Reelle Träger erzeugen *immer* zwei spektrale Kopien (positive und negative Frequenz). Wer eine einzelne Kopie sieht, hat unbemerkt zur komplexen Schwingung gewechselt — derselbe Mechanismus wird in [Einheit 7](../einheit-7.md) für das analytische Signal *gewollt* eingesetzt.
+
 ---
 
 [Zurück: Lösungen zu Einheit 3](einheit-3.md) · [Zurück zur Einheit](../einheit-4a.md) · [Lösungs-Index](README.md) · [Weiter: Lösungen zu Einheit 4b](einheit-4b.md)

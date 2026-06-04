@@ -81,6 +81,35 @@ Beweis durch partielle Integration; die Randterme verschwinden gerade wegen $x(t
 
 Diese Regel hat den DGL-Beweis der Gauß-Transformierten in [§3.7](einheit-3.md#37-beispiel-gaußfunktion) im Hintergrund gestützt — dort wurde dieselbe partielle Integration ad hoc geführt; hier ist sie systematisch.
 
+## 4a.6 Integrierendes Beispiel: alle Regeln in einem Signal
+
+Damit die Werkzeuge nicht isoliert bleiben, durchläuft das folgende Beispiel die Regeln in einer einzigen Rechnung. Sei $x(t)=e^{-t^2}$ mit bekannter Transformierter
+$$X(\omega)=\sqrt{\pi}\thinspace e^{-\omega^2/4}\quad\text{(aus §3.7)}.$$
+
+Wir konstruieren schrittweise das Signal
+$$y(t)=\frac{d}{dt}\Bigl[x\bigl(a(t-t_0)\bigr)\cos(\omega_c t)\Bigr]$$
+und berechnen sein Spektrum. Die Rechnung zeigt typisch, wie sich die Phasenfaktoren stapeln.
+
+**Schritt 1 — Skalierung (§4a.4).** Für $u(t)=x(at)$ mit $a>0$ ist
+$$U(\omega)=\frac{1}{a}X\left(\frac{\omega}{a}\right).$$
+
+**Schritt 2 — Zeitverschiebung (§4a.2).** Für $v(t)=u(t-t_0)=x\bigl(a(t-t_0)\bigr)$ liefert die Verschiebungsregel
+$$V(\omega)=e^{-i\omega t_0}U(\omega)=\frac{1}{a}e^{-i\omega t_0}X\left(\frac{\omega}{a}\right).$$
+Beachte: der Phasenfaktor trägt $\omega$ (nicht $\omega/a$), weil die Verschiebung *im Ausgangssignal* $u$ erfolgt — Reihenfolge zählt.
+
+**Schritt 3 — Modulation (§4a.3).** Mit $w(t)=v(t)\cos(\omega_c t)$ ergibt die Modulationsregel
+$$W(\omega)=\tfrac12\bigl[V(\omega-\omega_c)+V(\omega+\omega_c)\bigr].$$
+
+**Schritt 4 — Ableitung (§4a.5).** Schließlich liefert $y(t)=w'(t)$
+$$Y(\omega)=i\omega W(\omega) =\frac{i\omega}{2a}\bigl[e^{-i(\omega-\omega_c)t_0}X\bigl(\tfrac{\omega-\omega_c}{a}\bigr)+e^{-i(\omega+\omega_c)t_0}X\bigl(\tfrac{\omega+\omega_c}{a}\bigr)\bigr].$$
+
+**Plausibilitätsprüfung.** Setze $a=1$, $t_0=0$, $\omega_c=0$ — dann verschwinden Skalierung, Verschiebung und Modulation, und $Y(\omega)$ kollabiert zu $i\omega X(\omega)$, was genau der reinen Ableitungsregel entspricht. Setze $a=1$, $t_0=0$, behalte nur $\omega_c\ne 0$: $Y$ wird $\tfrac{i\omega}{2}[X(\omega-\omega_c)+X(\omega+\omega_c)]$ — die Ableitung eines amplitudenmodulierten Gauß-Pulses. Beide Spezialfälle sind unmittelbar nachprüfbar.
+
+**Was du daraus mitnehmen solltest.** Die Rechnung hat zwei Lehrwerte:
+
+1. **Reihenfolge entscheidet:** Skalierung *vor* Verschiebung erzeugt einen Phasenfaktor in $\omega$, nicht in $\omega/a$. Eine andere Reihenfolge würde einen anderen Faktor liefern (vgl. Übung 3 und 4).
+2. **Lineare Operationen sind disjunkt:** Jede Regel verändert genau einen Aspekt — Betragsform (Skalierung), Phase (Verschiebung), Lage (Modulation), Gewichtung (Ableitung). Sich an dieser Trennung zu orientieren ist meist einfacher als alle Faktoren auf einmal anzustellen.
+
 ## Übungen zu Einheit 4a
 
 1. Was passiert im Frequenzbereich, wenn ein Signal zeitlich verschoben wird?
@@ -90,6 +119,7 @@ Diese Regel hat den DGL-Beweis der Gauß-Transformierten in [§3.7](einheit-3.md
    $$y(t)=e^{i\omega_ct}x(t-t_0).$$
    Bestimme $Y(\omega)$. Wo zeigt sich die Reihenfolge der Operationen?
 5. Konstruktion: Gib zwei verschiedene reelle Signale $y_1(t)\ne y_2(t)$ mit identischen Betragsspektren $|Y_1(\omega)|=|Y_2(\omega)|$ an. Welche Eigenschaft aus §4a.2 oder §4a.3 verbindet sie, und worin unterscheiden sich ihre Phasenspektren?
+6. Fehlerdiagnose: Jemand schreibt die Modulationsregel als $x(t)\cos(\omega_c t)\leftrightarrow X(\omega-\omega_c)$ — also eine einzige verschobene Kopie ohne Vorfaktor. Wo genau steckt der Fehler? Korrigiere die Aussage und prüfe sie am Spezialfall $x(t)\equiv 1$, $\omega_c=5$.
 
 ## Selbstcheck zu Einheit 4a
 

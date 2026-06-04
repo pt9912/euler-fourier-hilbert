@@ -129,7 +129,7 @@ freqs = np.fft.fftfreq(N, d=1 / fs)        # signierte Frequenzachse
 6. Eine Messung verwendet $f_s=1000\thinspace \text{Hz}$ und $N=250$. Wie groß ist die Bin-Breite $\Delta f$? Fällt ein $77\thinspace \text{Hz}$-Sinus auf einen DFT-Bin?
 7. Fehlerdiagnose: Jemand sagt: "Ich nutze Zero Padding, deshalb steigt die echte Frequenzauflösung meiner Messung." Was ist daran falsch?
 8. Warum kann ein Fenster Spektralleckage reduzieren, obwohl es das Signal im Zeitbereich verändert?
-9. Code-Werkstatt: Generiere ein $77\thinspace\text{Hz}$-Kosinussignal mit $f_s=1000\thinspace\text{Hz}$ und $N=250$ Samples. Berechne (a) die DFT ohne Fenster, (b) die DFT mit Hann-Fenster, und (c) die DFT mit angehängten $750$ Nullen (Zero Padding). Zeichne alle drei Betragsspektren auf dem signierten Frequenzgitter aus `numpy.fft.fftfreq` und interpretiere konkret: Wo ist die Spektrallinie? Wie breit ist sie? Wie verändern Fenster und Zero Padding das Bild? Ein Codegerüst:
+9. Code-Werkstatt *(Vertiefung, ca. 30 Minuten)*: Generiere ein $77\thinspace\text{Hz}$-Kosinussignal mit $f_s=1000\thinspace\text{Hz}$ und $N=250$ Samples. Berechne (a) die DFT ohne Fenster, (b) die DFT mit Hann-Fenster, und (c) die DFT mit angehängten $750$ Nullen (Zero Padding). Zeichne alle drei Betragsspektren auf dem signierten Frequenzgitter aus `numpy.fft.fftfreq` und interpretiere konkret: Wo ist die Spektrallinie? Wie breit ist sie? Wie verändern Fenster und Zero Padding das Bild? Ein Codegerüst:
    ```python
    import numpy as np
    fs, N = 1000.0, 250

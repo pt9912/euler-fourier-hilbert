@@ -108,6 +108,7 @@ triangle = np.convolve(rect, rect, mode="same") * dt   # = (rect * rect)(t)
 4. Konstruktion: Konstruiere zwei Signale $x$ und $h$ in $L^2(\mathbb R)$, deren Faltung $x*h$ einen schmaleren Träger hat als $x$ allein. Begründe, dass das nur unter besonderen Voraussetzungen möglich ist (Tipp: Faltung erweitert in der Regel den Träger).
 5. Parseval: Verifiziere die Parseval-Identität für $x(t)=e^{-|t|}$, also $\int_{-\infty}^{\infty}|x(t)|^2dt=\tfrac{1}{2\pi}\int_{-\infty}^{\infty}|X(\omega)|^2d\omega$. (Hinweis: $X(\omega)=\frac{2}{1+\omega^2}$.)
 6. Wende die Symmetrietabelle auf $x(t)=e^{-t^2}\cos(3t)$ an und sage vorher, ob $X(\omega)$ reell, rein imaginär oder allgemein komplex ist.
+7. Fehlerdiagnose: Jemand argumentiert: "Wenn ich zwei Signale $x,h\in L^2$ multipliziere, dann ist die Energie des Produkts gleich dem Produkt der Energien — Parseval angewandt auf $xh$." Welche zwei Verwechslungen stecken in dieser Aussage? Korrigiere sie und nenne die richtige Energie-Identität für $y=x*h$ (statt $xh$).
 
 ## Selbstcheck zu Einheit 4b
 

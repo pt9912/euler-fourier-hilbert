@@ -90,6 +90,22 @@ Konkret: Mit der Modulationsregel aus [§4a.3](../einheit-4a.md#4a3-frequenzvers
 $$X(\omega)=\tfrac12\bigl[G(\omega-3)+G(\omega+3)\bigr],$$
 mit $G(\omega)=\sqrt{\pi}\thinspace e^{-\omega^2/4}$ (Gauß-Transformierte aus §3.7). Sowohl $G(\omega-3)$ als auch $G(\omega+3)$ sind reell und nichtnegativ, ihre Summe ist gerade — Bestätigung der Vorhersage.
 
+## Lösung 7
+
+Die Aussage enthält zwei Verwechslungen.
+
+**Verwechslung 1: Multiplikation und Faltung.** Parseval verbindet die Energie *eines* Signals in Zeit- und Frequenzbereich, nicht die Energien zweier verschiedener Signale. Das Produkt $xh$ im Zeitbereich entspricht im Frequenzbereich der *Faltung* $\tfrac{1}{2\pi}(X*H)$ — nicht dem Produkt $XH$. Wer "Parseval auf $xh$" anwendet, mischt zwei verschiedene Operationen.
+
+**Verwechslung 2: Energie und L²-Norm.** Selbst für die Faltung $y=x*h$ gilt **nicht** $\Vert y\Vert_2^2 = \Vert x\Vert_2^2\cdot\Vert h\Vert_2^2$. Das richtige Werkzeug für Faltungs-Energie ist die *Young-Ungleichung* $\Vert x*h\Vert_2 \le \Vert x\Vert_1\cdot\Vert h\Vert_2$ (eine Abschätzung, keine Identität), und die Parseval-Anwendung liefert
+$$\int|y(t)|^2\thinspace dt = \frac{1}{2\pi}\int|X(\omega)|^2|H(\omega)|^2\thinspace d\omega,$$
+weil $Y=XH$ aus dem Faltungssatz. Das ist eine **Identität für das Faltungsprodukt**, kein Produkt der Energien.
+
+**Spezialfall-Test.** Sei $x=h=\mathrm{rect}$ (Trägerbreite $1$, Höhe $1$). Dann ist $\Vert x\Vert_2^2=\Vert h\Vert_2^2=1$, also "Produkt der Energien" $=1$. Aber $y=x*h$ ist der Dreieckspuls $\Lambda(t)=\max(0,1-|t|)$ mit
+$$\Vert y\Vert_2^2=\int_{-1}^{1}(1-|t|)^2\thinspace dt = \frac{2}{3}\ne 1.$$
+Die Energie der Faltung ist also kleiner als das Produkt — Parseval auf $y=x*h$ funktioniert über $|Y|^2=\mathrm{sinc}^4(\omega/(2\pi))$, nicht über ein naives Energie-Produkt.
+
+Was du daraus mitnehmen solltest: Parseval ist eine *Erhaltungs*-Identität für **ein** Signal über die beiden Darstellungen. Verknüpfungen *zwischen* zwei Signalen (Faltung, Multiplikation, Skalarprodukt) brauchen den Faltungssatz und die verallgemeinerte Parseval-Identität $\langle x,y\rangle_t=\tfrac{1}{2\pi}\langle X,Y\rangle_\omega$ — und liefern keine Produkte von Energien, sondern Skalarprodukte oder Faltungen der Spektren.
+
 ---
 
 [Zurück: Lösungen zu Einheit 4a](einheit-4a.md) · [Zurück zur Einheit](../einheit-4b.md) · [Lösungs-Index](README.md) · [Weiter: Lösungen zu Einheit 5](einheit-5.md)

@@ -108,6 +108,8 @@ Diese Spektraltrennung ist der entscheidende Punkt. Präzise gefasst wird das du
 > Sind die Spektren $\hat A$ und $\widehat{\cos(\omega_c\cdot)}$ disjunkt — konkret $\hat A(\omega)=0$ für $|\omega|\ge\omega_c$ und der Träger ist eine reine Schwingung bei $\pm\omega_c$ —, so gilt exakt
 > $$\mathcal H\bigl\lbrace A(t)\cos(\omega_c t)\bigr\rbrace (t)=A(t)\sin(\omega_c t).$$
 
+*Konventionsnotiz.* Die Bedingung ist hier in der Kreisfrequenz $\omega$ formuliert, weil $\mathcal H$ aus [§6.2](einheit-6.md#62-definition-im-frequenzbereich) in $\omega$ definiert wurde. In den numerischen Beispielen unten (und im Lösungstext) prüfen wir Bedrosian äquivalent in Hertz: aus $\omega=2\pi f$ wird die Bedingung "$\hat A$ hat keine Anteile bei $|f|\ge f_c$". Beide Lesarten sind dasselbe Kriterium.
+
 Diese Voraussetzung ist über die Modulations­regel aus [§4a.3](einheit-4a.md#4a3-frequenzverschiebung) anschaulich: das Spektrum von $A(t)\cos(\omega_c t)$ ist genau $\tfrac12[\hat A(\omega-\omega_c)+\hat A(\omega+\omega_c)]$; damit $\mathcal H$ die beiden Kopien sauber mit $\mp i$ gewichten kann, dürfen sie sich nicht überlappen.
 
 Unter dieser Bedingung ist exakt:

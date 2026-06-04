@@ -95,13 +95,16 @@ Was du daraus mitnehmen solltest: Die Engineering-Namenswahl "Hilbert" für eine
 
 ## Lösung 8
 
-Die einfachste Wahl ist eine **reine Schwingung** wie $x(t)=\cos(\omega_0 t)$ mit $\omega_0>0$. Es gilt $\mathcal H\lbrace x\rbrace=\sin(\omega_0 t)$ — das ist zwar nicht $\pm x$, aber:
+Die einfachste Wahl ist die reine Schwingung $x(t)=\cos(\omega_0 t)$ mit $\omega_0>0$.
 
-Wende $\mathcal H$ ein weiteres Mal an: $\mathcal H\lbrace\sin(\omega_0 t)\rbrace=-\cos(\omega_0 t)=-x$. Also ist $\mathcal H^2 x=-x$ für jede reine positive-Frequenz-Schwingung; dieselbe Aussage gilt allgemein für jedes Signal **ohne Gleichanteil** (siehe §6.5).
+Erste Anwendung: $\mathcal H\lbrace\cos(\omega_0 t)\rbrace=\sin(\omega_0 t)$ — das ist nicht $\pm x$.
+Zweite Anwendung: $\mathcal H\lbrace\sin(\omega_0 t)\rbrace=-\cos(\omega_0 t)=-x$. Also $\mathcal H^2 x=-x$, wie aus §6.5 erwartet (kein Gleichanteil vorhanden).
 
-Wer "$\mathcal H\lbrace x\rbrace=\pm x$" *in einem Schritt* haben möchte, sucht eine **Eigenfunktion** des Hilbert-Operators. Solche gibt es nicht im reellen Funktionenraum (eine Multiplikation mit $-i\thinspace\mathrm{sgn}(\omega)$ kann kein reelles Vielfaches der Identität sein), aber im komplexen: Die analytischen Signale $z(t)=e^{i\omega_0 t}$ mit $\omega_0>0$ erfüllen $\mathcal H\lbrace e^{i\omega_0 t}\rbrace=-i\thinspace e^{i\omega_0 t}$, also formal "Phase um $-90^\circ$".
+**Warum genügt ein Schritt nicht?** $\mathcal H x = \lambda x$ wäre eine Eigenwertgleichung mit reellem Eigenwert $\lambda$. Im Frequenzbereich entspräche das $-i\thinspace\mathrm{sgn}(\omega)X(\omega)=\lambda X(\omega)$ für alle $\omega$, also $-i\thinspace\mathrm{sgn}(\omega)=\lambda$ überall dort, wo $X(\omega)\ne 0$. Auf den positiven Frequenzen ist $-i\thinspace\mathrm{sgn}(\omega)=-i$, auf den negativen $+i$ — beides nicht reell. Eine *reelle* Funktion $x\not\equiv 0$ enthält wegen $X(-\omega)=\overline{X(\omega)}$ aber zwangsläufig beide Seiten; ein einheitlicher reeller Eigenwert ist daher unmöglich.
 
-Was du daraus mitnehmen solltest: $\mathcal H$ ist eine Quadratur — der "Eigenwert $-1$" stellt sich erst nach zweimaliger Anwendung ein, weil die einmalige Anwendung Sinus und Kosinus mischt.
+Wer das *im Komplexen* lesen möchte: Auf dem analytischen Signal $z(t)=e^{i\omega_0 t}$ mit $\omega_0>0$ ist $\mathcal H z=-i z$ — der Hilbert-Operator hat dort den Eigenwert $-i$. Erst $\mathcal H^2$ liefert mit $(-i)^2=-1$ einen reellen Eigenwert.
+
+Was du daraus mitnehmen solltest: $\mathcal H$ ist eine *Quadratur* — der reelle Eigenwert $-1$ stellt sich erst nach zweimaliger Anwendung ein, weil die einmalige Anwendung Sinus und Kosinus mischt.
 
 ---
 

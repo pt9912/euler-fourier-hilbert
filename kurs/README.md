@@ -77,13 +77,15 @@ Die fortgeschrittenen Begriffe $L^2$, Distribution, Dirac-Impuls, Cauchy-Hauptwe
 
 ## Typische Vorstellungen am Kursanfang
 
-Viele Lernende bringen Vorerfahrungen mit, die in Teilen tragfähig und in Teilen irreführend sind. Die folgenden sechs Vorstellungen tauchen erfahrungsgemäß am häufigsten auf. Jede Einheit greift mindestens eine davon in der Aufgabe **Fehlerdiagnose** explizit auf, sodass du dein Denken aktiv überprüfen kannst.
+Viele Lernende bringen Vorerfahrungen mit, die in Teilen tragfähig und in Teilen irreführend sind. Die folgenden acht Vorstellungen tauchen erfahrungsgemäß am häufigsten auf. Jede inhaltliche Einheit greift mindestens eine davon in einer mit **Fehlerdiagnose** markierten Übung auf, sodass du dein Denken aktiv überprüfen kannst. Einheit 8 bündelt eine zusammenfassende Fehleranalyse über mehrere Vorstellungen hinweg.
 
 | Vorstellung | Wo korrigiert |
 | --- | --- |
 | "Weil $e^{i\varphi}$ eine Exponentialfunktion ist, muss der Wert reell und positiv sein." | [§1, Übung 6](einheit-1.md#übungen-zu-einheit-1) — Korrektur über $\lvert e^{i\varphi}\rvert=1$. |
 | "Ein reelles Signal kann genau einen Frequenzkoeffizienten haben." | [§2, Übung 6](einheit-2.md#übungen-zu-einheit-2) — Realitätsbedingung $c_{-n}=\overline{c_n}$. |
 | "Den Dirac-Impuls kann man als gewöhnliche Funktion mit $\delta(0)=\infty$ behandeln." | [§3, Übung 6](einheit-3.md#übungen-zu-einheit-3) — Distribution über die Siebeigenschaft. |
+| "Multiplikation mit $\cos(\omega_c t)$ verschiebt das Spektrum als einzelne Kopie nach $+\omega_c$." | [§4a, Übung 6](einheit-4a.md#übungen-zu-einheit-4a) — reelle Träger erzeugen zwei Kopien mit Faktor $\tfrac12$. |
+| "Parseval angewandt auf $xh$ ergibt das Produkt der Einzel-Energien." | [§4b, Übung 7](einheit-4b.md#übungen-zu-einheit-4b) — Parseval verbindet *ein* Signal über zwei Darstellungen; Verknüpfungen brauchen den Faltungssatz. |
 | "Mehr Abtastpunkte durch Zero Padding bedeutet bessere Frequenzauflösung." | [§5, Übung 7](einheit-5.md#übungen-zu-einheit-5) — Auflösung kommt aus der Messdauer. |
 | "Die Hilbert-Transformation verschiebt jede Frequenz um $90^\circ$ — also auch den Gleichanteil." | [§6, Übung 6](einheit-6.md#übungen-zu-einheit-6) — DC wird auf null gesetzt, nicht gedreht. |
 | "Der Betrag $\lvert\text{analytisches Signal}\rvert$ ist immer gleich der modellierten Amplitude $A(t)$." | [§7, Übung 5](einheit-7.md#übungen-zu-einheit-7) — gilt nur unter der Bedrosian-Bedingung. |
@@ -93,6 +95,30 @@ Eine zusammenfassende Diagnose dieser sechs Punkte (plus weiterer Aussagen) find
 ## Einheitsschema und Arbeitsweise
 
 Jede Einheit folgt demselben Muster: Leitfrage, Definition, Beweisidee oder Beispiel, Visualisierung, Übungen, Selbstcheck und Querverweise. Für Selbststudium ist eine Einheit auf ungefähr zwei Stunden Lesen und eine Stunde Üben ausgelegt. In einer 90-Minuten-Sitzung eignen sich die Beispiele als gemeinsamer Kern; Übungen und Selbstcheck bleiben dann als Nacharbeit.
+
+## Aufgaben-Taxonomie und Bewertung offener Aufgaben
+
+Die Übungen sind durchgehend mit ihrer Art markiert. Die Marker entsprechen Kompetenzstufen, die du beim Lösen üben sollst:
+
+| Marker | Stufe | Was du tust |
+| --- | --- | --- |
+| (ohne Marker) | Apply | rechnen, bestimmen, ableiten — die Antwort ist eindeutig. |
+| **Fehlerdiagnose** | Evaluate | eine vorgelegte Aussage prüfen, den Fehler benennen, sauber korrigieren. |
+| **Transfer** | Apply/Analyze | mehrere Regeln nacheinander anwenden, Reihenfolge begründen. |
+| **Code** / **Code-Werkstatt** | Apply/Analyze | numerisch nachrechnen, Implementierungsdetails diskutieren. |
+| **Konstruktion** | Create | ein Beispiel mit bestimmten Eigenschaften erfinden — meist gibt es viele richtige Antworten. |
+| **Reflexion** | Evaluate | bewerten, was beim eigenen Lernen geholfen hat oder eine Grenze einer Perspektive benennen. |
+
+Für die offenen Aufgabentypen (Konstruktion und Reflexion) gibt es keine eindeutig richtige Lösung. Nutze stattdessen die folgende **vierstufige Selbstbewertung**:
+
+| Niveau | Konstruktion | Reflexion |
+| --- | --- | --- |
+| schwach | Nennt ein Beispiel ohne Begründung, oder das Beispiel erfüllt die geforderten Eigenschaften nicht. | Nennt nur ein Schlagwort ("Fourier hat geholfen") ohne Inhalt. |
+| solide | Nennt ein korrektes Beispiel, prüft aber höchstens eine der geforderten Eigenschaften explizit. | Nennt einen Inhalt (z. B. "Frequenzverschiebung erklärt Seitenbänder"), aber ohne konkreten Bezug zum Material. |
+| stark | Korrektes Beispiel, *alle* geforderten Eigenschaften nachgewiesen, mit Bezug auf eine konkrete Formel oder ein Bild aus dem Kurs. | Konkreter Bezug auf Formel, Abbildung oder Code-Zeile aus dem Kurs, mit Erklärung, *welcher* Verständnisschritt geschlossen wurde. |
+| sehr stark | Wie "stark" und benennt zusätzlich Grenzen oder Sonderfälle der Konstruktion. | Wie "stark" und benennt zusätzlich eine Grenze der gewählten Perspektive. |
+
+Die Rubrik bei [Einheit 8, Aufgabe 7](einheit-8.md#aufgabe-7-reflexion) ist die ausführliche Variante dieser Schablone für eine konkrete Reflexionsaufgabe. Für Konstruktionsaufgaben gilt: Bewertet wird nicht die *Eleganz* des Beispiels, sondern wie überzeugend du die geforderten Eigenschaften nachweist.
 
 ## Empfohlene Reihenfolge beim Lernen
 

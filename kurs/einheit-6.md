@@ -80,7 +80,9 @@ Ein klassisches nichttriviales Paar ist
 \mathcal{H}\!\left\{\frac{1}{1+t^2}\right\}(t)=\frac{t}{1+t^2}.
 ```
 
-**Nachweis im Frequenzbereich.** Die Fourier-Transformierte ist $\mathcal F\lbrace 1/(1+t^2)\rbrace(\omega)=\pi e^{-|\omega|}$ (Standard-Paar). Multiplikation mit $-i\thinspace\mathrm{sgn}(\omega)$ und Rücktransformation liefern
+**Nachweis im Frequenzbereich.** Die Fourier-Transformierte ist
+$$\mathcal F\lbrace 1/(1+t^2)\rbrace(\omega)=\pi e^{-|\omega|}.$$
+Dieses Paar verwenden wir hier als bekannt — sein elementarer Beweis nutzt entweder Konturintegration (Residuensatz, Pol bei $t=i$) oder eine DGL-Idee analog zu [§3.7](einheit-3.md#37-beispiel-gaußfunktion); beide Wege liegen außerhalb des Kurses. Es ist ein klassisches Tabellenpaar (z. B. Bracewell, Oppenheim/Willsky). Multiplikation mit $-i\thinspace\mathrm{sgn}(\omega)$ und Rücktransformation liefern
 ```math
 \frac{1}{2\pi}\int_{-\infty}^{\infty}\bigl(-i\pi\,\mathrm{sgn}(\omega)\bigr)e^{-|\omega|}e^{i\omega t}\,d\omega = -\frac{i}{2}\left[\int_{0}^{\infty}\!e^{-\omega(1-it)}\,d\omega-\int_{0}^{\infty}\!e^{-\omega(1+it)}\,d\omega\right],
 ```
@@ -165,7 +167,7 @@ hilbert_cos = np.imag(analytic)        # = sin(2 pi 5 t)
    H_x = np.real(np.fft.ifft(X_hilbert))   # eigene Implementation
    scipy_result = hilbert(x)                # was liefert das?
    ```
-8. Konstruktion: Konstruiere eine reelle Funktion $x(t)$, deren Hilbert-Transformierte (bis auf das Vorzeichen) wieder $x$ selbst ist. (Tipp: Welche Signale werden vom Frequenzfaktor $-i\thinspace\mathrm{sgn}(\omega)$ nur in der Phase, nicht in der Form verändert? Erinnere dich an §6.5.)
+8. Konstruktion: Gib eine reelle Funktion $x(t)\not\equiv 0$ an, für die $\mathcal H^2 x = -x$ gilt (also $\mathcal H\bigl\lbrace\mathcal H\lbrace x\rbrace\bigr\rbrace = -x$). Wieso reicht ein einziger Schritt $\mathcal H x = \pm x$ nicht aus — was sagt dazu der Frequenzgang $-i\thinspace\mathrm{sgn}(\omega)$? (Tipp: §6.5; eine Lösung mit nur einem Frequenzanteil genügt.)
 
 ## Selbstcheck zu Einheit 6
 
