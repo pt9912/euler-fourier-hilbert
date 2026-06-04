@@ -81,12 +81,12 @@ Viele Lernende bringen Vorerfahrungen mit, die in Teilen tragfähig und in Teile
 
 | Vorstellung | Wo korrigiert |
 | --- | --- |
-| "$e^{i\varphi}$ ist eine Exponentialfunktion, also reell und positiv." | [§1, Übung 6](einheit-1.md#übungen-zu-einheit-1) — Korrektur über $\lvert e^{i\varphi}\rvert=1$. |
+| "Weil $e^{i\varphi}$ eine Exponentialfunktion ist, muss der Wert reell und positiv sein." | [§1, Übung 6](einheit-1.md#übungen-zu-einheit-1) — Korrektur über $\lvert e^{i\varphi}\rvert=1$. |
 | "Ein reelles Signal kann genau einen Frequenzkoeffizienten haben." | [§2, Übung 6](einheit-2.md#übungen-zu-einheit-2) — Realitätsbedingung $c_{-n}=\overline{c_n}$. |
 | "Den Dirac-Impuls kann man als gewöhnliche Funktion mit $\delta(0)=\infty$ behandeln." | [§3, Übung 6](einheit-3.md#übungen-zu-einheit-3) — Distribution über die Siebeigenschaft. |
 | "Mehr Abtastpunkte durch Zero Padding bedeutet bessere Frequenzauflösung." | [§5, Übung 7](einheit-5.md#übungen-zu-einheit-5) — Auflösung kommt aus der Messdauer. |
 | "Die Hilbert-Transformation verschiebt jede Frequenz um $90^\circ$ — also auch den Gleichanteil." | [§6, Übung 6](einheit-6.md#übungen-zu-einheit-6) — DC wird auf null gesetzt, nicht gedreht. |
-| "$\lvert\text{analytisches Signal}\rvert$ ist immer die modellierte Amplitude $A(t)$." | [§7, Übung 5](einheit-7.md#übungen-zu-einheit-7) — gilt nur unter der Bedrosian-Bedingung. |
+| "Der Betrag $\lvert\text{analytisches Signal}\rvert$ ist immer gleich der modellierten Amplitude $A(t)$." | [§7, Übung 5](einheit-7.md#übungen-zu-einheit-7) — gilt nur unter der Bedrosian-Bedingung. |
 
 Eine zusammenfassende Diagnose dieser sechs Punkte (plus weiterer Aussagen) findest du in [§8, Aufgabe 8](einheit-8.md#aufgabe-8-fehleranalyse). Wenn du eine der Vorstellungen am Kursanfang noch zustimmen würdest, ist das **kein Defizit**, sondern ein Hinweis darauf, an welcher Stelle der Kurs für dich besonders lohnt.
 
