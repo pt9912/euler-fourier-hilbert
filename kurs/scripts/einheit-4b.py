@@ -1,4 +1,4 @@
-"""Einheit 4: Faltungssatz — Rechteck * Rechteck = Dreieck."""
+"""Einheit 4b: Faltungssatz — Rechteck * Rechteck = Dreieck."""
 
 import matplotlib
 matplotlib.use("Agg")
@@ -40,4 +40,4 @@ axes[1, 1].set_xlabel(r"$\omega$")
 
 fig.suptitle("Faltungssatz: Faltung im Zeitbereich = Multiplikation im Frequenzbereich", y=1.0)
 fig.tight_layout()
-fig.savefig("kurs/bilder/einheit-4.png", dpi=120)
+fig.savefig("kurs/bilder/einheit-4b.png", dpi=120)

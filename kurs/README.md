@@ -9,7 +9,8 @@ Dies ist der inhaltliche Teil des Kurses. Ein Überblick über Zielgruppe und Le
 | [1](einheit-1.md) | Komplexe Zahlen und Euler-Formel | Rotation und Schwingung sind dieselbe Struktur |
 | [2](einheit-2.md) | Fourier-Reihen | Periodische Signale als Summe komplexer Schwingungen |
 | [3](einheit-3.md) | Fourier-Transformation | Nichtperiodische Signale als kontinuierliches Frequenzspektrum |
-| [4](einheit-4.md) | Eigenschaften der Fourier-Transformation | Verschieben, Skalieren, Falten, Ableiten |
+| [4a](einheit-4a.md) | Eigenschaften der Fourier-Transformation: Verschieben, Modulieren, Skalieren, Ableiten | Punktweise Regeln, die Phase oder Spektrum-Lage verändern |
+| [4b](einheit-4b.md) | Eigenschaften der Fourier-Transformation: Faltung, Energie, Symmetrien | Strukturregeln, die zwei Signale oder zwei Repräsentationen verbinden |
 | [5](einheit-5.md) | Diskrete Signale, DFT und FFT | Bins, Leckage, Fensterung und Nyquist-Grenze |
 | [6](einheit-6.md) | Hilbert-Transformation | Frequenzabhängige Phasenverschiebung um 90 Grad |
 | [7](einheit-7.md) | Analytisches Signal | Amplitude, Phase und Momentanfrequenz |
@@ -24,7 +25,8 @@ Die Lösungen zu allen Übungen und Abschlussaufgaben stehen separat in [`loesun
 | 1 | komplexe Zahlen zwischen Algebra, Geometrie und Schwingung übersetzen |
 | 2 | periodische Signale als Projektionen auf orthogonale Schwingungen deuten |
 | 3 | Spektren nichtperiodischer Signale qualitativ und rechnerisch lesen |
-| 4 | Zeitoperationen im Frequenzbereich vorhersagen und Parseval als Energieerhaltung interpretieren |
+| 4a | Verschiebungs-, Modulations-, Skalierungs- und Ableitungsregel im Frequenzbereich anwenden und kombinieren |
+| 4b | Faltung im Frequenzbereich als Multiplikation lesen, Parseval als Energieerhaltung interpretieren und Symmetrien als Diagnosewerkzeug nutzen |
 | 5 | DFT-Bins, FFT, Binauflösung, Spektralleckage, Nyquist-Grenze und Aliasing an konkreten Zahlen erklären |
 | 6 | die Hilbert-Transformation als 90-Grad-Phasenoperator im Frequenzbereich beschreiben |
 | 7 | aus dem analytischen Signal Hüllkurve, Phase und Momentanfrequenz gewinnen und die Bedrosian-Bedingung prüfen |
@@ -41,22 +43,52 @@ Damit der Kurs handlich bleibt, treffen wir an ein paar Stellen feste Entscheidu
   $$\omega=2\pi f,\qquad f=\frac{\omega}{2\pi}.$$
   Wenn also $\cos(8t)$ ohne $2\pi$ geschrieben ist, ist $8$ eine Kreisfrequenz; $\cos(2\pi\cdot 8\thinspace t)$ meint dagegen $8\thinspace \text{Hz}$.
 - **DFT-Konvention.** Die DFT ist ohne Vorfaktor definiert, die inverse DFT trägt den Faktor $1/N$. NumPy (`numpy.fft`) und MATLAB folgen dieser Wahl; SciPys `scipy.fft` ebenfalls.
+- **Hilbert-Konvention.** Wir verwenden die in Signalverarbeitung und Nachrichtentechnik übliche Wahl mit Frequenzgang
+  $$\mathcal F\lbrace\mathcal H\lbrace x\rbrace\rbrace(\omega)=-i\thinspace\mathrm{sgn}(\omega)X(\omega),$$
+  sodass $\mathcal H\lbrace\cos(\omega_0 t)\rbrace=\sin(\omega_0 t)$ für $\omega_0>0$ gilt. In Teilen der mathematischen Literatur findet man die Gegenkonvention mit $+i\thinspace\mathrm{sgn}(\omega)$; dann tauschen die Rollen von $\sin$ und $-\sin$. Wer Lehrbücher vergleicht, sollte vor jeder Identität das Vorzeichen prüfen.
 - **Regularität.** Wir behandeln Konvergenz- und Integrierbarkeitsfragen nicht im Detail. Alle Aussagen gelten unter den üblichen Voraussetzungen (z. B. $L^1\cap L^2$ für die Fourier-Transformation, hinreichend abklingende und differenzierbare Funktionen bei der Ableitungsregel). Für $\delta$ und für reine Schwingungen $e^{i\omega_0 t}$ interpretiert man die Aussagen distributionentheoretisch.
 - **Notation.** Realteil/Imaginärteil als $\mathrm{Re}, \mathrm{Im}$; komplex Konjugiertes als $\overline{z}$. Phase und Argument werden synonym verwendet.
 
-## Voraussetzungscheck
+## Voraussetzungscheck (diagnostischer Pre-Test)
 
-Bevor du in Einheit 1 startest, solltest du die folgenden Aufgaben ohne längere Recherche lösen können:
+Bevor du in Einheit 1 startest, solltest du die folgenden Aufgaben ohne längere Recherche lösen können. Sie sind als **Selbstdiagnose** gedacht, nicht als Prüfung: jede Aufgabe ist einem Themenbereich zugeordnet, sodass du am Ergebnis ablesen kannst, wo es sich lohnt, vor dem Kurs etwas Zeit zu investieren.
 
-1. Wandle $3(\cos(\pi/6)+i\sin(\pi/6))$ in Real- und Imaginärteil um.
-2. Erkläre, warum $\sin(2\pi f t)$ bei Frequenz $f$ die Kreisfrequenz $\omega=2\pi f$ hat.
-3. Berechne $\int_{-1}^{1} e^{-i\omega t}\thinspace dt$ bis auf den Grenzwert bei $\omega=0$.
-4. Erkläre an zwei Vektoren in $\mathbb R^2$, was Orthogonalität und Projektion bedeuten.
-5. Lies in Python oder Pseudocode aus einer Liste $x[0],\ldots,x[N-1]$ den Mittelwert aus.
+| # | Aufgabe | Themenbereich |
+| --- | --- | --- |
+| 1 | Wandle $3(\cos(\pi/6)+i\sin(\pi/6))$ in Real- und Imaginärteil um. | Komplexe Zahlen, Polarform |
+| 2 | Erkläre, warum $\sin(2\pi f t)$ bei Frequenz $f$ die Kreisfrequenz $\omega=2\pi f$ hat. | Trigonometrie, Bogenmaß |
+| 3 | Berechne $\int_{-1}^{1} e^{-i\omega t}\thinspace dt$ bis auf den Grenzwert bei $\omega=0$. | Integralrechnung |
+| 4 | Erkläre an zwei Vektoren in $\mathbb R^2$, was Orthogonalität und Projektion bedeuten. | Lineare Algebra |
+| 5 | Lies in Python oder Pseudocode aus einer Liste $x[0],\ldots,x[N-1]$ den Mittelwert aus. | Programmierung |
 
-Wenn dir 1-2 schwerfallen, arbeite vor Einheit 1 komplexe Zahlen und Bogenmaß nach. Wenn 3-4 schwerfallen, plane für die Einheiten 2-4 mehr Zeit ein. Wenn 5 neu ist, kannst du den mathematischen Kurs trotzdem lesen, solltest die Python-Abschnitte aber eher als kommentierte Beispiele behandeln.
+**Auswertungsleitfaden.** Zähle, wie viele Aufgaben du **ohne Nachschlagen in unter zehn Minuten insgesamt** sicher lösen kannst:
+
+- **5 von 5 richtig** — Voraussetzungen sind vollständig erfüllt. Starte direkt mit [Einheit 1](einheit-1.md); der Kurs dürfte im veranschlagten Zeitbudget machbar sein.
+- **3–4 richtig** — Voraussetzungen tragen. Identifiziere den ausgelassenen Themenbereich oben in der Spalte "Themenbereich" und plane für die zugehörigen Einheiten **etwa 50 % mehr Lesezeit** ein. Konkrete Empfehlung pro Lücke:
+  - **#1 oder #2 offen** → Frische komplexe Zahlen und Bogenmaß auf, bevor du [Einheit 1](einheit-1.md) beginnst (ohne diese Grundlagen wird Einheit 1 deutlich schwerer).
+  - **#3 offen** → Plane für [Einheit 2](einheit-2.md) und [Einheit 3](einheit-3.md) Extra-Zeit ein und arbeite die Beispielintegrale aktiv mit Stift und Papier mit.
+  - **#4 offen** → Plane für [Einheit 2](einheit-2.md) Extra-Zeit ein; die Projektionsidee aus §2.3 ist sonst die Stolperfalle Nummer eins.
+  - **#5 offen** → Python-Abschnitte sind optional; behandle sie als kommentierte Beispiele, der mathematische Kurs funktioniert auch ohne Code-Mitarbeit.
+- **0–2 richtig** — Die Voraussetzungen sind nicht ausreichend. Empfehlung: Hole erst die **Analysis-/Lineare-Algebra-Basis** nach (Aufgaben 1, 2, 3, 4) und komm dann zurück. Der Kurs ist sonst frustrierender als nötig — und didaktisch geht ohne diese Grundlagen viel verloren, weil die Spiralstruktur ab Einheit 2 auf Projektion und Integral aufbaut.
+
+Wenn du dir bei einer Aufgabe nicht sicher bist, ist das selbst schon ein hilfreiches Signal — es lohnt sich, sie *aktiv* zu lösen statt zu raten oder die Antwort zu schätzen.
 
 Die fortgeschrittenen Begriffe $L^2$, Distribution, Dirac-Impuls, Cauchy-Hauptwert und Plancherel werden im Kurs nur so weit präzisiert, wie es für die Rechnungen nötig ist. Sie markieren keine zusätzlichen Prüfziele, sondern die Stellen, an denen Analysis im Hintergrund arbeitet.
+
+## Typische Vorstellungen am Kursanfang
+
+Viele Lernende bringen Vorerfahrungen mit, die in Teilen tragfähig und in Teilen irreführend sind. Die folgenden sechs Vorstellungen tauchen erfahrungsgemäß am häufigsten auf. Jede Einheit greift mindestens eine davon in der Aufgabe **Fehlerdiagnose** explizit auf, sodass du dein Denken aktiv überprüfen kannst.
+
+| Vorstellung | Wo korrigiert |
+| --- | --- |
+| "$e^{i\varphi}$ ist eine Exponentialfunktion, also reell und positiv." | [§1, Übung 6](einheit-1.md#übungen-zu-einheit-1) — Korrektur über $\lvert e^{i\varphi}\rvert=1$. |
+| "Ein reelles Signal kann genau einen Frequenzkoeffizienten haben." | [§2, Übung 6](einheit-2.md#übungen-zu-einheit-2) — Realitätsbedingung $c_{-n}=\overline{c_n}$. |
+| "Den Dirac-Impuls kann man als gewöhnliche Funktion mit $\delta(0)=\infty$ behandeln." | [§3, Übung 6](einheit-3.md#übungen-zu-einheit-3) — Distribution über die Siebeigenschaft. |
+| "Mehr Abtastpunkte durch Zero Padding bedeutet bessere Frequenzauflösung." | [§5, Übung 7](einheit-5.md#übungen-zu-einheit-5) — Auflösung kommt aus der Messdauer. |
+| "Die Hilbert-Transformation verschiebt jede Frequenz um $90^\circ$ — also auch den Gleichanteil." | [§6, Übung 6](einheit-6.md#übungen-zu-einheit-6) — DC wird auf null gesetzt, nicht gedreht. |
+| "$\lvert\text{analytisches Signal}\rvert$ ist immer die modellierte Amplitude $A(t)$." | [§7, Übung 5](einheit-7.md#übungen-zu-einheit-7) — gilt nur unter der Bedrosian-Bedingung. |
+
+Eine zusammenfassende Diagnose dieser sechs Punkte (plus weiterer Aussagen) findest du in [§8, Aufgabe 8](einheit-8.md#aufgabe-8-fehleranalyse). Wenn du eine der Vorstellungen am Kursanfang noch zustimmen würdest, ist das **kein Defizit**, sondern ein Hinweis darauf, an welcher Stelle der Kurs für dich besonders lohnt.
 
 ## Einheitsschema und Arbeitsweise
 
@@ -68,7 +100,7 @@ Jede Einheit folgt demselben Muster: Leitfrage, Definition, Beweisidee oder Beis
 2. Komplexe Exponentialfunktionen als Schwingungen interpretieren.
 3. Fourier-Reihen für periodische Signale üben.
 4. Fourier-Transformation als Grenzfall für nichtperiodische Signale verstehen.
-5. Eigenschaften der Fourier-Transformation anwenden.
+5. Eigenschaften der Fourier-Transformation anwenden (erst punktweise Regeln in 4a, dann strukturelle Regeln in 4b).
 6. Hilbert-Transformation zuerst im Frequenzbereich verstehen.
 7. Analytisches Signal für Hüllkurve, Phase und Momentanfrequenz nutzen.
 
@@ -83,7 +115,7 @@ Jede Einheit folgt demselben Muster: Leitfrage, Definition, Beweisidee oder Beis
 | $T$, $\omega_0$ | Periode und Grundkreisfrequenz $2\pi/T$ | [§2.1](einheit-2.md#21-grundidee) |
 | $c_n$ | Fourier-Reihen-Koeffizient der $n$-ten Harmonischen | [§2.2](einheit-2.md#22-komplexe-fourier-reihe) |
 | $X(\omega)$ | Fourier-Transformierte von $x(t)$ | [§3.2](einheit-3.md#32-definition) |
-| $H(\omega)$ | Frequenzgang eines Filters oder LTI-Systems | [§4.6](einheit-4.md#46-faltung) |
+| $H(\omega)$ | Frequenzgang eines Filters oder LTI-Systems | [§4b.1](einheit-4b.md#4b1-faltung) |
 | $f_s$, $f_N$ | Abtastrate und Nyquist-Frequenz | [§5.6](einheit-5.md#56-abtastung-und-nyquist-grenze) |
 | $\mathcal H\lbrace x\rbrace $ | Hilbert-Transformierte von $x$ | [§6.2](einheit-6.md#62-definition-im-frequenzbereich) |
 | $z(t)=x(t)+i\mathcal H\lbrace x\rbrace (t)$ | analytisches Signal | [§7.1](einheit-7.md#71-definition) |

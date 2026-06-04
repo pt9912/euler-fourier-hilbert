@@ -128,6 +128,17 @@ c) Begründe mit der Bedrosian-Bedingung, dass das analytische Signal hier $z(t)
 
 Welche der drei Perspektiven — Euler, Fourier oder Hilbert — hat dir beim Verstehen des Abschlussbeispiels am meisten geholfen, und warum? Antworte mit einem konkreten Bezug auf Formel, Bild oder Code.
 
+**Bewertungsrubrik (so erkennst du eine starke Antwort).**
+
+| Niveau | Merkmale |
+| --- | --- |
+| schwach | Nennt nur einen Namen ("Fourier hat mir geholfen") ohne Begründung oder Beleg. |
+| solide | Nennt eine Perspektive *und* einen Inhalt (z. B. "Frequenzverschiebung erklärt die Seitenbänder"), aber ohne konkreten Bezug zum Abschlussbeispiel. |
+| stark | Nennt eine Perspektive, verweist auf eine *konkrete* Formel, ein Spektrumbild oder eine Python-Zeile aus §8.3 und erklärt, *welcher* Schritt im Verständnis dadurch geschlossen wurde. |
+| sehr stark | Wie "stark" und benennt zusätzlich eine Grenze der gewählten Perspektive — z. B. dass Euler allein die Bedrosian-Bedingung nicht prüft. |
+
+Die Aufgabe ist offen; eine "richtige" Antwort gibt es nicht. Bewertet wird die Tiefe der Begründung, nicht die gewählte Perspektive.
+
 ### Aufgabe 8 (Fehleranalyse)
 
 Prüfe die folgenden Aussagen. Markiere jeweils, ob sie richtig, falsch oder nur unter Zusatzbedingungen richtig sind, und korrigiere sie knapp:
@@ -136,6 +147,26 @@ Prüfe die folgenden Aussagen. Markiere jeweils, ob sie richtig, falsch oder nur
 2. "Zero Padding erhöht die echte Frequenzauflösung einer Messung."
 3. "Ein analytisches Signal entsteht, indem man negative Frequenzen entfernt und alle übrigen Bins verdoppelt."
 4. "Wenn ein Signal reell und gerade ist, sollte sein Fourier-Spektrum reell und gerade sein."
+
+### Aufgabe 9 (Code-Synthese)
+
+Simuliere den Chirp $x(t)=\cos\phi(t)$ aus §8.3 mit linear wachsender Momentanfrequenz von $20\thinspace\text{Hz}$ auf $200\thinspace\text{Hz}$ über $1\thinspace\text{s}$ bei $f_s=4000\thinspace\text{Hz}$. Berechne:
+
+1. das analytische Signal $z(t)$ via `scipy.signal.hilbert`,
+2. die entfaltete Phase mit `numpy.unwrap`,
+3. die Momentanfrequenz als zentrale Differenz (statt einseitige `np.diff`).
+
+Vergleiche die rekonstruierte Momentanfrequenz mit der theoretischen Vorhersage $f_{\text{inst}}(t)=20+180\thinspace t$. Wo treten die größten Abweichungen auf, und welche zwei Einheiten des Kurses erklären diese Stellen?
+
+### Aufgabe 10 (Konstruktion)
+
+Konstruiere ein Signal $x(t)$ auf $[0,1]\thinspace\text{s}$, das **alle drei** folgenden Eigenschaften gleichzeitig hat:
+
+1. konstante Hüllkurve $|z(t)|\equiv 1$,
+2. linear wachsende Momentanfrequenz von $10\thinspace\text{Hz}$ auf $50\thinspace\text{Hz}$,
+3. die Bedrosian-Bedingung ist nicht direkt anwendbar (warum?).
+
+Gib $x(t)$ als geschlossene Formel und als Python-Generator an. Begründe, warum trotz Bedrosian-Verletzung in diesem speziellen Fall $|z(t)|$ exakt $1$ ergibt.
 
 ## Abschluss-Selbstcheck
 

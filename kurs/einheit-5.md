@@ -129,6 +129,17 @@ freqs = np.fft.fftfreq(N, d=1 / fs)        # signierte Frequenzachse
 6. Eine Messung verwendet $f_s=1000\thinspace \text{Hz}$ und $N=250$. Wie groß ist die Bin-Breite $\Delta f$? Fällt ein $77\thinspace \text{Hz}$-Sinus auf einen DFT-Bin?
 7. Fehlerdiagnose: Jemand sagt: "Ich nutze Zero Padding, deshalb steigt die echte Frequenzauflösung meiner Messung." Was ist daran falsch?
 8. Warum kann ein Fenster Spektralleckage reduzieren, obwohl es das Signal im Zeitbereich verändert?
+9. Code-Werkstatt: Generiere ein $77\thinspace\text{Hz}$-Kosinussignal mit $f_s=1000\thinspace\text{Hz}$ und $N=250$ Samples. Berechne (a) die DFT ohne Fenster, (b) die DFT mit Hann-Fenster, und (c) die DFT mit angehängten $750$ Nullen (Zero Padding). Zeichne alle drei Betragsspektren auf dem signierten Frequenzgitter aus `numpy.fft.fftfreq` und interpretiere konkret: Wo ist die Spektrallinie? Wie breit ist sie? Wie verändern Fenster und Zero Padding das Bild? Ein Codegerüst:
+   ```python
+   import numpy as np
+   fs, N = 1000.0, 250
+   n = np.arange(N)
+   x = np.cos(2 * np.pi * 77.0 * n / fs)
+   X_rect = np.fft.fft(x)
+   X_hann = np.fft.fft(x * np.hanning(N))
+   X_zpad = np.fft.fft(np.concatenate([x, np.zeros(750)]))
+   ```
+10. Konstruktion: Konstruiere ein reelles Signal $x[n]$ mit $N=64$ und $f_s=64\thinspace\text{Hz}$, das bei der DFT **genau zwei** nichtverschwindende Bins erzeugt (außer dem konjugierten Spiegelbild). Welche Frequenzen erfüllen die Kohärenz-Bedingung $f_0=m\Delta f$? Gib eine konkrete Wahl an, die in einem Frequenzbereich zwischen $5$ und $15\thinspace\text{Hz}$ liegt.
 
 ## Selbstcheck zu Einheit 5
 
@@ -145,4 +156,4 @@ Lösungen: [loesungen/einheit-5.md](loesungen/einheit-5.md)
 
 ---
 
-[Zurück: Einheit 4 — Eigenschaften](einheit-4.md) · [Index](README.md) · [Weiter: Einheit 6 — Hilbert-Transformation](einheit-6.md)
+[Zurück: Einheit 4b — Faltung, Energie, Symmetrien](einheit-4b.md) · [Index](README.md) · [Weiter: Einheit 6 — Hilbert-Transformation](einheit-6.md)

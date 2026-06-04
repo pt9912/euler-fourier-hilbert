@@ -72,6 +72,50 @@ Ein endliches Messfenster wird von der DFT periodisch fortgesetzt. Wenn Anfang u
 
 Der Preis ist, dass das Hauptmaximum breiter wird und Amplituden korrigiert werden müssen. Fensterung ist also ein kontrollierter Kompromiss: weniger Leckage-Nebenkeulen, aber keine zusätzliche Information.
 
+## Lösung 9
+
+Mit $\Delta f=f_s/N=1000/250=4\thinspace\text{Hz}$ ist $77/4=19{,}25$ — der $77\thinspace\text{Hz}$-Sinus fällt **nicht** auf einen DFT-Bin, das Signal ist also nicht kohärent abgetastet. Erwartetes Bild:
+
+- **(a) Ohne Fenster.** Hauptmaximum etwa zwischen den Bins $76\thinspace\text{Hz}$ und $80\thinspace\text{Hz}$; deutliche Nebenkeulen, die langsam abklingen. Das ist Spektralleckage.
+- **(b) Mit Hann-Fenster.** Hauptmaximum breiter (Bin $76\thinspace\text{Hz}$ und $80\thinspace\text{Hz}$ etwa gleich hoch), Nebenkeulen deutlich gedämpft. Amplitude um etwa Faktor $2$ kleiner, weil das Fenster die Signalenergie reduziert.
+- **(c) Mit Zero Padding.** Frequenzgitter wird feiner ($\Delta f\to 1\thinspace\text{Hz}$), die Spitze rückt sichtbar näher an $77\thinspace\text{Hz}$. **Die Nebenkeulen bleiben.** Zero Padding interpoliert das Spektrum, fügt aber keine neue Messinformation hinzu.
+
+```python
+import numpy as np
+
+fs, N = 1000.0, 250
+n = np.arange(N)
+x = np.cos(2 * np.pi * 77.0 * n / fs)
+
+# (a) ohne Fenster
+X_rect = np.fft.fft(x)
+f_rect = np.fft.fftfreq(N, d=1 / fs)
+
+# (b) Hann-Fenster
+X_hann = np.fft.fft(x * np.hanning(N))
+
+# (c) Zero Padding
+X_zpad = np.fft.fft(np.concatenate([x, np.zeros(750)]))
+f_zpad = np.fft.fftfreq(len(X_zpad), d=1 / fs)
+
+assert abs(f_rect[1] - f_rect[0]) == 4.0    # Δf = 4 Hz ohne Padding
+assert abs(f_zpad[1] - f_zpad[0]) == 1.0    # Δf = 1 Hz mit Padding
+```
+
+Was du daraus mitnehmen solltest: Fenster reduzieren Nebenkeulen (Lesbarkeit), Zero Padding interpoliert das Bild (Anzeige), und nur eine längere Messdauer würde die echte Frequenzauflösung verbessern.
+
+## Lösung 10
+
+Die Bin-Breite ist $\Delta f=f_s/N=64/64=1\thinspace\text{Hz}$, die DFT-Bins liegen also genau bei $0,1,\ldots,63\thinspace\text{Hz}$. Damit ein reelles Signal **genau** zwei nichtverschwindende Bins erzeugt (außer der konjugierten Spiegelung der negativen Frequenz), muss es eine Summe **eines** reinen Kosinus mit einer ganzzahligen Frequenz $f_0\in\lbrace 5,\ldots,15\rbrace\thinspace\text{Hz}$ sein. Zum Beispiel:
+
+```math
+x[n]=\cos\bigl(2\pi\cdot 7\cdot n/64\bigr),\qquad n=0,\ldots,63.
+```
+
+Die DFT hat dann nichtverschwindende Werte nur bei den Bins $k=7$ und $k=64-7=57$ (konjugiert spiegelbildlich, Realitätssymmetrie). Alle anderen Bins sind exakt null.
+
+Achte darauf: Hätte man $f_0=7{,}5\thinspace\text{Hz}$ gewählt, fiele $f_0$ zwischen zwei Bins und alle 64 Bins wären besetzt (Leckage). Die Kohärenz-Bedingung $f_0=m\Delta f$ mit ganzem $m$ ist also wesentlich.
+
 ---
 
-[Zurück: Lösungen zu Einheit 4](einheit-4.md) · [Zurück zur Einheit](../einheit-5.md) · [Lösungs-Index](README.md) · [Weiter: Lösungen zu Einheit 6](einheit-6.md)
+[Zurück: Lösungen zu Einheit 4b](einheit-4b.md) · [Zurück zur Einheit](../einheit-5.md) · [Lösungs-Index](README.md) · [Weiter: Lösungen zu Einheit 6](einheit-6.md)

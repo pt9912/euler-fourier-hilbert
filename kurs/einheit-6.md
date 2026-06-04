@@ -52,11 +52,11 @@ Strukturell ist das eine **Faltung** mit dem Kern $h(t)=1/(\pi t)$:
 ```math
 \mathcal H\{x\} = h * x,\qquad h(t)=\frac{1}{\pi t}.
 ```
-Die Hilbert-Transformation ist also ein linearer, zeitinvarianter (LTI-)Operator und passt in den Rahmen von [Einheit 4](einheit-4.md): Ihr Frequenzgang ist
+Die Hilbert-Transformation ist also ein linearer, zeitinvarianter (LTI-)Operator und passt in den Rahmen von [Einheit 4b](einheit-4b.md): Ihr Frequenzgang ist
 ```math
 \mathcal F\{1/(\pi t)\}(\omega)=-i\,\mathrm{sgn}(\omega)
 ```
-im distributionellen Sinn. Nach dem Faltungssatz aus [§4.6](einheit-4.md#46-faltung) wird Faltung mit $1/(\pi t)$ daher zur Multiplikation mit $-i\thinspace \mathrm{sgn}(\omega)$. §6.2 und §6.3 sind also dieselbe Transformation in zwei Sprachen.
+im distributionellen Sinn. Nach dem Faltungssatz aus [§4b.1](einheit-4b.md#4b1-faltung) wird Faltung mit $1/(\pi t)$ daher zur Multiplikation mit $-i\thinspace \mathrm{sgn}(\omega)$. §6.2 und §6.3 sind also dieselbe Transformation in zwei Sprachen.
 
 ## 6.4 Beispiele
 
@@ -74,13 +74,21 @@ und
 
 Die Hilbert-Transformation entspricht also einer Quadratur-Komponente.
 
-Ein klassisches nichttriviales Paar (oft Lehrbuch­übung) ist
+Ein klassisches nichttriviales Paar ist
 
 ```math
-\mathcal{H}\!\left\{\frac{1}{1+t^2}\right\}(t)=\frac{t}{1+t^2},
+\mathcal{H}\!\left\{\frac{1}{1+t^2}\right\}(t)=\frac{t}{1+t^2}.
 ```
 
-das man am bequemsten im Frequenzbereich nachweist (die Fourier-Transformierte von $1/(1+t^2)$ ist $\pi e^{-|\omega|}$). Es zeigt, dass die Hilbert-Transformation gerade Funktionen in ungerade überführt und umgekehrt — passend zur Symmetrie­tabelle in [§4.8](einheit-4.md#48-symmetrien-reeller-und-geraderungerader-signale).
+**Nachweis im Frequenzbereich.** Die Fourier-Transformierte ist $\mathcal F\lbrace 1/(1+t^2)\rbrace(\omega)=\pi e^{-|\omega|}$ (Standard-Paar). Multiplikation mit $-i\thinspace\mathrm{sgn}(\omega)$ und Rücktransformation liefern
+```math
+\frac{1}{2\pi}\int_{-\infty}^{\infty}\bigl(-i\pi\,\mathrm{sgn}(\omega)\bigr)e^{-|\omega|}e^{i\omega t}\,d\omega = -\frac{i}{2}\left[\int_{0}^{\infty}\!e^{-\omega(1-it)}\,d\omega-\int_{0}^{\infty}\!e^{-\omega(1+it)}\,d\omega\right],
+```
+wobei das Vorzeichen aus $\mathrm{sgn}$ die beiden Halbintegrale trennt und die zweite Substitution $\omega\to-\omega$ beide auf Standardform bringt. Auswerten der elementaren Exponentialintegrale ergibt
+```math
+-\frac{i}{2}\left[\frac{1}{1-it}-\frac{1}{1+it}\right] =-\frac{i}{2}\cdot\frac{2it}{1+t^2} =\frac{t}{1+t^2}.
+```
+Die Rechnung zeigt zugleich ein Strukturprinzip: Die Hilbert-Transformation überführt gerade Funktionen in ungerade und umgekehrt — passend zur Symmetrie­tabelle in [§4b.3](einheit-4b.md#4b3-symmetrien-reeller-und-geraderungerader-signale).
 
 **Nachrechnen am Beispiel $\cos$ im Frequenzbereich.** Die Fourier-Transformierte von $\cos(\omega_0 t)$ ist
 ```math
@@ -144,6 +152,20 @@ hilbert_cos = np.imag(analytic)        # = sin(2 pi 5 t)
 4. Warum braucht die Zeitbereichsdefinition einen Hauptwert?
 5. Begründe ohne Integralrechnung: Die Hilbert-Transformierte eines reellen geraden Signals ist ungerade.
 6. Fehlerdiagnose: Warum ist $\mathcal H\lbrace 1\rbrace =0$, obwohl man manchmal sagt, die Hilbert-Transformation verschiebe "jede Frequenz" um $90^\circ$?
+7. Code: Implementiere die Hilbert-Transformation eines diskreten Signals **selbst** über FFT/IFFT (Multiplikation mit $-i\thinspace\mathrm{sgn}(\omega)$ im Frequenzbereich) und vergleiche das Ergebnis mit `scipy.signal.hilbert`. Was unterscheidet die beiden Funktionen — gibt `scipy.signal.hilbert` $\mathcal H\lbrace x\rbrace$ oder das analytische Signal $x+i\mathcal H\lbrace x\rbrace$? Codegerüst:
+   ```python
+   import numpy as np
+   from scipy.signal import hilbert
+   fs = 1000.0
+   t = np.arange(0, 1.0, 1 / fs)
+   x = np.cos(2 * np.pi * 5.0 * t)
+   X = np.fft.fft(x)
+   freq = np.fft.fftfreq(len(x), d=1 / fs)
+   X_hilbert = -1j * np.sign(freq) * X
+   H_x = np.real(np.fft.ifft(X_hilbert))   # eigene Implementation
+   scipy_result = hilbert(x)                # was liefert das?
+   ```
+8. Konstruktion: Konstruiere eine reelle Funktion $x(t)$, deren Hilbert-Transformierte (bis auf das Vorzeichen) wieder $x$ selbst ist. (Tipp: Welche Signale werden vom Frequenzfaktor $-i\thinspace\mathrm{sgn}(\omega)$ nur in der Phase, nicht in der Form verändert? Erinnere dich an §6.5.)
 
 ## Selbstcheck zu Einheit 6
 

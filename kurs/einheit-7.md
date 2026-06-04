@@ -108,7 +108,7 @@ Diese Spektraltrennung ist der entscheidende Punkt. Präzise gefasst wird das du
 > Sind die Spektren $\hat A$ und $\widehat{\cos(\omega_c\cdot)}$ disjunkt — konkret $\hat A(\omega)=0$ für $|\omega|\ge\omega_c$ und der Träger ist eine reine Schwingung bei $\pm\omega_c$ —, so gilt exakt
 > $$\mathcal H\bigl\lbrace A(t)\cos(\omega_c t)\bigr\rbrace (t)=A(t)\sin(\omega_c t).$$
 
-Diese Voraussetzung ist über die Modulations­regel aus [§4.3](einheit-4.md#43-frequenzverschiebung) anschaulich: das Spektrum von $A(t)\cos(\omega_c t)$ ist genau $\tfrac12[\hat A(\omega-\omega_c)+\hat A(\omega+\omega_c)]$; damit $\mathcal H$ die beiden Kopien sauber mit $\mp i$ gewichten kann, dürfen sie sich nicht überlappen.
+Diese Voraussetzung ist über die Modulations­regel aus [§4a.3](einheit-4a.md#4a3-frequenzverschiebung) anschaulich: das Spektrum von $A(t)\cos(\omega_c t)$ ist genau $\tfrac12[\hat A(\omega-\omega_c)+\hat A(\omega+\omega_c)]$; damit $\mathcal H$ die beiden Kopien sauber mit $\mp i$ gewichten kann, dürfen sie sich nicht überlappen.
 
 Unter dieser Bedingung ist exakt:
 
@@ -152,6 +152,7 @@ recovered = np.abs(hilbert(signal))    # ≈ envelope
 4. Warum entfernt das analytische Signal negative Frequenzen?
 5. Konstruiere ein AM-ähnliches Beispiel, in dem $|z(t)|\neq A(t)$, obwohl $x(t)=A(t)\cos(\omega_ct)$ formal so aussieht. Begründe über die Bedrosian-Bedingung.
 6. Implementationscheck: Eine reelle Folge hat gerades $N=8$. Welche DFT-Bins werden beim Bilden des analytischen Signals verdoppelt, welche bleiben erhalten, und welche werden auf null gesetzt?
+7. Code: Simuliere das AM-Signal $x(t)=(1+0{,}5\cos(2\pi f_m t))\cos(2\pi f_c t)$ mit $f_c=50\thinspace\text{Hz}$ und $f_s=2000\thinspace\text{Hz}$ über $1\thinspace\text{s}$. Variiere die Modulationsfrequenz $f_m$ in den Werten $3\thinspace\text{Hz}$, $30\thinspace\text{Hz}$, $55\thinspace\text{Hz}$. Berechne jeweils die Hüllkurve $\lvert z(t)\rvert$ über `scipy.signal.hilbert` und vergleiche sie visuell mit der modellierten Amplitude $A(t)=1+0{,}5\cos(2\pi f_m t)$. Für welche dieser drei Werte ist die Bedrosian-Bedingung erfüllt, für welche nicht? Begründe das Ergebnis am Frequenzbild.
 
 ## Selbstcheck zu Einheit 7
 

@@ -72,6 +72,18 @@ $$|e^{i\varphi}|=\sqrt{\cos^2\varphi+\sin^2\varphi}=1.$$
 
 Geometrisch liegt $e^{i\varphi}$ also nicht auf der positiven reellen Achse, sondern auf dem Einheitskreis. Wenn $\varphi$ wächst, rotiert der Punkt um den Ursprung.
 
+## Lösung 7
+
+Die einfachste Wahl sind die drei dritten Einheitswurzeln, skaliert mit Faktor $2$:
+
+$$z_k = 2\thinspace e^{i\thinspace 2\pi k/3},\qquad k=0,1,2.$$
+
+Geometrisch sind das drei Zeiger der Länge $2$, die um $120^\circ$ gegeneinander verdreht auf einem Kreis vom Radius $2$ liegen. Ihre Summe ist null, weil die Endpunkte ein gleichseitiges Dreieck mit Schwerpunkt im Ursprung bilden:
+
+$$z_0+z_1+z_2 = 2\bigl(1+e^{i 2\pi/3}+e^{i 4\pi/3}\bigr) = 2\cdot 0 = 0.$$
+
+Die geometrische Schlüsselidee — dass $n$-te Einheitswurzeln symmetrisch um null verteilt sind und sich daher zu null summieren — ist dieselbe, die in [Einheit 2](../einheit-2.md) die Orthogonalität der Schwingungen $e^{in\omega_0 t}$ erzeugt. Was du daraus mitnehmen solltest: Symmetrische Punktverteilungen auf dem Einheitskreis sind die diskrete Variante orthogonaler Schwingungen.
+
 ---
 
 [Zurück zur Einheit](../einheit-1.md) · [Lösungs-Index](README.md) · [Weiter: Lösungen zu Einheit 2](einheit-2.md)

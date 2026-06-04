@@ -112,7 +112,23 @@ ist auch die Fourier-Transformierte eine Gaußfunktion:
 X(\omega)=\sqrt{\frac{\pi}{a}}e^{-\omega^2/(4a)}.
 ```
 
-Beweisidee: Im Integranden $e^{-at^2}e^{-i\omega t}$ lässt sich der Exponent durch **quadratische Ergänzung** umformen zu $-a(t+\tfrac{i\omega}{2a})^2-\tfrac{\omega^2}{4a}$. Der $\omega$-abhängige Teil zieht aus dem Integral heraus, und der verbleibende Gauß-Anteil liefert mit einem Konturargument den Faktor $\sqrt{\pi/a}$.
+**Beweisidee über eine Differentialgleichung in $\omega$.** Wir vermeiden das Konturargument und nutzen nur reelle Werkzeuge:
+
+1. Differenzieren unter dem Integral liefert
+   ```math
+   X'(\omega)=\int_{-\infty}^{\infty}(-it)e^{-at^2}e^{-i\omega t}\,dt.
+   ```
+2. Wegen $te^{-at^2}=-\tfrac{1}{2a}\bigl(e^{-at^2}\bigr)'$ folgt durch partielle Integration (Randterme verschwinden, weil $e^{-at^2}\to 0$):
+   ```math
+   X'(\omega)=\frac{i}{2a}\int_{-\infty}^{\infty}\bigl(e^{-at^2}\bigr)'e^{-i\omega t}\,dt =\frac{i}{2a}\cdot i\omega\,X(\omega) =-\frac{\omega}{2a}X(\omega).
+   ```
+3. Diese lineare Differentialgleichung hat die Lösung $X(\omega)=X(0)\thinspace e^{-\omega^2/(4a)}$.
+4. Der Anfangswert ist das klassische Gauß-Integral
+   ```math
+   X(0)=\int_{-\infty}^{\infty}e^{-at^2}\,dt=\sqrt{\pi/a}.
+   ```
+
+Daraus folgt $X(\omega)=\sqrt{\pi/a}\thinspace e^{-\omega^2/(4a)}$. Die DGL-Idee ist exemplarisch — sie wird in [§4a.5](einheit-4a.md#4a5-ableitung) wieder auftreten, wenn die Ableitungsregel der Fourier-Transformation systematisch entwickelt wird.
 
 Die Gaußfunktion ist deshalb in Wahrscheinlichkeitstheorie, Quantenmechanik und Signalverarbeitung besonders wichtig: Sie ist (bis auf Skalierung) ihre eigene Fourier-Transformierte und minimiert die Zeit-Frequenz-Unschärfe.
 
@@ -145,8 +161,19 @@ gauss_ft = np.sqrt(np.pi) * np.exp(-omega**2 / 4)
 2. Berechne $\mathcal{F}\lbrace \delta(t-3)\rbrace $.
 3. Was passiert mit dem Spektrum eines Rechteckpulses, wenn der Puls im Zeitbereich breiter wird?
 4. Warum enthält ein sehr kurzer Impuls viele Frequenzen?
-5. Skizziere ohne Integralrechnung qualitativ das Spektrum von $x(t)=\cos(\omega_0t)\cdot \mathrm{rect}(t/T)$. Nutze die Idee, dass ein zeitlich begrenzter Kosinus ein Rechteckspektrum um $\pm\omega_0$ verschiebt. Prüfe deine Begründung nach [§4.3](einheit-4.md#43-frequenzverschiebung) erneut.
+5. Skizziere ohne Integralrechnung qualitativ das Spektrum von $x(t)=\cos(\omega_0t)\cdot \mathrm{rect}(t/T)$. Nutze die Idee, dass ein zeitlich begrenzter Kosinus ein Rechteckspektrum um $\pm\omega_0$ verschiebt. Prüfe deine Begründung nach [§4a.3](einheit-4a.md#4a3-frequenzverschiebung) erneut.
 6. Fehlerdiagnose: Jemand schreibt $\delta(0)=\infty$ und versucht damit $\mathcal F\lbrace \delta\rbrace $ wie ein gewöhnliches Integral auszurechnen. Warum ist das keine saubere Begründung? Welche Eigenschaft verwendet man stattdessen?
+7. Code: Berechne numerisch die Fourier-Transformierte des Rechteckpulses $x(t)=\mathrm{rect}(t)$ (Träger $[-\tfrac12,\tfrac12]$) auf einem feinen $t$-Gitter und vergleiche das Ergebnis mit der geschlossenen Form $X(\omega)=\mathrm{sinc}(\omega/(2\pi))$. Verifiziere insbesondere die ersten beiden Nullstellen von $X(\omega)$ und das Verhalten bei $\omega\to 0$. Ein Codegerüst:
+   ```python
+   import numpy as np
+   t = np.linspace(-20, 20, 8000)
+   dt = t[1] - t[0]
+   x = np.where(np.abs(t) <= 0.5, 1.0, 0.0)
+   omega = np.linspace(-30, 30, 4000)
+   X = np.array([np.sum(x * np.exp(-1j * w * t)) * dt for w in omega])
+   ```
+   Diskutiere, warum die numerische Approximation an den Nullstellen besonders empfindlich auf das $t$-Gitter reagiert.
+8. Konstruktion: Konstruiere zwei reelle Signale $x_1,x_2$, deren Fourier-Transformierte beide gerade Funktionen von $\omega$ sind, deren Spektren aber qualitativ unterschiedlich aussehen (z. B. eines glatt abklingend, das andere oszillierend). Welche Eigenschaften deiner $x_1,x_2$ erzwingen die Geradheit des Spektrums, welche bestimmen den Unterschied?
 
 ## Selbstcheck zu Einheit 3
 
@@ -161,4 +188,4 @@ Lösungen: [loesungen/einheit-3.md](loesungen/einheit-3.md)
 
 ---
 
-[Zurück: Einheit 2 — Fourier-Reihen](einheit-2.md) · [Index](README.md) · [Weiter: Einheit 4 — Eigenschaften](einheit-4.md)
+[Zurück: Einheit 2 — Fourier-Reihen](einheit-2.md) · [Index](README.md) · [Weiter: Einheit 4a — Verschieben, Modulieren, Skalieren, Ableiten](einheit-4a.md)

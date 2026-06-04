@@ -1,6 +1,6 @@
-# Lösungen zu Einheit 4: Eigenschaften der Fourier-Transformation
+# Lösungen zu Einheit 4a: Verschieben, Modulieren, Skalieren, Ableiten
 
-Aufgabenstellung: [Einheit 4 — Übungen](../einheit-4.md#übungen-zu-einheit-4)
+Aufgabenstellung: [Einheit 4a — Übungen](../einheit-4a.md#übungen-zu-einheit-4a)
 
 ## Lösung 1
 
@@ -24,29 +24,13 @@ Hohe Frequenzen werden daher stärker gewichtet als niedrige.
 
 ## Lösung 3
 
-Der Faltungssatz sagt:
-
-$$x*h\leftrightarrow X(\omega)H(\omega).$$
-
-Eine Faltung ist ein Integral über alle Verschiebungen. Im Frequenzbereich wird daraus eine punktweise Multiplikation, was theoretisch und numerisch oft einfacher ist.
-
-## Lösung 4
-
-Wenn $y=x*h$, dann folgt direkt aus dem Faltungssatz:
-
-$$Y(\omega)=X(\omega)H(\omega).$$
-
-$H(\omega)$ beschreibt also, welche Frequenzen das System verstärkt, abschwächt oder in der Phase verschiebt.
-
-## Lösung 5
-
 Setze $u=t_0-t$. Dann ist $t=t_0-u$ und $dt=-du$. Im Fourier-Integral folgt:
 
 $$Y(\omega) =\int_{-\infty}^{\infty}x(t_0-t)e^{-i\omega t}\thinspace dt =e^{-i\omega t_0}\int_{-\infty}^{\infty}x(u)e^{i\omega u}\thinspace du =e^{-i\omega t_0}X(-\omega).$$
 
 Die Spiegelung vertauscht also $\omega$ und $-\omega$; die anschließende Verschiebung erzeugt den Phasenfaktor $e^{-i\omega t_0}$. Was du daraus mitnehmen solltest: Zusammengesetzte Signaloperationen lassen sich regelweise zerlegen, aber die Reihenfolge entscheidet über den Phasenfaktor.
 
-## Lösung 6
+## Lösung 4
 
 Zuerst betrachten wir die verzögerte Version
 
@@ -62,6 +46,16 @@ $$Y(\omega)=U(\omega-\omega_c) =e^{-i(\omega-\omega_c)t_0}X(\omega-\omega_c).$$
 
 Die Reihenfolge zeigt sich im Phasenfaktor: Er enthält $\omega-\omega_c$, weil erst verzögert und danach das bereits verzögerte Spektrum verschoben wird.
 
+## Lösung 5
+
+Die einfachste Konstruktion nutzt eine Zeitverschiebung: Wähle ein beliebiges reelles $x(t)$ und setze
+
+$$y_1(t)=x(t),\qquad y_2(t)=x(t-t_0)$$
+
+für ein $t_0\ne 0$. Dann gilt $Y_2(\omega)=e^{-i\omega t_0}X(\omega)$, also $|Y_2(\omega)|=|Y_1(\omega)|$. Die Phasenspektren unterscheiden sich um den linearen Term $-\omega t_0$.
+
+Eine zweite Konstruktion ist die Zeitumkehr $y_2(t)=x(-t)$: Es gilt $Y_2(\omega)=X(-\omega)$, also wieder $|Y_2(\omega)|=|Y_1(\omega)|$ — allerdings spiegelt sich die Phase, und für reelle Signale ändert das nichts am Betrag, weil $|X(-\omega)|=|X(\omega)|$ aus der hermiteschen Symmetrie folgt. Was du daraus mitnehmen solltest: Betragsspektren sind nicht eindeutig zuordenbar — die Phase trägt die Lage- und Richtungsinformation.
+
 ---
 
-[Zurück: Lösungen zu Einheit 3](einheit-3.md) · [Zurück zur Einheit](../einheit-4.md) · [Lösungs-Index](README.md) · [Weiter: Lösungen zu Einheit 5](einheit-5.md)
+[Zurück: Lösungen zu Einheit 3](einheit-3.md) · [Zurück zur Einheit](../einheit-4a.md) · [Lösungs-Index](README.md) · [Weiter: Lösungen zu Einheit 4b](einheit-4b.md)

@@ -83,6 +83,35 @@ Als Multiplikatorfolge kann man das schreiben als
 
 $$[1,2,2,2,1,0,0,0].$$
 
+## Lösung 7
+
+Die Bedrosian-Bedingung verlangt, dass die nach $\pm f_c$ verschobenen Kopien des $A$-Spektrums sich nicht überlappen. Das $A$-Spektrum hat Linien bei $0$ und $\pm f_m$, nach Modulation also bei $\pm f_c$ und $\pm f_c\pm f_m$. Damit positive und negative Frequenzen sauber getrennt sind, muss $f_m < f_c$ — und genauer noch $f_c - f_m > 0$, also $f_m < f_c=50\thinspace\text{Hz}$.
+
+- **$f_m=3\thinspace\text{Hz}$.** Spektrallinien bei $47,50,53\thinspace\text{Hz}$ (positiv) und $-47,-50,-53\thinspace\text{Hz}$ (negativ). Klar getrennt — Bedrosian erfüllt. Die Hilbert-Hüllkurve $\lvert z(t)\rvert$ stimmt fast perfekt mit $A(t)=1+0{,}5\cos(2\pi\cdot 3\thinspace t)$ überein (kleine Randartefakte ausgenommen).
+- **$f_m=30\thinspace\text{Hz}$.** Linien bei $20,50,80\thinspace\text{Hz}$ und $-20,-50,-80\thinspace\text{Hz}$. Noch getrennt — Bedrosian gerade noch erfüllt. Die Hüllkurve folgt $A(t)$ noch erkennbar, aber mit sichtbaren Verzerrungen.
+- **$f_m=55\thinspace\text{Hz}$.** Linien bei $-5,50,105\thinspace\text{Hz}$ und $-105,-50,5\thinspace\text{Hz}$. Positive und negative Anteile **überlappen** (die $-5\thinspace\text{Hz}$-Linie aus der Modulation kollidiert mit der $+5\thinspace\text{Hz}$-Linie aus der negativen Trägerseite). Bedrosian ist verletzt, $|z(t)|$ weicht deutlich von $A(t)$ ab.
+
+```python
+import numpy as np
+from scipy.signal import hilbert
+
+fs = 2000.0
+t = np.arange(0, 1.0, 1 / fs)
+fc = 50.0
+
+for fm in (3.0, 30.0, 55.0):
+    envelope = 1.0 + 0.5 * np.cos(2 * np.pi * fm * t)
+    signal = envelope * np.cos(2 * np.pi * fc * t)
+    z = hilbert(signal)
+    recovered = np.abs(z)
+    err = np.max(np.abs(recovered[100:-100] - envelope[100:-100]))
+    print(f"fm = {fm:>5} Hz  ->  max |z| - A  =  {err:.4f}")
+```
+
+Erwartete Größenordnung: bei $f_m=3$ Fehler unter $0{,}01$, bei $f_m=30$ unter $0{,}1$, bei $f_m=55$ deutlich darüber.
+
+Was du daraus mitnehmen solltest: "AM-Form" ist nur Notation; die spektrale Trennung entscheidet, ob die Hüllkurve die modellierte Amplitude ist.
+
 ---
 
 [Zurück: Lösungen zu Einheit 6](einheit-6.md) · [Zurück zur Einheit](../einheit-7.md) · [Lösungs-Index](README.md) · [Weiter: Lösungen zu Einheit 8](einheit-8.md)

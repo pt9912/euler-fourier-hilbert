@@ -159,6 +159,7 @@ im_part = z.imag               # sin phi
 4. Was bewirkt die Multiplikation einer komplexen Zahl mit $e^{i\pi/2}$? (Hinweis: $e^{i\pi/2}=i$.)
 5. Zeige mit der Euler-Formel die Additionstheoreme für $\cos(\alpha+\beta)$ und $\sin(\alpha+\beta)$. (Hinweis: Vergleiche $e^{i(\alpha+\beta)}$ mit $e^{i\alpha}e^{i\beta}$.)
 6. Fehlerdiagnose: Eine Person sagt: "$e^{i\varphi}$ ist eine Exponentialfunktion, also muss der Wert reell und positiv sein." Korrigiere die Aussage mit Formel und Geometrie.
+7. Konstruktion: Konstruiere drei verschiedene komplexe Zahlen $z_1,z_2,z_3$ mit $\lvert z_k\rvert=2$ und $z_1+z_2+z_3=0$. Begründe geometrisch (mit dem Bild "drei Zeiger auf einem Kreis"), warum deine Konstruktion funktioniert, und gib eine Polarform an.
 
 ## Selbstcheck zu Einheit 1
 

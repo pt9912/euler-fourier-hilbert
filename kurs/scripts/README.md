@@ -38,7 +38,7 @@ for f in kurs/scripts/einheit-*.py kurs/scripts/projekte/*.py; do python3 "$f"; 
 | `einheit-1.py` | Einheitskreis und Projektion auf Real-/Imaginärachse |
 | `einheit-2.py` | Fourier-Reihe der Rechteckwelle (Gibbs-Phänomen) |
 | `einheit-3.py` | Rechteck/Sinc und Gauß/Gauß als Zeit-Frequenz-Dualität |
-| `einheit-4.py` | Faltungssatz: Rechteck * Rechteck = Dreieck |
+| `einheit-4b.py` | Faltungssatz: Rechteck * Rechteck = Dreieck |
 | `einheit-5.py` | Aliasing-Demo, DFT-Spektrum und Rückfaltung ins Nyquist-Band |
 | `einheit-6.py` | Hilbert-Transformierte eines Kosinus |
 | `einheit-7.py` | Hüllkurve und Spektraltrennung eines AM-Signals via analytisches Signal |

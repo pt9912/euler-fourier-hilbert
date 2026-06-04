@@ -40,7 +40,7 @@ Bei $\tau=t$ wird der Nenner null. Das Integral ist daher nicht als gewöhnliche
 
 ## Lösung 5
 
-Ist $x(t)$ reell und gerade, dann ist $X(\omega)$ nach der Symmetrietabelle aus [§4.8](../einheit-4.md#48-symmetrien-reeller-und-geraderungerader-signale) ebenfalls reell und gerade.
+Ist $x(t)$ reell und gerade, dann ist $X(\omega)$ nach der Symmetrietabelle aus [§4b.3](../einheit-4b.md#4b3-symmetrien-reeller-und-geraderungerader-signale) ebenfalls reell und gerade.
 
 Die Hilbert-Transformation multipliziert im Frequenzbereich mit
 
@@ -61,6 +61,47 @@ Weil $\mathrm{sgn}(0)=0$, wird der Gleichanteil auf null gesetzt. Daher gilt
 $$\mathcal H\lbrace 1\rbrace =0.$$
 
 Die Kurzform "jede Frequenz wird um $90^\circ$ verschoben" meint die echten positiven und negativen Frequenzen. Der Gleichanteil rotiert nicht; er hat keine Schwingungsphase, die man sinnvoll um $90^\circ$ verschieben könnte.
+
+## Lösung 7
+
+Beide Implementierungen liefern dasselbe inhaltlich, unterscheiden sich aber im Rückgabewert:
+
+- Die eigene Implementation multipliziert $X[k]$ mit $-i\thinspace\mathrm{sgn}(f_k)$ und transformiert zurück. Der Realteil des Ergebnisses ist $\mathcal H\lbrace x\rbrace$.
+- `scipy.signal.hilbert(x)` liefert **das analytische Signal** $z(t)=x(t)+i\thinspace\mathcal H\lbrace x\rbrace(t)$, also einen komplexen Vektor. Sein Imaginärteil ist die Hilbert-Transformierte.
+
+```python
+import numpy as np
+from scipy.signal import hilbert
+
+fs = 1000.0
+t = np.arange(0, 1.0, 1 / fs)
+x = np.cos(2 * np.pi * 5.0 * t)
+
+X = np.fft.fft(x)
+freq = np.fft.fftfreq(len(x), d=1 / fs)
+X_hilbert = -1j * np.sign(freq) * X
+H_x_self = np.real(np.fft.ifft(X_hilbert))
+
+z = hilbert(x)
+H_x_scipy = np.imag(z)
+
+# beide stimmen abseits der Ränder überein
+assert np.max(np.abs(H_x_self[50:-50] - H_x_scipy[50:-50])) < 1e-6
+```
+
+An den Rändern weichen die Ergebnisse leicht ab, weil die DFT die Signale periodisch fortsetzt und Sprünge am Rand entstehen können. In der Praxis arbeitet man dort mit Fensterung oder ignoriert die ersten/letzten Samples.
+
+Was du daraus mitnehmen solltest: Die Engineering-Namenswahl "Hilbert" für eine Funktion, die das analytische Signal zurückgibt, ist üblich, aber irreführend. Wer die reine Hilbert-Transformierte braucht, nimmt den Imaginärteil.
+
+## Lösung 8
+
+Die einfachste Wahl ist eine **reine Schwingung** wie $x(t)=\cos(\omega_0 t)$ mit $\omega_0>0$. Es gilt $\mathcal H\lbrace x\rbrace=\sin(\omega_0 t)$ — das ist zwar nicht $\pm x$, aber:
+
+Wende $\mathcal H$ ein weiteres Mal an: $\mathcal H\lbrace\sin(\omega_0 t)\rbrace=-\cos(\omega_0 t)=-x$. Also ist $\mathcal H^2 x=-x$ für jede reine positive-Frequenz-Schwingung; dieselbe Aussage gilt allgemein für jedes Signal **ohne Gleichanteil** (siehe §6.5).
+
+Wer "$\mathcal H\lbrace x\rbrace=\pm x$" *in einem Schritt* haben möchte, sucht eine **Eigenfunktion** des Hilbert-Operators. Solche gibt es nicht im reellen Funktionenraum (eine Multiplikation mit $-i\thinspace\mathrm{sgn}(\omega)$ kann kein reelles Vielfaches der Identität sein), aber im komplexen: Die analytischen Signale $z(t)=e^{i\omega_0 t}$ mit $\omega_0>0$ erfüllen $\mathcal H\lbrace e^{i\omega_0 t}\rbrace=-i\thinspace e^{i\omega_0 t}$, also formal "Phase um $-90^\circ$".
+
+Was du daraus mitnehmen solltest: $\mathcal H$ ist eine Quadratur — der "Eigenwert $-1$" stellt sich erst nach zweimaliger Anwendung ein, weil die einmalige Anwendung Sinus und Kosinus mischt.
 
 ---
 

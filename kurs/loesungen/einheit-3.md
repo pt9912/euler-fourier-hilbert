@@ -62,6 +62,40 @@ Für $t_0=0$ und $f(t)=e^{-i\omega t}$ folgt deshalb
 
 $$\mathcal F\lbrace \delta(t)\rbrace =e^{-i\omega\cdot 0}=1.$$
 
+## Lösung 7
+
+Eine direkte numerische Auswertung mit dem Codegerüst aus der Aufgabe ergibt $X(\omega)\approx\mathrm{sinc}(\omega/(2\pi))$ über den gesamten getesteten Frequenzbereich.
+
+```python
+import numpy as np
+
+t = np.linspace(-20, 20, 8000)
+dt = t[1] - t[0]
+x = np.where(np.abs(t) <= 0.5, 1.0, 0.0)
+
+omega = np.linspace(-30, 30, 4000)
+X_num = np.array([np.sum(x * np.exp(-1j * w * t)) * dt for w in omega])
+X_theory = np.sinc(omega / (2 * np.pi))
+
+assert np.max(np.abs(X_num - X_theory)) < 1e-3
+assert abs(X_num[np.argmin(np.abs(omega))] - 1.0) < 1e-3   # X(0) = 1
+```
+
+Die ersten beiden positiven Nullstellen liegen bei $\omega=2\pi$ und $\omega=4\pi$ — genau dort, wo $\sin(\omega/2)=0$ mit $\omega\ne 0$. Bei $\omega\to 0$ liefert die Sinc-Form den Grenzwert $1$ (über $\mathrm{sinc}(0)=1$).
+
+Empfindlichkeit an den Nullstellen: An den Nullstellen ist der Wert genau $0$, aber Vorzeichen und Steigung der Sinc-Funktion sind nichttrivial. Ein zu grobes $t$-Gitter führt dazu, dass die Sinusoszillationen des Integranden $\mathrm{rect}(t)\cdot e^{-i\omega t}$ nicht mehr sauber gemittelt werden. Daumenregel: $\mathrm dt$ sollte deutlich kleiner sein als $\pi/\omega_{\max}$, sonst wandert die scheinbare Nullstelle.
+
+## Lösung 8
+
+Geradheit des Spektrums verlangt, dass $X(-\omega)=X(\omega)$. Nach der Symmetrietabelle aus [§4b.3](../einheit-4b.md#4b3-symmetrien-reeller-und-geraderungerader-signale) (die in Einheit 4b systematisch eingeführt wird) reicht dafür: $x$ ist eine gerade Funktion von $t$.
+
+Zwei verschiedene gerade reelle Signale:
+
+- $x_1(t)=e^{-t^2}$ — die Gaußfunktion. Ihr Spektrum $X_1(\omega)=\sqrt{\pi}\thinspace e^{-\omega^2/4}$ ist glatt, nichtnegativ und klingt monoton ab. Das ist eine Folge davon, dass $x_1$ glatt und überall positiv ist.
+- $x_2(t)=\mathrm{rect}(t)$ — der Rechteckpuls. Sein Spektrum $X_2(\omega)=\mathrm{sinc}(\omega/(2\pi))$ ist ebenfalls reell und gerade, aber oszilliert mit Vorzeichenwechseln. Die Oszillation ist die spektrale Signatur der harten Kanten von $x_2$ — eine direkte Konsequenz davon, dass $x_2$ unstetig ist.
+
+Was du daraus mitnehmen solltest: Geradheit zwingt die Symmetrie des Spektrums, sagt aber nichts über Glattheit oder Vorzeichen. Ob das Spektrum oszilliert, hängt an den Sprüngen oder Kanten des Zeitsignals.
+
 ---
 
-[Zurück: Lösungen zu Einheit 2](einheit-2.md) · [Zurück zur Einheit](../einheit-3.md) · [Lösungs-Index](README.md) · [Weiter: Lösungen zu Einheit 4](einheit-4.md)
+[Zurück: Lösungen zu Einheit 2](einheit-2.md) · [Zurück zur Einheit](../einheit-3.md) · [Lösungs-Index](README.md) · [Weiter: Lösungen zu Einheit 4a](einheit-4a.md)

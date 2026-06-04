@@ -61,7 +61,13 @@ Die Funktionen $e_n(t)=e^{in\omega_0 t}$ sind bezüglich dieses Skalarprodukts o
 
 Das ist die direkte Verallgemeinerung rechtwinkliger Vektoren: Die Koeffizienten $c_n=\langle f,e_n\rangle$ sind die Projektionen des Signals auf die Frequenzrichtungen $e_n$.
 
-Konvergenzfragen (punktweise, gleichmäßig oder im $L^2$-Sinne) lassen wir hier offen. Für glatte Signale konvergiert die Fourier-Reihe punktweise gegen das Signal; für stückweise stetige Signale gilt die Konvergenz im quadratischen Mittel. Die **Dirichlet-Bedingungen** sind ein hinreichendes Kriterium für punktweise Konvergenz: $f$ ist auf jedem Periodenintervall stückweise stetig, stückweise monoton und hat endlich viele Sprungstellen; an einer Sprungstelle konvergiert die Reihe gegen den Mittelwert $\tfrac12\bigl(f(t^-)+f(t^+)\bigr)$.
+Konvergenzfragen (punktweise, gleichmäßig oder im $L^2$-Sinne) lassen wir hier weitgehend offen, ordnen aber drei wichtige Aussagen ein:
+
+- **Gleichmäßige Konvergenz** für $T$-periodische, stetige und stückweise stetig differenzierbare Funktionen — das ist die stärkste der drei Aussagen und greift bei "glatten" Signalen.
+- **Punktweise Konvergenz** unter den **Dirichlet-Bedingungen**: $f$ ist auf jedem Periodenintervall stückweise stetig, stückweise monoton und hat endlich viele Sprungstellen; an einer Sprungstelle konvergiert die Reihe gegen den Mittelwert $\tfrac12\bigl(f(t^-)+f(t^+)\bigr)$.
+- **Konvergenz im quadratischen Mittel** (im $L^2$-Sinne) für alle $f\in L^2([0,T])$ — sie ist die schwächste der drei Aussagen, gilt aber am allgemeinsten.
+
+Die drei Begriffe sind nicht austauschbar: $L^2$-Konvergenz erlaubt punktweises Versagen auf Nullmengen, punktweise Konvergenz schließt das Gibbs-Phänomen aus §2.8 nicht aus, und gleichmäßige Konvergenz ist gerade dann unmöglich, wenn das Signal Sprünge hat.
 
 ## 2.4 Beispiel: Reine Kosinusschwingung
 
