@@ -1,5 +1,7 @@
 # Einheit 1: Komplexe Zahlen und Euler-Formel
 
+> **Hauptschwelle dieser Einheit.** $e^{i\varphi}$ ist *keine* reelle Wachstumsfunktion, sondern ein rotierender Zeiger auf dem Einheitskreis. Wer diese Vorstellung verinnerlicht hat, kann Sinus und Kosinus als Real- und Imaginärteil *einer* Größe lesen — das ist die Sprache, in der ab Einheit 2 alles weitere formuliert wird.
+
 Wir brauchen für diesen Kurs eine Zahlebene statt einer Zahlengeraden, weil **Rotation und Schwingung dieselbe algebraische Struktur sind**. Multiplikation in der Ebene wird zur Drehung, die Euler-Formel macht aus einer Drehbewegung eine Schwingung. Erst damit lassen sich Sinus und Kosinus durch eine einzige Exponentialfunktion ersetzen — das ist die Sprache, in der Fourier- und Hilbert-Transformation natürlich werden.
 
 ## 1.1 Komplexe Zahlen

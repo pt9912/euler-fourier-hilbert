@@ -1,5 +1,7 @@
 # Einheit 4a: Eigenschaften der Fourier-Transformation — Verschieben, Modulieren, Skalieren, Ableiten
 
+> **Hauptschwelle dieser Einheit.** Jede Signaloperation hat *genau einen* spezifischen Effekt im Frequenzbereich: Zeitverschiebung dreht nur die Phase, Modulation verschiebt nur die Lage, Skalierung dehnt nur die Breite, Ableitung gewichtet nur die hohen Frequenzen. Wer diese **Disjunktheit der Wirkungen** verinnerlicht hat, muss bei zusammengesetzten Operationen nicht mehr raten — er stapelt die Effekte in der gegebenen Reihenfolge.
+
 Welche Manipulationen am Signal lassen sich im Frequenzbereich einfacher beschreiben als im Zeitbereich? Diese erste Hälfte sammelt die punktweisen Werkzeuge: Linearität, Verschiebung, Modulation, Skalierung und Ableitung. Die strukturellen Werkzeuge — Faltung, Energie, Symmetrien — folgen in [Einheit 4b](einheit-4b.md).
 
 ## 4a.0 Arbeitsweg durch die Werkzeugkiste
@@ -83,25 +85,55 @@ Diese Regel hat den DGL-Beweis der Gauß-Transformierten in [§3.7](einheit-3.md
 
 ## 4a.6 Integrierendes Beispiel: alle Regeln in einem Signal
 
-Damit die Werkzeuge nicht isoliert bleiben, durchläuft das folgende Beispiel die Regeln in einer einzigen Rechnung. Sei $x(t)=e^{-t^2}$ mit bekannter Transformierter
+> **Pacing-Hinweis.** Dieser Abschnitt ist eine **Vertiefung**, nicht Teil des ersten Lese-Durchgangs. Empfohlene Reihenfolge: Erst §4a.1–§4a.5 lesen und die Übungen 1–4 bearbeiten, danach §4a.6 als zusammenfassendes Beispiel. Wer §4a.6 *vor* den Übungen liest, kann der gestapelten Rechnung folgen, übt aber nicht die Werkzeuge — der Lerngewinn ist klein.
+
+Damit die Werkzeuge nicht isoliert bleiben, durchläuft das folgende Beispiel die Regeln in einer einzigen Rechnung. Es ist als **Faded Worked Example** strukturiert: Schritt 1 ist vollständig vorgeführt, ab Schritt 2 wirst du gebeten, jeweils einen kleinen Teil selbst zu vervollständigen, bevor du weiterliest.
+
+Sei $x(t)=e^{-t^2}$ mit bekannter Transformierter
 $$X(\omega)=\sqrt{\pi}\thinspace e^{-\omega^2/4}\quad\text{(aus §3.7)}.$$
 
 Wir konstruieren schrittweise das Signal
 $$y(t)=\frac{d}{dt}\Bigl[x\bigl(a(t-t_0)\bigr)\cos(\omega_c t)\Bigr]$$
 und berechnen sein Spektrum. Die Rechnung zeigt typisch, wie sich die Phasenfaktoren stapeln.
 
-**Schritt 1 — Skalierung (§4a.4).** Für $u(t)=x(at)$ mit $a>0$ ist
+**Schritt 1 — Skalierung (§4a.4) — vollständig vorgeführt.** Für $u(t)=x(at)$ mit $a>0$ liefert die Skalierungsregel
 $$U(\omega)=\frac{1}{a}X\left(\frac{\omega}{a}\right).$$
+Der Faktor $1/a$ erhält die Energie ($\Vert u\Vert^2=\Vert x\Vert^2/a$, was über Parseval auch im Frequenzbereich gelten muss), und $\omega/a$ verschiebt die spektrale Breite umgekehrt zur Zeitskalierung.
 
-**Schritt 2 — Zeitverschiebung (§4a.2).** Für $v(t)=u(t-t_0)=x\bigl(a(t-t_0)\bigr)$ liefert die Verschiebungsregel
+**Schritt 2 — Zeitverschiebung (§4a.2) — selbst probieren.**
+*Versuch's selbst:* Welche Regel wendest du auf $u(t)$ an, um $v(t)=u(t-t_0)$ zu bekommen, und welcher Faktor steht vor $U(\omega)$?
+
+<details>
+<summary>Lösung Schritt 2</summary>
+
+Für $v(t)=u(t-t_0)=x\bigl(a(t-t_0)\bigr)$ liefert die Verschiebungsregel
 $$V(\omega)=e^{-i\omega t_0}U(\omega)=\frac{1}{a}e^{-i\omega t_0}X\left(\frac{\omega}{a}\right).$$
 Beachte: der Phasenfaktor trägt $\omega$ (nicht $\omega/a$), weil die Verschiebung *im Ausgangssignal* $u$ erfolgt — Reihenfolge zählt.
 
-**Schritt 3 — Modulation (§4a.3).** Mit $w(t)=v(t)\cos(\omega_c t)$ ergibt die Modulationsregel
-$$W(\omega)=\tfrac12\bigl[V(\omega-\omega_c)+V(\omega+\omega_c)\bigr].$$
+</details>
 
-**Schritt 4 — Ableitung (§4a.5).** Schließlich liefert $y(t)=w'(t)$
+**Schritt 3 — Modulation (§4a.3) — Skizze allein, dann Lösung lesen.**
+*Versuch's selbst:* Skizziere ohne Rechnung das Spektrum von $w(t)=v(t)\cos(\omega_c t)$. Wie viele Kopien des $V$-Spektrums bekommst du, und wo liegen sie?
+
+<details>
+<summary>Lösung Schritt 3</summary>
+
+Mit $w(t)=v(t)\cos(\omega_c t)$ ergibt die Modulationsregel
+$$W(\omega)=\tfrac12\bigl[V(\omega-\omega_c)+V(\omega+\omega_c)\bigr].$$
+Zwei Kopien (reeller Träger), jede mit Faktor $\tfrac12$, zentriert um $\pm\omega_c$.
+
+</details>
+
+**Schritt 4 — Ableitung (§4a.5) — alleine vervollständigen.**
+*Versuch's selbst:* Welcher Faktor multipliziert das Spektrum, wenn du $y(t)=w'(t)$ bildest? Stelle den vollständigen Ausdruck für $Y(\omega)$ auf, indem du die Faktoren aus den Schritten 1–4 stapelst.
+
+<details>
+<summary>Lösung Schritt 4 (Endergebnis)</summary>
+
+Ableitung liefert den Faktor $i\omega$:
 $$Y(\omega)=i\omega W(\omega) =\frac{i\omega}{2a}\bigl[e^{-i(\omega-\omega_c)t_0}X\bigl(\tfrac{\omega-\omega_c}{a}\bigr)+e^{-i(\omega+\omega_c)t_0}X\bigl(\tfrac{\omega+\omega_c}{a}\bigr)\bigr].$$
+
+</details>
 
 **Plausibilitätsprüfung.** Setze $a=1$, $t_0=0$, $\omega_c=0$ — dann verschwinden Skalierung, Verschiebung und Modulation, und $Y(\omega)$ kollabiert zu $i\omega X(\omega)$, was genau der reinen Ableitungsregel entspricht. Setze $a=1$, $t_0=0$, behalte nur $\omega_c\ne 0$: $Y$ wird $\tfrac{i\omega}{2}[X(\omega-\omega_c)+X(\omega+\omega_c)]$ — die Ableitung eines amplitudenmodulierten Gauß-Pulses. Beide Spezialfälle sind unmittelbar nachprüfbar.
 

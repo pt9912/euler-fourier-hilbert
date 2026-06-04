@@ -1,5 +1,7 @@
 # Einheit 6: Hilbert-Transformation
 
+> **Hauptschwelle dieser Einheit.** Die Hilbert-Transformation ist im Frequenzbereich *einfach* — Multiplikation mit $-i\thinspace\mathrm{sgn}(\omega)$ — und im Zeitbereich *kompliziert* — eine Faltung mit dem singulären Kern $1/(\pi t)$, die ein Hauptwertintegral verlangt. Beide Beschreibungen meinen denselben LTI-Operator. Wer das verinnerlicht hat, akzeptiert, dass eine "einfache" Operation im einen Bereich im anderen aufwendig sein darf — das ist der Hauptnutzen der Frequenzbereichsdarstellung.
+
 Wir suchen einen Operator, der jede Schwingung um $90^\circ$ in die Quadratur verschiebt, ohne ihre Amplitude zu verändern. Dass dieser Operator im Frequenzbereich fast nur ein Vorzeichenfilter ist, ist die zentrale Überraschung. Die Zeitbereichsform mit Hauptwertintegral kommt danach als dieselbe Idee in der Sprache der Faltung.
 
 ## 6.1 Grundidee
@@ -80,7 +82,12 @@ Ein klassisches nichttriviales Paar ist
 \mathcal{H}\!\left\{\frac{1}{1+t^2}\right\}(t)=\frac{t}{1+t^2}.
 ```
 
-**Nachweis im Frequenzbereich.** Die Fourier-Transformierte ist
+**Strukturaussage.** Die Hilbert-Transformation überführt diese *gerade* Funktion in eine *ungerade* — ein Spezialfall einer allgemeinen Regel: Auf reellen Signalen vertauscht $\mathcal H$ die Parität (vgl. Übung 5 und die Symmetrie­tabelle in [§4b.3](einheit-4b.md#4b3-symmetrien-reeller-und-geraderungerader-signale)). Diese Strukturaussage ist das Wesentliche für den weiteren Kurs; der explizite Nachweis steht im Vertiefungs-Block unten und kann beim ersten Durchgang übersprungen werden.
+
+<details>
+<summary><strong>Vertiefung — expliziter Nachweis im Frequenzbereich (optional).</strong></summary>
+
+Die Fourier-Transformierte ist
 $$\mathcal F\lbrace 1/(1+t^2)\rbrace(\omega)=\pi e^{-|\omega|}.$$
 Dieses Paar verwenden wir hier als bekannt — sein elementarer Beweis nutzt entweder Konturintegration (Residuensatz, Pol bei $t=i$) oder eine DGL-Idee analog zu [§3.7](einheit-3.md#37-beispiel-gaußfunktion); beide Wege liegen außerhalb des Kurses. Es ist ein klassisches Tabellenpaar (z. B. Bracewell, Oppenheim/Willsky). Multiplikation mit $-i\thinspace\mathrm{sgn}(\omega)$ und Rücktransformation liefern
 ```math
@@ -90,7 +97,8 @@ wobei das Vorzeichen aus $\mathrm{sgn}$ die beiden Halbintegrale trennt und die 
 ```math
 -\frac{i}{2}\left[\frac{1}{1-it}-\frac{1}{1+it}\right] =-\frac{i}{2}\cdot\frac{2it}{1+t^2} =\frac{t}{1+t^2}.
 ```
-Die Rechnung zeigt zugleich ein Strukturprinzip: Die Hilbert-Transformation überführt gerade Funktionen in ungerade und umgekehrt — passend zur Symmetrie­tabelle in [§4b.3](einheit-4b.md#4b3-symmetrien-reeller-und-geraderungerader-signale).
+
+</details>
 
 **Nachrechnen am Beispiel $\cos$ im Frequenzbereich.** Die Fourier-Transformierte von $\cos(\omega_0 t)$ ist
 ```math
@@ -166,6 +174,13 @@ hilbert_cos = np.imag(analytic)        # = sin(2 pi 5 t)
    X_hilbert = -1j * np.sign(freq) * X
    H_x = np.real(np.fft.ifft(X_hilbert))   # eigene Implementation
    scipy_result = hilbert(x)                # was liefert das?
+
+   # Selbsttest: eigene H{cos(2π·5·t)} ≈ sin(2π·5·t) (abseits der Ränder)
+   target = np.sin(2 * np.pi * 5.0 * t)
+   assert np.max(np.abs(H_x[50:-50] - target[50:-50])) < 1e-3
+   # Selbsttest: scipy.signal.hilbert liefert das analytische Signal (komplex)
+   assert np.iscomplexobj(scipy_result)
+   assert np.max(np.abs(np.imag(scipy_result)[50:-50] - target[50:-50])) < 1e-3
    ```
 8. Konstruktion: Gib eine reelle Funktion $x(t)\not\equiv 0$ an, für die $\mathcal H^2 x = -x$ gilt (also $\mathcal H\bigl\lbrace\mathcal H\lbrace x\rbrace\bigr\rbrace = -x$). Wieso reicht ein einziger Schritt $\mathcal H x = \pm x$ nicht aus — was sagt dazu der Frequenzgang $-i\thinspace\mathrm{sgn}(\omega)$? (Tipp: §6.5; eine Lösung mit nur einem Frequenzanteil genügt.)
 

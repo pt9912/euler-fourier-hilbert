@@ -32,6 +32,44 @@ Die Lösungen zu allen Übungen und Abschlussaufgaben stehen separat in [`loesun
 | 7 | aus dem analytischen Signal Hüllkurve, Phase und Momentanfrequenz gewinnen und die Bedrosian-Bedingung prüfen |
 | 8 | Euler, Fourier und Hilbert in einem zusammengesetzten Signal gemeinsam einsetzen |
 
+## Constructive-Alignment-Matrix
+
+Die folgende Tabelle verknüpft jedes Lernziel mit dem Ort der Einführung, einer Übung zur aktiven Bearbeitung, einem Selbstcheck-Eintrag zur formativen Selbstdiagnose und einer Aufgabe in Einheit 8 zur summativen Klammer. Die Spalte "Bloom" gibt die Kompetenzstufe nach Anderson-Krathwohl an (Apply, Analyze, Evaluate, Create).
+
+| Lernziel | Einführung | Übung | Selbstcheck | Endaufgabe | Bloom |
+| --- | --- | --- | --- | --- | --- |
+| L1.1 Komplexe Zahlen ↔ Polarform ↔ Punkt in $\mathbb C$ | [§1.1–§1.3](einheit-1.md#11-komplexe-zahlen) | [§1, Ü1](einheit-1.md#übungen-zu-einheit-1) | [§1, SC1](einheit-1.md#selbstcheck-zu-einheit-1) | [§8, A1](einheit-8.md#aufgabe-1) | Apply |
+| L1.2 Euler-Formel geometrisch deuten | [§1.5](einheit-1.md#15-geometrische-bedeutung) | [§1, Ü4](einheit-1.md#übungen-zu-einheit-1) | [§1, SC4](einheit-1.md#selbstcheck-zu-einheit-1) | [§8, A1](einheit-8.md#aufgabe-1) | Understand/Apply |
+| L1.3 Fehlvorstellung "$e^{i\varphi}$ reell positiv" korrigieren | [§1.5](einheit-1.md#15-geometrische-bedeutung) | [§1, Ü6](einheit-1.md#übungen-zu-einheit-1) | [§1, SC6](einheit-1.md#selbstcheck-zu-einheit-1) | [§8, A8.1](einheit-8.md#aufgabe-8-fehleranalyse) | Evaluate |
+| L2.1 Fourier-Koeffizient als Projektion | [§2.3](einheit-2.md#23-warum-funktioniert-das) | [§2, Ü1–Ü2](einheit-2.md#übungen-zu-einheit-2) | [§2, SC1–SC2](einheit-2.md#selbstcheck-zu-einheit-2) | [§8, A6a](einheit-8.md#aufgabe-6-synthese-euler-fourier-hilbert-auf-einen-schlag) | Apply |
+| L2.2 Realitätsbedingung $c_{-n}=\overline{c_n}$ | [§2.7](einheit-2.md#27-betrag-und-phase) | [§2, Ü3, Ü6](einheit-2.md#übungen-zu-einheit-2) | [§2, SC6](einheit-2.md#selbstcheck-zu-einheit-2) | [§8, A8.2](einheit-8.md#aufgabe-8-fehleranalyse) | Evaluate |
+| L2.3 Symmetrie ↔ Koeffizientenstruktur | [§2.6](einheit-2.md#26-beispiel-mit-integral-rechteckwelle) | [§2, Ü5, Ü7](einheit-2.md#übungen-zu-einheit-2) | [§2, SC5](einheit-2.md#selbstcheck-zu-einheit-2) | [§8, A8-Bonus](einheit-8.md#aufgabe-8-fehleranalyse) | Analyze |
+| L3.1 Fourier-Transformierte berechnen | [§3.2, §3.6, §3.7](einheit-3.md#32-definition) | [§3, Ü2, Ü7](einheit-3.md#übungen-zu-einheit-3) | [§3, SC2](einheit-3.md#selbstcheck-zu-einheit-3) | [§8, A2](einheit-8.md#aufgabe-2) | Apply |
+| L3.2 Zeit-Frequenz-Dualität qualitativ vorhersagen | [§3.6, §3.7](einheit-3.md#36-beispiel-rechteckpuls) | [§3, Ü3, Ü5, Ü8](einheit-3.md#übungen-zu-einheit-3) | [§3, SC3, SC4](einheit-3.md#selbstcheck-zu-einheit-3) | (Voraussetzung für A6) | Analyze |
+| L3.3 Dirac als Distribution (nicht "$\delta(0)=\infty$") | [§3.4](einheit-3.md#34-beispiel-dirac-impuls) | [§3, Ü6](einheit-3.md#übungen-zu-einheit-3) | [§3, SC6](einheit-3.md#selbstcheck-zu-einheit-3) | [§8, A8.3](einheit-8.md#aufgabe-8-fehleranalyse) | Evaluate |
+| L4a.1 Zeitverschiebung ↔ Phase, Frequenz­verschiebung ↔ Lage | [§4a.2, §4a.3](einheit-4a.md#4a2-zeitverschiebung) | [§4a, Ü1, Ü4](einheit-4a.md#übungen-zu-einheit-4a) | [§4a, SC1, SC2](einheit-4a.md#selbstcheck-zu-einheit-4a) | [§8, A6a, A6b](einheit-8.md#aufgabe-6-synthese-euler-fourier-hilbert-auf-einen-schlag) | Apply |
+| L4a.2 Skalierungs- und Ableitungsregel | [§4a.4, §4a.5](einheit-4a.md#4a4-skalierung) | [§4a, Ü2](einheit-4a.md#übungen-zu-einheit-4a) | [§4a, SC3, SC4](einheit-4a.md#selbstcheck-zu-einheit-4a) | (eingebaut in §4a.6) | Apply |
+| L4a.3 Operationen kombinieren, Reihenfolge begründen | [§4a.6](einheit-4a.md#4a6-integrierendes-beispiel-alle-regeln-in-einem-signal) | [§4a, Ü3, Ü4 (Transfer)](einheit-4a.md#übungen-zu-einheit-4a) | [§4a, SC5](einheit-4a.md#selbstcheck-zu-einheit-4a) | (latent in A6/A10) | Analyze |
+| L4a.4 Modulationsregel (zwei Kopien!) | [§4a.3](einheit-4a.md#4a3-frequenzverschiebung) | [§4a, Ü6](einheit-4a.md#übungen-zu-einheit-4a) | [§4a, SC2](einheit-4a.md#selbstcheck-zu-einheit-4a) | [§8, A8.4](einheit-8.md#aufgabe-8-fehleranalyse) | Evaluate |
+| L4b.1 Faltung ↔ Multiplikation, LTI-Frequenzgang | [§4b.1](einheit-4b.md#4b1-faltung) | [§4b, Ü1–Ü3](einheit-4b.md#übungen-zu-einheit-4b) | [§4b, SC1, SC4](einheit-4b.md#selbstcheck-zu-einheit-4b) | [§8, A4](einheit-8.md#aufgabe-4) | Apply/Analyze |
+| L4b.2 Parseval / Energieerhaltung | [§4b.2](einheit-4b.md#4b2-parseval-identität-plancherel) | [§4b, Ü5, Ü7](einheit-4b.md#übungen-zu-einheit-4b) | [§4b, SC2](einheit-4b.md#selbstcheck-zu-einheit-4b) | [§8, A8.5](einheit-8.md#aufgabe-8-fehleranalyse) | Evaluate |
+| L4b.3 Symmetrie­tabelle als Diagnose­werkzeug | [§4b.3](einheit-4b.md#4b3-symmetrien-reeller-und-geraderungerader-signale) | [§4b, Ü6](einheit-4b.md#übungen-zu-einheit-4b) | [§4b, SC3, SC5](einheit-4b.md#selbstcheck-zu-einheit-4b) | [§8, A8-Bonus](einheit-8.md#aufgabe-8-fehleranalyse) | Analyze |
+| L5.1 DFT vs. FFT, Bin → physikalische Frequenz | [§5.2–§5.4](einheit-5.md#52-definition-der-dft) | [§5, Ü1, Ü4](einheit-5.md#übungen-zu-einheit-5) | [§5, SC1, SC2, SC8](einheit-5.md#selbstcheck-zu-einheit-5) | [§8, A9](einheit-8.md#aufgabe-9-code-synthese) | Apply |
+| L5.2 Auflösung vs. Bin-Dichte (Zero Padding) | [§5.5](einheit-5.md#55-frequenzauflösung-leckage-und-fensterung) | [§5, Ü6, Ü7, Ü9](einheit-5.md#übungen-zu-einheit-5) | [§5, SC3, SC5](einheit-5.md#selbstcheck-zu-einheit-5) | [§8, A8.6](einheit-8.md#aufgabe-8-fehleranalyse) | Evaluate |
+| L5.3 Nyquist-Grenze, Aliasing | [§5.6](einheit-5.md#56-abtastung-und-nyquist-grenze) | [§5, Ü2, Ü3, Ü5](einheit-5.md#übungen-zu-einheit-5) | [§5, SC6, SC7](einheit-5.md#selbstcheck-zu-einheit-5) | [§8, A5](einheit-8.md#aufgabe-5) | Apply/Analyze |
+| L5.4 Kohärente Abtastung, Spektralleckage | [§5.5](einheit-5.md#55-frequenzauflösung-leckage-und-fensterung) | [§5, Ü8, Ü9, Ü10](einheit-5.md#übungen-zu-einheit-5) | [§5, SC4](einheit-5.md#selbstcheck-zu-einheit-5) | (latent in A9) | Analyze/Create |
+| L6.1 Hilbert als Frequenzgang $-i\thinspace\mathrm{sgn}(\omega)$ | [§6.2](einheit-6.md#62-definition-im-frequenzbereich) | [§6, Ü1–Ü3, Ü7](einheit-6.md#übungen-zu-einheit-6) | [§6, SC1–SC3](einheit-6.md#selbstcheck-zu-einheit-6) | [§8, A3](einheit-8.md#aufgabe-3) | Apply |
+| L6.2 Zeitbereichsform, Hauptwert, LTI-Sicht | [§6.3](einheit-6.md#63-definition-im-zeitbereich) | [§6, Ü4, Ü5](einheit-6.md#übungen-zu-einheit-6) | [§6, SC4, SC5](einheit-6.md#selbstcheck-zu-einheit-6) | (Hintergrund für §7) | Understand/Analyze |
+| L6.3 DC-Sonderbehandlung | [§6.5](einheit-6.md#65-zweimalige-hilbert-transformation) | [§6, Ü6, Ü8](einheit-6.md#übungen-zu-einheit-6) | [§6, SC6](einheit-6.md#selbstcheck-zu-einheit-6) | [§8, A8.7](einheit-8.md#aufgabe-8-fehleranalyse) | Evaluate/Create |
+| L7.1 Analytisches Signal bilden | [§7.1, §7.2](einheit-7.md#71-definition) | [§7, Ü1, Ü7](einheit-7.md#übungen-zu-einheit-7) | [§7, SC1, SC3](einheit-7.md#selbstcheck-zu-einheit-7) | [§8, A3, A6c](einheit-8.md#aufgabe-3) | Apply |
+| L7.2 Hüllkurve, Phase, Momentanfrequenz lesen | [§7.4–§7.6](einheit-7.md#74-hüllkurve) | [§7, Ü2, Ü3, Ü8](einheit-7.md#übungen-zu-einheit-7) | [§7, SC4](einheit-7.md#selbstcheck-zu-einheit-7) | [§8, A9](einheit-8.md#aufgabe-9-code-synthese) | Apply/Analyze |
+| L7.3 DC/Nyquist-Bins in DFT-Implementation | [§7.2](einheit-7.md#72-frequenzbereich) | [§7, Ü7](einheit-7.md#übungen-zu-einheit-7) | [§7, SC3](einheit-7.md#selbstcheck-zu-einheit-7) | (relevant für A9) | Apply |
+| L7.4 Bedrosian-Bedingung prüfen | [§7.7](einheit-7.md#77-typische-anwendung-am-signal) | [§7, Ü5 (Konstr.), Ü6 (Fehlerdiagn.), Ü8 (Code)](einheit-7.md#übungen-zu-einheit-7) | [§7, SC5, SC6](einheit-7.md#selbstcheck-zu-einheit-7) | [§8, A6c, A8.8, A10](einheit-8.md#aufgabe-6-synthese-euler-fourier-hilbert-auf-einen-schlag) | Evaluate/Create |
+| L8.1 Drei Werkzeuge gemeinsam auf einem Signal einsetzen | [§8.1, §8.3](einheit-8.md#81-die-verbindung-der-drei-themen) | (alle §8-Aufgaben) | [§8, AbschlussSC](einheit-8.md#abschluss-selbstcheck) | [§8, A6, A9, A10](einheit-8.md#aufgabe-6-synthese-euler-fourier-hilbert-auf-einen-schlag) | Analyze/Create |
+| L8.2 Reflexion über die Werkzeugwahl | [§8.2](einheit-8.md#82-merksätze) | (Reflexionsaufgabe) | [§8, AbschlussSC](einheit-8.md#abschluss-selbstcheck) | [§8, A7](einheit-8.md#aufgabe-7-reflexion) | Evaluate |
+
+**Wie man die Matrix benutzt.** Wer ein Lernziel noch nicht erreicht hat, findet in einer Zeile alle vier Eingriffsstellen — von Erklärung über aktive Bearbeitung bis zur summativen Kontrolle. Wer einen Selbstcheck-Eintrag *nicht* abhaken kann, sieht in derselben Zeile, welche Übung das Defizit gezielt addressiert. Lehrende können die Matrix für Prüfungs­planung verwenden: Eine ausgewogene Klausur deckt mindestens eine Aufgabe pro Bloom-Stufe ab, und die Endaufgaben-Spalte zeigt, welche §8-Aufgabe welches Lernziel summativ prüft.
+
 ## Konventionen und Voraussetzungen
 
 Damit der Kurs handlich bleibt, treffen wir an ein paar Stellen feste Entscheidungen:
@@ -77,20 +115,22 @@ Die fortgeschrittenen Begriffe $L^2$, Distribution, Dirac-Impuls, Cauchy-Hauptwe
 
 ## Typische Vorstellungen am Kursanfang
 
-Viele Lernende bringen Vorerfahrungen mit, die in Teilen tragfähig und in Teilen irreführend sind. Die folgenden acht Vorstellungen tauchen erfahrungsgemäß am häufigsten auf. Jede inhaltliche Einheit greift mindestens eine davon in einer mit **Fehlerdiagnose** markierten Übung auf, sodass du dein Denken aktiv überprüfen kannst. Einheit 8 bündelt eine zusammenfassende Fehleranalyse über mehrere Vorstellungen hinweg.
+Viele Lernende bringen Vorerfahrungen mit, die in Teilen tragfähig und in Teilen irreführend sind. Die folgenden acht Vorstellungen tauchen erfahrungsgemäß am häufigsten auf. Jede inhaltliche Einheit greift mindestens eine davon in einer mit **Fehlerdiagnose** markierten Übung auf, sodass du dein Denken aktiv überprüfen kannst. Einheit 8 bündelt eine zusammenfassende Fehleranalyse über alle acht Vorstellungen.
 
-| Vorstellung | Wo korrigiert |
-| --- | --- |
-| "Weil $e^{i\varphi}$ eine Exponentialfunktion ist, muss der Wert reell und positiv sein." | [§1, Übung 6](einheit-1.md#übungen-zu-einheit-1) — Korrektur über $\lvert e^{i\varphi}\rvert=1$. |
-| "Ein reelles Signal kann genau einen Frequenzkoeffizienten haben." | [§2, Übung 6](einheit-2.md#übungen-zu-einheit-2) — Realitätsbedingung $c_{-n}=\overline{c_n}$. |
-| "Den Dirac-Impuls kann man als gewöhnliche Funktion mit $\delta(0)=\infty$ behandeln." | [§3, Übung 6](einheit-3.md#übungen-zu-einheit-3) — Distribution über die Siebeigenschaft. |
-| "Multiplikation mit $\cos(\omega_c t)$ verschiebt das Spektrum als einzelne Kopie nach $+\omega_c$." | [§4a, Übung 6](einheit-4a.md#übungen-zu-einheit-4a) — reelle Träger erzeugen zwei Kopien mit Faktor $\tfrac12$. |
-| "Parseval angewandt auf $xh$ ergibt das Produkt der Einzel-Energien." | [§4b, Übung 7](einheit-4b.md#übungen-zu-einheit-4b) — Parseval verbindet *ein* Signal über zwei Darstellungen; Verknüpfungen brauchen den Faltungssatz. |
-| "Mehr Abtastpunkte durch Zero Padding bedeutet bessere Frequenzauflösung." | [§5, Übung 7](einheit-5.md#übungen-zu-einheit-5) — Auflösung kommt aus der Messdauer. |
-| "Die Hilbert-Transformation verschiebt jede Frequenz um $90^\circ$ — also auch den Gleichanteil." | [§6, Übung 6](einheit-6.md#übungen-zu-einheit-6) — DC wird auf null gesetzt, nicht gedreht. |
-| "Der Betrag $\lvert\text{analytisches Signal}\rvert$ ist immer gleich der modellierten Amplitude $A(t)$." | [§7, Übung 5](einheit-7.md#übungen-zu-einheit-7) — gilt nur unter der Bedrosian-Bedingung. |
+Die Spalte "Warum naheliegt" benennt die *kognitive Wurzel* der Vorstellung — die Erfahrungsbasis, aus der sie plausibel wirkt. Wer diese Wurzel kennt, korrigiert die Vorstellung nicht durch reines Auswendiglernen der Gegen­regel, sondern durch eine bewusste Erweiterung des eigenen Modells.
 
-Eine zusammenfassende Diagnose dieser sechs Punkte (plus weiterer Aussagen) findest du in [§8, Aufgabe 8](einheit-8.md#aufgabe-8-fehleranalyse). Wenn du eine der Vorstellungen am Kursanfang noch zustimmen würdest, ist das **kein Defizit**, sondern ein Hinweis darauf, an welcher Stelle der Kurs für dich besonders lohnt.
+| Vorstellung | Warum naheliegt | Wo korrigiert |
+| --- | --- | --- |
+| "Weil $e^{i\varphi}$ eine Exponentialfunktion ist, muss der Wert reell und positiv sein." | Aus der Schule kennt man $e^x$ als monoton wachsende, reelle Funktion. Das mentale Bild der Exponentialfunktion ist "Wachstum auf der reellen Achse". | [§1, Übung 6](einheit-1.md#übungen-zu-einheit-1) — Korrektur über $\lvert e^{i\varphi}\rvert=1$. |
+| "Ein reelles Signal kann genau einen Frequenzkoeffizienten haben." | Aus dem einseitigen Amplitudenspektrum gewohnt: "Frequenz $f$ vorhanden / nicht vorhanden". Die zweiseitige komplexe Schreibweise erzwingt zwingend ein zweites $c_{-n}$. | [§2, Übung 6](einheit-2.md#übungen-zu-einheit-2) — Realitätsbedingung $c_{-n}=\overline{c_n}$. |
+| "Den Dirac-Impuls kann man als gewöhnliche Funktion mit $\delta(0)=\infty$ behandeln." | Viele Einführungstexte zeichnen $\delta$ als "unendlich hohe, unendlich schmale Spitze". Das Bild ist anschaulich, aber funktionentheoretisch unsauber. | [§3, Übung 6](einheit-3.md#übungen-zu-einheit-3) — Distribution über die Siebeigenschaft. |
+| "Multiplikation mit $\cos(\omega_c t)$ verschiebt das Spektrum als einzelne Kopie nach $+\omega_c$." | Die Notation $\cos$ und $e^{i\omega_c t}$ wird in Skizzen oft austauschbar verwendet; die Verschiebungsregel ist für $e^{i\omega_c t}$ einzelnen Charakters tatsächlich nur *eine* Kopie. | [§4a, Übung 6](einheit-4a.md#übungen-zu-einheit-4a) — reelle Träger erzeugen zwei Kopien mit Faktor $\tfrac12$. |
+| "Parseval angewandt auf $xh$ ergibt das Produkt der Einzel-Energien." | Aus separierbaren Systemen kennt man "Gesamt­energie ist Produkt der Komponenten­energien" (z. B. unabhängige Wahrscheinlichkeiten); die Übertragung auf Funktionenräume ist plausibel, aber falsch. | [§4b, Übung 7](einheit-4b.md#übungen-zu-einheit-4b) — Parseval verbindet *ein* Signal über zwei Darstellungen; Verknüpfungen brauchen den Faltungssatz. |
+| "Mehr Abtastpunkte durch Zero Padding bedeutet bessere Frequenzauflösung." | Die Heuristik "mehr Samples = mehr Information" ist in der Statistik fast immer richtig. Hier täuscht das visuelle Glätten des Spektrums über die fehlende Messinformation hinweg. | [§5, Übung 7](einheit-5.md#übungen-zu-einheit-5) — Auflösung kommt aus der Messdauer. |
+| "Die Hilbert-Transformation verschiebt jede Frequenz um $90^\circ$ — also auch den Gleichanteil." | Die Kurzformel "$\mathcal H$ dreht um $90^\circ$" wird oft unqualifiziert wiederholt; dass $\mathrm{sgn}(0)=0$ ist, fällt erst in der präzisen Frequenzbereichsdefinition auf. | [§6, Übung 6](einheit-6.md#übungen-zu-einheit-6) — DC wird auf null gesetzt, nicht gedreht. |
+| "Der Betrag $\lvert\text{analytisches Signal}\rvert$ ist immer gleich der modellierten Amplitude $A(t)$." | An den Standardbeispielen (Bedrosian erfüllt) stimmt diese Gleichung exakt. Die spektrale Voraussetzung wird selten getestet und daher als universell verallgemeinert. | [§7, Übung 5 und Übung 6](einheit-7.md#übungen-zu-einheit-7) — gilt nur unter der Bedrosian-Bedingung. |
+
+Eine zusammenfassende Diagnose dieser acht Vorstellungen findest du in [§8, Aufgabe 8](einheit-8.md#aufgabe-8-fehleranalyse). Wenn du eine der Vorstellungen am Kursanfang noch zustimmen würdest, ist das **kein Defizit**, sondern ein Hinweis darauf, an welcher Stelle der Kurs für dich besonders lohnt.
 
 ## Einheitsschema und Arbeitsweise
 
@@ -105,7 +145,7 @@ Die Übungen sind durchgehend mit ihrer Art markiert. Die Marker entsprechen Kom
 | (ohne Marker) | Apply | rechnen, bestimmen, ableiten — die Antwort ist eindeutig. |
 | **Fehlerdiagnose** | Evaluate | eine vorgelegte Aussage prüfen, den Fehler benennen, sauber korrigieren. |
 | **Transfer** | Apply/Analyze | mehrere Regeln nacheinander anwenden, Reihenfolge begründen. |
-| **Code** / **Code-Werkstatt** | Apply/Analyze | numerisch nachrechnen, Implementierungsdetails diskutieren. |
+| **Code** / **Code-Werkstatt** | Apply/Analyze | numerisch nachrechnen, Implementierungsdetails diskutieren. Code-Aufgaben sollen mindestens einen `assert`-Selbsttest enthalten, der eine **bekannte Eigenschaft** der Aufgabe prüft (z. B. einen geschlossenen Funktionswert, eine Symmetrie, eine Plausibilitätsschranke). Asserts dienen weniger der Korrektheit als der **aktiven Selbstdiagnose**: Wer eine Eigenschaft explizit prüfen muss, übt das Frage-formulieren, das jeden numerischen Workflow trägt. |
 | **Konstruktion** | Create | ein Beispiel mit bestimmten Eigenschaften erfinden — meist gibt es viele richtige Antworten. |
 | **Reflexion** | Evaluate | bewerten, was beim eigenen Lernen geholfen hat oder eine Grenze einer Perspektive benennen. |
 
@@ -170,5 +210,5 @@ Die Rubrik bei [Einheit 8, Aufgabe 7](einheit-8.md#aufgabe-7-reflexion) ist die 
    *Referenz-Implementation (Vertiefung):* [`scripts/projekte/projekt-3-chirp-phase.py`](scripts/projekte/projekt-3-chirp-phase.py) → ![Projekt 3](bilder/projekt-3.png)
 
 4. **Filter im Frequenzbereich.**
-   Implementiere Tiefpass, Hochpass und Bandpass über Multiplikation des Spektrums mit einer Übertragungsfunktion. Untersuche die Gibbs-Artefakte rechteckiger Filter.
+   Implementiere Tiefpass, Hochpass und Bandpass über Multiplikation des Spektrums mit einer Übertragungsfunktion. Untersuche die Gibbs-Artefakte rechteckiger Filter und vergleiche **phasenlineare** mit **nichtphasenlinearen** Realisierungen: Wie verändert sich die Form eines Pulses, wenn der Phasengang $\varphi(\omega)$ nicht linear ist? Welche Rolle spielt die [Gruppenlaufzeit](einheit-4b.md#4b1a-anwendungsanker-gruppenlaufzeit-und-phasenlinearität) als praktisches Diagnose­maß?
    *Referenz-Implementation:* [`scripts/projekte/projekt-4-filter.py`](scripts/projekte/projekt-4-filter.py) → ![Projekt 4](bilder/projekt-4.png)

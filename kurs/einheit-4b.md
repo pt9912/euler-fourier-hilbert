@@ -1,5 +1,7 @@
 # Einheit 4b: Eigenschaften der Fourier-Transformation — Faltung, Energie, Symmetrien
 
+> **Hauptschwelle dieser Einheit.** Faltung und Multiplikation sind **dual** in der Fourier-Transformation. LTI-Systeme — also fast alle Filter, alle linearen Übertragungs­strecken und große Teile der Nachrichtentechnik — werden im Frequenzbereich zu einer punktweisen Multiplikation mit einem Frequenzgang $H(\omega)$. Wer diese Dualität verinnerlicht hat, kann zwischen Zeitbereich (Impulsantwort) und Frequenzbereich (Übertragungsfunktion) je nach Aufgabe wählen.
+
 Nachdem [Einheit 4a](einheit-4a.md) die punktweisen Werkzeuge (Verschieben, Modulieren, Skalieren, Ableiten) gesammelt hat, folgen hier die strukturellen Werkzeuge. Faltung verbindet zwei Signale, Parseval verbindet zwei Repräsentationen desselben Signals, und die Symmetrietabelle verbindet algebraische Eigenschaften des Signals mit denen seines Spektrums.
 
 ## 4b.1 Faltung
@@ -40,6 +42,31 @@ x(t)h(t) \leftrightarrow \frac{1}{2\pi}(X*H)(\omega).
 - Multiplikation in der Zeit wird Faltung im Frequenzbereich.
 
 Der Faktor $1/(2\pi)$ im zweiten Satz kommt nur aus unserer Fourier-Konvention.
+
+## 4b.1a Anwendungsanker: Gruppenlaufzeit und Phasenlinearität
+
+Der Frequenzgang $H(\omega)$ eines LTI-Filters lässt sich nach Betrag und Phase trennen:
+```math
+H(\omega)=|H(\omega)|\thinspace e^{i\varphi(\omega)}.
+```
+$\lvert H\rvert$ ist die **Amplitudengang**-Kurve, $\varphi$ die **Phasengang**-Kurve.
+
+Wenn ein Eingangssignal aus mehreren Frequenzen besteht (z. B. ein moduliertes Sprach- oder Datensignal), verzögert das Filter jede Frequenz um eine eigene Zeit. Diese frequenzabhängige Verzögerung heißt **Gruppenlaufzeit**:
+```math
+\tau_g(\omega)=-\frac{d\varphi(\omega)}{d\omega}.
+```
+Der Name kommt aus der Nachrichtentechnik: $\tau_g$ ist die Verzögerung einer Wellengruppe (Signalpaket um eine mittlere Frequenz) — nicht der einzelnen Trägerschwingung.
+
+**Phasenlinearität.** Ein Filter heißt **phasenlinear**, wenn $\varphi(\omega)=-\omega t_0$ eine *Gerade durch den Ursprung* ist. Dann ist $\tau_g\equiv t_0$ konstant: jede Frequenz wird um dieselbe Zeit verzögert, und das Signal kommt am Ausgang formgetreu (nur zeitlich versetzt) heraus. Phasenlineare Filter erzeugen keine **Phasendispersion** — keine signalverzerrende Asynchronität zwischen Frequenzkomponenten.
+
+Genau diese Eigenschaft macht in der digitalen Signalverarbeitung **symmetrische FIR-Filter** so beliebt: Sie sind per Konstruktion phasenlinear, weil ihre Impulsantwort eine spiegelsymmetrische Folge ist und das Fourier-Bild einer reellen, geraden Folge eine reelle Funktion mit linearer Phase ist (vgl. Symmetrietabelle in §4b.3 unten).
+
+**Warum das praktisch zählt.**
+- **Audio.** Nichtlineare Phase verzerrt Transienten (Schlagzeug-Anschläge), auch wenn der Amplitudengang ideal ist.
+- **Datenübertragung.** Phasendispersion verschmiert Symbolübergänge — Quelle von Intersymbol-Interferenz.
+- **Bildverarbeitung.** Kanten brauchen alle Frequenzkomponenten an derselben Stelle; nichtlineare Phase erzeugt Geisterränder.
+
+Das Werkzeug zum Trennen "wie laut wird welche Frequenz?" (Amplitudengang) und "wie viel Verzögerung erlebt welche Frequenz?" (Phasengang/Gruppenlaufzeit) ist die Fourier-Transformation des LTI-Systems — also die ganze Maschinerie dieser Einheit, nur unter neuem Namen.
 
 ## 4b.2 Parseval-Identität (Plancherel)
 

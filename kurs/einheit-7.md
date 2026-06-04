@@ -1,5 +1,7 @@
 # Einheit 7: Analytisches Signal
 
+> **Hauptschwelle dieser Einheit.** Das analytische Signal ist ein **komplexer Zeiger**, dessen Betrag (Hüllkurve) und Phase (Momentanfrequenz) man als getrennte Größen lesen kann. Aber: $\lvert z(t)\rvert=A(t)$ gilt *nicht* automatisch — sondern nur unter der Bedrosian-Bedingung *und* $A(t)\ge 0$. Wer diese **zwei Voraussetzungen** als prüfbare Bedingungen statt als Formalität versteht, vermeidet die häufigste Fehlanwendung der Hilbert-Methode in der Signalanalyse.
+
 Wie bekommt man aus einem reellen Messsignal eine Hüllkurve, eine Phase und eine Momentanfrequenz? Das analytische Signal ergänzt die fehlende Quadratur-Komponente mit der Hilbert-Transformation. Dadurch wird aus einer Schwingung ein komplexer Zeiger, dessen Betrag und Winkel direkt lesbar sind.
 
 ## 7.1 Definition
@@ -152,9 +154,10 @@ recovered = np.abs(hilbert(signal))    # ≈ envelope
 2. Berechne die Hüllkurve und die momentane Phase von $x(t)=2\cos(5t+\pi/4)$. (Hinweis: bilde zuerst das analytische Signal.)
 3. Was ist die Momentanfrequenz von $z(t)=e^{i(7t)}$?
 4. Warum entfernt das analytische Signal negative Frequenzen?
-5. Konstruiere ein AM-ähnliches Beispiel, in dem $|z(t)|\neq A(t)$, obwohl $x(t)=A(t)\cos(\omega_ct)$ formal so aussieht. Begründe über die Bedrosian-Bedingung.
-6. Implementationscheck: Eine reelle Folge hat gerades $N=8$. Welche DFT-Bins werden beim Bilden des analytischen Signals verdoppelt, welche bleiben erhalten, und welche werden auf null gesetzt?
-7. Code: Simuliere das AM-Signal $x(t)=(1+0{,}5\cos(2\pi f_m t))\cos(2\pi f_c t)$ mit $f_c=50\thinspace\text{Hz}$ und $f_s=2000\thinspace\text{Hz}$ über $1\thinspace\text{s}$. Variiere die Modulationsfrequenz $f_m$ in den Werten $3\thinspace\text{Hz}$, $30\thinspace\text{Hz}$, $55\thinspace\text{Hz}$. Berechne jeweils die Hüllkurve $\lvert z(t)\rvert$ über `scipy.signal.hilbert` und vergleiche sie visuell mit der modellierten Amplitude $A(t)=1+0{,}5\cos(2\pi f_m t)$. Für welche dieser drei Werte ist die Bedrosian-Bedingung erfüllt, für welche nicht? Begründe das Ergebnis am Frequenzbild.
+5. Konstruktion: Konstruiere ein AM-ähnliches Beispiel, in dem $|z(t)|\neq A(t)$, obwohl $x(t)=A(t)\cos(\omega_ct)$ formal so aussieht. Begründe über die Bedrosian-Bedingung.
+6. Fehlerdiagnose: Eine Person sagt: "Bei einem AM-Signal $x(t)=A(t)\cos(\omega_c t)$ ist der Betrag des analytischen Signals $\lvert z(t)\rvert$ immer gleich der Amplitude $A(t)$ — das ist ja gerade die Idee der Hüllkurve." Prüfe die Aussage. Nenne *die zwei* spezifischen Voraussetzungen, unter denen sie exakt gilt, und für *jede* Voraussetzung ein konkretes Gegenbeispiel mit verletzter Bedingung. Korrigiere die Aussage so, dass sie als allgemeine Regel formuliert werden kann.
+7. Implementationscheck: Eine reelle Folge hat gerades $N=8$. Welche DFT-Bins werden beim Bilden des analytischen Signals verdoppelt, welche bleiben erhalten, und welche werden auf null gesetzt?
+8. Code: Simuliere das AM-Signal $x(t)=(1+0{,}5\cos(2\pi f_m t))\cos(2\pi f_c t)$ mit $f_c=50\thinspace\text{Hz}$ und $f_s=2000\thinspace\text{Hz}$ über $1\thinspace\text{s}$. Variiere die Modulationsfrequenz $f_m$ in den Werten $3\thinspace\text{Hz}$, $30\thinspace\text{Hz}$, $55\thinspace\text{Hz}$. Berechne jeweils die Hüllkurve $\lvert z(t)\rvert$ über `scipy.signal.hilbert` und vergleiche sie visuell mit der modellierten Amplitude $A(t)=1+0{,}5\cos(2\pi f_m t)$. Für welche dieser drei Werte ist die Bedrosian-Bedingung erfüllt, für welche nicht? Begründe das Ergebnis am Frequenzbild.
 
 ## Selbstcheck zu Einheit 7
 

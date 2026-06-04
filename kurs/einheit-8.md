@@ -1,5 +1,7 @@
 # Einheit 8: Gemeinsames Bild
 
+> **Hauptschwelle dieser Einheit.** Die drei Werkzeuge sind nicht drei *unabhängige* Themen, sondern drei Schichten *eines* Bildes: Euler ist die Sprache, Fourier ist der Repräsentationswechsel in diese Sprache, Hilbert ist eine spezifische Operation in dieser Sprache. Wer die Einheit so liest, kann an einem zusammengesetzten Signal (AM, Chirp) entscheiden, *welche* Schicht für eine konkrete Frage zuständig ist — und das ist die eigentliche Lernleistung des ganzen Kurses.
+
 Was ist nach sieben Einheiten der gemeinsame Gedanke? Euler liefert die Sprache der komplexen Schwingung, Fourier verteilt ein Signal auf diese Sprache, und Hilbert dreht die passenden Frequenzanteile zur Quadratur. Diese Abschluss-Einheit bündelt die Werkzeuge an einem Chirp und an Syntheseaufgaben.
 
 ## 8.1 Die Verbindung der drei Themen
@@ -141,12 +143,18 @@ Die Aufgabe ist offen; eine "richtige" Antwort gibt es nicht. Bewertet wird die 
 
 ### Aufgabe 8 (Fehleranalyse)
 
-Prüfe die folgenden Aussagen. Markiere jeweils, ob sie richtig, falsch oder nur unter Zusatzbedingungen richtig sind, und korrigiere sie knapp:
+Diese Aufgabe greift alle acht in der [Misconception-Tabelle](README.md#typische-vorstellungen-am-kursanfang) gesammelten Vorstellungen auf — eine pro Punkt. Prüfe jede Aussage: Markiere "richtig", "falsch" oder "nur unter Zusatzbedingungen richtig", und korrigiere sie knapp.
 
-1. "Die Hilbert-Transformation verschiebt ein ganzes reelles Signal einfach um eine Viertelperiode."
-2. "Zero Padding erhöht die echte Frequenzauflösung einer Messung."
-3. "Ein analytisches Signal entsteht, indem man negative Frequenzen entfernt und alle übrigen Bins verdoppelt."
-4. "Wenn ein Signal reell und gerade ist, sollte sein Fourier-Spektrum reell und gerade sein."
+1. **(Euler — §1)** "Weil $e^{i\varphi}$ eine Exponentialfunktion ist, muss der Wert reell und positiv sein."
+2. **(Fourier-Reihen — §2)** "Ein reelles, $T$-periodisches Signal kann genau einen einzigen Fourier-Koeffizienten $c_3=2$ haben und alle anderen $c_n=0$."
+3. **(Dirac — §3)** "Den Dirac-Impuls kann man als gewöhnliche Funktion behandeln, indem man $\delta(0)=\infty$ und $\delta(t)=0$ sonst setzt."
+4. **(Modulation — §4a)** "Multiplikation eines Signals mit $\cos(\omega_c t)$ verschiebt sein Spektrum als einzelne Kopie nach $+\omega_c$."
+5. **(Parseval — §4b)** "Wenn $x,h\in L^2$, dann ist die Energie des Produkts $xh$ gleich dem Produkt der Energien von $x$ und $h$."
+6. **(DFT — §5)** "Zero Padding eines Messsignals erhöht die echte Frequenzauflösung einer Messung."
+7. **(Hilbert — §6)** "Die Hilbert-Transformation verschiebt jede Frequenz um $90^\circ$ — also auch den Gleichanteil."
+8. **(Analytisches Signal — §7)** "Der Betrag $\lvert z(t)\rvert$ des analytischen Signals ist immer gleich der modellierten Amplitude $A(t)$."
+
+**Bonus (Plausibilitätstest).** "Wenn ein Signal reell und gerade ist, sollte sein Fourier-Spektrum ebenfalls reell und gerade sein." — Richtig, falsch oder unter Zusatzbedingungen?
 
 ### Aufgabe 9 (Code-Synthese)
 
@@ -157,6 +165,31 @@ Simuliere den Chirp $x(t)=\cos\phi(t)$ aus §8.3 mit linear wachsender Momentanf
 3. die Momentanfrequenz als zentrale Differenz (statt einseitige `np.diff`).
 
 Vergleiche die rekonstruierte Momentanfrequenz mit der theoretischen Vorhersage $f_{\text{inst}}(t)=20+180\thinspace t$. Wo treten die größten Abweichungen auf, und welche zwei Einheiten des Kurses erklären diese Stellen?
+
+Codegerüst mit Selbsttests:
+
+```python
+import numpy as np
+from scipy.signal import hilbert
+
+fs = 4000.0
+t = np.arange(0, 1.0, 1 / fs)
+phi = 2 * np.pi * (20.0 * t + 0.5 * 180.0 * t**2)
+signal = np.cos(phi)
+
+z = hilbert(signal)
+inst_phase = np.unwrap(np.angle(z))
+inst_freq = np.gradient(inst_phase, t) / (2 * np.pi)     # zentrale Differenz
+inst_freq_theory = 20.0 + 180.0 * t
+
+# Selbsttest: innerhalb der Mitte ist der Fehler klein
+inner = slice(int(0.05 * len(t)), int(0.95 * len(t)))
+assert np.max(np.abs(inst_freq[inner] - inst_freq_theory[inner])) < 0.5
+# Selbsttest: die Ränder zeigen größere Fehler (Hilbert-Randeffekt aus §6/§8)
+edge_err = max(np.max(np.abs(inst_freq[:50] - inst_freq_theory[:50])),
+               np.max(np.abs(inst_freq[-50:] - inst_freq_theory[-50:])))
+assert edge_err > 0.5
+```
 
 ### Aufgabe 10 (Konstruktion)
 

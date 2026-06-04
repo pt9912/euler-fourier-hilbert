@@ -1,5 +1,7 @@
 # Einheit 5: Diskrete Signale, DFT und FFT
 
+> **Hauptschwelle dieser Einheit.** *Frequenzauflösung* ($\Delta f$) und *gezeichnete Frequenzauflösung* (Bin-Dichte) sind **zwei verschiedene Größen**. Die echte Auflösung hängt allein an der Messdauer $T_{\text{mess}}$; Zero Padding macht das Bild glatter, ohne neue Information hinzuzufügen. Zugleich begrenzt die Nyquist-Frequenz, welche Schwingungen aus den Samples *überhaupt* rekonstruierbar sind. Wer beides nicht trennt, interpretiert FFT-Plots regelmäßig falsch.
+
 Computer können kein Integral über unendlich viele Zeiten auswerten; sie speichern endlich viele Zahlen. Die Leitfrage dieser Einheit lautet: Was bedeutet "Fourier", wenn nur $N$ Abtastwerte vorliegen? Die Antwort führt zur DFT, zur FFT und zur unvermeidlichen Nyquist-Grenze.
 
 ## 5.1 Warum diskret?
@@ -138,6 +140,12 @@ freqs = np.fft.fftfreq(N, d=1 / fs)        # signierte Frequenzachse
    X_rect = np.fft.fft(x)
    X_hann = np.fft.fft(x * np.hanning(N))
    X_zpad = np.fft.fft(np.concatenate([x, np.zeros(750)]))
+
+   # Selbsttest: Bin-Breite ohne und mit Zero Padding
+   assert abs(np.fft.fftfreq(N, d=1 / fs)[1] - 4.0) < 1e-9         # Δf = 4 Hz
+   assert abs(np.fft.fftfreq(N + 750, d=1 / fs)[1] - 1.0) < 1e-9   # Δf = 1 Hz
+   # Selbsttest: 77 Hz fällt zwischen den 4-Hz-Bins (Leckage ist zu erwarten)
+   assert abs((77.0 / 4.0) - round(77.0 / 4.0)) > 0.1
    ```
 10. Konstruktion: Konstruiere ein reelles Signal $x[n]$ mit $N=64$ und $f_s=64\thinspace\text{Hz}$, das bei der DFT **genau zwei** nichtverschwindende Bins erzeugt (außer dem konjugierten Spiegelbild). Welche Frequenzen erfüllen die Kohärenz-Bedingung $f_0=m\Delta f$? Gib eine konkrete Wahl an, die in einem Frequenzbereich zwischen $5$ und $15\thinspace\text{Hz}$ liegt.
 

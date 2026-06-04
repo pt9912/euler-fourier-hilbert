@@ -1,5 +1,7 @@
 # Einheit 3: Fourier-Transformation
 
+> **Hauptschwelle dieser Einheit.** Aus den diskreten Frequenzen der Fourier-Reihe wird ein *Kontinuum* von Frequenzen. Das macht zwei Sprünge nötig: (i) Distributionen wie $\delta$ als Funktionale statt als gewöhnliche Funktionen, und (ii) **Zeit-Frequenz-Dualität** — Konzentration in der einen Domäne erzwingt Ausdehnung in der anderen. Beide werden in dieser Einheit eingeführt.
+
 Was bleibt von Fourier übrig, wenn ein Signal nicht periodisch ist und daher keine einzelne Grundfrequenz hat? Diese Einheit ersetzt die diskreten Linien der Fourier-Reihe durch ein kontinuierliches Spektrum. Damit werden Pulse, Fenster, Gaußfunktionen und reale Messsignale zugänglich.
 
 ## 3.1 Von Fourier-Reihe zur Fourier-Transformation
@@ -171,6 +173,12 @@ gauss_ft = np.sqrt(np.pi) * np.exp(-omega**2 / 4)
    x = np.where(np.abs(t) <= 0.5, 1.0, 0.0)
    omega = np.linspace(-30, 30, 4000)
    X = np.array([np.sum(x * np.exp(-1j * w * t)) * dt for w in omega])
+   X_theory = np.sinc(omega / (2 * np.pi))
+
+   # Selbsttest: numerische FT trifft die geschlossene Form innen
+   assert np.max(np.abs(X.real - X_theory)) < 1e-2
+   # Selbsttest: X(0) = 1 (Integral des Rechteckpulses)
+   assert abs(X[np.argmin(np.abs(omega))].real - 1.0) < 1e-2
    ```
    Diskutiere, warum die numerische Approximation an den Nullstellen besonders empfindlich auf das $t$-Gitter reagiert.
 8. Konstruktion: Konstruiere zwei reelle Signale $x_1,x_2$, deren Fourier-Transformierte beide gerade Funktionen von $\omega$ sind, deren Spektren aber qualitativ unterschiedlich aussehen (z. B. eines glatt abklingend, das andere oszillierend). Welche Eigenschaften deiner $x_1,x_2$ erzwingen die Geradheit des Spektrums, welche bestimmen den Unterschied?

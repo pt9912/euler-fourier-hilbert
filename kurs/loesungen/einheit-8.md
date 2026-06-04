@@ -114,13 +114,25 @@ Stark ist eine Antwort, wenn sie nicht nur einen Namen nennt, sondern eine konkr
 
 ## Lösung 8
 
-1. **Nur unter Zusatzbedingungen richtig.** Für eine einzelne reine positive Frequenz kann man die Hilbert-Transformation als Quadraturverschiebung lesen, etwa $\mathcal H\lbrace \cos(\omega_0t)\rbrace =\sin(\omega_0t)$. Für ein allgemeines Mehrkomponentensignal ist "eine Viertelperiode" aber nicht eindeutig, weil verschiedene Frequenzen verschiedene Perioden haben. Korrekt ist: Im Frequenzbereich werden positive Frequenzen mit $-i$, negative mit $+i$ multipliziert.
+Die acht Punkte entsprechen den acht Misconceptions aus der [Tabelle in der Kurs-Übersicht](../README.md#typische-vorstellungen-am-kursanfang). Wer alle acht ohne Nachschlagen sauber korrigieren kann, hat den Kurs in seinen wichtigsten Stolperfallen verinnerlicht.
 
-2. **Falsch.** Zero Padding macht das gezeichnete Frequenzraster feiner, fügt aber keine neuen Messdaten hinzu. Die echte Frequenzauflösung wird im Wesentlichen durch die Messdauer bestimmt.
+1. **Falsch.** $e^{i\varphi}$ ist nach Euler $\cos\varphi+i\sin\varphi$ — eine komplexe Zahl auf dem Einheitskreis mit $|e^{i\varphi}|=1$. Sie ist im Allgemeinen weder reell noch positiv. Die Vorstellung verallgemeinert das Schulbild der reellen Exponentialfunktion auf einen Bereich, in dem es nicht greift (vgl. [§1.3](../einheit-1.md#13-euler-formel) und [§1.5](../einheit-1.md#15-geometrische-bedeutung)).
 
-3. **Falsch formuliert.** Negative Frequenzen werden entfernt und echte positive Frequenzen werden verdoppelt. Sonderbins bleiben erhalten: DC wird nicht verdoppelt, und bei geradem $N$ wird auch der Nyquist-Bin nicht verdoppelt.
+2. **Falsch.** Für ein reelles Signal gilt die Realitätsbedingung $c_{-n}=\overline{c_n}$. Wenn $c_3=2$ ist, *muss* mindestens $c_{-3}=2$ ebenfalls vorhanden sein — sonst wäre die Reihe komplexwertig. Korrekt: Reelle Signale haben *immer* spektrale Beiträge paarweise (außer dem Gleichanteil $c_0$). Vgl. [§2.7](../einheit-2.md#27-betrag-und-phase).
 
-4. **Richtig** unter den üblichen Voraussetzungen und mit passender Zentrierung/Interpretation der Frequenzachse. Diese Symmetrie ist ein guter Plausibilitätstest für Rechnungen und FFT-Plots.
+3. **Falsch.** Der Dirac-Impuls ist keine gewöhnliche Funktion und hat keinen wohldefinierten Funktionswert bei $0$. Er ist als Distribution über die Siebeigenschaft $\int f(t)\delta(t-t_0)\thinspace dt=f(t_0)$ definiert. Die Schreibweise "$\delta(0)=\infty$" ist eine anschauliche Merkhilfe, aber keine Rechenregel. Vgl. [§3.4](../einheit-3.md#34-beispiel-dirac-impuls).
+
+4. **Falsch.** Reelle Träger erzeugen *zwei* spektrale Kopien mit Faktor $\tfrac12$: $x(t)\cos(\omega_c t)\leftrightarrow\tfrac12[X(\omega-\omega_c)+X(\omega+\omega_c)]$. Eine einzelne verschobene Kopie ohne Vorfaktor wäre das Spektrum eines komplexen Trägers $e^{i\omega_c t}$ — genau dieser Mechanismus wird in [Einheit 7](../einheit-7.md) für das analytische Signal gewollt eingesetzt. Vgl. [§4a.3](../einheit-4a.md#4a3-frequenzverschiebung).
+
+5. **Falsch (zwei Verwechslungen auf einmal).** Erstens: Parseval verbindet die Energie *eines* Signals zwischen Zeit- und Frequenzbereich, nicht die Energien zweier Signale. Zweitens: $xh$ im Zeitbereich entspricht der Faltung $\tfrac{1}{2\pi}(X*H)$ im Frequenzbereich — nicht dem Produkt $XH$. Selbst für $y=x*h$ gilt $\Vert y\Vert_2^2\ne\Vert x\Vert_2^2\cdot\Vert h\Vert_2^2$. Korrekt ist die *gemischte* Parseval-Identität $\langle x,y\rangle_t=\tfrac{1}{2\pi}\langle X,Y\rangle_\omega$. Vgl. [§4b.2](../einheit-4b.md#4b2-parseval-identität-plancherel) und Lösung 7 in [Einheit 4b](einheit-4b.md#lösung-7).
+
+6. **Falsch.** Zero Padding macht das gezeichnete Frequenzraster feiner (Interpolation des Spektrums), fügt aber keine neuen Messdaten hinzu. Die echte Frequenzauflösung wird durch die Messdauer $T_{\text{mess}}=N/f_s$ bestimmt: $\Delta f=1/T_{\text{mess}}$. Vgl. [§5.5](../einheit-5.md#55-frequenzauflösung-leckage-und-fensterung).
+
+7. **Nur unter Zusatzbedingungen richtig.** Für echte positive und negative Frequenzen ($\omega\ne 0$) stimmt die Kurzform "$90^\circ$-Verschiebung" (Multiplikation mit $\mp i$). Aber wegen $\mathrm{sgn}(0)=0$ wird der Gleichanteil bei $\omega=0$ auf null gesetzt, nicht gedreht. Konsequenz: $\mathcal H\lbrace 1\rbrace=0$. Vgl. [§6.5](../einheit-6.md#65-zweimalige-hilbert-transformation).
+
+8. **Nur unter Zusatzbedingungen richtig.** Die Gleichung $\lvert z(t)\rvert=A(t)$ gilt *exakt* nur, wenn (a) die Bedrosian-Bedingung erfüllt ist (Spektrum von $A$ liegt unterhalb der Trägerfrequenz, ohne Überlappung) und (b) $A(t)\ge 0$ ist. Bei Spektral­überlappung oder Vorzeichenwechsel von $A$ weicht $\lvert z(t)\rvert$ von $A(t)$ ab; im zweiten Fall liefert die Hüllkurve eher $|A(t)|$. Vgl. [§7.7](../einheit-7.md#77-typische-anwendung-am-signal) und [Lösung 5 zu §7](einheit-7.md#lösung-5).
+
+**Bonus.** **Richtig** unter den üblichen Voraussetzungen und mit passender Zentrierung der Frequenzachse: Reelle Signale haben hermitesche Spektren ($X(-\omega)=\overline{X(\omega)}$), gerade Signale haben gerade Spektren ($X(-\omega)=X(\omega)$). Beide Eigenschaften zusammen erzwingen $X(\omega)\in\mathbb R$ und $X(-\omega)=X(\omega)$. Diese Symmetrie ist ein guter Plausibilitätstest für numerische FFT-Plots — wenn ein numerisches Spektrum eines reellen, geraden Signals einen nennenswerten Imaginärteil zeigt, stimmt meistens die Zentrierung der Frequenzachse nicht. Vgl. [§4b.3](../einheit-4b.md#4b3-symmetrien-reeller-und-geraderungerader-signale).
 
 ## Lösung 9
 

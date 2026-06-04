@@ -1,5 +1,7 @@
 # Einheit 2: Fourier-Reihen
 
+> **Hauptschwelle dieser Einheit.** Frequenzen sind *Koordinatenachsen* in einem Funktionenraum, und Fourier-Koeffizienten sind *Projektionen* auf diese Achsen. Wer diese Übertragung des Bildes aus $\mathbb R^2$ auf periodische Funktionen verinnerlicht hat, hört auf, Fourier als Magie zu sehen — es ist einfach Skalarprodukt mit einer orthonormalen Basis.
+
 Welche Bausteine braucht man, um ein periodisches Signal vollständig zusammenzusetzen? Die Leitfrage dieser Einheit ist: Wie werden Schwingungen zu Koordinatenachsen, und wie liest man aus einem Signal die passenden Koordinaten ab? Fourier-Reihen beantworten genau das für periodische Signale.
 
 ## 2.1 Grundidee
@@ -209,8 +211,9 @@ def partial_sum(num_terms):
 2. Bestimme die komplexen Fourier-Koeffizienten von $f(t)=4\sin(2\omega_0t)$.
 3. Warum treten bei reellen Signalen positive und negative Frequenzen paarweise auf?
 4. Erkläre den Unterschied zwischen Grundfrequenz und Oberwelle.
-5. Konstruiere eine $2\pi$-periodische Funktion, deren Fourier-Reihe nur Sinus-Terme enthält. Wovon hängt diese Eigenschaft ab?
+5. Konstruktion: Konstruiere eine $2\pi$-periodische Funktion, deren Fourier-Reihe nur Sinus-Terme enthält. Wovon hängt diese Eigenschaft ab?
 6. Fehlerdiagnose: Jemand behauptet, ein reelles Signal könne nur den Koeffizienten $c_3=2$ haben und alle anderen $c_n=0$. Kann das stimmen? Falls nicht: Wie muss mindestens ergänzt werden?
+7. Analyse: Welche *Symmetrie* eines reellen Signals $f(t)$ erzwingt, dass alle Koeffizienten $c_n$ rein imaginär sind? Welche Symmetrie erzwingt, dass alle $c_n$ reell sind? Begründe deine Antwort, indem du in $c_n=\frac{1}{T}\int_0^T f(t)e^{-in\omega_0 t}\thinspace dt$ die Substitution $t\to -t$ einsetzt und Real- und Imaginärteil getrennt analysierst. Welche dieser beiden Symmetrien hat die Rechteckwelle aus §2.6, und stimmt das mit dem gefundenen $c_n=-\tfrac{2i}{\pi n}$ überein?
 
 ## Selbstcheck zu Einheit 2
 

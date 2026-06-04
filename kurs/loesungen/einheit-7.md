@@ -70,6 +70,24 @@ Was du daraus mitnehmen solltest: Eine AM-Schreibweise allein reicht nicht; die 
 
 ## Lösung 6
 
+Die Aussage ist **nur unter zwei kombinierten Voraussetzungen** richtig. Die beiden Bedingungen sind logisch unabhängig und müssen *beide* gelten:
+
+**Voraussetzung 1 — Bedrosian.** Das Spektrum $\hat A(\omega)$ der Amplitude darf außerhalb der Trägerfrequenz keine Beiträge haben: $\hat A(\omega)=0$ für $|\omega|\ge\omega_c$. Nur dann gilt exakt $\mathcal H\lbrace A(t)\cos(\omega_c t)\rbrace=A(t)\sin(\omega_c t)$ und damit $z(t)=A(t)e^{i\omega_c t}$.
+
+*Gegenbeispiel zu Voraussetzung 1:* $x(t)=(1+0{,}8\cos(2\pi\cdot 60\thinspace t))\cos(2\pi\cdot 50\thinspace t)$. Die Modulationsfrequenz $f_m=60\thinspace\text{Hz}$ liegt *über* der Trägerfrequenz $f_c=50\thinspace\text{Hz}$. Die nach $\pm f_c$ verschobenen Spektralkopien überlappen, und die Hilbert-Hüllkurve weicht erkennbar von $A(t)$ ab (vgl. Lösung 5).
+
+**Voraussetzung 2 — Vorzeichen.** $A(t)$ muss nichtnegativ sein: $A(t)\ge 0$ für alle $t$. Andernfalls liefert der Betrag $|z(t)|$ den *Absolutbetrag* $|A(t)|$ — eine an den Nulldurchgängen geknickte, nichtdifferenzierbare Funktion.
+
+*Gegenbeispiel zu Voraussetzung 2:* $x(t)=\cos(2\pi\cdot 5\thinspace t)\cdot\cos(2\pi\cdot 100\thinspace t)$. Hier ist $A(t)=\cos(2\pi\cdot 5\thinspace t)$, das zwischen $-1$ und $+1$ pendelt. Bedrosian ist erfüllt ($5<100$), aber $|z(t)|=|A(t)|=|\cos(2\pi\cdot 5\thinspace t)|$ hat die doppelte Schein-Frequenz und Knicke an den Nulldurchgängen — *nicht* den glatten Verlauf von $A(t)$.
+
+**Korrigierte Aussage.** Statt "immer gleich" ist die korrekte Allgemein­regel:
+
+> Für ein Signal $x(t)=A(t)\cos(\omega_c t)$ gilt $\lvert z(t)\rvert=A(t)$ exakt dann, wenn (i) die Bedrosian-Bedingung erfüllt ist und (ii) $A(t)\ge 0$ überall. Andernfalls liefert die Hilbert-Hüllkurve $\lvert A(t)\rvert$ (bei Vorzeichenwechsel) oder eine verzerrte Annäherung (bei Spektral­überlappung).
+
+Was du daraus mitnehmen solltest: Die Hüllkurve $\lvert z(t)\rvert$ ist immer *eine* nichtnegative Funktion; nur unter den beiden genannten Bedingungen ist sie auch *die modellierte* Amplitude $A(t)$.
+
+## Lösung 7
+
 Bei $N=8$ liegen die DFT-Bins bei $k=0,\ldots,7$. Der Gleichanteil ist $k=0$, der Nyquist-Bin ist $k=N/2=4$.
 
 Für das analytische Signal gilt:
@@ -83,7 +101,7 @@ Als Multiplikatorfolge kann man das schreiben als
 
 $$[1,2,2,2,1,0,0,0].$$
 
-## Lösung 7
+## Lösung 8
 
 Die Bedrosian-Bedingung verlangt, dass die nach $\pm f_c$ verschobenen Kopien des $A$-Spektrums sich nicht überlappen. Das $A$-Spektrum hat Linien bei $0$ und $\pm f_m$, nach Modulation also bei $\pm f_c$ und $\pm f_c\pm f_m$. Damit positive und negative Frequenzen sauber getrennt sind, muss $f_m < f_c$ — und genauer noch $f_c - f_m > 0$, also $f_m < f_c=50\thinspace\text{Hz}$.
 
@@ -99,13 +117,19 @@ fs = 2000.0
 t = np.arange(0, 1.0, 1 / fs)
 fc = 50.0
 
+errors = {}
 for fm in (3.0, 30.0, 55.0):
     envelope = 1.0 + 0.5 * np.cos(2 * np.pi * fm * t)
     signal = envelope * np.cos(2 * np.pi * fc * t)
     z = hilbert(signal)
     recovered = np.abs(z)
     err = np.max(np.abs(recovered[100:-100] - envelope[100:-100]))
+    errors[fm] = err
     print(f"fm = {fm:>5} Hz  ->  max |z| - A  =  {err:.4f}")
+
+assert errors[3.0]  < 0.01    # Bedrosian klar erfüllt
+assert errors[30.0] < 0.10    # Bedrosian gerade noch erfüllt
+assert errors[55.0] > 0.10    # Bedrosian verletzt
 ```
 
 Erwartete Größenordnung: bei $f_m=3$ Fehler unter $0{,}01$, bei $f_m=30$ unter $0{,}1$, bei $f_m=55$ deutlich darüber.

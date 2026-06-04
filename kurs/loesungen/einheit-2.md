@@ -84,6 +84,32 @@ $$2e^{i3\omega_0t}+2e^{-i3\omega_0t}=4\cos(3\omega_0t),$$
 
 also ein reelles Signal. Nur $2e^{i3\omega_0t}$ allein wäre komplexwertig.
 
+## Lösung 7
+
+Wir setzen in der Definition $c_n=\frac{1}{T}\int_0^T f(t)e^{-in\omega_0 t}\thinspace dt$ die Substitution $t\to -t$ ein. Auf einem zentrierten Intervall $[-T/2,T/2]$ (das wegen Periodizität dasselbe Integral liefert) wird das Substitutions­integral übersichtlicher:
+
+$$c_n=\frac{1}{T}\int_{-T/2}^{T/2} f(t)e^{-in\omega_0 t}\thinspace dt.$$
+
+Substitution $u=-t$, $du=-dt$ kehrt die Integrationsgrenzen um:
+
+$$c_n=\frac{1}{T}\int_{-T/2}^{T/2} f(-u)e^{in\omega_0 u}\thinspace du.$$
+
+**Fall 1 — $f$ gerade** ($f(-t)=f(t)$):
+
+$$c_n=\frac{1}{T}\int_{-T/2}^{T/2} f(u)e^{in\omega_0 u}\thinspace du = \overline{c_n}\quad\text{(weil $f$ reell ist)}.$$
+
+Aus $c_n=\overline{c_n}$ folgt $c_n\in\mathbb R$ — **gerade Signale haben reelle Koeffizienten**.
+
+**Fall 2 — $f$ ungerade** ($f(-t)=-f(t)$):
+
+$$c_n=-\frac{1}{T}\int_{-T/2}^{T/2} f(u)e^{in\omega_0 u}\thinspace du = -\overline{c_n}.$$
+
+Aus $c_n=-\overline{c_n}$ folgt $c_n+\overline{c_n}=2\mathrm{Re}(c_n)=0$, also $\mathrm{Re}(c_n)=0$. Die Koeffizienten sind **rein imaginär** — **ungerade reelle Signale haben rein imaginäre Koeffizienten**.
+
+**Rechteckwelle aus §2.6.** Sie ist auf $(-\pi,\pi)$ definiert durch $f(t)=+1$ für $0 < t < \pi$ und $f(t)=-1$ für $-\pi < t < 0$. Es gilt $f(-t)=-f(t)$, sie ist also **ungerade**. Die Vorhersage: $c_n$ rein imaginär. Das gefundene $c_n=-\tfrac{2i}{\pi n}$ (für ungerade $n$) ist genau das — der Faktor $-i$ macht den Koeffizienten rein imaginär, und die $c_0=0$-Aussage in §2.6 bestätigt zusätzlich, dass eine ungerade Funktion keinen Gleichanteil hat (er wäre als $\mathrm{Re}(c_0)$ präsent, ist aber bei rein imaginären Koeffizienten konsequent null).
+
+Was du daraus mitnehmen solltest: Symmetrie ist ein Diagnosewerkzeug. Wer in einer numerischen Rechnung *gerade* Symmetrie des Zeitsignals annimmt und *komplexe* $c_n$ erhält, hat fast immer einen Implementierungsfehler — Zentrierung der Zeitachse, Fenstergrenzen, oder die komplex-konjugierte Definition.
+
 ---
 
 [Zurück: Lösungen zu Einheit 1](einheit-1.md) · [Zurück zur Einheit](../einheit-2.md) · [Lösungs-Index](README.md) · [Weiter: Lösungen zu Einheit 3](einheit-3.md)
