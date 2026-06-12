@@ -1,7 +1,10 @@
 #!/usr/bin/env node
-// docs-check — vollstaendiger Health-Check fuer das Kurs-Markdown.
+// docs-check — Math-Rest-Sensor fuer das Kurs-Markdown.
 //
-// Prueft pro Markdown-Datei:
+// Seit der Migration auf d-check (ghcr.io/pt9912/d-check,
+// digest-gepinnt, Konfiguration in .d-check.yml) prueft dieses Tool
+// NUR noch die Math-Validierung, die ein generischer Referenz-Checker
+// nicht leisten kann:
 //
 //   1. Math-Bloecke (inline $...$, $$...$$ einzeilig, ```math-Fence)
 //      werden mit MathJax 3.2.0 + AllPackages exakt wie auf GitHub
@@ -9,23 +12,14 @@
 //      (commonmark-escape, github-fence-backslash, github-html-roundtrip-lt,
 //      github-table-cell-leading-math, github-denied-macro) als Warnung.
 //
-//   2. Interne Markdown-Links [text](pfad.md#anker): Datei vorhanden?
-//      Wenn Anker angegeben: gibt es eine passende Heading-Anker-ID?
-//
-//   3. Bild-Referenzen ![alt](pfad.png|jpg|gif|svg): Datei vorhanden?
-//
-//   4. Skript-Referenzen [text](*.py|*.js|*.ipynb): Datei vorhanden?
-//
-//   5. Externe Links (http://, https://) optional per HTTP HEAD pruefen
-//      (default off, mit `--external` einschalten — kann langsam werden).
+// Interne Links, Anker, Bild- und Skript-Referenzen prueft d-check;
+// externe Links optional dort ueber das Modul `external`.
 //
 // Aufruf:
 //   docs-check                          # alle *.md ab cwd
 //   docs-check path/to/file.md ...      # bestimmte Dateien/Pfade
 //   docs-check --verbose                # auch OK-Items melden
 //   docs-check --no-warn                # MathJax-Quirks unterdruecken
-//   docs-check --external               # HTTP-Links zusaetzlich pruefen
-//   docs-check --no-math                # Math-Validierung ueberspringen
 
 const { mathjax } = require('mathjax-full/js/mathjax.js');
 const { TeX } = require('mathjax-full/js/input/tex.js');
@@ -51,21 +45,6 @@ const mjDoc = mathjax.document('', { InputJax: tex, OutputJax: svg });
 const GITHUB_DENIED_MACROS = new Set(['operatorname']);
 
 const CM_ESCAPABLE = new Set('!"#$%&\'()*+,-./:;<=>?@[]^_`{|}~');
-
-// ============================================================================
-// Slug-Generierung im GitHub-Stil (fuer Anker-Aufloesung)
-// ============================================================================
-// Empirisch verifiziert gegen Anker im GitHub-Payload:
-//   "5.3 Interpretation der Frequenzindizes" -> "53-interpretation-der-frequenzindizes"
-//   "Übungen zu Einheit 5"                   -> "übungen-zu-einheit-5"
-function slugify(text) {
-  return text
-    .toLowerCase()
-    .replace(/[^\p{L}\p{N}\s_-]+/gu, '')  // nur Letters/Digits/Whitespace/-/_
-    .trim()
-    .replace(/\s+/g, '-')                  // Spaces -> Hyphen
-    .replace(/-+/g, '-');                  // mehrfache Hyphen kollabieren
-}
 
 // ============================================================================
 // Markdown-Parsing
@@ -127,56 +106,6 @@ function* findMathBlocks(content) {
         }
       }
       j++;
-    }
-  }
-}
-
-// Liefert alle Links der Form [text](url) und ![alt](src). Ueberspringt
-// Code-Fences (jeder Art) und Inline-Code (`...`), damit Beispiele dort nicht
-// als "Links" interpretiert werden.
-function* findLinks(content) {
-  const lines = content.split('\n');
-  let inFence = false;
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    const lineNum = i + 1;
-    const trimmed = line.trimStart();
-    // In Code-Fences keine Links suchen. Wir akzeptieren hier ANY Fence
-    // (mit oder ohne Sprach-Tag), aber strikt am Zeilenanfang.
-    if (/^```/.test(trimmed)) { inFence = !inFence; continue; }
-    if (inFence) continue;
-
-    // Inline-Code aus der Zeile maskieren, damit Backtick-Inhalt nicht matcht.
-    let stripped = line.replace(/`[^`]*`/g, (m) => ' '.repeat(m.length));
-
-    // Match ![alt](src) und [text](url). Klammer-Inhalte mit Leerzeichen
-    // erlauben wir nicht (Standard-Markdown). Nicht-greedy fuer text/alt.
-    const re = /(!?)\[([^\]\n]*?)\]\(([^)\s][^)\n]*)\)/g;
-    let m;
-    while ((m = re.exec(stripped)) !== null) {
-      const isImage = m[1] === '!';
-      yield { isImage, text: m[2], target: m[3], line: lineNum };
-    }
-  }
-}
-
-function* findHeadings(content) {
-  const lines = content.split('\n');
-  let inFence = false;
-  const seen = new Map();
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    const trimmed = line.trimStart();
-    if (/^```/.test(trimmed)) { inFence = !inFence; continue; }
-    if (inFence) continue;
-    const m = /^(#{1,6})\s+(.+?)\s*$/.exec(trimmed);
-    if (m) {
-      const baseSlug = slugify(m[2]);
-      // GitHub haengt bei doppelten Anker -1, -2, ... an
-      const count = seen.get(baseSlug) || 0;
-      seen.set(baseSlug, count + 1);
-      const slug = count === 0 ? baseSlug : `${baseSlug}-${count}`;
-      yield { level: m[1].length, text: m[2], slug, line: i + 1 };
     }
   }
 }
@@ -308,76 +237,12 @@ function* findTableMathQuirks(content) {
 }
 
 // ============================================================================
-// Link-/Anker-Checks
-// ============================================================================
-function classifyTarget(target) {
-  const cleaned = target.split(/[)#?]/)[0];   // Anker/Query abtrennen
-  const anchor = target.includes('#') ? target.substring(target.indexOf('#') + 1) : null;
-  if (/^https?:\/\//i.test(target)) return { kind: 'external', url: target };
-  if (/^mailto:/i.test(target)) return { kind: 'mailto' };
-  if (target.startsWith('#')) return { kind: 'anchor-only', anchor: target.substring(1) };
-  const ext = path.extname(cleaned).toLowerCase();
-  const file = cleaned;
-  if (['.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp'].includes(ext)) return { kind: 'image', file };
-  if (['.py', '.js', '.ts', '.ipynb', '.json', '.yaml', '.yml', '.toml', '.sh'].includes(ext)) return { kind: 'script', file };
-  if (ext === '.md') return { kind: 'markdown', file, anchor };
-  if (ext === '') return { kind: 'markdown', file: file, anchor }; // README ohne Endung etc.
-  return { kind: 'other', file };
-}
-
-function checkLinks(filePath, text, headingIndex, report, opts) {
-  const fileDir = path.dirname(filePath);
-  for (const link of findLinks(text)) {
-    report.linkTotal++;
-    const cls = classifyTarget(link.target);
-    if (cls.kind === 'external') {
-      if (opts.external) {
-        // Externe Links pruefen wir spaeter gesammelt; hier nur sammeln
-        report.externalLinks.push({ filePath, line: link.line, url: cls.url });
-      }
-      continue;
-    }
-    if (cls.kind === 'mailto') continue;
-    if (cls.kind === 'anchor-only') {
-      const slugs = headingIndex.get(filePath) || new Set();
-      if (!slugs.has(cls.anchor)) {
-        report.error(filePath, link.line, 'link', `Anker \`#${cls.anchor}\` existiert nicht in dieser Datei`,
-          `[${link.text}](${link.target})`);
-      }
-      continue;
-    }
-    // image / script / markdown / other → Datei pruefen
-    const resolved = path.resolve(fileDir, cls.file);
-    if (!fs.existsSync(resolved)) {
-      report.error(filePath, link.line, `link/${cls.kind}`, `Datei nicht gefunden: ${cls.file}`,
-        `[${link.text}](${link.target})`);
-      continue;
-    }
-    // Bei .md zusaetzlich Anker pruefen
-    if (cls.kind === 'markdown' && cls.anchor) {
-      const slugs = headingIndex.get(resolved) || new Set();
-      if (slugs.size === 0) {
-        // Datei noch nicht indexiert (z.B. ausserhalb des Scopes). Best-effort:
-        // Anker-Pruefung nur, wenn wir die Datei kennen.
-        report.warn(filePath, link.line, 'link/markdown', 'anchor-not-indexed',
-          `Anker \`#${cls.anchor}\` in ${cls.file} nicht pruefbar (Datei nicht im Scope)`);
-      } else if (!slugs.has(cls.anchor)) {
-        report.error(filePath, link.line, 'link/markdown', `Anker \`#${cls.anchor}\` nicht in ${cls.file}`,
-          `[${link.text}](${link.target})`);
-      }
-    }
-  }
-}
-
-// ============================================================================
 // Report
 // ============================================================================
 function newReport(opts) {
   const items = [];
   return {
     mathTotal: 0,
-    linkTotal: 0,
-    externalLinks: [],
     error(file, line, kind, msg, content) {
       items.push({ severity: 'ERROR', file, line, kind, msg, content });
     },
@@ -406,37 +271,6 @@ function printItem(item) {
 }
 
 // ============================================================================
-// Externe Links via HTTP HEAD
-// ============================================================================
-async function checkExternal(links, report) {
-  // node:https aus dem stdlib reicht
-  const { request } = require('node:https');
-  const { request: httpRequest } = require('node:http');
-  const { URL } = require('node:url');
-  for (const { filePath, line, url } of links) {
-    try {
-      const u = new URL(url);
-      const lib = u.protocol === 'https:' ? request : httpRequest;
-      const status = await new Promise((resolve, reject) => {
-        const req = lib({
-          method: 'HEAD', host: u.hostname, port: u.port || undefined,
-          path: u.pathname + u.search, timeout: 10000,
-          headers: { 'User-Agent': 'docs-check/1.0' },
-        }, (res) => resolve(res.statusCode));
-        req.on('error', reject);
-        req.on('timeout', () => { req.destroy(); reject(new Error('timeout')); });
-        req.end();
-      });
-      if (status >= 400) {
-        report.error(filePath, line, 'link/external', `HTTP ${status}`, url);
-      }
-    } catch (e) {
-      report.error(filePath, line, 'link/external', `Fehler beim Abruf: ${e.message}`, url);
-    }
-  }
-}
-
-// ============================================================================
 // File-Walking + main
 // ============================================================================
 function walk(dir, out = []) {
@@ -449,13 +283,11 @@ function walk(dir, out = []) {
   return out;
 }
 
-(async function main() {
+(function main() {
   const args = process.argv.slice(2);
   const opts = {
     verbose: args.includes('--verbose') || args.includes('-v'),
     noWarn: args.includes('--no-warn'),
-    external: args.includes('--external'),
-    noMath: args.includes('--no-math'),
   };
   const positional = args.filter((a) => !a.startsWith('-'));
   let targets;
@@ -472,33 +304,13 @@ function walk(dir, out = []) {
 
   const report = newReport(opts);
 
-  // Phase 1: Heading-Index aufbauen
-  const headingIndex = new Map();
-  const fileTexts = new Map();
   for (const f of targets) {
     let text;
     try { text = fs.readFileSync(f, 'utf8'); } catch (e) {
       report.error(f, 0, 'io', `Datei kann nicht gelesen werden: ${e.code}`);
       continue;
     }
-    fileTexts.set(f, text);
-    const slugs = new Set();
-    for (const h of findHeadings(text)) slugs.add(h.slug);
-    headingIndex.set(f, slugs);
-  }
-
-  // Phase 2: pro Datei Math + Links pruefen
-  for (const f of targets) {
-    const text = fileTexts.get(f);
-    if (!text) continue;
-    if (!opts.noMath) checkMath(f, text, report);
-    checkLinks(f, text, headingIndex, report, opts);
-  }
-
-  // Phase 3: externe Links (sequenziell, eher konservativ)
-  if (opts.external && report.externalLinks.length) {
-    console.log(`Pruefe ${report.externalLinks.length} externe Links per HTTP HEAD…`);
-    await checkExternal(report.externalLinks, report);
+    checkMath(f, text, report);
   }
 
   // Ausgabe
@@ -506,7 +318,6 @@ function walk(dir, out = []) {
   const s = report.summary();
   const parts = [`${targets.length} Datei(en)`];
   parts.push(`${report.mathTotal} Math-Bloecke`);
-  parts.push(`${report.linkTotal} Links`);
   if (s.errors) parts.push(`${s.errors} ERROR`);
   else parts.push('keine Fehler');
   if (s.denied) parts.push(`${s.denied} DENIED`);
@@ -514,7 +325,4 @@ function walk(dir, out = []) {
   const hardFail = s.errors + s.denied;
   console.log(`\n${hardFail === 0 ? 'OK' : 'FAILED'}: ${parts.join(' — ')}.`);
   process.exit(hardFail === 0 ? 0 : 1);
-})().catch((e) => {
-  console.error('docs-check ist abgestuerzt:', e.stack || e.message);
-  process.exit(2);
-});
+})();

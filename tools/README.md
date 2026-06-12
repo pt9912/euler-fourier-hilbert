@@ -4,19 +4,20 @@ Hilfsskripte rund um den Kurs. Nicht Teil des Kursmaterials.
 
 ## docs-check
 
-`Dockerfile` + `docs-check.js` liefern einen reproduzierbaren Health-Check
-für die Kurs-Dokumentation. Geprüft wird:
+`Dockerfile` + `docs-check.js` liefern den **Math-Rest-Sensor** der
+Kurs-Dokumentation. Die generischen Referenz-Prüfungen (interne
+Markdown-Links inkl. Anker, Bild- und Skript-Referenzen) übernimmt
+seit der Migration 2026-06-12
+[d-check](https://github.com/pt9912/d-check) — digest-gepinntes
+Container-Image, Konfiguration in [`../.d-check.yml`](../.d-check.yml);
+externe Links optional dort über das Modul `external`.
+
+Geprüft wird (von diesem Tool):
 
 1. **Math-Inhalte** — Inline `$...$`, einzeiliges `$$...$$` und
    ```math-Fences werden mit MathJax 3.2.0 + AllPackages exakt wie auf
    GitHub gerendert; zusätzlich GitHub-spezifische Quirks als Warnung
    (siehe unten).
-2. **Interne Markdown-Links** `[text](pfad.md#anker)` — Datei vorhanden?
-   Bei Anker: gibt es die zugehörige Heading-ID?
-3. **Bild-Referenzen** `![alt](pfad.png|jpg|gif|svg)` — Datei vorhanden?
-4. **Skript-Referenzen** `[text](*.py|*.js|*.ipynb)` — Datei vorhanden?
-5. **Externe Links** (`http://`, `https://`) — optional per HTTP HEAD
-   geprüft, schaltet sich mit `--external` ein.
 
 Die GitHub-Engine MathJax ist offiziell dokumentiert in
 <https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/writing-mathematical-expressions>;
@@ -49,18 +50,6 @@ Auch OK-Items melden:
 docker run --rm -v "$PWD":/work docs-check --verbose kurs/
 ```
 
-Externe Links zusätzlich per HTTP HEAD prüfen (langsam):
-
-```bash
-docker run --rm -v "$PWD":/work docs-check --external
-```
-
-Math-Validierung überspringen (z.B. nur Links interessieren):
-
-```bash
-docker run --rm -v "$PWD":/work docs-check --no-math
-```
-
 Warnungen unterdrücken:
 
 ```bash
@@ -69,7 +58,7 @@ docker run --rm -v "$PWD":/work docs-check --no-warn
 
 ### Drei Schweregrade
 
-**ERROR** — fehlende Datei, toter Anker, MathJax bricht beim Rendern ab.
+**ERROR** — MathJax bricht beim Rendern ab (oder Datei nicht lesbar).
 Exit-Code 1.
 
 **DENIED** — Math-Inhalt nutzt ein Makro, das MathJax kennt, aber GitHub
@@ -103,6 +92,3 @@ verändert ihn aber vor dem Rendern. Exit-Code bleibt 0. Bekannte Quirks:
   Glossar-Stil. Workaround: Text oder Whitespace zwischen das Zeichen
   und das öffnende `$` setzen (`"Wegen $x$..."` statt `"$x$..."`).
 
-- `anchor-not-indexed` — Markdown-Link zeigt auf eine `.md` außerhalb
-  des aktuellen Scopes; der Validator kann den Anker nicht prüfen.
-  Beim nächsten Lauf mit größerem Scope verschwindet die Warnung.

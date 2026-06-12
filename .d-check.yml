@@ -1,0 +1,11 @@
+# Doku-Referenz-Checks via d-check (ghcr.io/pt9912/d-check) — ersetzt
+# die Link-/Anker-/Bild-/Skript-Referenz-Prüfungen von
+# tools/docs-check.js (Rollout 2026-06-12, JS-Familie/Basis-Variante).
+# docs-check.js bleibt als Rest-Sensor für die Math-Validierung
+# (MathJax-Rendering + GitHub-Quirks — für d-check out-of-scope).
+# Scan über die gesamte Repo-Wurzel wie das Alt-Tool; `external`
+# bleibt wie dort opt-in und aus.
+# Beschreibung siehe: https://raw.githubusercontent.com/pt9912/d-check/refs/heads/main/README.md
+scan:
+  roots: ["."]
+modules: [links, anchors]
